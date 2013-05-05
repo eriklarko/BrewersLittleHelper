@@ -1,14 +1,16 @@
 package blh.core.uncategorized;
 
+import blh.core.units.Factor;
+
 /**
  *
  * @author thinner
  */
 public class GeneralBreweryInfo {
-    private double effiency;
+    private Input<Factor> effiency;
 
-    public double getEffiency() {
-        return effiency;
+    public Factor getEffiency() {
+        return effiency.value();
     }
     
     

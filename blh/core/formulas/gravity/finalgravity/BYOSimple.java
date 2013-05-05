@@ -2,6 +2,7 @@ package blh.core.formulas.gravity.finalgravity;
 
 import blh.core.formulas.Formula;
 import blh.core.uncategorized.FullContext;
+import blh.core.units.Factor;
 import blh.core.units.gravity.SpecificGravity;
 
 /**
@@ -16,13 +17,13 @@ public class BYOSimple implements Formula<SpecificGravity> {
 
     @Override
     public SpecificGravity calc(FullContext context) {
-        double og = context.getOriginalGravity().value();
+        double og = context.originalGravity.value().value();
         
-        return calc(og, context.getYeastApparentAttenuation());
+        return calc(og, context.yeastApparentAttenuation.value());
     }
 
-    public SpecificGravity calc(double og, double yeastApparentAttenuation) {
-        return new SpecificGravity(og * (1 - yeastApparentAttenuation));
+    public SpecificGravity calc(double og, Factor yeastApparentAttenuation) {
+        return new SpecificGravity(og * (1 - yeastApparentAttenuation.value()));
     }
     
 }

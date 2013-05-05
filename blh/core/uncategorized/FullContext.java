@@ -1,13 +1,15 @@
 package blh.core.uncategorized;
 
-import blh.core.recipe.Recipe;
+import blh.core.formulas.Formula;
+import blh.core.recipe.IngredientsList;
 import blh.core.units.ExtractPotential;
+import blh.core.units.Factor;
 import blh.core.units.alcohol.ABV;
+import blh.core.units.color.ColorPotential;
 import blh.core.units.color.MaltColorUnit;
 import blh.core.units.distance.Meters;
 import blh.core.units.gravity.SpecificGravity;
 import blh.core.units.time.Minutes;
-import blh.core.units.volume.Gallons;
 import blh.core.units.volume.Liters;
 import blh.core.units.weight.Grams;
 import blh.core.units.weight.Kilograms;
@@ -18,13 +20,48 @@ import blh.core.units.weight.Kilograms;
  */
 public class FullContext {
 
-    private Recipe recipe;
+    private IngredientsList recipe;
     private GeneralBreweryInfo brewery;
     private Equipment equipment;
-    ///////////
-    private Calculator calculator;
-
-    public Recipe getRecipe() {
+    /////////////
+    public MeasuredOrCalculatedValue<Liters> preMashVolume;
+    /**
+     * The volume added post boil. Probably after cooling
+     */
+    public MeasuredOrCalculatedValue<Liters> topUpVolume;
+    public MeasuredOrCalculatedValue<Liters> preBoilVolume;
+    public MeasuredOrCalculatedValue<Liters> boilVolume;
+    public MeasuredOrCalculatedValue<Liters> boilOffPerHour;
+    public MeasuredOrCalculatedValue<Liters> postBoilVolume;
+    public MeasuredOrCalculatedValue<Liters> postCoolingVolume;
+    public MeasuredOrCalculatedValue<Liters> trubLoss;
+    /**
+     * The amount of beer extracted after fermentation. I.e; the amount of beer
+     * that can be drunk.
+     */
+    public MeasuredOrCalculatedValue<Liters> finalVolume;
+    public MeasuredOrCalculatedValue<Minutes> boilTime;
+    public MeasuredOrCalculatedValue<SpecificGravity> preBoilGravity;
+    public MeasuredOrCalculatedValue<SpecificGravity> boilGravity;
+    public MeasuredOrCalculatedValue<SpecificGravity> postBoilGravity;
+    public MeasuredOrCalculatedValue<SpecificGravity> originalGravity;
+    public MeasuredOrCalculatedValue<SpecificGravity> finalGravity;
+    public MeasuredOrCalculatedValue<ABV> alcoholContent;
+    public MeasuredOrCalculatedValue<Factor> yeastApparentAttenuation;
+    public MeasuredOrCalculatedValue<MaltColorUnit> maltColorUnit;
+    public MeasuredOrCalculatedValue<ExtractPotential> totalExtractPotential;
+    public MeasuredOrCalculatedValue<ColorPotential> totalColorPotential;
+    public MeasuredOrCalculatedValue<Factor> extractionEffiency;
+    public MeasuredOrCalculatedValue<Kilograms> totalGrainWeight;
+    public MeasuredOrCalculatedValue<Grams> totalHopWeight;
+    ///////////////
+    public Input<Meters> elevation;
+    /**
+     * How many percent of the volume is lost when cooling.
+     */
+    public Input<Factor> coolingLoss;
+    
+    public IngredientsList getRecipe() {
         return recipe;
     }
 
@@ -36,79 +73,17 @@ public class FullContext {
         return equipment;
     }
 
-    public Liters getPreBoilVolume() {
-        // TODO: To be calulated from the mash and things
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    public Liters getBoilVolume() {
-        // TODO: An average of the volume across the boil.
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
     public Liters getBoilVolumeWithMinutesLeft(Minutes time) {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
+        double timePercent = (time.value() * 1d) / boilTime.value().value();
+        double totalBoilOff = preBoilVolume.value().value() - postBoilVolume.value().value();
 
-    public Liters getFinalVolume() {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    public SpecificGravity getPreBoilGravity() {
-        return calculator.calulatePrePoilGravity(this);
-    }
-
-    public SpecificGravity getBoilGravity() {
-        // Should be a mean of the gravity across the boil.
-        throw new UnsupportedOperationException("Not yet implemented");
+        return new Liters(totalBoilOff * timePercent);
     }
 
     public SpecificGravity getBoilGravityWithMinutesLeft(Minutes time) {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
+        double timePercent = (time.value() * 1d) / boilTime.value().value();
+        double totalGravityDifference = postBoilGravity.value().value() - preBoilGravity.value().value();
 
-    public SpecificGravity getPostBoilGravity() {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    public SpecificGravity getOriginalGravity() {
-        return calculator.calculateOriginalGravity(this);
-    }
-
-    public SpecificGravity getFinalGravity() {
-        return calculator.calculateFinalGravity(this);
-    }
-
-    public ABV getAlcoholContent() {
-        return calculator.calculateABV(this);
-    }
-
-    public double getYeastApparentAttenuation() {
-        // TODO: The attenuation for just one yeast is simple, but for multiple? And for adding yeast in secondary? Or at other times? Is time a factor?
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    public double getExtractionEffiency() {
-        return brewery.getEffiency();
-    }
-
-    public Kilograms getTotalGrainWeight() {
-        return recipe.getTotalGrainWeight();
-    }
-
-    public Grams getTotalHopWeight() {
-        return recipe.getTotalHopWeight();
-    }
-
-    public ExtractPotential getTotalExtractPotential() {
-        return recipe.getTotalExtractPotential();
-    }
-
-    public Meters getElevation() {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    public MaltColorUnit getMaltColorUnit() {
-        return new MaltColorUnit(recipe.getTotalColorPotential(), new Gallons(this.getFinalVolume()));
+        return new SpecificGravity(totalGravityDifference * timePercent);
     }
 }

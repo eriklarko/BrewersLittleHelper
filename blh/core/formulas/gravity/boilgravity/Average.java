@@ -12,8 +12,8 @@ public class Average implements Formula<SpecificGravity> {
 
     @Override
     public SpecificGravity calc(FullContext context) {
-        SpecificGravity preBoil = context.getPreBoilGravity();
-        SpecificGravity postBoil = context.getPostBoilGravity();
+        SpecificGravity preBoil = context.preBoilGravity.value();
+        SpecificGravity postBoil = context.postBoilGravity.value();
 
         return calc(preBoil, postBoil);
     }

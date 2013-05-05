@@ -28,7 +28,7 @@ public class BYOSimple implements Formula<ABV>{
 
     @Override
     public ABV calc(FullContext context) {
-        return calc(context.getOriginalGravity(), context.getFinalGravity());
+        return calc(context.originalGravity.value(), context.finalGravity.value());
     }
     
     public ABV calc(SpecificGravity originalGravity, SpecificGravity finalGravity) {

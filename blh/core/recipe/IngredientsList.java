@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author thinner
  */
-public class Recipe {
+public class IngredientsList {
 
     private List<GristPart> fermentables;
     private List<HopAddition> hopAdditions;

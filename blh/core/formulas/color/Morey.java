@@ -32,7 +32,7 @@ public class Morey implements Formula<EBC> {
 
     @Override
     public EBC calc(FullContext context) {
-        MaltColorUnit mcu = context.getMaltColorUnit();
+        MaltColorUnit mcu = context.maltColorUnit.value();
         return calc(mcu);
     }
 

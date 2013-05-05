@@ -24,9 +24,9 @@ public class Garetz implements Formula<IBU> {
         double totalIBUs = 0;
         // foreach hop addition
         HopAddition addition = null;
-        totalIBUs += getRawIBUsFromAddition(addition, context.getFinalVolume(), 
+        totalIBUs += getRawIBUsFromAddition(addition, context.finalVolume.value(), 
                 context.getBoilVolumeWithMinutesLeft(addition.getTimeInBoil()), 
-                context.getPreBoilGravity(), context.getElevation());
+                context.preBoilGravity.value(), context.elevation.value());
 
         return new IBU(totalIBUs);
     }
