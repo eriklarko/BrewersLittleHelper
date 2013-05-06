@@ -2,7 +2,6 @@ package blh.core.beerxml.types;
 
 import blh.core.units.Percentage;
 import blh.core.units.temperature.Celcius;
-import blh.core.units.weight.Kilograms;
 
 /**
  *
