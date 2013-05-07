@@ -1,3 +1,7 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.types.Water;
@@ -5,115 +9,30 @@ import blh.core.units.PH;
 import blh.core.units.PPM;
 import blh.core.units.volume.Liters;
 
-public class WaterBuilder implements Builder<Water> {
+/**
+ *
+ * @author thinner
+ */
+public interface WaterBuilder extends Builder<Water> {
 
-    private String name;
-    private Liters amount;
-    private PPM calcium;
-    private PPM bicarbonate;
-    private PPM sulfate;
-    private PPM chloride;
-    private PPM sodium;
-    private PPM magnesium;
-    private PH ph;
-    private String notes;
+    WaterBuilder setAmount(Liters amount);
 
-    public WaterBuilder() {
-    }
+    WaterBuilder setBicarbonate(PPM bicarbonate);
 
-    public WaterBuilder setName(String name) {
-        this.name = name;
-        return this;
-    }
+    WaterBuilder setCalcium(PPM calcium);
 
-    public WaterBuilder setAmount(Liters amount) {
-        this.amount = amount;
-        return this;
-    }
+    WaterBuilder setChloride(PPM chloride);
 
-    public WaterBuilder setCalcium(PPM calcium) {
-        this.calcium = calcium;
-        return this;
-    }
+    WaterBuilder setMagnesium(PPM magnesium);
 
-    public WaterBuilder setBicarbonate(PPM bicarbonate) {
-        this.bicarbonate = bicarbonate;
-        return this;
-    }
+    WaterBuilder setName(String name);
 
-    public WaterBuilder setSulfate(PPM sulfate) {
-        this.sulfate = sulfate;
-        return this;
-    }
+    WaterBuilder setNotes(String notes);
 
-    public WaterBuilder setChloride(PPM chloride) {
-        this.chloride = chloride;
-        return this;
-    }
+    WaterBuilder setPh(PH ph);
 
-    public WaterBuilder setSodium(PPM sodium) {
-        this.sodium = sodium;
-        return this;
-    }
+    WaterBuilder setSodium(PPM sodium);
 
-    public WaterBuilder setMagnesium(PPM magnesium) {
-        this.magnesium = magnesium;
-        return this;
-    }
-
-    public WaterBuilder setPh(PH ph) {
-        this.ph = ph;
-        return this;
-    }
-
-    public WaterBuilder setNotes(String notes) {
-        this.notes = notes;
-        return this;
-    }
-
-    @Override
-    public Builder<Water> set(String tagName, String value) {
-        switch (tagName.toUpperCase()) {
-            case "NAME":
-                name = value;
-                break;
-            case "AMOUNT":
-                amount = new Liters(Double.parseDouble(value));
-                break;
-            case "CALCIUM":
-                calcium = new PPM(Double.parseDouble(value));
-                break;
-            case "BICARBONATE":
-                bicarbonate = new PPM(Double.parseDouble(value));
-                break;
-            case "SULFATE":
-                sulfate = new PPM(Double.parseDouble(value));
-                break;
-            case "CHLORIDE":
-                chloride = new PPM(Double.parseDouble(value));
-                break;
-            case "SODIUM":
-                sodium = new PPM(Double.parseDouble(value));
-                break;
-            case "MAGNESIUM":
-                magnesium = new PPM(Double.parseDouble(value));
-                break;
-            case "PH":
-                ph = new PH(Double.parseDouble(value));
-                break;
-            case "NOTES":
-                notes = value;
-                break;
-            default:
-                System.out.println("Unknown water value: " + tagName);
-                break;
-        }
-
-        return this;
-    }
-
-    @Override
-    public Water create() {
-        return new Water(name, amount, calcium, bicarbonate, sulfate, chloride, sodium, magnesium, ph, notes);
-    }
+    WaterBuilder setSulfate(PPM sulfate);
+    
 }

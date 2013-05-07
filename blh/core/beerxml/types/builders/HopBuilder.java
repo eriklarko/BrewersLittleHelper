@@ -1,3 +1,7 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.types.Hop;
@@ -8,166 +12,42 @@ import blh.core.units.Percentage;
 import blh.core.units.time.Minutes;
 import blh.core.units.weight.Kilograms;
 
-public class HopBuilder {
+/**
+ *
+ * @author thinner
+ */
+public interface HopBuilder extends Builder<Hop> {
 
-    private String name;
-    private Percentage alpha;
-    private Kilograms amount;
-    private USE use;
-    private Minutes time;
-    private String notes;
-    private TYPE type;
-    private FORM form;
-    private Percentage beta;
-    private Percentage hopStabilityIndex;
-    private String origin;
-    private String substitutes;
-    private Percentage humulene;
-    private Percentage caryophyllene;
-    private Percentage cohumulone;
-    private Percentage myrcene;
+    HopBuilder setAlpha(Percentage alpha);
 
-    public HopBuilder() {
-    }
+    HopBuilder setAmount(Kilograms amount);
 
-    public HopBuilder setName(String name) {
-        this.name = name;
-        return this;
-    }
+    HopBuilder setBeta(Percentage beta);
 
-    public HopBuilder setAlpha(Percentage alpha) {
-        this.alpha = alpha;
-        return this;
-    }
+    HopBuilder setCaryophyllene(Percentage caryophyllene);
 
-    public HopBuilder setAmount(Kilograms amount) {
-        this.amount = amount;
-        return this;
-    }
+    HopBuilder setCohumulone(Percentage cohumulone);
 
-    public HopBuilder setUse(USE use) {
-        this.use = use;
-        return this;
-    }
+    HopBuilder setForm(FORM form);
 
-    public HopBuilder setTime(Minutes time) {
-        this.time = time;
-        return this;
-    }
+    HopBuilder setHopStabilityIndex(Percentage hopStabilityIndex);
 
-    public HopBuilder setNotes(String notes) {
-        this.notes = notes;
-        return this;
-    }
+    HopBuilder setHumulene(Percentage humulene);
 
-    public HopBuilder setType(TYPE type) {
-        this.type = type;
-        return this;
-    }
+    HopBuilder setMyrcene(Percentage myrcene);
 
-    public HopBuilder setForm(FORM form) {
-        this.form = form;
-        return this;
-    }
+    HopBuilder setName(String name);
 
-    public HopBuilder setBeta(Percentage beta) {
-        this.beta = beta;
-        return this;
-    }
+    HopBuilder setNotes(String notes);
 
-    public HopBuilder setHopStabilityIndex(Percentage hopStabilityIndex) {
-        this.hopStabilityIndex = hopStabilityIndex;
-        return this;
-    }
+    HopBuilder setOrigin(String origin);
 
-    public HopBuilder setOrigin(String origin) {
-        this.origin = origin;
-        return this;
-    }
+    HopBuilder setSubstitutes(String substitutes);
 
-    public HopBuilder setSubstitutes(String substitutes) {
-        this.substitutes = substitutes;
-        return this;
-    }
+    HopBuilder setTime(Minutes time);
 
-    public HopBuilder setHumulene(Percentage humulene) {
-        this.humulene = humulene;
-        return this;
-    }
+    HopBuilder setType(TYPE type);
 
-    public HopBuilder setCaryophyllene(Percentage caryophyllene) {
-        this.caryophyllene = caryophyllene;
-        return this;
-    }
-
-    public HopBuilder setCohumulone(Percentage cohumulone) {
-        this.cohumulone = cohumulone;
-        return this;
-    }
-
-    public HopBuilder setMyrcene(Percentage myrcene) {
-        this.myrcene = myrcene;
-        return this;
-    }
-
-    public HopBuilder set(String tagName, String value) {
-        switch (tagName.toUpperCase()) {
-            case "NAME":
-                name = value;
-                break;
-            case "ALPHA":
-                alpha = new Percentage(Double.parseDouble(value));
-                break;
-            case "AMOUNT":
-                amount = new Kilograms(Double.parseDouble(value));
-                break;
-            case "USE":
-                use = Hop.USE.valueOf(value.toUpperCase());
-                break;
-            case "TIME":
-                time = new Minutes(Integer.parseInt(value));
-                break;
-            case "NOTES":
-                notes = value;
-                break;
-            case "TYPE":
-                type = Hop.TYPE.valueOf(value.toUpperCase());
-                break;
-            case "FORM":
-                form = Hop.FORM.valueOf(value.toUpperCase());
-                break;
-            case "BETA":
-                beta = new Percentage(Double.parseDouble(value));
-                break;
-            case "HSI":
-                hopStabilityIndex = new Percentage(Double.parseDouble(value));
-                break;
-            case "ORIGIN":
-                origin = value;
-                break;
-            case "SUBSTITUTES":
-                substitutes = value;
-                break;
-            case "HUMULENE":
-                humulene = new Percentage(Double.parseDouble(value));
-                break;
-            case "CARYOPHYLLENE":
-                caryophyllene = new Percentage(Double.parseDouble(value));
-                break;
-            case "COHUMULONE":
-                cohumulone = new Percentage(Double.parseDouble(value));
-                break;
-            case "MYRCENE":
-                myrcene = new Percentage(Double.parseDouble(value));
-                break;
-            default:
-                System.out.println("UNKNOWN HOP VALUE: " + tagName);
-                break;
-        }
-        return this;
-    }
-
-    public Hop createHop() {
-        return new Hop(name, alpha, amount, use, time, notes, type, form, beta, hopStabilityIndex, origin, substitutes, humulene, caryophyllene, cohumulone, myrcene);
-    }
+    HopBuilder setUse(USE use);
+    
 }

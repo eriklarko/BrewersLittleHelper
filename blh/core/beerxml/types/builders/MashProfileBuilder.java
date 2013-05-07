@@ -1,3 +1,7 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.types.MashProfile;
@@ -7,112 +11,30 @@ import blh.core.units.temperature.Celcius;
 import blh.core.units.weight.Kilograms;
 import java.util.List;
 
-public class MashProfileBuilder implements Builder<MashProfile> {
+/**
+ *
+ * @author thinner
+ */
+public interface MashProfileBuilder extends Builder<MashProfile> {
 
-    private String name;
-    private Celcius grainTemperature;
-    private List<MashStep> mashSteps;
-    private String notes;
-    private Celcius tunTemperature;
-    private Celcius spargeTemperature;
-    private PH spargePH;
-    private Kilograms tunWeight;
-    private double tunSpecificHeat;
-    private boolean adjustForEquipmentTemperature;
+    MashProfileBuilder setAdjustForEquipmentTemperature(boolean adjustForEquipmentTemperature);
 
-    public MashProfileBuilder() {
-    }
+    MashProfileBuilder setGrainTemperature(Celcius grainTemperature);
 
-    public MashProfileBuilder setName(String name) {
-        this.name = name;
-        return this;
-    }
+    MashProfileBuilder setMashSteps(List<MashStep> mashSteps);
 
-    public MashProfileBuilder setGrainTemperature(Celcius grainTemperature) {
-        this.grainTemperature = grainTemperature;
-        return this;
-    }
+    MashProfileBuilder setName(String name);
 
-    public MashProfileBuilder setMashSteps(List<MashStep> mashSteps) {
-        this.mashSteps = mashSteps;
-        return this;
-    }
+    MashProfileBuilder setNotes(String notes);
 
-    public MashProfileBuilder setNotes(String notes) {
-        this.notes = notes;
-        return this;
-    }
+    MashProfileBuilder setSpargePH(PH spargePH);
 
-    public MashProfileBuilder setTunTemperature(Celcius tunTemperature) {
-        this.tunTemperature = tunTemperature;
-        return this;
-    }
+    MashProfileBuilder setSpargeTemperature(Celcius spargeTemperature);
 
-    public MashProfileBuilder setSpargeTemperature(Celcius spargeTemperature) {
-        this.spargeTemperature = spargeTemperature;
-        return this;
-    }
+    MashProfileBuilder setTunSpecificHeat(double tunSpecificHeat);
 
-    public MashProfileBuilder setSpargePH(PH spargePH) {
-        this.spargePH = spargePH;
-        return this;
-    }
+    MashProfileBuilder setTunTemperature(Celcius tunTemperature);
 
-    public MashProfileBuilder setTunWeight(Kilograms tunWeight) {
-        this.tunWeight = tunWeight;
-        return this;
-    }
-
-    public MashProfileBuilder setTunSpecificHeat(double tunSpecificHeat) {
-        this.tunSpecificHeat = tunSpecificHeat;
-        return this;
-    }
-
-    public MashProfileBuilder setAdjustForEquipmentTemperature(boolean adjustForEquipmentTemperature) {
-        this.adjustForEquipmentTemperature = adjustForEquipmentTemperature;
-        return this;
-    }
-
-    @Override
-    public Builder<MashProfile> set(String tagName, String value) {
-        switch (tagName.toUpperCase()) {
-            case "NAME":
-                name = value;
-                break;
-            case "GRAIN_TEMP":
-                grainTemperature = new Celcius(Double.parseDouble(value));
-                break;
-            case "NOTES":
-                notes = value;
-                break;
-            case "TUN_TEMP":
-                tunTemperature = new Celcius(Double.parseDouble(value));
-                break;
-            case "SPARGE_TEMP":
-                spargeTemperature = new Celcius(Double.parseDouble(value));
-                break;
-            case "PH":
-                spargePH = new PH(Double.parseDouble(value));
-                break;
-            case "TUN_WEIGHT":
-                tunWeight = new Kilograms(Double.parseDouble(value));
-                break;
-            case "TUN_SPECIFIC_HEAT":
-                tunSpecificHeat = Double.parseDouble(value);
-                break;
-            case "EQUIP_ADJUST":
-                adjustForEquipmentTemperature = Boolean.parseBoolean(value);
-                break;
-            default:
-                System.out.println("Unknown mash profile value: " + tagName);
-                break;
-        }
-
-        return this;
-    }
-
-    @Override
-    public MashProfile create() {
-        return new MashProfile(name, grainTemperature, mashSteps, notes, tunTemperature, spargeTemperature, spargePH, tunWeight, tunSpecificHeat, adjustForEquipmentTemperature);
-    }
+    MashProfileBuilder setTunWeight(Kilograms tunWeight);
+    
 }
