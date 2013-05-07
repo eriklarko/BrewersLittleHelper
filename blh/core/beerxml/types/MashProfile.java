@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author thinner
  */
-public class MashProfile {
+public class MashProfile implements BeerXMLRecord {
 
     public final String name;
     public final Celcius grainTemperature;

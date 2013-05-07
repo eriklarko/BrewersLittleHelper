@@ -8,7 +8,7 @@ import blh.core.units.weight.Kilograms;
  *
  * @author thinner
  */
-public class Fermentable {
+public class Fermentable implements BeerXMLRecord {
 
     public final String name;
     public final TYPE type;

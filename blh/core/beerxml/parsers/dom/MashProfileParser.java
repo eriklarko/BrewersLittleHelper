@@ -1,5 +1,7 @@
 package blh.core.beerxml.parsers.dom;
 
+import blh.core.beerxml.ParseException;
+import blh.core.beerxml.types.BeerXMLRecordSet;
 import blh.core.beerxml.types.MashProfile;
 import blh.core.beerxml.types.MashStep;
 import blh.core.beerxml.types.builders.MashProfileBuilder;
@@ -15,21 +17,21 @@ import org.w3c.dom.NodeList;
 public class MashProfileParser extends RecordSetParser<MashProfile> {
 
     private MashProfileBuilder builder;
-    private MashStepParser stepParser;
+    private RecordSetParser<MashStep> stepParser;
 
-    public MashProfileParser(MashProfileBuilder profileBuilder, MashStepParser stepParser) {
+    public MashProfileParser(MashProfileBuilder profileBuilder, RecordSetParser<MashStep> stepParser) {
         super(profileBuilder);
         this.builder = profileBuilder;
         this.stepParser = stepParser;
     }
 
     @Override
-    protected MashProfile parseType(NodeList values) {
+    protected MashProfile parseType(NodeList values) throws ParseException {
         for (int i = 0; i < values.getLength(); i++) {
             Node node = values.item(i);
             if (node.getNodeName().equals("MASH_STEPS")) {
-                List<MashStep> steps = stepParser.parse(node.getChildNodes());
-                builder.setMashSteps(steps);
+                BeerXMLRecordSet<MashStep> steps = stepParser.parse(node.getChildNodes());
+                builder.setMashSteps(steps.getRecords());
             } else {
                 builder.set(node.getNodeName(), node.getNodeValue());
             }

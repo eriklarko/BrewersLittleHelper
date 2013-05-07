@@ -8,7 +8,7 @@ import blh.core.units.volume.Liters;
  *
  * @author thinner
  */
-public class MashStep {
+public class MashStep implements BeerXMLRecord {
 
     public final String name;
     public final TYPE type;

@@ -6,7 +6,7 @@ import blh.core.units.time.Minutes;
  *
  * @author thinner
  */
-public class Misc {
+public class Misc implements BeerXMLRecord {
 
     public final String name;
     public final TYPE type;

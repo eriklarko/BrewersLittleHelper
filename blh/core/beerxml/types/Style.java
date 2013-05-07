@@ -10,7 +10,7 @@ import blh.core.units.gravity.SpecificGravity;
  *
  * @author thinner
  */
-public class Style {
+public class Style implements BeerXMLRecord {
 
     public final String name;
     public final String category;

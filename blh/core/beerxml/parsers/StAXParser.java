@@ -1,13 +1,12 @@
 package blh.core.beerxml.parsers;
 
-import blh.core.beerxml.types.BeerXMLData;
+import blh.core.beerxml.types.BeerXMLRecordSet;
 import blh.core.beerxml.BeerXMLParser;
 import blh.core.beerxml.ParseException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
@@ -17,10 +16,10 @@ import javax.xml.stream.XMLStreamReader;
  *
  * @author thinner
  */
-public class StAXParser implements BeerXMLParser{
+public class StAXParser implements BeerXMLParser {
 
     @Override
-    public BeerXMLData parse(File xmlFile) throws ParseException {
+    public List<BeerXMLRecordSet> parse(File xmlFile) throws ParseException {
         try {
             XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
             XMLStreamReader reader = xmlInputFactory.createXMLStreamReader(new FileReader(xmlFile));
@@ -53,10 +52,10 @@ public class StAXParser implements BeerXMLParser{
                 }
                 eventType = reader.next();
             }
-            
+
             return null;
         } catch (XMLStreamException | FileNotFoundException ex) {
             throw new ParseException(ex);
-        } 
+        }
     }
 }

@@ -8,7 +8,7 @@ import blh.core.units.volume.Liters;
  *
  * @author thinner
  */
-public class Water {
+public class Water implements BeerXMLRecord {
 
     public final String name;
     public final Liters amount;

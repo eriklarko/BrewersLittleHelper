@@ -7,7 +7,7 @@ import blh.core.units.temperature.Celcius;
  *
  * @author thinner
  */
-public class Yeast {
+public class Yeast implements BeerXMLRecord {
 
     public final String name;
     public final TYPE type;

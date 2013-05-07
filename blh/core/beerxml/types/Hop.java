@@ -8,7 +8,7 @@ import blh.core.units.weight.Kilograms;
  *
  * @author thinner
  */
-public class Hop {
+public class Hop implements BeerXMLRecord {
 
     public final String name;
     public final Percentage alpha;

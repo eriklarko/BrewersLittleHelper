@@ -9,7 +9,7 @@ import blh.core.units.weight.Kilograms;
  *
  * @author thinner
  */
-public class Equipment {
+public class Equipment implements BeerXMLRecord {
 
     public final String name;
     public final Liters boilSize;

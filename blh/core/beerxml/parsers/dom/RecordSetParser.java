@@ -4,6 +4,9 @@
  */
 package blh.core.beerxml.parsers.dom;
 
+import blh.core.beerxml.ParseException;
+import blh.core.beerxml.types.BeerXMLRecord;
+import blh.core.beerxml.types.BeerXMLRecordSet;
 import blh.core.beerxml.types.builders.Builder;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,7 +17,7 @@ import org.w3c.dom.NodeList;
  *
  * @author thinner
  */
-public class RecordSetParser<T> {
+public class RecordSetParser<T extends BeerXMLRecord> {
 
     private Builder<T> builder;
 
@@ -25,7 +28,7 @@ public class RecordSetParser<T> {
         this.builder = builder;
     }
 
-    public List<T> parse(NodeList recordSet) {
+    public BeerXMLRecordSet<T> parse(NodeList recordSet) throws ParseException {
         List<T> types = new LinkedList<>();
         for (int i = 0; i < recordSet.getLength(); i++) {
             Node node = recordSet.item(i);
@@ -33,10 +36,10 @@ public class RecordSetParser<T> {
             types.add(parseType(values));
         }
 
-        return types;
+        return new BeerXMLRecordSet<>(types);
     }
 
-    protected T parseType(NodeList values) {
+    protected T parseType(NodeList values) throws ParseException {
         for (int i = 0; i < values.getLength(); i++) {
             Node node = values.item(i);
             builder.set(node.getNodeName(), node.getNodeValue());
