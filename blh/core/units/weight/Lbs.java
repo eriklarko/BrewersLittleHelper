@@ -1,17 +1,14 @@
 package blh.core.units.weight;
 
+import blh.core.units.Unit;
+
 /**
  *
  * @author thinner
  */
-public class Lbs {
-    private double value;
+public class Lbs extends Unit<Double> {
 
     public Lbs(Kilograms kgs) {
-        this.value = kgs.value() * 2.20462;
-    }
-
-    public double value() {
-        return value;
+        super(kgs.value() * 2.20462);
     }
 }

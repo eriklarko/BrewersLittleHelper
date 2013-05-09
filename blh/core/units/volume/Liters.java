@@ -1,21 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package blh.core.units.volume;
+
+import blh.core.units.Unit;
 
 /**
  *
  * @author thinner
  */
-public class Liters {
-    private double value;
-
+public class Liters extends Unit<Double> {
     public Liters(double value) {
-        this.value = value;
-    }
-
-    public double value() {
-        return value;
+	super(value);;
     }
 }

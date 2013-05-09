@@ -22,7 +22,7 @@ public interface EquipmentBuilder extends Builder<Equipment> {
 
     EquipmentBuilder setBoilTime(Minutes boilTime);
 
-    EquipmentBuilder setCalculatedBoilVolume(boolean calculatedBoilVolume);
+    EquipmentBuilder setCalculateBoilVolume(boolean calculateBoilVolume);
 
     EquipmentBuilder setEvapRate(Percentage evapRate);
 

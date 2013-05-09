@@ -8,7 +8,7 @@ import java.util.Objects;
  */
 public abstract class Unit<T extends Number> {
 
-    private T value;
+    protected T value;
 
     public Unit(T value) {
         this.value = value;

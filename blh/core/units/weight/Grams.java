@@ -1,18 +1,14 @@
 package blh.core.units.weight;
 
+import blh.core.units.Unit;
+
 /**
  *
  * @author thinner
  */
-public class Grams {
-
-    private double value;
+public class Grams extends Unit<Double> {
 
     public Grams(double value) {
-        this.value = value;
-    }
-
-    public double value() {
-        return value;
+        super(value);
     }
 }

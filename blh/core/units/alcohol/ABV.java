@@ -1,18 +1,14 @@
 package blh.core.units.alcohol;
 
+import blh.core.units.Unit;
+
 /**
  *
  * @author thinner
  */
-public class ABV {
+public class ABV extends Unit<Double> {
 
-    private double value;
-
-    public ABV(double value) {
-        this.value = value;
-    }
-
-    public double value() {
-        return value;
+    public ABV(Double value) {
+        super(value);
     }
 }

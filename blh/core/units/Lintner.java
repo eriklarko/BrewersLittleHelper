@@ -4,15 +4,9 @@ package blh.core.units;
  *
  * @author thinner
  */
-public class Lintner {
-
-    private double value;
+public class Lintner extends Unit<Double> {
 
     public Lintner(double value) {
-        this.value = value;
-    }
-
-    public double value() {
-        return value;
+        super(value);
     }
 }

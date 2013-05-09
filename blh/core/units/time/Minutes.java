@@ -1,18 +1,14 @@
 package blh.core.units.time;
 
+import blh.core.units.Unit;
+
 /**
  *
  * @author thinner
  */
-public class Minutes {
-
-    private int value;
+public class Minutes extends Unit<Integer> {
 
     public Minutes(int value) {
-        this.value = value;
-    }
-
-    public int value() {
-        return value;
+        super(value);
     }
 }

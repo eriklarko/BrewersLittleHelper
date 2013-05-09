@@ -4,6 +4,7 @@ import blh.core.units.Percentage;
 import blh.core.units.time.Minutes;
 import blh.core.units.volume.Liters;
 import blh.core.units.weight.Kilograms;
+import java.util.Objects;
 
 /**
  *
@@ -21,13 +22,13 @@ public class Equipment implements BeerXMLRecord {
     public final Liters trubChillerLoss;
     public final Percentage evapRate;
     public final Minutes boilTime;
-    public final boolean calculatedBoilVolume;
+    public final boolean calculateBoilVolume;
     public final Liters lauterDeadSpace;
     public final Liters topUpKettle;
     public final Percentage hopUtilization;
     public final String notes;
 
-    public Equipment(String name, Liters boilSize, Liters batchSize, Liters tunVolume, Kilograms tunWeight, double tunSpecificHeat, Liters topUpWater, Liters trubChillerLoss, Percentage evapRate, Minutes boilTime, boolean calculatedBoilVolume, Liters lauterDeadSpace, Liters topUpKettle, Percentage hopUtilization, String notes) {
+    public Equipment(String name, Liters boilSize, Liters batchSize, Liters tunVolume, Kilograms tunWeight, double tunSpecificHeat, Liters topUpWater, Liters trubChillerLoss, Percentage evapRate, Minutes boilTime, boolean calculateBoilVolume, Liters lauterDeadSpace, Liters topUpKettle, Percentage hopUtilization, String notes) {
         this.name = name;
         this.boilSize = boilSize;
         this.batchSize = batchSize;
@@ -38,10 +39,10 @@ public class Equipment implements BeerXMLRecord {
         this.trubChillerLoss = trubChillerLoss;
         this.evapRate = evapRate;
         this.boilTime = boilTime;
-        this.calculatedBoilVolume = calculatedBoilVolume;
+        this.calculateBoilVolume = calculateBoilVolume;
         this.lauterDeadSpace = lauterDeadSpace;
         this.topUpKettle = topUpKettle;
         this.hopUtilization = hopUtilization;
         this.notes = notes;
-    }
+    }    
 }

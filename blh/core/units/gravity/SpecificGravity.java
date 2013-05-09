@@ -1,18 +1,14 @@
 package blh.core.units.gravity;
 
+import blh.core.units.Unit;
+
 /**
  *
  * @author thinner
  */
-public class SpecificGravity {
+public class SpecificGravity extends Unit<Double> {
 
-    private double value;
-    
     public SpecificGravity(double value) {
-        this.value = value;
-    }
-    
-    public double value() {
-        return value;
+        super(value);
     }
 }

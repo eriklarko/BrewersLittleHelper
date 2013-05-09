@@ -1,17 +1,14 @@
 package blh.core.units.distance;
 
+import blh.core.units.Unit;
+
 /**
  *
  * @author thinner
  */
-public class Meters {
-    private double value;
+public class Meters extends Unit<Double> {
 
     public Meters(double value) {
-        this.value = value;
-    }
-
-    public double value() {
-        return value;
+        super(value);
     }
 }

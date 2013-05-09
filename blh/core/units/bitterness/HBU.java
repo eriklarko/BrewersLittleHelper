@@ -1,17 +1,14 @@
 package blh.core.units.bitterness;
 
+import blh.core.units.Unit;
+
 /**
  *
  * @author thinner
  */
-public class HBU {
-    private double value;
+public class HBU extends Unit<Double> {
 
     public HBU(double value) {
-        this.value = value;
-    }
-
-    public double value() {
-        return value;
+        super(value);
     }
 }

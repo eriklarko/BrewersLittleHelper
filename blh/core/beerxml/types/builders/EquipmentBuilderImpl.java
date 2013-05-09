@@ -18,7 +18,7 @@ public class EquipmentBuilderImpl implements Builder<Equipment>, EquipmentBuilde
     private Liters trubChillerLoss;
     private Percentage evapRate;
     private Minutes boilTime;
-    private boolean calculatedBoilVolume;
+    private boolean calculateBoilVolume;
     private Liters lauterDeadSpace;
     private Liters topUpKettle;
     private Percentage hopUtilization;
@@ -88,8 +88,8 @@ public class EquipmentBuilderImpl implements Builder<Equipment>, EquipmentBuilde
     }
 
     @Override
-    public EquipmentBuilderImpl setCalculatedBoilVolume(boolean calculatedBoilVolume) {
-        this.calculatedBoilVolume = calculatedBoilVolume;
+    public EquipmentBuilderImpl setCalculateBoilVolume(boolean calculateBoilVolume) {
+        this.calculateBoilVolume = calculateBoilVolume;
         return this;
     }
 
@@ -151,9 +151,9 @@ public class EquipmentBuilderImpl implements Builder<Equipment>, EquipmentBuilde
                 this.boilTime = new Minutes(Integer.parseInt(value));
                 break;
             case "CALC_BOIL_VOLUME":
-                this.calculatedBoilVolume = Boolean.parseBoolean(value);
+                this.calculateBoilVolume = Boolean.parseBoolean(value);
                 break;
-            case "LATUER_DEADSPACE":
+            case "LAUTER_DEADSPACE":
                 this.lauterDeadSpace = new Liters(Double.parseDouble(value));
                 break;
             case "TOP_UP_KETTLE":
@@ -166,7 +166,7 @@ public class EquipmentBuilderImpl implements Builder<Equipment>, EquipmentBuilde
                 this.notes = value;
                 break;
             default:
-                System.out.println("Unknown equipment value: " + value);
+                System.out.println("Unknown equipment value: " + tagName);
                 break;
         }
         return this;
@@ -174,6 +174,6 @@ public class EquipmentBuilderImpl implements Builder<Equipment>, EquipmentBuilde
 
     @Override
     public Equipment create() {
-        return new Equipment(name, boilSize, batchSize, tunVolume, tunWeight, tunSpecificHeat, topUpWater, trubChillerLoss, evapRate, boilTime, calculatedBoilVolume, lauterDeadSpace, topUpKettle, hopUtilization, notes);
+        return new Equipment(name, boilSize, batchSize, tunVolume, tunWeight, tunSpecificHeat, topUpWater, trubChillerLoss, evapRate, boilTime, calculateBoilVolume, lauterDeadSpace, topUpKettle, hopUtilization, notes);
     }
 }

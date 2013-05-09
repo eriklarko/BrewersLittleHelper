@@ -1,18 +1,14 @@
 package blh.core.units.time;
 
+import blh.core.units.Unit;
+
 /**
  *
  * @author thinner
  */
-public class Days {
-
-    private double value;
+public class Days extends Unit<Double> {
 
     public Days(double value) {
-        this.value = value;
-    }
-
-    public double value() {
-        return value;
+        super(value);
     }
 }

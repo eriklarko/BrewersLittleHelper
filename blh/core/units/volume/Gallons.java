@@ -1,18 +1,14 @@
 package blh.core.units.volume;
 
+import blh.core.units.Unit;
+
 /**
  *
  * @author thinner
  */
-public class Gallons {
-
-    private double value;
+public class Gallons extends Unit<Double>{
 
     public Gallons(Liters liters) {
-        this.value = liters.value() * 0.264172;
-    }
-
-    public double value() {
-        return value;
+        super(liters.value() * 0.264172);
     }
 }
