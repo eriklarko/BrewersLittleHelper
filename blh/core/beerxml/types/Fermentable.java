@@ -35,11 +35,11 @@ public class Fermentable implements BeerXMLRecord {
     public Fermentable(String name, TYPE type, Kilograms amount,
             Percentage yield, Lovibond color, boolean addAfterBoil,
             String origin, String supplier, String notes, Percentage maxInBatch) {
-        
-        if(type.equals(TYPE.ADJUNCT) || type.equals(TYPE.GRAIN) || type.equals(TYPE.EXTRACT)) {
+
+        if (type.equals(TYPE.ADJUNCT) || type.equals(TYPE.GRAIN) || type.equals(TYPE.EXTRACT)) {
             throw new IllegalArgumentException("Please use proper class for extracts, adjuncts and grains");
         }
-        
+
         this.name = name;
         this.type = type;
         this.amount = amount;
@@ -52,10 +52,10 @@ public class Fermentable implements BeerXMLRecord {
         this.maxInBatch = maxInBatch;
     }
 
-    protected Fermentable(int a, String name, TYPE type, Kilograms amount, 
-            Percentage yield, Lovibond color, boolean addAfterBoil, 
+    protected Fermentable(int a, String name, TYPE type, Kilograms amount,
+            Percentage yield, Lovibond color, boolean addAfterBoil,
             String origin, String supplier, String notes, Percentage maxInBatch) {
-        
+
         this.name = name;
         this.type = type;
         this.amount = amount;

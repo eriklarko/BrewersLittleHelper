@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package blh.core.beerxml.types;
 
 /**
@@ -9,5 +5,9 @@ package blh.core.beerxml.types;
  * @author thinner
  */
 public interface BeerXMLRecord {
-    
+
+    public static enum RECORD_TYPE {
+
+        HOP, YEAST, FERMENTABLE, WATER, MISC, EQUIPMENT, STYLE, RECIPE, MASH, MASH_STEP
+    }
 }

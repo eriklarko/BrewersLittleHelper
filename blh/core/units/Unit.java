@@ -33,6 +33,8 @@ public abstract class Unit<T extends Number> {
         if (getClass() != obj.getClass()) {
             return false;
         }
+       
+        @SuppressWarnings("unchecked")
         final Unit<T> other = (Unit<T>) obj;
         if (!Objects.equals(this.value, other.value)) {
             return false;

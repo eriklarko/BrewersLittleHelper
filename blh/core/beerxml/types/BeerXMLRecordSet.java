@@ -8,10 +8,10 @@ import java.util.List;
  */
 public class BeerXMLRecordSet<T extends BeerXMLRecord> {
 
-    /*public static enum TYPE {
+    public static enum TYPE {
 
-     HOPS, YEASTS, FERMENTABLES, WATERS, MISCS, EQUIPMENTS, STYLES, RECIPES, MASHS, MASH_STEPS
-     }*/
+        HOPS, YEASTS, FERMENTABLES, WATERS, MISCS, EQUIPMENTS, STYLES, RECIPES, MASHS, MASH_STEPS
+    }
     private List<T> records;
 
     public BeerXMLRecordSet(List<T> records) {

@@ -4,7 +4,6 @@ import blh.core.units.Percentage;
 import blh.core.units.time.Minutes;
 import blh.core.units.volume.Liters;
 import blh.core.units.weight.Kilograms;
-import java.util.Objects;
 
 /**
  *
@@ -44,5 +43,5 @@ public class Equipment implements BeerXMLRecord {
         this.topUpKettle = topUpKettle;
         this.hopUtilization = hopUtilization;
         this.notes = notes;
-    }    
+    }   
 }

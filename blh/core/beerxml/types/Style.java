@@ -29,6 +29,11 @@ public class Style implements BeerXMLRecord {
     public final String ingredients;
     public final String examples;
 
+    public static enum TYPE {
+
+        LAGER, ALE, MEAD, WHEAT, MIXED, CIDER
+    }
+
     public Style(String name, String category, String categoryNumber, String styleLetter, String styleGuide, TYPE type, SpecificGravity originalGravityMin, SpecificGravity originalGravityMax, SpecificGravity finalGravityMin, SpecificGravity finalGravityMax, IBU IBUMin, IBU IBUMax, SRM colorMin, SRM colorMax, CO2Volumes carbonationMin, CO2Volumes carbonationMax, ABV alcoholMin, ABV alcoholMax, String notes, String profile, String ingredients, String examples) {
         this.name = name;
         this.category = category;
@@ -52,10 +57,5 @@ public class Style implements BeerXMLRecord {
         this.profile = profile;
         this.ingredients = ingredients;
         this.examples = examples;
-    }
-
-    public static enum TYPE {
-
-        LAGER, ALE, MEAD, WHEAT, MIXED, CIDER
     }
 }
