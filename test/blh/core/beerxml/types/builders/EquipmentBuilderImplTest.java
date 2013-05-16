@@ -1,42 +1,20 @@
-/*
- * To change a template, choose Tools | Templates
- * and open the template in the editor.
- */
-package blh.core.test.blh.core.beerxml.types.builders;
+package blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.types.Equipment;
-import blh.core.beerxml.types.builders.EquipmentBuilderImpl;
 import blh.core.units.Percentage;
 import blh.core.units.time.Minutes;
 import blh.core.units.volume.Liters;
 import blh.core.units.weight.Kilograms;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- *
  * @author thinner
  */
 public class EquipmentBuilderImplTest {
-
-    public static void addTag(Map<String, String> map, String name, String value) {
-        map.put(name, value);
-    }
-
-    public static void addTag(Map<String, String> map, String name, double value) {
-        map.put(name, String.valueOf(value));
-    }
-
-    public static void addTag(Map<String, String> map, String name, int value) {
-        map.put(name, String.valueOf(value));
-    }
-
-    public static void addTag(Map<String, String> map, String name, boolean value) {
-        map.put(name, String.valueOf(value));
-    }
 
     /**
      * Test of set method, of class EquipmentBuilderImpl.
@@ -61,21 +39,21 @@ public class EquipmentBuilderImplTest {
         Percentage hopUtilization = new Percentage(12);
         String notes = "b";
 
-        addTag(tags, "name", name);
-        addTag(tags, "boil_size", boilSize.value());
-        addTag(tags, "batch_size", batchSize.value());
-        addTag(tags, "tun_volume", tunVolume.value());
-        addTag(tags, "tun_weight", tunWeight.value());
-        addTag(tags, "tun_specific_heat", tunSpecificHeat);
-        addTag(tags, "top_up_water", topUpWater.value());
-        addTag(tags, "trub_chiller_loss", trubChillerLoss.value());
-        addTag(tags, "evap_rate", evapRate.value());
-        addTag(tags, "boil_time", boilTime.value());
-        addTag(tags, "calc_boil_volume", calculateBoilVolume);
-        addTag(tags, "lauter_deadspace", lauterDeadSpace.value());
-        addTag(tags, "top_up_kettle", topUpKettle.value());
-        addTag(tags, "hop_utilization", hopUtilization.value());
-        addTag(tags, "notes", notes);
+        BuilderUtils.addTag(tags, "name", name);
+        BuilderUtils.addTag(tags, "boil_size", boilSize.value());
+        BuilderUtils.addTag(tags, "batch_size", batchSize.value());
+        BuilderUtils.addTag(tags, "tun_volume", tunVolume.value());
+        BuilderUtils.addTag(tags, "tun_weight", tunWeight.value());
+        BuilderUtils.addTag(tags, "tun_specific_heat", tunSpecificHeat);
+        BuilderUtils.addTag(tags, "top_up_water", topUpWater.value());
+        BuilderUtils.addTag(tags, "trub_chiller_loss", trubChillerLoss.value());
+        BuilderUtils.addTag(tags, "evap_rate", evapRate.value());
+        BuilderUtils.addTag(tags, "boil_time", boilTime.value());
+        BuilderUtils.addTag(tags, "calc_boil_volume", calculateBoilVolume);
+        BuilderUtils.addTag(tags, "lauter_deadspace", lauterDeadSpace.value());
+        BuilderUtils.addTag(tags, "top_up_kettle", topUpKettle.value());
+        BuilderUtils.addTag(tags, "hop_utilization", hopUtilization.value());
+        BuilderUtils.addTag(tags, "notes", notes);
 
         EquipmentBuilderImpl instance = new EquipmentBuilderImpl();
         for (Map.Entry<String, String> tag : tags.entrySet()) {
