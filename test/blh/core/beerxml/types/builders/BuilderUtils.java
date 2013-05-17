@@ -1,5 +1,7 @@
 package blh.core.beerxml.types.builders;
 
+import blh.core.units.Unit;
+
 import java.util.Map;
 
 /**
@@ -24,5 +26,9 @@ public class BuilderUtils {
 
     public static void addTag(Map<String, String> map, String name, boolean value) {
         map.put(name, String.valueOf(value));
+    }
+
+    public static void addTag(Map<String, String> map, String name, Unit unit) {
+        map.put(name, String.valueOf(unit.value()));
     }
 }

@@ -1,6 +1,7 @@
 package blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.types.Equipment;
+import blh.core.beerxml.types.builders.EquipmentBuilderImpl;
 import blh.core.units.Percentage;
 import blh.core.units.time.Minutes;
 import blh.core.units.volume.Liters;
@@ -40,19 +41,19 @@ public class EquipmentBuilderImplTest {
         String notes = "b";
 
         BuilderUtils.addTag(tags, "name", name);
-        BuilderUtils.addTag(tags, "boil_size", boilSize.value());
-        BuilderUtils.addTag(tags, "batch_size", batchSize.value());
-        BuilderUtils.addTag(tags, "tun_volume", tunVolume.value());
-        BuilderUtils.addTag(tags, "tun_weight", tunWeight.value());
+        BuilderUtils.addTag(tags, "boil_size", boilSize);
+        BuilderUtils.addTag(tags, "batch_size", batchSize);
+        BuilderUtils.addTag(tags, "tun_volume", tunVolume);
+        BuilderUtils.addTag(tags, "tun_weight", tunWeight);
         BuilderUtils.addTag(tags, "tun_specific_heat", tunSpecificHeat);
-        BuilderUtils.addTag(tags, "top_up_water", topUpWater.value());
-        BuilderUtils.addTag(tags, "trub_chiller_loss", trubChillerLoss.value());
-        BuilderUtils.addTag(tags, "evap_rate", evapRate.value());
-        BuilderUtils.addTag(tags, "boil_time", boilTime.value());
+        BuilderUtils.addTag(tags, "top_up_water", topUpWater);
+        BuilderUtils.addTag(tags, "trub_chiller_loss", trubChillerLoss);
+        BuilderUtils.addTag(tags, "evap_rate", evapRate);
+        BuilderUtils.addTag(tags, "boil_time", boilTime);
         BuilderUtils.addTag(tags, "calc_boil_volume", calculateBoilVolume);
-        BuilderUtils.addTag(tags, "lauter_deadspace", lauterDeadSpace.value());
-        BuilderUtils.addTag(tags, "top_up_kettle", topUpKettle.value());
-        BuilderUtils.addTag(tags, "hop_utilization", hopUtilization.value());
+        BuilderUtils.addTag(tags, "lauter_deadspace", lauterDeadSpace);
+        BuilderUtils.addTag(tags, "top_up_kettle", topUpKettle);
+        BuilderUtils.addTag(tags, "hop_utilization", hopUtilization);
         BuilderUtils.addTag(tags, "notes", notes);
 
         EquipmentBuilderImpl instance = new EquipmentBuilderImpl();
