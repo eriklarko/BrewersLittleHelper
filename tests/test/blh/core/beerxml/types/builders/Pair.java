@@ -1,4 +1,4 @@
-package blh.core.beerxml.types.builders;
+package test.blh.core.beerxml.types.builders;
 
 /**
  * Created by Erik Larkö at 5/17/13:9:45 PM

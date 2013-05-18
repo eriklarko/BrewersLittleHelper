@@ -1,8 +1,9 @@
-package blh.core.beerxml.types.builders;
+package test.blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.types.Fermentable;
 import blh.core.beerxml.types.GrainOrAdjunctFermentable;
 import blh.core.beerxml.types.LiquidFermentable;
+import blh.core.beerxml.types.builders.FermentableBuilderImpl;
 import blh.core.units.Lintner;
 import blh.core.units.Percentage;
 import blh.core.units.color.Lovibond;

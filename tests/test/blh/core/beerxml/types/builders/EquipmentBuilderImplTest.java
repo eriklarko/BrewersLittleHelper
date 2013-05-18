@@ -1,4 +1,4 @@
-package blh.core.beerxml.types.builders;
+package test.blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.types.Equipment;
 import blh.core.beerxml.types.builders.EquipmentBuilderImpl;
