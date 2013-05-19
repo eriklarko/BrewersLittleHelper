@@ -1,9 +1,9 @@
 package blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.types.Hop;
-import blh.core.beerxml.types.Hop.FORM;
-import blh.core.beerxml.types.Hop.TYPE;
-import blh.core.beerxml.types.Hop.USE;
+import blh.core.beerxml.types.Hop.HOP_FORM;
+import blh.core.beerxml.types.Hop.HOP_TYPE;
+import blh.core.beerxml.types.Hop.HOP_USE;
 import blh.core.units.Percentage;
 import blh.core.units.time.Minutes;
 import blh.core.units.weight.Kilograms;
@@ -13,11 +13,11 @@ public class HopBuilderImpl implements HopBuilder {
     private String name;
     private Percentage alpha;
     private Kilograms amount;
-    private USE use;
+    private HOP_USE use;
     private Minutes time;
     private String notes;
-    private TYPE type;
-    private FORM form;
+    private HOP_TYPE type;
+    private HOP_FORM form;
     private Percentage beta;
     private Percentage hopStabilityIndex;
     private String origin;
@@ -49,7 +49,7 @@ public class HopBuilderImpl implements HopBuilder {
     }
 
     @Override
-    public HopBuilderImpl setUse(USE use) {
+    public HopBuilderImpl setUse(HOP_USE use) {
         this.use = use;
         return this;
     }
@@ -67,13 +67,13 @@ public class HopBuilderImpl implements HopBuilder {
     }
 
     @Override
-    public HopBuilderImpl setType(TYPE type) {
+    public HopBuilderImpl setType(HOP_TYPE type) {
         this.type = type;
         return this;
     }
 
     @Override
-    public HopBuilderImpl setForm(FORM form) {
+    public HopBuilderImpl setForm(HOP_FORM form) {
         this.form = form;
         return this;
     }
@@ -128,52 +128,52 @@ public class HopBuilderImpl implements HopBuilder {
 
     public HopBuilderImpl set(String tagName, String value) {
         switch (tagName.toUpperCase()) {
-            case "NAME":
+            case Hop.NAME:
                 name = value;
                 break;
-            case "ALPHA":
+            case Hop.ALPHA:
                 alpha = new Percentage(Double.parseDouble(value));
                 break;
-            case "AMOUNT":
+            case Hop.AMOUNT:
                 amount = new Kilograms(Double.parseDouble(value));
                 break;
-            case "USE":
-                use = Hop.USE.valueOf(value.toUpperCase());
+            case Hop.USE:
+                use = Hop.HOP_USE.valueOf(value.toUpperCase());
                 break;
-            case "TIME":
+            case Hop.TIME:
                 time = new Minutes(Integer.parseInt(value));
                 break;
-            case "NOTES":
+            case Hop.NOTES:
                 notes = value;
                 break;
-            case "TYPE":
-                type = Hop.TYPE.valueOf(value.toUpperCase());
+            case Hop.TYPE:
+                type = Hop.HOP_TYPE.valueOf(value.toUpperCase());
                 break;
-            case "FORM":
-                form = Hop.FORM.valueOf(value.toUpperCase());
+            case Hop.FORM:
+                form = Hop.HOP_FORM.valueOf(value.toUpperCase());
                 break;
-            case "BETA":
+            case Hop.BETA:
                 beta = new Percentage(Double.parseDouble(value));
                 break;
-            case "HSI":
+            case Hop.HOP_STABILITY_INDEX:
                 hopStabilityIndex = new Percentage(Double.parseDouble(value));
                 break;
-            case "ORIGIN":
+            case Hop.ORIGIN:
                 origin = value;
                 break;
-            case "SUBSTITUTES":
+            case Hop.SUBSTITUTES:
                 substitutes = value;
                 break;
-            case "HUMULENE":
+            case Hop.HUMULENE:
                 humulene = new Percentage(Double.parseDouble(value));
                 break;
-            case "CARYOPHYLLENE":
+            case Hop.CARYOPHYLLENE:
                 caryophyllene = new Percentage(Double.parseDouble(value));
                 break;
-            case "COHUMULONE":
+            case Hop.COHUMULONE:
                 cohumulone = new Percentage(Double.parseDouble(value));
                 break;
-            case "MYRCENE":
+            case Hop.MYRCENE:
                 myrcene = new Percentage(Double.parseDouble(value));
                 break;
             default:

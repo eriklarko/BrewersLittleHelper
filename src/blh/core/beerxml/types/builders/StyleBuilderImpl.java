@@ -171,70 +171,70 @@ public class StyleBuilderImpl implements StyleBuilder{
     @Override
     public StyleBuilderImpl set(String tagName, String value) {
         switch (tagName.toUpperCase()) {
-            case "NAME":
+            case Style.NAME:
                 this.name = value;
                 break;
-            case "CATEGORY":
+            case Style.CATEGORY:
                 this.category = value;
                 break;
-            case "CATEGORY_NUMBER":
+            case Style.CATEGORY_NUMBER:
                 this.categoryNumber = value;
                 break;
-            case "STYLE_LETTER":
+            case Style.STYLE_LETTER:
                 this.styleLetter = value;
                 break;
-            case "STYLE_GUIDE":
+            case Style.STYLE_GUIDE:
                 this.styleGuide = value;
                 break;
-            case "TYPE":
+            case Style.TYPE:
                 this.type = TYPE.valueOf(value.toUpperCase());
                 break;
-            case "OG_MIN":
+            case Style.ORIGINAL_GRAVITY_MIN:
                 this.originalGravityMin = new SpecificGravity(Double.parseDouble(value));
                 break;
-            case "OG_MAX":
+            case Style.ORIGINAL_GRAVITY_MAX:
                 this.originalGravityMax = new SpecificGravity(Double.parseDouble(value));
                 break;
-            case "FG_MIN":
+            case Style.FINAL_GRAVITY_MIN:
                 this.finalGravityMin = new SpecificGravity(Double.parseDouble(value));
                 break;
-            case "FG_MAX":
+            case Style.FINAL_GRAVITY_MAX:
                 this.finalGravityMax = new SpecificGravity(Double.parseDouble(value));
                 break;
-            case "IBU_MIN":
+            case Style.IBU_MIN:
                 this.IBUMin = new IBU(Double.parseDouble(value));
                 break;
-            case "IBU_MAX":
+            case Style.IBU_MAX:
                 this.IBUMax = new IBU(Double.parseDouble(value));
                 break;
-            case "COLOR_MIN":
+            case Style.COLOR_MIN:
                 this.colorMin = new SRM(Double.parseDouble(value));
                 break;
-            case "COLOR_MAX":
+            case Style.COLOR_MAX:
                 this.colorMax = new SRM(Double.parseDouble(value));
                 break;
-            case "CARB_MIN":
+            case Style.CARBONATION_MIN:
                 this.carbonationMin = new CO2Volumes(Double.parseDouble(value));
                 break;
-            case "CARB_MAX":
+            case Style.CARBONATION_MAX:
                 this.carbonationMax = new CO2Volumes(Double.parseDouble(value));
                 break;
-            case "ABV_MIN":
+            case Style.ALCOHOL_MIN:
                 this.alcoholMin = new ABV(Double.parseDouble(value));
                 break;
-            case "ABV_MAX":
+            case Style.ALCOHOL_MAX:
                 this.alcoholMax = new ABV(Double.parseDouble(value));
                 break;
-            case "NOTES":
+            case Style.NOTES:
                 this.notes = value;
                 break;
-            case "PROFILE":
+            case Style.PROFILE:
                 this.profile = value;
                 break;
-            case "INGREDIENTS":
+            case Style.INGREDIENTS:
                 this.ingredients = value;
                 break;
-            case "EXAMPLES":
+            case Style.EXAMPLES:
                 this.examples = value;
                 break;
         }

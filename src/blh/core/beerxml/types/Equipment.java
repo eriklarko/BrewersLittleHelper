@@ -11,6 +11,22 @@ import blh.core.units.weight.Kilograms;
  */
 public class Equipment implements BeerXMLRecord {
 
+    public static final String NAME = "NAME";
+    public static final String BOIL_SIZE = "BOIL_SIZE";
+    public static final String BATCH_SIZE = "BATCH_SIZE";
+    public static final String TUN_VOLUME = "TUN_VOLUME";
+    public static final String TUN_WEIGHT = "TUN_WEIGHT";
+    public static final String TUN_SPECIFIC_HEAT = "TUN_SPECIFIC_HEAT";
+    public static final String TOP_UP_WATER = "TOP_UP_WATER";
+    public static final String TRUB_CHILLER_LOSS = "TRUB_CHILLER_LOSS";
+    public static final String EVAP_RATE = "EVAP_RATE";
+    public static final String BOIL_TIME = "BOIL_TIME";
+    public static final String CALCULATE_BOIL_VOLUME = "CALC_BOIL_VOLUME";
+    public static final String LAUTER_DEAD_SPACE = "LAUTER_DEADSPACE";
+    public static final String TOP_UP_KETTLE = "TOP_UP_KETTLE";
+    public static final String HOP_UTILIZATION = "HOP_UTILIZATION";
+    public static final String NOTES = "NOTES";
+    
     public final String name;
     public final Liters boilSize;
     public final Liters batchSize;
@@ -43,5 +59,5 @@ public class Equipment implements BeerXMLRecord {
         this.topUpKettle = topUpKettle;
         this.hopUtilization = hopUtilization;
         this.notes = notes;
-    }   
+    }
 }

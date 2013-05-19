@@ -1,24 +1,24 @@
 package blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.types.Yeast;
-import blh.core.beerxml.types.Yeast.FLOCCULATION;
-import blh.core.beerxml.types.Yeast.FORM;
-import blh.core.beerxml.types.Yeast.TYPE;
+import blh.core.beerxml.types.Yeast.YEAST_FLOCCULATION;
+import blh.core.beerxml.types.Yeast.YEAST_FORM;
+import blh.core.beerxml.types.Yeast.YEAST_TYPE;
 import blh.core.units.Percentage;
 import blh.core.units.temperature.Celcius;
 
 public class YeastBuilderImpl implements YeastBuilder {
 
     private String name;
-    private TYPE type;
-    private FORM form;
+    private YEAST_TYPE type;
+    private YEAST_FORM form;
     private double amount;
     private boolean amountIsWeight;
     private String laboratory;
     private String productId;
     private Celcius minTemperature;
     private Celcius maxTemperature;
-    private FLOCCULATION flocculation;
+    private YEAST_FLOCCULATION flocculation;
     private Percentage attenuation;
     private String notes;
     private String bestFor;
@@ -36,13 +36,13 @@ public class YeastBuilderImpl implements YeastBuilder {
     }
 
     @Override
-    public YeastBuilderImpl setType(TYPE type) {
+    public YeastBuilderImpl setType(YEAST_TYPE type) {
         this.type = type;
         return this;
     }
 
     @Override
-    public YeastBuilderImpl setForm(FORM form) {
+    public YeastBuilderImpl setForm(YEAST_FORM form) {
         this.form = form;
         return this;
     }
@@ -84,7 +84,7 @@ public class YeastBuilderImpl implements YeastBuilder {
     }
 
     @Override
-    public YeastBuilderImpl setFlocculation(FLOCCULATION flocculation) {
+    public YeastBuilderImpl setFlocculation(YEAST_FLOCCULATION flocculation) {
         this.flocculation = flocculation;
         return this;
     }
@@ -128,52 +128,52 @@ public class YeastBuilderImpl implements YeastBuilder {
     @Override
     public Builder<Yeast> set(String tagName, String value) {
         switch (tagName.toUpperCase()) {
-            case "NAME":
+            case Yeast.NAME:
                 name = value;
                 break;
-            case "TYPE":
-                type = Yeast.TYPE.valueOf(value.toUpperCase());
+            case Yeast.TYPE:
+                type = Yeast.YEAST_TYPE.valueOf(value.toUpperCase());
                 break;
-            case "FORM":
-                form = Yeast.FORM.valueOf(value.toUpperCase());
+            case Yeast.FORM:
+                form = Yeast.YEAST_FORM.valueOf(value.toUpperCase());
                 break;
-            case "AMOUNT":
+            case Yeast.AMOUNT:
                 amount = Double.parseDouble(value);
                 break;
-            case "AMOUNT_IS_WEIGHT":
+            case Yeast.AMOUNT_IS_WEIGHT:
                 amountIsWeight = Boolean.parseBoolean(value);
                 break;
-            case "LABORATORY":
+            case Yeast.LABORATORY:
                 laboratory = value;
                 break;
-            case "PRODUCT_ID":
+            case Yeast.PRODUCT_ID:
                 productId = value;
                 break;
-            case "MIN_TEMPERATURE":
+            case Yeast.MIN_TEMPERATURE:
                 minTemperature = new Celcius(Double.parseDouble(value));
                 break;
-            case "MAX_TEMPERATURE":
+            case Yeast.MAX_TEMPERATURE:
                 maxTemperature = new Celcius(Double.parseDouble(value));
                 break;
-            case "FLOCCULATION":
-                flocculation = Yeast.FLOCCULATION.valueOf(value.toUpperCase());
+            case Yeast.FLOCCULATION:
+                flocculation = Yeast.YEAST_FLOCCULATION.valueOf(value.toUpperCase());
                 break;
-            case "ATTENUATION":
+            case Yeast.ATTENUATION:
                 attenuation = new Percentage(Double.parseDouble(value));
                 break;
-            case "NOTES":
+            case Yeast.NOTES:
                 notes = value;
                 break;
-            case "BEST_FOR":
+            case Yeast.BEST_FOR:
                 bestFor = value;
                 break;
-            case "TIMES_CULTURED":
+            case Yeast.TIMES_CULTURED:
                 timesCultured = Integer.parseInt(value);
                 break;
-            case "MAX_REUSE":
+            case Yeast.MAX_REUSE:
                 maxReuse = Integer.parseInt(value);
                 break;
-            case "ADD_TO_SECONDARY":
+            case Yeast.ADD_TO_SECONDARY:
                 addToSecondary = Boolean.parseBoolean(value);
                 break;
             default:

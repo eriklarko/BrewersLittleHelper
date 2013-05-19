@@ -5,9 +5,9 @@
 package blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.types.Hop;
-import blh.core.beerxml.types.Hop.FORM;
-import blh.core.beerxml.types.Hop.TYPE;
-import blh.core.beerxml.types.Hop.USE;
+import blh.core.beerxml.types.Hop.HOP_FORM;
+import blh.core.beerxml.types.Hop.HOP_TYPE;
+import blh.core.beerxml.types.Hop.HOP_USE;
 import blh.core.units.Percentage;
 import blh.core.units.time.Minutes;
 import blh.core.units.weight.Kilograms;
@@ -28,7 +28,7 @@ public interface HopBuilder extends Builder<Hop> {
 
     HopBuilder setCohumulone(Percentage cohumulone);
 
-    HopBuilder setForm(FORM form);
+    HopBuilder setForm(HOP_FORM form);
 
     HopBuilder setHopStabilityIndex(Percentage hopStabilityIndex);
 
@@ -46,8 +46,8 @@ public interface HopBuilder extends Builder<Hop> {
 
     HopBuilder setTime(Minutes time);
 
-    HopBuilder setType(TYPE type);
+    HopBuilder setType(HOP_TYPE type);
 
-    HopBuilder setUse(USE use);
+    HopBuilder setUse(HOP_USE use);
     
 }

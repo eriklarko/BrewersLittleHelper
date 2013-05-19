@@ -9,9 +9,26 @@ import blh.core.units.temperature.Celcius;
  */
 public class Yeast implements BeerXMLRecord {
 
+    public static final String NAME = "NAME";
+    public static final String TYPE = "TYPE";
+    public static final String FORM = "FORM";
+    public static final String AMOUNT = "AMOUNT";
+    public static final String AMOUNT_IS_WEIGHT = "AMOUNT_IS_WEIGHT";
+    public static final String LABORATORY = "LABORATORY";
+    public static final String PRODUCT_ID = "PRODUCT_ID";
+    public static final String MIN_TEMPERATURE = "MIN_TEMPERATURE";
+    public static final String MAX_TEMPERATURE = "MAX_TEMPERATURE";
+    public static final String FLOCCULATION = "FLOCCULATION";
+    public static final String ATTENUATION = "ATTENUATION";
+    public static final String NOTES = "NOTES";
+    public static final String BEST_FOR = "BEST_FOR";
+    public static final String TIMES_CULTURED = "TIMES_CULTURED";
+    public static final String MAX_REUSE = "MAX_REUSE";
+    public static final String ADD_TO_SECONDARY = "ADD_TO_SECONDARY";
+    
     public final String name;
-    public final TYPE type;
-    public final FORM form;
+    public final YEAST_TYPE type;
+    public final YEAST_FORM form;
     /**
      * Is kilograms if AMOUNT_IS_WEIGHT is true, liters otherwise
      */
@@ -21,7 +38,7 @@ public class Yeast implements BeerXMLRecord {
     public final String productId;
     public final Celcius minTemperature;
     public final Celcius maxTemperature;
-    public final FLOCCULATION flocculation;
+    public final YEAST_FLOCCULATION flocculation;
     public final Percentage attenuation;
     public final String notes;
     public final String bestFor;
@@ -29,25 +46,25 @@ public class Yeast implements BeerXMLRecord {
     public final int maxReuse;
     public final boolean addToSecondary;
 
-    public static enum TYPE {
+    public static enum YEAST_TYPE {
 
         ALE, LAGER, WHEAT, WINE, CHAMPAGNE
     }
 
-    public static enum FORM {
+    public static enum YEAST_FORM {
 
         LIQUID, DRY, SLANT, CULTURE
     }
 
-    public static enum FLOCCULATION {
+    public static enum YEAST_FLOCCULATION {
 
         LOW, MEDIUM, HIGH, VERY_HIGH
     }
 
-    public Yeast(String name, TYPE type, FORM form, double amount, 
+    public Yeast(String name, YEAST_TYPE type, YEAST_FORM form, double amount, 
             boolean amountIsWeight, String laboratory, String productId, 
             Celcius minTemperature, Celcius maxTemperature, 
-            FLOCCULATION flocculation, Percentage attenuation, String notes, 
+            YEAST_FLOCCULATION flocculation, Percentage attenuation, String notes, 
             String bestFor, int timesCultured, int maxReuse, boolean addToSecondary) {
         this.name = name;
         this.type = type;

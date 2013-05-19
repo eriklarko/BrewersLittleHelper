@@ -18,6 +18,36 @@ import java.util.List;
  */
 public class Recipe implements BeerXMLRecord {
 
+    public static final String NAME = "NAME";
+    public static final String TYPE = "TYPE";
+    public static final String BREWER = "BREWER";
+    public static final String ASSISTANT_BREWER = "ASST_BREWER";
+    public static final String BATCH_SIZE = "BATCH_SIZE";
+    public static final String BOIL_SIZE = "BOIL_SIZE";
+    public static final String BOIL_TIME = "BOIL_TIME";
+    public static final String EFFICIENCY = "EFFICIENCY";
+    public static final String NOTES = "NOTES";
+    public static final String TASTE_NOTES = "TASTE_NOTES";
+    public static final String TASTE_RATING = "TASTE_RATING";
+    public static final String MEASURED_ORIGINAL_GRAVITY = "OG";
+    public static final String MEASURED_FINAL_GRAVITY = "FG";
+    public static final String FERMENTATION_STAGES = "FERMENTATION_STAGES";
+    public static final String PRIMARY_AGE = "PRIMARY_AGE";
+    public static final String PRIMARY_TEMPERATURE = "PRIMARY_TEMP";
+    public static final String SECONDARY_AGE = "SECONDARY_AGE";
+    public static final String SECONDARY_TEMPERATURE = "SECONDARY_TEMP";
+    public static final String TERTIARY_AGE = "TERTIARY_AGE";
+    public static final String TERTIARY_TEMPERATURE = "TERTIARY_TEMP";
+    public static final String AGE_AFTER_BOTTLING = "AGE";
+    public static final String TEMPERATURE_DURING_AFTER_BOTTLING_AGE = "AGE_TEMP";
+    public static final String DATE = "DATE";
+    public static final String CARBONATION = "CARBONATION";
+    public static final String FORCED_CARBONATION = "FORCED_CARBONATION";
+    public static final String PRIMING_SUGAR_NAME = "PRIMING_SUGAR_NAME";
+    public static final String CARBONATION_TEMPERATURE = "CARBONATION_TEMP";
+    public static final String PRIMING_SUGAR_EQUIVALENCE = "PRIMING_SUGAR_EQUIV";
+    public static final String KEG_PRIMING_FACTOR = "KEG_PRIMING_FACTOR";
+    
     public final String name;
     public final TYPE type;
     public final Style style;

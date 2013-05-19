@@ -295,92 +295,94 @@ public class RecipeBuilderImpl implements RecipeBuilder {
     @Override
     public Builder<Recipe> set(String tagName, String value) throws ParseException{
         switch (tagName.toUpperCase()) {
-            case "NAME":
+            case Recipe.NAME:
                 name = value;
                 break;
-            case "TYPE":
+            case Recipe.TYPE:
                 type = TYPE.valueOf(value.replace(" ", "_").toUpperCase());
                 break;
-            case "BREWER":
+            case Recipe.BREWER:
                 brewer = value;
                 break;
-            case "ASST_BREWER":
+            case Recipe.ASSISTANT_BREWER:
                 assistantBrewer = value;
                 break;
-            case "BATCH_SIZE":
+            case Recipe.BATCH_SIZE:
                 batchSize = new Liters(Double.parseDouble(value));
                 break;
-            case "BOIL_SIZE":
+            case Recipe.BOIL_SIZE:
                 boilSize = new Liters(Double.parseDouble(value));
                 break;
-            case "BOIL_TIME":
+            case Recipe.BOIL_TIME:
                 boilTime = new Minutes(Integer.parseInt(value));
                 break;
-            case "EFFICIENCY":
+            case Recipe.EFFICIENCY:
                 efficiency = new Percentage(Double.parseDouble(value));
                 break;
-            case "NOTES":
+            case Recipe.NOTES:
                 notes = value;
                 break;
-            case "TASTE_NOTES":
+            case Recipe.TASTE_NOTES:
                 tasteNotes = value;
                 break;
-            case "TASTE_RATING":
+            case Recipe.TASTE_RATING:
                 tasteRating = new BJCPTasteRating(Double.parseDouble(value));
                 break;
-            case "OG":
+            case Recipe.MEASURED_ORIGINAL_GRAVITY:
                 measuredOriginalGravity = new SpecificGravity(Double.parseDouble(value));
                 break;
-            case "FG":
+            case Recipe.MEASURED_FINAL_GRAVITY:
                 measuredFinalGravity = new SpecificGravity(Double.parseDouble(value));
                 break;
-            case "FERMENTATION_STAGES":
+            case Recipe.FERMENTATION_STAGES:
                 fermentationStages = Integer.parseInt(value);
                 break;
-            case "PRIMARY_AGE":
+            case Recipe.PRIMARY_AGE:
                 primaryAge = new Days(Double.parseDouble(value));
                 break;
-            case "PRIMARY_TEMP":
+            case Recipe.PRIMARY_TEMPERATURE:
                 primaryTemperature = new Celcius(Double.parseDouble(value));
                 break;
-            case "SECONDARY_AGE":
+            case Recipe.SECONDARY_AGE:
                 secondaryAge = new Days(Double.parseDouble(value));
                 break;
-            case "SECONDARY_TEMP":
+            case Recipe.SECONDARY_TEMPERATURE:
                 secondaryTemperature = new Celcius(Double.parseDouble(value));
                 break;
-            case "TERTIARY_AGE":
+            case Recipe.TERTIARY_AGE:
                 tertiaryAge = new Days(Double.parseDouble(value));
                 break;
-            case "TERTIARY_TEMP":
+            case Recipe.TERTIARY_TEMPERATURE:
                 tertiaryTemperature = new Celcius(Double.parseDouble(value));
                 break;
-            case "AGE":
+            case Recipe.AGE_AFTER_BOTTLING:
                 ageAfterBottling = new Days(Double.parseDouble(value));
                 break;
-            case "AGE_TEMP":
+            case Recipe.TEMPERATURE_DURING_AFTER_BOTTLING_AGE:
                 temperatureDuringAfterBottlingAge = new Celcius(Double.parseDouble(value));
                 break;
-            case "DATE":
+            case Recipe.DATE:
                 try {
                     date = dateFormat.parse(value);
                 } catch (java.text.ParseException ex) {
                     throw new ParseException(ex);
                 }
                 break;
-            case "CARBONATION":
+            case Recipe.CARBONATION:
                 carbonation = new CO2Volumes(Double.parseDouble(value));
                 break;
-            case "FORCED_CARBONATION":
+            case Recipe.FORCED_CARBONATION:
                 forcedCarbonation = Boolean.parseBoolean(value);
                 break;
-            case "PRIMING_SUGAR_NAME":
+            case Recipe.CARBONATION_TEMPERATURE:
+                carbonationTemperature = new Celcius(Double.parseDouble(value));
+            case Recipe.PRIMING_SUGAR_NAME:
                 primingSugarName = value;
                 break;
-            case "PRIMING_SUGAR_EQUIV":
+            case Recipe.PRIMING_SUGAR_EQUIVALENCE:
                 primingSugarEquivalence = new Factor(Double.parseDouble(value));
                 break;
-            case "KEG_PRIMING_FACTOR":
+            case Recipe.KEG_PRIMING_FACTOR:
                 kegPrimingFactor = new Factor(Double.parseDouble(value));
                 break;
             default:

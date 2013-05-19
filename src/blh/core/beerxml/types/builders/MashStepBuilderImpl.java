@@ -1,7 +1,7 @@
 package blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.types.MashStep;
-import blh.core.beerxml.types.MashStep.TYPE;
+import blh.core.beerxml.types.MashStep.MASH_STEP_TYPE;
 import blh.core.units.temperature.Celcius;
 import blh.core.units.time.Minutes;
 import blh.core.units.volume.Liters;
@@ -9,7 +9,7 @@ import blh.core.units.volume.Liters;
 public class MashStepBuilderImpl implements MashStepBuilder {
 
     private String name;
-    private TYPE type;
+    private MASH_STEP_TYPE type;
     private Liters infuseAmount;
     private Celcius stepTemp;
     private Minutes stepTime;
@@ -26,7 +26,7 @@ public class MashStepBuilderImpl implements MashStepBuilder {
     }
 
     @Override
-    public MashStepBuilderImpl setType(TYPE type) {
+    public MashStepBuilderImpl setType(MASH_STEP_TYPE type) {
         this.type = type;
         return this;
     }
@@ -64,25 +64,25 @@ public class MashStepBuilderImpl implements MashStepBuilder {
     @Override
     public Builder<MashStep> set(String tagName, String value) {
         switch (tagName.toUpperCase()) {
-            case "NAME":
+            case MashStep.NAME:
                 name = value;
                 break;
-            case "TYPE":
-                type = TYPE.valueOf(value.toUpperCase());
+            case MashStep.TYPE:
+                type = MASH_STEP_TYPE.valueOf(value.toUpperCase());
                 break;
-            case "INFUSE_AMOUNT":
+            case MashStep.INFUSE_AMOUNT:
                 infuseAmount = new Liters(Double.parseDouble(value));
                 break;
-            case "STEP_TEMP":
+            case MashStep.STEP_TEMP:
                 stepTemp = new Celcius(Double.parseDouble(value));
                 break;
-            case "STEP_TIME":
+            case MashStep.STEP_TIME:
                 stepTime = new Minutes(Integer.parseInt(value));
                 break;
-            case "RAMP_TIME":
+            case MashStep.RAMP_TIME:
                 rampTime = new Minutes(Integer.parseInt(value));
                 break;
-            case "END_TEMP":
+            case MashStep.END_TEMP:
                 endTemp = new Celcius(Double.parseDouble(value));
                 break;
             default:

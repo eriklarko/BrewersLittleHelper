@@ -12,6 +12,29 @@ import blh.core.units.gravity.SpecificGravity;
  */
 public class Style implements BeerXMLRecord {
 
+    public static final String NAME = "NAME";
+    public static final String CATEGORY = "CATEGORY";
+    public static final String CATEGORY_NUMBER = "CATEGORY_NUMBER";
+    public static final String STYLE_LETTER = "STYLE_LETTER";
+    public static final String STYLE_GUIDE = "STYLE_GUIDE";
+    public static final String TYPE = "TYPE";
+    public static final String ORIGINAL_GRAVITY_MIN = "OG_MIN";
+    public static final String ORIGINAL_GRAVITY_MAX = "OG_MAX";
+    public static final String FINAL_GRAVITY_MIN = "FG_MIN";
+    public static final String FINAL_GRAVITY_MAX = "FG_MAX";
+    public static final String IBU_MIN = "IBU_MIN";
+    public static final String IBU_MAX = "IBU_MAX";
+    public static final String COLOR_MIN = "COLOR_MIN";
+    public static final String COLOR_MAX = "COLOR_MAX";
+    public static final String CARBONATION_MIN = "CARB_MIN";
+    public static final String CARBONATION_MAX = "CARB_MAX";
+    public static final String ALCOHOL_MIN = "ABV_MIN";
+    public static final String ALCOHOL_MAX = "ABV_MAX";
+    public static final String NOTES = "NOTES";
+    public static final String PROFILE = "PROFILE";
+    public static final String INGREDIENTS = "INGREDIENTS";
+    public static final String EXAMPLES = "EXAMPLES";
+    
     public final String name;
     public final String category;
     public final String categoryNumber;

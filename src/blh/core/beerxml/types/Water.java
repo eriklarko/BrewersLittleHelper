@@ -10,6 +10,17 @@ import blh.core.units.volume.Liters;
  */
 public class Water implements BeerXMLRecord {
 
+    public static final String NAME = "NAME";
+    public static final String AMOUNT = "AMOUNT";
+    public static final String CALCIUM = "CALCIUM";
+    public static final String BICARBONATE = "BICARBONATE";
+    public static final String SULFATE = "SULFATE";
+    public static final String CHLORIDE = "CHLORIDE";
+    public static final String SODIUM = "SODIUM";
+    public static final String MAGNESIUM = "MAGNESIUM";
+    public static final String PH = "PH";
+    public static final String NOTES = "NOTES";
+    
     public final String name;
     public final Liters amount;
     public final PPM calcium;

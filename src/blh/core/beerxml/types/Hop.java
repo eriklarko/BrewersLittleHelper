@@ -10,14 +10,31 @@ import blh.core.units.weight.Kilograms;
  */
 public class Hop implements BeerXMLRecord {
 
+    public static final String NAME = "NAME";
+    public static final String ALPHA = "ALPHA";
+    public static final String AMOUNT = "AMOUNT";
+    public static final String USE = "USE";
+    public static final String TIME = "TIME";
+    public static final String NOTES = "NOTES";
+    public static final String TYPE = "TYPE";
+    public static final String FORM = "FORM";
+    public static final String BETA = "BETA";
+    public static final String HOP_STABILITY_INDEX = "HSI";
+    public static final String ORIGIN = "ORIGIN";
+    public static final String SUBSTITUTES = "SUBSTITUTES";
+    public static final String HUMULENE = "HUMULENE";
+    public static final String CARYOPHYLLENE = "CARYOPHYLLENE";
+    public static final String COHUMULONE = "COHUMULONE";
+    public static final String MYRCENE = "MYRCENE";
+    
     public final String name;
     public final Percentage alpha;
     public final Kilograms amount;
-    public final USE use;
+    public final HOP_USE use;
     public final Minutes time;
     public final String notes;
-    public final TYPE type;
-    public final FORM form;
+    public final HOP_TYPE type;
+    public final HOP_FORM form;
     public final Percentage beta;
     public final Percentage hopStabilityIndex;
     public final String origin;
@@ -27,25 +44,25 @@ public class Hop implements BeerXMLRecord {
     public final Percentage cohumulone;
     public final Percentage myrcene;
 
-    public static enum USE {
+    public static enum HOP_USE {
 
         BOIL, DRY_HOP,
         MASH, FIRST_WORT,
         AROMA
     }
 
-    public static enum TYPE {
+    public static enum HOP_TYPE {
 
         BITTERING, AROMA, BOTH
     }
 
-    public static enum FORM {
+    public static enum HOP_FORM {
 
         LEAF, PELLET, PLUG
     }
 
-    public Hop(String name, Percentage alpha, Kilograms amount, USE use,
-            Minutes time, String notes, TYPE type, FORM form, Percentage beta,
+    public Hop(String name, Percentage alpha, Kilograms amount, HOP_USE use,
+            Minutes time, String notes, HOP_TYPE type, HOP_FORM form, Percentage beta,
             Percentage hopStabilityIndex, String origin, String substitutes,
             Percentage humulene, Percentage caryophyllene,
             Percentage cohumulone, Percentage myrcene) {

@@ -5,7 +5,7 @@
 package blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.types.Fermentable;
-import blh.core.beerxml.types.Fermentable.TYPE;
+import blh.core.beerxml.types.Fermentable.FERMENTABLE_TYPE;
 import blh.core.units.Lintner;
 import blh.core.units.Percentage;
 import blh.core.units.weight.Kilograms;
@@ -44,7 +44,7 @@ public interface FermentableBuilder extends Builder<Fermentable> {
 
     FermentableBuilder setSupplier(String supplier);
 
-    FermentableBuilder setType(TYPE type);
+    FermentableBuilder setType(FERMENTABLE_TYPE type);
 
     FermentableBuilder setYield(Percentage yield);
     

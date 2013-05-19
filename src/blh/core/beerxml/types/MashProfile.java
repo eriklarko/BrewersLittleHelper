@@ -11,6 +11,16 @@ import java.util.List;
  */
 public class MashProfile implements BeerXMLRecord {
 
+    public static final String NAME = "NAME";
+    public static final String GRAIN_TEMPERATURE = "GRAIN_TEMP";
+    public static final String NOTES = "NOTES";
+    public static final String TUN_TEMPERATURE = "TUN_TEMP";
+    public static final String SPARGE_TEMPERATURE = "SPARGE_TEMP";
+    public static final String SPARGE_PH = "PH";
+    public static final String TUN_WEIGHT = "TUN_WEIGHT";
+    public static final String TUN_SPECIFIC_HEAT = "TUN_SPECIFIC_HEAT";
+    public static final String ADJUST_FOR_EQUIPMENT_TEMPERATURE = "EQUIP_ADJUST";
+    
     public final String name;
     public final Celcius grainTemperature;
     public final List<MashStep> mashSteps;

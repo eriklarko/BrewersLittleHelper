@@ -5,9 +5,9 @@
 package blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.types.Yeast;
-import blh.core.beerxml.types.Yeast.FLOCCULATION;
-import blh.core.beerxml.types.Yeast.FORM;
-import blh.core.beerxml.types.Yeast.TYPE;
+import blh.core.beerxml.types.Yeast.YEAST_FLOCCULATION;
+import blh.core.beerxml.types.Yeast.YEAST_FORM;
+import blh.core.beerxml.types.Yeast.YEAST_TYPE;
 import blh.core.units.Percentage;
 import blh.core.units.temperature.Celcius;
 
@@ -27,9 +27,9 @@ public interface YeastBuilder extends Builder<Yeast> {
 
     YeastBuilder setBestFor(String bestFor);
 
-    YeastBuilder setFlocculation(FLOCCULATION flocculation);
+    YeastBuilder setFlocculation(YEAST_FLOCCULATION flocculation);
 
-    YeastBuilder setForm(FORM form);
+    YeastBuilder setForm(YEAST_FORM form);
 
     YeastBuilder setLaboratory(String laboratory);
 
@@ -47,6 +47,6 @@ public interface YeastBuilder extends Builder<Yeast> {
 
     YeastBuilder setTimesCultured(int timesCultured);
 
-    YeastBuilder setType(TYPE type);
+    YeastBuilder setType(YEAST_TYPE type);
     
 }

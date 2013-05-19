@@ -5,7 +5,7 @@
 package blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.types.MashStep;
-import blh.core.beerxml.types.MashStep.TYPE;
+import blh.core.beerxml.types.MashStep.MASH_STEP_TYPE;
 import blh.core.units.temperature.Celcius;
 import blh.core.units.time.Minutes;
 import blh.core.units.volume.Liters;
@@ -28,5 +28,5 @@ public interface MashStepBuilder extends Builder<MashStep> {
 
     MashStepBuilder setStepTime(Minutes stepTime);
 
-    MashStepBuilder setType(TYPE type);
+    MashStepBuilder setType(MASH_STEP_TYPE type);
 }

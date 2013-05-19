@@ -8,7 +8,7 @@ import blh.core.units.weight.Kilograms;
 import java.util.List;
 
 public class MashProfileBuilderImpl implements MashProfileBuilder {
-
+    
     private String name;
     private Celcius grainTemperature;
     private List<MashStep> mashSteps;
@@ -86,31 +86,31 @@ public class MashProfileBuilderImpl implements MashProfileBuilder {
     @Override
     public Builder<MashProfile> set(String tagName, String value) {
         switch (tagName.toUpperCase()) {
-            case "NAME":
+            case MashProfile.NAME:
                 name = value;
                 break;
-            case "GRAIN_TEMP":
+            case MashProfile.GRAIN_TEMPERATURE:
                 grainTemperature = new Celcius(Double.parseDouble(value));
                 break;
-            case "NOTES":
+            case MashProfile.NOTES:
                 notes = value;
                 break;
-            case "TUN_TEMP":
+            case MashProfile.TUN_TEMPERATURE:
                 tunTemperature = new Celcius(Double.parseDouble(value));
                 break;
-            case "SPARGE_TEMP":
+            case MashProfile.SPARGE_TEMPERATURE:
                 spargeTemperature = new Celcius(Double.parseDouble(value));
                 break;
-            case "PH":
+            case MashProfile.SPARGE_PH:
                 spargePH = new PH(Double.parseDouble(value));
                 break;
-            case "TUN_WEIGHT":
+            case MashProfile.TUN_WEIGHT:
                 tunWeight = new Kilograms(Double.parseDouble(value));
                 break;
-            case "TUN_SPECIFIC_HEAT":
+            case MashProfile.TUN_SPECIFIC_HEAT:
                 tunSpecificHeat = Double.parseDouble(value);
                 break;
-            case "EQUIP_ADJUST":
+            case MashProfile.ADJUST_FOR_EQUIPMENT_TEMPERATURE:
                 adjustForEquipmentTemperature = Boolean.parseBoolean(value);
                 break;
             default:

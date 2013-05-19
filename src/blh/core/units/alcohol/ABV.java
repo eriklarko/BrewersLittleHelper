@@ -8,7 +8,7 @@ import blh.core.units.Unit;
  */
 public class ABV extends Unit<Double> {
 
-    public ABV(Double value) {
+    public ABV(double value) {
         super(value);
     }
 }

@@ -5,8 +5,8 @@
 package blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.types.Misc;
-import blh.core.beerxml.types.Misc.TYPE;
-import blh.core.beerxml.types.Misc.USE;
+import blh.core.beerxml.types.Misc.MISC_TYPE;
+import blh.core.beerxml.types.Misc.MISC_USE;
 import blh.core.units.time.Minutes;
 
 /**
@@ -25,9 +25,9 @@ public interface MiscBuilder extends Builder<Misc> {
 
     MiscBuilder setTime(Minutes time);
 
-    MiscBuilder setType(TYPE type);
+    MiscBuilder setType(MISC_TYPE type);
 
-    MiscBuilder setUse(USE use);
+    MiscBuilder setUse(MISC_USE use);
 
     MiscBuilder setUseFor(String useFor);
     

@@ -1,15 +1,15 @@
 package blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.types.Misc;
-import blh.core.beerxml.types.Misc.TYPE;
-import blh.core.beerxml.types.Misc.USE;
+import blh.core.beerxml.types.Misc.MISC_TYPE;
+import blh.core.beerxml.types.Misc.MISC_USE;
 import blh.core.units.time.Minutes;
 
 public class MiscBuilderImpl implements MiscBuilder {
 
     private String name;
-    private TYPE type;
-    private USE use;
+    private MISC_TYPE type;
+    private MISC_USE use;
     private Minutes time;
     private double amount;
     private boolean amountIsWeight;
@@ -26,13 +26,13 @@ public class MiscBuilderImpl implements MiscBuilder {
     }
 
     @Override
-    public MiscBuilderImpl setType(TYPE type) {
+    public MiscBuilderImpl setType(MISC_TYPE type) {
         this.type = type;
         return this;
     }
 
     @Override
-    public MiscBuilderImpl setUse(USE use) {
+    public MiscBuilderImpl setUse(MISC_USE use) {
         this.use = use;
         return this;
     }
@@ -70,28 +70,28 @@ public class MiscBuilderImpl implements MiscBuilder {
     @Override
     public MiscBuilderImpl set(String tagName, String value) {
         switch (tagName.toUpperCase()) {
-            case "NAME":
+            case Misc.NAME:
                 name = value;
                 break;
-            case "TYPE":
-                type = Misc.TYPE.valueOf(value.toUpperCase());
+            case Misc.TYPE:
+                type = Misc.MISC_TYPE.valueOf(value.toUpperCase());
                 break;
-            case "USE":
-                use = Misc.USE.valueOf(value.toUpperCase());
+            case Misc.USE:
+                use = Misc.MISC_USE.valueOf(value.toUpperCase());
                 break;
-            case "TIME":
+            case Misc.TIME:
                 time = new Minutes(Integer.parseInt(value));
                 break;
-            case "AMOUNT":
+            case Misc.AMOUNT:
                 amount = Double.parseDouble(value);
                 break;
-            case "AMOUNT_IS_WEIGHT":
+            case Misc.AMOUNT_IS_WEIGHT:
                 amountIsWeight = Boolean.parseBoolean(value);
                 break;
-            case "USE_FOR":
+            case Misc.USE_FOR:
                 useFor = value;
                 break;
-            case "NOTES":
+            case Misc.NOTES:
                 notes = value;
                 break;
             default:

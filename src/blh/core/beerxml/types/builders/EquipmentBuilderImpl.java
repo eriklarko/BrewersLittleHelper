@@ -120,49 +120,49 @@ public class EquipmentBuilderImpl implements Builder<Equipment>, EquipmentBuilde
     @Override
     public EquipmentBuilderImpl set(String tagName, String value) {
         switch (tagName.toUpperCase()) {
-            case "NAME":
+            case Equipment.NAME:
                 this.name = value;
                 break;
-            case "BOIL_SIZE":
+            case Equipment.BOIL_SIZE:
                 this.boilSize = new Liters(Double.parseDouble(value));
                 break;
-            case "BATCH_SIZE":
+            case Equipment.BATCH_SIZE:
                 this.batchSize = new Liters(Double.parseDouble(value));
                 break;
-            case "TUN_VOLUME":
+            case Equipment.TUN_VOLUME:
                 this.tunVolume = new Liters(Double.parseDouble(value));
                 break;
-            case "TUN_WEIGHT":
+            case Equipment.TUN_WEIGHT:
                 this.tunWeight = new Kilograms(Double.parseDouble(value));
                 break;
-            case "TUN_SPECIFIC_HEAT":
+            case Equipment.TUN_SPECIFIC_HEAT:
                 this.tunSpecificHeat = Double.parseDouble(value);
                 break;
-            case "TOP_UP_WATER":
+            case Equipment.TOP_UP_WATER:
                 this.topUpWater = new Liters(Double.parseDouble(value));
                 break;
-            case "TRUB_CHILLER_LOSS":
+            case Equipment.TRUB_CHILLER_LOSS:
                 this.trubChillerLoss = new Liters(Double.parseDouble(value));
                 break;
-            case "EVAP_RATE":
+            case Equipment.EVAP_RATE:
                 this.evapRate = new Percentage(Double.parseDouble(value));
                 break;
-            case "BOIL_TIME":
+            case Equipment.BOIL_TIME:
                 this.boilTime = new Minutes(Integer.parseInt(value));
                 break;
-            case "CALC_BOIL_VOLUME":
+            case Equipment.CALCULATE_BOIL_VOLUME:
                 this.calculateBoilVolume = Boolean.parseBoolean(value);
                 break;
-            case "LAUTER_DEADSPACE":
+            case Equipment.LAUTER_DEAD_SPACE:
                 this.lauterDeadSpace = new Liters(Double.parseDouble(value));
                 break;
-            case "TOP_UP_KETTLE":
+            case Equipment.TOP_UP_KETTLE:
                 this.topUpKettle = new Liters(Double.parseDouble(value));
                 break;
-            case "HOP_UTILIZATION":
+            case Equipment.HOP_UTILIZATION:
                 this.hopUtilization = new Percentage(Double.parseDouble(value));
                 break;
-            case "NOTES":
+            case Equipment.NOTES:
                 this.notes = value;
                 break;
             default:

@@ -10,8 +10,16 @@ import blh.core.units.volume.Liters;
  */
 public class MashStep implements BeerXMLRecord {
 
+    public static final String NAME = "NAME";
+    public static final String TYPE = "TYPE";
+    public static final String INFUSE_AMOUNT = "INFUSE_AMOUNT";
+    public static final String STEP_TEMP = "STEP_TEMP";
+    public static final String STEP_TIME = "STEP_TIME";
+    public static final String RAMP_TIME = "RAMP_TIME";
+    public static final String END_TEMP = "END_TEMP";
+    
     public final String name;
-    public final TYPE type;
+    public final MASH_STEP_TYPE type;
     /**
      * Not valid for type decoction.
      */
@@ -21,12 +29,12 @@ public class MashStep implements BeerXMLRecord {
     public final Minutes rampTime;
     public final Celcius endTemp;
 
-    public static enum TYPE {
+    public static enum MASH_STEP_TYPE {
 
         INFUSION, TEMPERATURE, DECOCTION
     }
 
-    public MashStep(String name, TYPE type, Liters infuseAmount, Celcius stepTemp, Minutes stepTime, Minutes rampTime, Celcius endTemp) {
+    public MashStep(String name, MASH_STEP_TYPE type, Liters infuseAmount, Celcius stepTemp, Minutes stepTime, Minutes rampTime, Celcius endTemp) {
         this.name = name;
         this.type = type;
         this.infuseAmount = infuseAmount;

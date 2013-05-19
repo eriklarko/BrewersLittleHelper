@@ -84,34 +84,34 @@ public class WaterBuilderImpl implements WaterBuilder {
     @Override
     public Builder<Water> set(String tagName, String value) {
         switch (tagName.toUpperCase()) {
-            case "NAME":
+            case Water.NAME:
                 name = value;
                 break;
-            case "AMOUNT":
+            case Water.AMOUNT:
                 amount = new Liters(Double.parseDouble(value));
                 break;
-            case "CALCIUM":
+            case Water.CALCIUM:
                 calcium = new PPM(Double.parseDouble(value));
                 break;
-            case "BICARBONATE":
+            case Water.BICARBONATE:
                 bicarbonate = new PPM(Double.parseDouble(value));
                 break;
-            case "SULFATE":
+            case Water.SULFATE:
                 sulfate = new PPM(Double.parseDouble(value));
                 break;
-            case "CHLORIDE":
+            case Water.CHLORIDE:
                 chloride = new PPM(Double.parseDouble(value));
                 break;
-            case "SODIUM":
+            case Water.SODIUM:
                 sodium = new PPM(Double.parseDouble(value));
                 break;
-            case "MAGNESIUM":
+            case Water.MAGNESIUM:
                 magnesium = new PPM(Double.parseDouble(value));
                 break;
-            case "PH":
+            case Water.PH:
                 ph = new PH(Double.parseDouble(value));
                 break;
-            case "NOTES":
+            case Water.NOTES:
                 notes = value;
                 break;
             default:
