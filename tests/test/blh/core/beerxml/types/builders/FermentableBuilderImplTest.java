@@ -102,7 +102,7 @@ public class FermentableBuilderImplTest {
         Fermentable actual = builder.create();
         assertEquality(expected, actual);
 
-        return new Pair<Fermentable, Fermentable>(expected, actual);
+        return new Pair<>(expected, actual);
     }
 
     private void assertEquality(Fermentable expected, Fermentable actual) {
