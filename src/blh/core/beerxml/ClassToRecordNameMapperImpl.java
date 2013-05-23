@@ -1,6 +1,7 @@
 package blh.core.beerxml;
 
 import blh.core.beerxml.types.BeerXMLRecord;
+import blh.core.beerxml.types.BeerXMLRecordSet;
 import blh.core.beerxml.types.Equipment;
 import blh.core.beerxml.types.Fermentable;
 import blh.core.beerxml.types.Hop;
@@ -33,11 +34,25 @@ public class ClassToRecordNameMapperImpl implements ClassToRecordNameMapper {
     }
 
     @Override
-    public String getRecordName(BeerXMLRecord record) throws UnknownRecordException {
-        String name = map.get(record.getClass());
+    public String getRecordName(BeerXMLRecord record) throws UnknownRecordSetException {
+        return getRecordName(record.getClass());
+    }
+
+    private String getRecordName(Class c) throws UnknownRecordSetException {
+        String name = map.get(c);
         if (name == null) {
-            throw new UnknownRecordException(record.getClass().toString());
+            if (c == Object.class) {
+                throw new UnknownRecordSetException("I don't know what this is.. " + c.toString());
+            } else {
+                name = getRecordName(c.getSuperclass());
+            }
         }
         return name;
+    }
+
+    @Override
+    public String getRecordSetName(BeerXMLRecordSet recordSet) throws UnknownRecordSetException {
+        String singular = getRecordName(recordSet.getType());
+        return singular + "S";
     }
 }

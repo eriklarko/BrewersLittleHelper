@@ -107,4 +107,6 @@ public interface RecipeBuilder extends Builder<Recipe> {
 
     RecipeBuilder setYeasts(List<Yeast> yeasts);
     
+    RecipeBuilder setCarbonationUsed(String carbonationUsed);
+    
 }

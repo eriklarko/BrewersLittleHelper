@@ -1,5 +1,7 @@
 package blh.core.beerxml.types.builders;
 
+import blh.core.beerxml.UnknownTagException;
+import blh.core.beerxml.types.BeerXMLRecord;
 import blh.core.beerxml.types.Water;
 import blh.core.units.PH;
 import blh.core.units.PPM;
@@ -82,8 +84,9 @@ public class WaterBuilderImpl implements WaterBuilder {
     }
 
     @Override
-    public Builder<Water> set(String tagName, String value) {
+    public Builder<Water> set(String tagName, String value) throws UnknownTagException {
         switch (tagName.toUpperCase()) {
+            case BeerXMLRecord.VERSION: break;
             case Water.NAME:
                 name = value;
                 break;
@@ -115,8 +118,7 @@ public class WaterBuilderImpl implements WaterBuilder {
                 notes = value;
                 break;
             default:
-                System.out.println("Unknown water value: " + tagName);
-                break;
+                throw new UnknownTagException("Unknown water tag: " + tagName);
         }
 
         return this;

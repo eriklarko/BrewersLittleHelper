@@ -1,6 +1,7 @@
 package test.blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.ParseException;
+import blh.core.beerxml.UnknownTagException;
 import org.junit.*;
 import java.util.Map;
 import java.util.HashMap;
@@ -13,17 +14,17 @@ import blh.core.units.temperature.Celcius;
 import blh.core.units.time.Days;
 import blh.core.units.time.Minutes;
 import blh.core.units.volume.Liters;
-import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class RecipeBuilderImplTest {
 
     @Test
     public void testSet() {
         Map<String, String> tags = new HashMap<>();
-        SimpleDateFormat dateFormat = new SimpleDateFormat();
-        
+        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL);
+
         String name = "1";
         TYPE type = TYPE.ALL_GRAIN;
         String brewer = "5";
@@ -46,13 +47,14 @@ public class RecipeBuilderImplTest {
         Celcius tertiaryTemperature = new Celcius(28);
         Days ageAfterBottling = new Days(29);
         Celcius temperatureDuringAfterBottlingAge = new Celcius(30);
-        Date date = dateFormat.get2DigitYearStart();
+        Date date = Calendar.getInstance().getTime();
         CO2Volumes carbonation = new CO2Volumes(32);
         boolean forcedCarbonation = true;
         String primingSugarName = "34";
         Celcius carbonationTemperature = new Celcius(35);
         Factor primingSugarEquivalence = new Factor(36);
         Factor kegPrimingFactor = new Factor(37);
+        String carbonationUsed = "38";
 
         BuilderUtils.addTag(tags, Recipe.NAME, name);
         BuilderUtils.addTag(tags, Recipe.TYPE, type.toString());
@@ -83,21 +85,23 @@ public class RecipeBuilderImplTest {
         BuilderUtils.addTag(tags, Recipe.CARBONATION_TEMPERATURE, carbonationTemperature);
         BuilderUtils.addTag(tags, Recipe.PRIMING_SUGAR_EQUIVALENCE, primingSugarEquivalence);
         BuilderUtils.addTag(tags, Recipe.KEG_PRIMING_FACTOR, kegPrimingFactor);
+        BuilderUtils.addTag(tags, Recipe.CARBONATION_USED, carbonationUsed);
 
-        RecipeBuilderImpl builder = new RecipeBuilderImpl(dateFormat);
+        RecipeBuilderImpl builder = new RecipeBuilderImpl();
         for (Map.Entry<String, String> tag : tags.entrySet()) {
             try {
                 builder.set(tag.getKey(), tag.getValue());
             } catch (ParseException ex) {
                 ex.printStackTrace();
+                Assert.fail();
             }
         }
         Recipe actual = builder.create();
-        Recipe expected = new Recipe(name, type, null, null, brewer, assistantBrewer, batchSize, boilSize, boilTime, efficiency, null, null, null, null, null, null, notes, tasteNotes, tasteRating, measuredOriginalGravity, measuredFinalGravity, fermentationStages, primaryAge, primaryTemperature, secondaryAge, secondaryTemperature, tertiaryAge, tertiaryTemperature, ageAfterBottling, temperatureDuringAfterBottlingAge, date, carbonation, forcedCarbonation, primingSugarName, carbonationTemperature, primingSugarEquivalence, kegPrimingFactor);
+        Recipe expected = new Recipe(name, type, null, null, brewer, assistantBrewer, batchSize, boilSize, boilTime, efficiency, null, null, null, null, null, null, notes, tasteNotes, tasteRating, measuredOriginalGravity, measuredFinalGravity, fermentationStages, primaryAge, primaryTemperature, secondaryAge, secondaryTemperature, tertiaryAge, tertiaryTemperature, ageAfterBottling, temperatureDuringAfterBottlingAge, date, carbonation, forcedCarbonation, primingSugarName, carbonationTemperature, primingSugarEquivalence, kegPrimingFactor, carbonationUsed);
         assertEquality(expected, actual);
     }
 
-    public void assertEquality(Recipe expected, Recipe actual) {
+    private void assertEquality(Recipe expected, Recipe actual) {
         Assert.assertEquals(expected.name, actual.name);
         Assert.assertEquals(expected.type, actual.type);
         Assert.assertEquals(expected.style, actual.style);
@@ -128,12 +132,26 @@ public class RecipeBuilderImplTest {
         Assert.assertEquals(expected.tertiaryTemperature, actual.tertiaryTemperature);
         Assert.assertEquals(expected.ageAfterBottling, actual.ageAfterBottling);
         Assert.assertEquals(expected.temperatureDuringAfterBottlingAge, actual.temperatureDuringAfterBottlingAge);
-        Assert.assertEquals(expected.date, actual.date);
+        Assert.assertTrue(Math.abs(expected.date.getTime() - actual.date.getTime()) < 1000);
         Assert.assertEquals(expected.carbonation, actual.carbonation);
         Assert.assertEquals(expected.forcedCarbonation, actual.forcedCarbonation);
         Assert.assertEquals(expected.primingSugarName, actual.primingSugarName);
         Assert.assertEquals(expected.carbonationTemperature, actual.carbonationTemperature);
         Assert.assertEquals(expected.primingSugarEquivalence, actual.primingSugarEquivalence);
         Assert.assertEquals(expected.kegPrimingFactor, actual.kegPrimingFactor);
+        Assert.assertEquals(expected.carbonationUsed, actual.carbonationUsed);
+    }
+    
+    @Test
+    public void testSetUnknownTag() {
+        try {
+            Builder builder = new YeastBuilderImpl();
+            builder.set("ökldafs", "");
+            Assert.fail();
+        }  catch (UnknownTagException ex) {
+            Assert.assertTrue(true);
+        } catch(ParseException ex) {
+            Assert.fail();
+        }
     }
 }

@@ -6,9 +6,9 @@ import blh.core.units.Unit;
  *
  * @author thinner
  */
-public class Minutes extends Unit<Integer> {
+public class Minutes extends Unit<Double> {
 
-    public Minutes(int value) {
+    public Minutes(double value) {
         super(value);
     }
 }

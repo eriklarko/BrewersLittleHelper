@@ -1,5 +1,7 @@
 package blh.core.beerxml.types.builders;
 
+import blh.core.beerxml.UnknownTagException;
+import blh.core.beerxml.types.BeerXMLRecord;
 import blh.core.beerxml.types.MashProfile;
 import blh.core.beerxml.types.MashStep;
 import blh.core.units.PH;
@@ -84,8 +86,9 @@ public class MashProfileBuilderImpl implements MashProfileBuilder {
     }
 
     @Override
-    public Builder<MashProfile> set(String tagName, String value) {
+    public Builder<MashProfile> set(String tagName, String value) throws UnknownTagException {
         switch (tagName.toUpperCase()) {
+            case BeerXMLRecord.VERSION: break;
             case MashProfile.NAME:
                 name = value;
                 break;
@@ -114,8 +117,7 @@ public class MashProfileBuilderImpl implements MashProfileBuilder {
                 adjustForEquipmentTemperature = Boolean.parseBoolean(value);
                 break;
             default:
-                System.out.println("Unknown mash profile value: " + tagName);
-                break;
+                throw new UnknownTagException("Unknown mash profile tag: " + tagName);
         }
 
         return this;

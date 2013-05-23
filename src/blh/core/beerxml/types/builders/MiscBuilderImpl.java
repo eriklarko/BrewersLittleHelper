@@ -1,5 +1,7 @@
 package blh.core.beerxml.types.builders;
 
+import blh.core.beerxml.UnknownTagException;
+import blh.core.beerxml.types.BeerXMLRecord;
 import blh.core.beerxml.types.Misc;
 import blh.core.beerxml.types.Misc.MISC_TYPE;
 import blh.core.beerxml.types.Misc.MISC_USE;
@@ -68,8 +70,9 @@ public class MiscBuilderImpl implements MiscBuilder {
     }
 
     @Override
-    public MiscBuilderImpl set(String tagName, String value) {
+    public MiscBuilderImpl set(String tagName, String value) throws UnknownTagException {
         switch (tagName.toUpperCase()) {
+            case BeerXMLRecord.VERSION: break;
             case Misc.NAME:
                 name = value;
                 break;
@@ -80,7 +83,7 @@ public class MiscBuilderImpl implements MiscBuilder {
                 use = Misc.MISC_USE.valueOf(value.toUpperCase());
                 break;
             case Misc.TIME:
-                time = new Minutes(Integer.parseInt(value));
+                time = new Minutes(Double.parseDouble(value));
                 break;
             case Misc.AMOUNT:
                 amount = Double.parseDouble(value);
@@ -95,8 +98,7 @@ public class MiscBuilderImpl implements MiscBuilder {
                 notes = value;
                 break;
             default:
-                System.out.println("Unknown misc value: " + tagName);
-                break;
+                throw new UnknownTagException("Unknown misc tag: " + tagName);
         }
 
         return this;

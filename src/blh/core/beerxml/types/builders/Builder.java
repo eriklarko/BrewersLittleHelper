@@ -5,6 +5,7 @@
 package blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.ParseException;
+import blh.core.beerxml.UnknownTagException;
 import blh.core.beerxml.types.BeerXMLRecord;
 
 /**
@@ -13,7 +14,7 @@ import blh.core.beerxml.types.BeerXMLRecord;
  */
 public interface Builder<T extends BeerXMLRecord> {
 
-    public Builder<T> set(String tagName, String value) throws ParseException;
+    public Builder<T> set(String tagName, String value) throws ParseException, UnknownTagException;
 
     public T create();
 }

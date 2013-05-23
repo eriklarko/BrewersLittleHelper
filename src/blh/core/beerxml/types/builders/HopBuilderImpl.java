@@ -1,5 +1,7 @@
 package blh.core.beerxml.types.builders;
 
+import blh.core.beerxml.UnknownTagException;
+import blh.core.beerxml.types.BeerXMLRecord;
 import blh.core.beerxml.types.Hop;
 import blh.core.beerxml.types.Hop.HOP_FORM;
 import blh.core.beerxml.types.Hop.HOP_TYPE;
@@ -126,8 +128,9 @@ public class HopBuilderImpl implements HopBuilder {
         return this;
     }
 
-    public HopBuilderImpl set(String tagName, String value) {
+    public HopBuilderImpl set(String tagName, String value) throws UnknownTagException {
         switch (tagName.toUpperCase()) {
+            case BeerXMLRecord.VERSION: break;
             case Hop.NAME:
                 name = value;
                 break;
@@ -138,10 +141,10 @@ public class HopBuilderImpl implements HopBuilder {
                 amount = new Kilograms(Double.parseDouble(value));
                 break;
             case Hop.USE:
-                use = Hop.HOP_USE.valueOf(value.toUpperCase());
+                use = Hop.HOP_USE.valueOf(value.toUpperCase().replace(" ", "_"));
                 break;
             case Hop.TIME:
-                time = new Minutes(Integer.parseInt(value));
+                time = new Minutes(Double.parseDouble(value));
                 break;
             case Hop.NOTES:
                 notes = value;
@@ -177,8 +180,7 @@ public class HopBuilderImpl implements HopBuilder {
                 myrcene = new Percentage(Double.parseDouble(value));
                 break;
             default:
-                System.out.println("UNKNOWN HOP VALUE: " + tagName);
-                break;
+                throw new UnknownTagException("Unknown hop tag: " + tagName);
         }
         return this;
     }

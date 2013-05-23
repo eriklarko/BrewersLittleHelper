@@ -3,6 +3,7 @@ package blh.core.beerxml.parsers;
 import blh.core.beerxml.types.BeerXMLRecordSet;
 import blh.core.beerxml.BeerXMLParser;
 import blh.core.beerxml.ParseException;
+import blh.core.beerxml.types.BeerXMLRecord;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -19,7 +20,7 @@ import javax.xml.stream.XMLStreamReader;
 public class StAXParser implements BeerXMLParser {
 
     @Override
-    public List<BeerXMLRecordSet> parse(File xmlFile) throws ParseException {
+    public List<BeerXMLRecordSet<BeerXMLRecord>> parse(File xmlFile) throws ParseException {
         try {
             XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
             XMLStreamReader reader = xmlInputFactory.createXMLStreamReader(new FileReader(xmlFile));

@@ -1,5 +1,7 @@
 package blh.core.beerxml.types.builders;
 
+import blh.core.beerxml.UnknownTagException;
+import blh.core.beerxml.types.BeerXMLRecord;
 import blh.core.beerxml.types.MashStep;
 import blh.core.beerxml.types.MashStep.MASH_STEP_TYPE;
 import blh.core.units.temperature.Celcius;
@@ -62,8 +64,9 @@ public class MashStepBuilderImpl implements MashStepBuilder {
     }
 
     @Override
-    public Builder<MashStep> set(String tagName, String value) {
+    public Builder<MashStep> set(String tagName, String value) throws UnknownTagException {
         switch (tagName.toUpperCase()) {
+            case BeerXMLRecord.VERSION: break;
             case MashStep.NAME:
                 name = value;
                 break;
@@ -77,17 +80,16 @@ public class MashStepBuilderImpl implements MashStepBuilder {
                 stepTemp = new Celcius(Double.parseDouble(value));
                 break;
             case MashStep.STEP_TIME:
-                stepTime = new Minutes(Integer.parseInt(value));
+                stepTime = new Minutes(Double.parseDouble(value));
                 break;
             case MashStep.RAMP_TIME:
-                rampTime = new Minutes(Integer.parseInt(value));
+                rampTime = new Minutes(Double.parseDouble(value));
                 break;
             case MashStep.END_TEMP:
                 endTemp = new Celcius(Double.parseDouble(value));
                 break;
             default:
-                System.out.println("Unknown mash step value: " + tagName);
-                break;
+                throw new UnknownTagException("Unknown mash step value: " + tagName);
         }
         return this;
     }

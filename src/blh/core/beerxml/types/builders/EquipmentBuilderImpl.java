@@ -1,12 +1,14 @@
 package blh.core.beerxml.types.builders;
 
+import blh.core.beerxml.UnknownTagException;
+import blh.core.beerxml.types.BeerXMLRecord;
 import blh.core.beerxml.types.Equipment;
 import blh.core.units.Percentage;
 import blh.core.units.time.Minutes;
 import blh.core.units.volume.Liters;
 import blh.core.units.weight.Kilograms;
 
-public class EquipmentBuilderImpl implements Builder<Equipment>, EquipmentBuilder {
+public class EquipmentBuilderImpl implements EquipmentBuilder {
 
     private String name;
     private Liters boilSize;
@@ -118,8 +120,9 @@ public class EquipmentBuilderImpl implements Builder<Equipment>, EquipmentBuilde
     }
 
     @Override
-    public EquipmentBuilderImpl set(String tagName, String value) {
+    public EquipmentBuilderImpl set(String tagName, String value) throws UnknownTagException {
         switch (tagName.toUpperCase()) {
+            case BeerXMLRecord.VERSION: break;
             case Equipment.NAME:
                 this.name = value;
                 break;
@@ -148,7 +151,7 @@ public class EquipmentBuilderImpl implements Builder<Equipment>, EquipmentBuilde
                 this.evapRate = new Percentage(Double.parseDouble(value));
                 break;
             case Equipment.BOIL_TIME:
-                this.boilTime = new Minutes(Integer.parseInt(value));
+                this.boilTime = new Minutes(Double.parseDouble(value));
                 break;
             case Equipment.CALCULATE_BOIL_VOLUME:
                 this.calculateBoilVolume = Boolean.parseBoolean(value);
@@ -166,8 +169,7 @@ public class EquipmentBuilderImpl implements Builder<Equipment>, EquipmentBuilde
                 this.notes = value;
                 break;
             default:
-                System.out.println("Unknown equipment value: " + tagName);
-                break;
+                throw new UnknownTagException("Unknown equipment tag: " + tagName);
         }
         return this;
     }

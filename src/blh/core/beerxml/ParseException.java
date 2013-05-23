@@ -6,6 +6,10 @@ package blh.core.beerxml;
  */
 public class ParseException extends Exception {
 
+    public ParseException(String message) {
+        super(message);
+    }
+    
     public ParseException(Throwable innerException) {
         super(innerException);
     }

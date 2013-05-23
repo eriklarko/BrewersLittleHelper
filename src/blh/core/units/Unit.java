@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author thinner
  */
 public abstract class Unit<T extends Number> {
-
+    
     protected T value;
 
     public Unit(T value) {

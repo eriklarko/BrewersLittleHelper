@@ -1,5 +1,7 @@
 package test.blh.core.beerxml.types.builders;
 
+import blh.core.beerxml.ParseException;
+import blh.core.beerxml.UnknownTagException;
 import org.junit.*;
 import java.util.Map;
 import java.util.HashMap;
@@ -65,14 +67,19 @@ public class StyleBuilderImplTest {
         BuilderUtils.addTag(tags, Style.EXAMPLES, examples);
         StyleBuilderImpl builder = new StyleBuilderImpl();
         for (Map.Entry<String, String> tag : tags.entrySet()) {
-            builder.set(tag.getKey(), tag.getValue());
+            try {
+                builder.set(tag.getKey(), tag.getValue());
+            } catch (UnknownTagException ex) {
+                ex.printStackTrace();
+                Assert.fail();
+            }
         }
         Style actual = builder.create();
         Style expected = new Style(name, category, categoryNumber, styleLetter, styleGuide, type, originalGravityMin, originalGravityMax, finalGravityMin, finalGravityMax, IBUMin, IBUMax, colorMin, colorMax, carbonationMin, carbonationMax, alcoholMin, alcoholMax, notes, profile, ingredients, examples);
         assertEquality(expected, actual);
     }
 
-    public void assertEquality(Style expected, Style actual) {
+    private void assertEquality(Style expected, Style actual) {
         Assert.assertEquals(expected.name, actual.name);
         Assert.assertEquals(expected.category, actual.category);
         Assert.assertEquals(expected.categoryNumber, actual.categoryNumber);
@@ -95,5 +102,18 @@ public class StyleBuilderImplTest {
         Assert.assertEquals(expected.profile, actual.profile);
         Assert.assertEquals(expected.ingredients, actual.ingredients);
         Assert.assertEquals(expected.examples, actual.examples);
+    }
+    
+    @Test
+    public void testSetUnknownTag() {
+        try {
+            Builder builder = new YeastBuilderImpl();
+            builder.set("ökldafs", "");
+            Assert.fail();
+        }  catch (UnknownTagException ex) {
+            Assert.assertTrue(true);
+        } catch(ParseException ex) {
+            Assert.fail();
+        }
     }
 }

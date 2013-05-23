@@ -29,44 +29,59 @@ public class RecipeParser extends RecordSetParser<Recipe> {
     private RecordSetParser<Yeast>yeastsParser;
     private RecordSetParser<Water>waterParser;
     private RecordSetParser<MashProfile> mashProfileParser;
-    
-    public RecipeParser(RecipeBuilder builder) {
+
+    public RecipeParser(RecipeBuilder builder, RecordSetParser<Style> styleParser, RecordSetParser<Equipment> equipmentParser, RecordSetParser<Hop> hopsParser, RecordSetParser<Fermentable> fermentablesParser, RecordSetParser<Misc> miscsParser, RecordSetParser<Yeast> yeastsParser, RecordSetParser<Water> waterParser, RecordSetParser<MashProfile> mashProfileParser) {
         super(builder);
+        this.builder = builder;
+        this.styleParser = styleParser;
+        this.equipmentParser = equipmentParser;
+        this.hopsParser = hopsParser;
+        this.fermentablesParser = fermentablesParser;
+        this.miscsParser = miscsParser;
+        this.yeastsParser = yeastsParser;
+        this.waterParser = waterParser;
+        this.mashProfileParser = mashProfileParser;
     }
+    
 
     @Override
-    protected Recipe parseType(NodeList values) throws ParseException {
+    public Recipe parseRecord(NodeList values) throws ParseException {
         for (int i = 0; i < values.getLength(); i++) {
             Node node = values.item(i);
+            
+            if(node.getNodeType() != Node.ELEMENT_NODE) {
+                continue;
+            }
 
             switch (node.getNodeName().toUpperCase()) {
+                case "VERSION": break;
                 case "STYLE":
-                    builder.setStyle(styleParser.parseType(node.getChildNodes()));
+                    builder.setStyle(styleParser.parseRecord(node.getChildNodes()));
                     break;
                 case "EQUIPMENT":
-                    builder.setEquipment(equipmentParser.parseType(node.getChildNodes()));
+                    builder.setEquipment(equipmentParser.parseRecord(node.getChildNodes()));
                     break;
                 case "HOPS":
-                    builder.setHops(hopsParser.parse(node.getChildNodes()).getRecords());
+                    builder.setHops(hopsParser.parseRecordSet(node.getChildNodes()).getRecords());
                     break;
                 case "FERMENTABLES":
-                    builder.setFermentables(fermentablesParser.parse(node.getChildNodes()).getRecords());
+                    builder.setFermentables(fermentablesParser.parseRecordSet(node.getChildNodes()).getRecords());
                     break;
                 case "MISCS":
-                    builder.setMiscs(miscsParser.parse(node.getChildNodes()).getRecords());
+                    builder.setMiscs(miscsParser.parseRecordSet(node.getChildNodes()).getRecords());
                     break;
                 case "YEASTS":
-                    builder.setYeasts(yeastsParser.parse(node.getChildNodes()).getRecords());
+                    builder.setYeasts(yeastsParser.parseRecordSet(node.getChildNodes()).getRecords());
                     break;
                 case "WATERS":
-                    builder.setWaters(waterParser.parse(node.getChildNodes()).getRecords());
+                    builder.setWaters(waterParser.parseRecordSet(node.getChildNodes()).getRecords());
                     break;
                 case "MASH":
-                    builder.setMashProfile(mashProfileParser.parseType(node.getChildNodes()));
+                    builder.setMashProfile(mashProfileParser.parseRecord(node.getChildNodes()));
                     break;
 
                 default:
-                    builder.set(node.getNodeName(), node.getNodeValue());
+                    builder.set(node.getNodeName(), node.getTextContent());
                     break;
             }
         }

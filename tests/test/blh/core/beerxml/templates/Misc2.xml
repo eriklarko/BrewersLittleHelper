@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISC>
+	<NAME>Coriander</NAME>
+	<TYPE>Spice</TYPE>
+	<VERSION>1</VERSION>
+	<USE>Boil</USE>
+	<TIME>5.0</TIME>
+	<AMOUNT>0.025</AMOUNT>
+	<USE_FOR>Belgian Wit Spice</USE_FOR>
+	<NOTES>Used in Belgian Wit, Whites, and Holiday ales.  Very good when used in light wheat ales.  Often used with Bitter Orange Peel. Crack open seeds and add at the end of the boil to extract aroma and flavor.
+	</NOTES>
+</MISC>

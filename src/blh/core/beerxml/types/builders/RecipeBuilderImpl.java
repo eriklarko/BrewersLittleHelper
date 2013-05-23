@@ -1,6 +1,8 @@
 package blh.core.beerxml.types.builders;
 
 import blh.core.beerxml.ParseException;
+import blh.core.beerxml.UnknownTagException;
+import blh.core.beerxml.types.BeerXMLRecord;
 import blh.core.beerxml.types.Equipment;
 import blh.core.beerxml.types.Fermentable;
 import blh.core.beerxml.types.Hop;
@@ -11,7 +13,6 @@ import blh.core.beerxml.types.Recipe.TYPE;
 import blh.core.beerxml.types.Style;
 import blh.core.beerxml.types.Water;
 import blh.core.beerxml.types.Yeast;
-import blh.core.beerxml.types.builders.Builder;
 import blh.core.units.BJCPTasteRating;
 import blh.core.units.CO2Volumes;
 import blh.core.units.Factor;
@@ -65,9 +66,10 @@ public class RecipeBuilderImpl implements RecipeBuilder {
     private Factor primingSugarEquivalence;
     private Factor kegPrimingFactor;
     private DateFormat dateFormat;
+    private String carbonationUsed;
 
-    public RecipeBuilderImpl(DateFormat dateFormat) {
-        this.dateFormat = dateFormat;
+    public RecipeBuilderImpl() {
+        this.dateFormat = DateFormat.getDateInstance(DateFormat.FULL);
     }
 
     @Override
@@ -293,8 +295,16 @@ public class RecipeBuilderImpl implements RecipeBuilder {
     }
 
     @Override
-    public Builder<Recipe> set(String tagName, String value) throws ParseException{
+    public RecipeBuilder setCarbonationUsed(String carbonationUsed) {
+        this.carbonationUsed = carbonationUsed;
+        return this;
+    }
+
+    @Override
+    public Builder<Recipe> set(String tagName, String value) throws ParseException {
         switch (tagName.toUpperCase()) {
+            case BeerXMLRecord.VERSION:
+                break;
             case Recipe.NAME:
                 name = value;
                 break;
@@ -314,7 +324,7 @@ public class RecipeBuilderImpl implements RecipeBuilder {
                 boilSize = new Liters(Double.parseDouble(value));
                 break;
             case Recipe.BOIL_TIME:
-                boilTime = new Minutes(Integer.parseInt(value));
+                boilTime = new Minutes(Double.parseDouble(value));
                 break;
             case Recipe.EFFICIENCY:
                 efficiency = new Percentage(Double.parseDouble(value));
@@ -326,6 +336,7 @@ public class RecipeBuilderImpl implements RecipeBuilder {
                 tasteNotes = value;
                 break;
             case Recipe.TASTE_RATING:
+            case "RATING":
                 tasteRating = new BJCPTasteRating(Double.parseDouble(value));
                 break;
             case Recipe.MEASURED_ORIGINAL_GRAVITY:
@@ -365,7 +376,8 @@ public class RecipeBuilderImpl implements RecipeBuilder {
                 try {
                     date = dateFormat.parse(value);
                 } catch (java.text.ParseException ex) {
-                    throw new ParseException(ex);
+                    //throw new ParseException(ex);
+                    ex.printStackTrace();
                 }
                 break;
             case Recipe.CARBONATION:
@@ -385,9 +397,11 @@ public class RecipeBuilderImpl implements RecipeBuilder {
             case Recipe.KEG_PRIMING_FACTOR:
                 kegPrimingFactor = new Factor(Double.parseDouble(value));
                 break;
-            default:
-                System.out.println("Unknown recipe value: " + tagName);
+            case Recipe.CARBONATION_USED:
+                carbonationUsed = value;
                 break;
+            default:
+                throw new UnknownTagException("Unknown recipe tag: " + tagName);
         }
         return this;
     }
@@ -403,6 +417,6 @@ public class RecipeBuilderImpl implements RecipeBuilder {
                 tertiaryTemperature, ageAfterBottling,
                 temperatureDuringAfterBottlingAge, date, carbonation,
                 forcedCarbonation, primingSugarName, carbonationTemperature,
-                primingSugarEquivalence, kegPrimingFactor);
+                primingSugarEquivalence, kegPrimingFactor, carbonationUsed);
     }
 }

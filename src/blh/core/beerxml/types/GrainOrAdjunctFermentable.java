@@ -1,9 +1,13 @@
 package blh.core.beerxml.types;
 
+import blh.core.beerxml.Utils;
 import blh.core.units.Lintner;
 import blh.core.units.Percentage;
 import blh.core.units.color.Lovibond;
 import blh.core.units.weight.Kilograms;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  *
@@ -15,8 +19,7 @@ public class GrainOrAdjunctFermentable extends Fermentable {
     public static final String MOISTURE = "MOISTURE";
     public static final String DIASTATIC_POWER = "DIASTATIC_POWER";
     public static final String PROTEIN = "PROTEIN";
-    public static final String RECOMMEND_MASH = "RECOMMENDED_MASH";
-    
+    public static final String RECOMMEND_MASH = "RECOMMEND_MASH";
     public final Percentage coarseFineDiff;
     public final Percentage moisture;
     public final Lintner diastaticPower;
@@ -40,5 +43,58 @@ public class GrainOrAdjunctFermentable extends Fermentable {
         this.diastaticPower = diastaticPower;
         this.protein = protein;
         this.recommendMash = recommendMash;
+    }
+
+    @Override
+    public Map<String, String> getBeerXMLTagsAndValues() {
+        Map<String, String> tagsAndValues = new HashMap<>(super.getBeerXMLTagsAndValues());
+
+        tagsAndValues.put(COARSE_FINE_DIFF, Utils.toStringOrNull(coarseFineDiff));
+        tagsAndValues.put(MOISTURE, Utils.toStringOrNull(moisture));
+        tagsAndValues.put(DIASTATIC_POWER, Utils.toStringOrNull(diastaticPower));
+        tagsAndValues.put(PROTEIN, Utils.toStringOrNull(protein));
+        tagsAndValues.put(RECOMMEND_MASH, Utils.toStringOrNull(recommendMash));
+
+        return tagsAndValues;
+    }
+
+    public boolean equals(Object obj) {
+        if(!super.equals(obj)) {
+            return false;
+        }
+        
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final GrainOrAdjunctFermentable other = (GrainOrAdjunctFermentable) obj;
+        if (!Objects.equals(this.coarseFineDiff, other.coarseFineDiff)) {
+            return false;
+        }
+        if (!Objects.equals(this.moisture, other.moisture)) {
+            return false;
+        }
+        if (!Objects.equals(this.diastaticPower, other.diastaticPower)) {
+            return false;
+        }
+        if (!Objects.equals(this.protein, other.protein)) {
+            return false;
+        }
+        if (this.recommendMash != other.recommendMash) {
+            return false;
+        }
+        return true;
+    }
+
+    public int hashCode() {
+        int hash = 3 * super.hashCode();
+        hash = 83 * hash + Objects.hashCode(this.coarseFineDiff);
+        hash = 83 * hash + Objects.hashCode(this.moisture);
+        hash = 83 * hash + Objects.hashCode(this.diastaticPower);
+        hash = 83 * hash + Objects.hashCode(this.protein);
+        hash = 83 * hash + (this.recommendMash ? 1 : 0);
+        return hash;
     }
 }

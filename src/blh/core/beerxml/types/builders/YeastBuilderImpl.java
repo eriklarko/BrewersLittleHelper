@@ -1,5 +1,7 @@
 package blh.core.beerxml.types.builders;
 
+import blh.core.beerxml.UnknownTagException;
+import blh.core.beerxml.types.BeerXMLRecord;
 import blh.core.beerxml.types.Yeast;
 import blh.core.beerxml.types.Yeast.YEAST_FLOCCULATION;
 import blh.core.beerxml.types.Yeast.YEAST_FORM;
@@ -126,8 +128,9 @@ public class YeastBuilderImpl implements YeastBuilder {
     }
 
     @Override
-    public Builder<Yeast> set(String tagName, String value) {
+    public Builder<Yeast> set(String tagName, String value) throws UnknownTagException {
         switch (tagName.toUpperCase()) {
+            case BeerXMLRecord.VERSION: break;
             case Yeast.NAME:
                 name = value;
                 break;
@@ -177,8 +180,7 @@ public class YeastBuilderImpl implements YeastBuilder {
                 addToSecondary = Boolean.parseBoolean(value);
                 break;
             default:
-                System.out.println("Unknown yeast value: " + tagName);
-                break;
+                throw new UnknownTagException("Unknown yeast tag: " + tagName);
         }
 
         return this;

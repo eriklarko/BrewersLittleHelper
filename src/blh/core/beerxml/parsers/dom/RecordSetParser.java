@@ -28,21 +28,32 @@ public class RecordSetParser<T extends BeerXMLRecord> {
         this.builder = builder;
     }
 
-    public BeerXMLRecordSet<T> parse(NodeList recordSet) throws ParseException {
+    public BeerXMLRecordSet<T> parseRecordSet(NodeList recordSet) throws ParseException {
         List<T> types = new LinkedList<>();
+        Class class_ = null;
         for (int i = 0; i < recordSet.getLength(); i++) {
             Node node = recordSet.item(i);
-            NodeList values = node.getChildNodes();
-            types.add(parseType(values));
+
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                NodeList values = node.getChildNodes();
+
+                T record = parseRecord(values);
+                class_ = record.getClass();
+                types.add(record);
+            }
         }
 
-        return new BeerXMLRecordSet<>(types);
+        //Class class_ = (Class<?>) (((ParameterizedType)RecordSetParser.class.getGenericSuperclass()).getActualTypeArguments()[0]);
+        return new BeerXMLRecordSet<>(class_, types);
     }
 
-    protected T parseType(NodeList values) throws ParseException {
+    public T parseRecord(NodeList values) throws ParseException {
         for (int i = 0; i < values.getLength(); i++) {
             Node node = values.item(i);
-            builder.set(node.getNodeName(), node.getNodeValue());
+
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                builder.set(node.getNodeName(), node.getTextContent());
+            }
         }
         return builder.create();
     }

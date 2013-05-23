@@ -1,5 +1,7 @@
 package blh.core.beerxml.types.builders;
 
+import blh.core.beerxml.UnknownTagException;
+import blh.core.beerxml.types.BeerXMLRecord;
 import blh.core.beerxml.types.Fermentable;
 import blh.core.beerxml.types.Fermentable.FERMENTABLE_TYPE;
 import blh.core.beerxml.types.GrainOrAdjunctFermentable;
@@ -10,7 +12,7 @@ import blh.core.units.color.Lovibond;
 import blh.core.units.color.SRM;
 import blh.core.units.weight.Kilograms;
 
-public class FermentableBuilderImpl implements Builder<Fermentable>, FermentableBuilder {
+public class FermentableBuilderImpl implements FermentableBuilder {
 
     private String name;
     private FERMENTABLE_TYPE type;
@@ -129,8 +131,10 @@ public class FermentableBuilderImpl implements Builder<Fermentable>, Fermentable
     }
 
     @Override
-    public Builder<Fermentable> set(String tagName, String value) {
+    public Builder<Fermentable> set(String tagName, String value) throws UnknownTagException {
         switch (tagName.toUpperCase()) {
+            case BeerXMLRecord.VERSION:
+                break;
             case Fermentable.NAME:
                 name = value;
                 break;
@@ -176,12 +180,13 @@ public class FermentableBuilderImpl implements Builder<Fermentable>, Fermentable
             case GrainOrAdjunctFermentable.RECOMMEND_MASH:
                 recommendMash = Boolean.parseBoolean(value);
                 break;
+
             case LiquidFermentable.IBU_GALLONS_PER_POUND:
+            case "IBU_GAL_PER_POUND":
                 IBUGallonsPerPound = Double.parseDouble(value);
                 break;
             default:
-                System.out.println("Unknown fermentable value: " + tagName);
-                break;
+                throw new UnknownTagException("Unknown fermentable tag: " + tagName);
         }
         return this;
     }

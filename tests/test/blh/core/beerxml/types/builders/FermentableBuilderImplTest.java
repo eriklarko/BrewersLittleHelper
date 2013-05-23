@@ -1,9 +1,13 @@
 package test.blh.core.beerxml.types.builders;
 
+import blh.core.beerxml.ParseException;
+import blh.core.beerxml.UnknownTagException;
 import blh.core.beerxml.types.Fermentable;
 import blh.core.beerxml.types.GrainOrAdjunctFermentable;
 import blh.core.beerxml.types.LiquidFermentable;
+import blh.core.beerxml.types.builders.Builder;
 import blh.core.beerxml.types.builders.FermentableBuilderImpl;
+import blh.core.beerxml.types.builders.YeastBuilderImpl;
 import blh.core.units.Lintner;
 import blh.core.units.Percentage;
 import blh.core.units.color.Lovibond;
@@ -74,7 +78,7 @@ public class FermentableBuilderImplTest {
         BuilderUtils.addTag(tags, Fermentable.ADD_AFTER_BOIL, addAfterBoil);
         BuilderUtils.addTag(tags, Fermentable.ORIGIN, origin);
         BuilderUtils.addTag(tags, Fermentable.SUPPLIER, supplier);
-        BuilderUtils.addTag(tags, Fermentable.NAME, notes);
+        BuilderUtils.addTag(tags, Fermentable.NOTES, notes);
         BuilderUtils.addTag(tags, GrainOrAdjunctFermentable.COARSE_FINE_DIFF, coarseFineDiff);
         BuilderUtils.addTag(tags, GrainOrAdjunctFermentable.MOISTURE, moisture);
         BuilderUtils.addTag(tags, GrainOrAdjunctFermentable.DIASTATIC_POWER, diastaticPower);
@@ -85,7 +89,12 @@ public class FermentableBuilderImplTest {
 
         FermentableBuilderImpl builder = new FermentableBuilderImpl();
         for (Map.Entry<String, String> tag : tags.entrySet()) {
-            builder.set(tag.getKey(), tag.getValue());
+            try {
+                builder.set(tag.getKey(), tag.getValue());
+            } catch (UnknownTagException ex) {
+                ex.printStackTrace();
+                Assert.fail();
+            }
         }
 
         Fermentable expected;
@@ -128,5 +137,18 @@ public class FermentableBuilderImplTest {
 
     private void assertEquality(LiquidFermentable expected, LiquidFermentable actual) {
         Assert.assertEquals(expected.IBUGallonsPerPound, actual.IBUGallonsPerPound, 0.0001);
+    }
+    
+    @Test
+    public void testSetUnknownTag() {
+        try {
+            Builder builder = new YeastBuilderImpl();
+            builder.set("ökldafs", "");
+            Assert.fail();
+        }  catch (UnknownTagException ex) {
+            Assert.assertTrue(true);
+        } catch(ParseException ex) {
+            Assert.fail();
+        }
     }
 }

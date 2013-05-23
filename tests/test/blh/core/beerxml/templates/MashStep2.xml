@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MASH_STEP>
+	<NAME>Conversion Decoction</NAME>
+	<VERSION>1</VERSION>
+	<TYPE>Decoction</TYPE>
+	<STEP_TEMP>68.0</STEP_TEMP>
+	<STEP_TIME>90.0</STEP_TIME>
+</MASH_STEP>

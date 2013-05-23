@@ -16,5 +16,5 @@ import java.util.List;
  */
 public interface BeerXMLWriter<T extends BeerXMLRecord> {
 
-    public void write(File file, List<BeerXMLRecordSet<T>> recordSets) throws IOException;
+    public void write(File file, List<BeerXMLRecordSet<T>> recordSets) throws IOException, UnknownRecordSetException;
 }

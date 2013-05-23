@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MASH>
+    <NAME>Two Step Temperature, 68C </NAME>
+    <VERSION>1</VERSION>
+    <GRAIN_TEMP>22.0</GRAIN_TEMP>
+    <TUN_TEMP>22.0</TUN_TEMP>
+    <SPARGE_TEMP>78.0</SPARGE_TEMP>
+    <MASH_STEPS>
+        <MASH_STEP>
+            <NAME>Protein Rest</NAME>
+            <VERSION>1</VERSION>
+            <TYPE>Temperature</TYPE>
+            <STEP_TEMP>49.0</STEP_TEMP>
+            <STEP_TIME>20.0</STEP_TIME>
+            <RAMP_TIME>10.0</RAMP_TIME>
+            <INFUSE_AMOUNT>15.0</INFUSE_AMOUNT>
+        </MASH_STEP>
+        <MASH_STEP>
+            <NAME>Conversion Step, 68 C</NAME>
+            <VERSION>1</VERSION>
+            <TYPE>Temperature</TYPE>
+            <STEP_TEMP>68.0</STEP_TEMP>
+            <RAMP_TIME>20.0</RAMP_TIME>
+            <STEP_TIME>60.0</STEP_TIME>
+        </MASH_STEP>
+    </MASH_STEPS>
+</MASH>

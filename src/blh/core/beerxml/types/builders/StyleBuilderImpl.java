@@ -1,5 +1,7 @@
 package blh.core.beerxml.types.builders;
 
+import blh.core.beerxml.UnknownTagException;
+import blh.core.beerxml.types.BeerXMLRecord;
 import blh.core.beerxml.types.Style;
 import blh.core.beerxml.types.Style.TYPE;
 import blh.core.units.CO2Volumes;
@@ -169,8 +171,9 @@ public class StyleBuilderImpl implements StyleBuilder{
     }
 
     @Override
-    public StyleBuilderImpl set(String tagName, String value) {
+    public StyleBuilderImpl set(String tagName, String value) throws UnknownTagException {
         switch (tagName.toUpperCase()) {
+            case BeerXMLRecord.VERSION: break;
             case Style.NAME:
                 this.name = value;
                 break;
@@ -237,6 +240,8 @@ public class StyleBuilderImpl implements StyleBuilder{
             case Style.EXAMPLES:
                 this.examples = value;
                 break;
+            default:
+                throw new UnknownTagException("Unknown style tag: " + tagName);
         }
 
         return this;

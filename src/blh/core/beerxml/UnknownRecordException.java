@@ -8,10 +8,7 @@ package blh.core.beerxml;
  *
  * @author thinner
  */
-public class UnknownRecordException extends Exception {
-
-    public UnknownRecordException() {
-    }
+public class UnknownRecordException extends ParseException {
 
     public UnknownRecordException(String message) {
         super(message);

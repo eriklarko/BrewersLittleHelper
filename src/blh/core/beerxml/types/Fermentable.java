@@ -1,8 +1,13 @@
 package blh.core.beerxml.types;
 
+import blh.core.beerxml.Utils;
 import blh.core.units.Percentage;
 import blh.core.units.color.Lovibond;
 import blh.core.units.weight.Kilograms;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  *
@@ -20,7 +25,6 @@ public class Fermentable implements BeerXMLRecord {
     public static final String SUPPLIER = "SUPPLIER";
     public static final String NOTES = "NOTES";
     public static final String MAX_IN_BATCH = "MAX_IN_BATCH";
-    
     public final String name;
     public final FERMENTABLE_TYPE type;
     public final Kilograms amount;
@@ -77,5 +81,89 @@ public class Fermentable implements BeerXMLRecord {
         this.supplier = supplier;
         this.notes = notes;
         this.maxInBatch = maxInBatch;
+    }
+
+    @Override
+    public Map<String, String> getBeerXMLTagsAndValues() {
+        Map<String, String> tagsAndValues = new HashMap<>();
+
+        tagsAndValues.put(NAME, Utils.toStringOrNull(name));
+        tagsAndValues.put(TYPE, Utils.toStringOrNull(type));
+        tagsAndValues.put(AMOUNT, Utils.toStringOrNull(amount));
+        tagsAndValues.put(YIELD, Utils.toStringOrNull(yield));
+        tagsAndValues.put(COLOR, Utils.toStringOrNull(color));
+        tagsAndValues.put(ADD_AFTER_BOIL, Utils.toStringOrNull(addAfterBoil));
+        tagsAndValues.put(ORIGIN, Utils.toStringOrNull(origin));
+        tagsAndValues.put(SUPPLIER, Utils.toStringOrNull(supplier));
+        tagsAndValues.put(NOTES, Utils.toStringOrNull(notes));
+        tagsAndValues.put(MAX_IN_BATCH, Utils.toStringOrNull(maxInBatch));
+
+        return tagsAndValues;
+    }
+
+    @Override
+    public List<BeerXMLRecord> getSubRecords() {
+        return null;
+    }
+
+    @Override
+    public List<BeerXMLRecordSet> getSubRecordSets() {
+        return null;
+    }
+
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Fermentable other = (Fermentable) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (this.type != other.type) {
+            return false;
+        }
+        if (!Objects.equals(this.amount, other.amount)) {
+            return false;
+        }
+        if (!Objects.equals(this.yield, other.yield)) {
+            return false;
+        }
+        if (!Objects.equals(this.color, other.color)) {
+            return false;
+        }
+        if (this.addAfterBoil != other.addAfterBoil) {
+            return false;
+        }
+        if (!Objects.equals(this.origin, other.origin)) {
+            return false;
+        }
+        if (!Objects.equals(this.supplier, other.supplier)) {
+            return false;
+        }
+        if (!Objects.equals(this.notes, other.notes)) {
+            return false;
+        }
+        if (!Objects.equals(this.maxInBatch, other.maxInBatch)) {
+            return false;
+        }
+        return true;
+    }
+
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.name);
+        hash = 97 * hash + (this.type != null ? this.type.hashCode() : 0);
+        hash = 97 * hash + Objects.hashCode(this.amount);
+        hash = 97 * hash + Objects.hashCode(this.yield);
+        hash = 97 * hash + Objects.hashCode(this.color);
+        hash = 97 * hash + (this.addAfterBoil ? 1 : 0);
+        hash = 97 * hash + Objects.hashCode(this.origin);
+        hash = 97 * hash + Objects.hashCode(this.supplier);
+        hash = 97 * hash + Objects.hashCode(this.notes);
+        hash = 97 * hash + Objects.hashCode(this.maxInBatch);
+        return hash;
     }
 }
