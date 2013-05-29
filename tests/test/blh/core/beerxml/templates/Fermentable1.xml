@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<FERMENTABLE>
-    <NAME>Pale 2-row Malt</NAME>
-    <VERSION>1</VERSION>
-    <AMOUNT>5.0</AMOUNT>
-    <TYPE>Grain</TYPE>
-    <YIELD>73.4</YIELD>
-    <COLOR>3.0</COLOR>
-</FERMENTABLE>

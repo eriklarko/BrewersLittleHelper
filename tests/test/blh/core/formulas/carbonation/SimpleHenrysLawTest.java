@@ -1,5 +1,6 @@
-package blh.core.formulas.carbonation;
+package test.blh.core.formulas.carbonation;
 
+import blh.core.formulas.carbonation.SimpleHenrysLaw;
 import blh.core.units.CO2Volumes;
 import blh.core.units.pressure.Bar;
 import blh.core.units.pressure.PSI;

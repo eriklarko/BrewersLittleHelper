@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<HOP>
-    <NAME>Cascade</NAME>
-    <VERSION>1</VERSION>
-    <ALPHA>5.0</ALPHA>
-    <AMOUNT>0.100</AMOUNT>
-    <USE>Boil</USE>
-    <TIME>60</TIME>
-</HOP>

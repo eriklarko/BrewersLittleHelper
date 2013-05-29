@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<HOP>
-    <NAME>Fuggles</NAME>
-    <VERSION>1</VERSION>
-    <ALPHA>4.5</ALPHA>
-    <AMOUNT>0.250</AMOUNT>
-    <USE>Dry Hop</USE>
-    <TIME>10080.0</TIME>
-</HOP>
