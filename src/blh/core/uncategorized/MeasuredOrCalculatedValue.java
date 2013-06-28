@@ -29,7 +29,7 @@ public class MeasuredOrCalculatedValue<T> {
         this.isMeasured = false;
     }
 
-    public boolean isIsMeasured() {
+    public boolean isMeasured() {
         return isMeasured;
     }
 
