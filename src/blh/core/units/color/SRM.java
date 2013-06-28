@@ -9,7 +9,17 @@ import blh.core.units.Unit;
  */
 public class SRM extends Unit<Double> {
 
+    public static final double EBC_CONVERSION_FACTOR = 1.97;
+
     public SRM(double value) {
         super(value);
+    }
+
+    public SRM(EBC ebc) {
+        super(ebc.value() / 1.97);
+    }
+
+    public EBC toEBC() {
+        return new EBC(this.value() * EBC_CONVERSION_FACTOR);
     }
 }
