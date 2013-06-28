@@ -25,7 +25,7 @@ public class SimpleHenrysLawTest {
         Celsius temperatureC = new Celsius(18);
         Bar resultBar = henrysLaw.calc(vols, temperatureC);
 
-        PSI barResultAsPSI = new PSI(resultBar.value() * 14.503773800);
+        PSI barResultAsPSI = new PSI(resultBar);
         Assert.assertEquals(resultPSI.value(), barResultAsPSI.value(), 0.001);
     }
 }
