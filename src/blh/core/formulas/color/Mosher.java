@@ -13,7 +13,7 @@ import blh.core.units.color.MaltColorUnit;
  *
  * @author thinner
  */
-public class Mosher implements Formula<EBC>{
+public class Mosher implements Formula<EBC> {
 
     @Override
     public EBC calc(FullContext context) {
@@ -23,6 +23,5 @@ public class Mosher implements Formula<EBC>{
 
     public EBC calc(MaltColorUnit mcu) {
         return new EBC(((0.3 * mcu.value()) + 4.7) * 1.97);
-        
     }
 }

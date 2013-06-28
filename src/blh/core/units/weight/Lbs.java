@@ -8,6 +8,10 @@ import blh.core.units.Unit;
  */
 public class Lbs extends Unit<Double> {
 
+    public Lbs(double value) {
+        super(value);
+    }
+
     public Lbs(Kilograms kgs) {
         super(kgs.value() * 2.20462);
     }

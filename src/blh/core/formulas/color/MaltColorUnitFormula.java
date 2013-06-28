@@ -11,7 +11,7 @@ import blh.core.units.volume.Liters;
  *
  * @author thinner
  */
-public class MaltColorUnitFormula implements Formula<MaltColorUnit>{
+public class MaltColorUnitFormula implements Formula<MaltColorUnit> {
 
     @Override
     public MaltColorUnit calc(FullContext context) {

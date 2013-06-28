@@ -13,6 +13,10 @@ public class ColorPotential extends Unit<Double> {
         super(0d);
     }
 
+    public ColorPotential(Lovibond color, Lbs amount) {
+        super(color.value() * amount.value());
+    }
+
     public void add(Lovibond color, Lbs amount) {
         value += color.value() * amount.value();
     }

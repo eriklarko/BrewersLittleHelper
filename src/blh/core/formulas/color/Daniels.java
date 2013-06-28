@@ -24,6 +24,5 @@ public class Daniels implements Formula<EBC> {
 
     public EBC calc(MaltColorUnit mcu) {
         return new EBC(((0.2 * mcu.value()) + 8.4) * 1.97);
-
     }
 }
