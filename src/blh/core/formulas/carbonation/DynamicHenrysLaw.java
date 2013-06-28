@@ -25,7 +25,7 @@ public class DynamicHenrysLaw implements Formula<PSI>{
     }
 
     public PSI calc(SpecificGravity gravity, ABW abw, Fahrenheit temperature, CO2Volumes desiredVolumes, PSIA barometricPressure) {
-        double d = (temperature.value() + 12.4) * gravity.value()  * (1 + abw.value() / 0.789);
+        double d = (temperature.value() + 12.4) * gravity.value()  * (1 + abw.value().value() / 0.789);
         d = d * desiredVolumes.value();
         d = d / 5.16;
         d -= barometricPressure.value();
@@ -34,11 +34,11 @@ public class DynamicHenrysLaw implements Formula<PSI>{
     }
 
     public Bar calc(SpecificGravity gravity, ABV abv, Celsius temperature, CO2Volumes desiredVolumes, BarA barometricPressure) {
-        double d = (1.8 * temperature.value() + 44.4) * gravity.value()  * (1 + abv.value() / 0.98625);
+        double d = (1.8 * temperature.value() + 44.4) * gravity.value()  * (1 + abv.value().value() / 0.98625);
         d = d * desiredVolumes.value();
         d = d / 5.16;
         d -= barometricPressure.value();
 
-        return new Bar(d);
+        return new PSI(d).asBar();
     }
 }

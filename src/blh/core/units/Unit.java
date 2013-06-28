@@ -6,7 +6,7 @@ import java.util.Objects;
  *
  * @author thinner
  */
-public abstract class Unit<T extends Number> {
+public abstract class Unit<T> {
     
     protected T value;
 
