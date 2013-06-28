@@ -12,8 +12,7 @@ import blh.core.units.weight.Kilograms;
  * Taken from
  * http://byo.com/european-pale-lager/item/409-calculating-gravity-bitterness-and-color-techniques
  *
- * SGP(GP/gal) = [W(lb.) * EP(GP/lb.) * EE] / V(gallons) --> SGP(GP/l) = [W(kg)
- * * EP(GP/kg) * EE] / V(l)
+ * SGP(GP/gal) = [W(lb.) * EP(GP/lb.) * EE] / V(gallons) --> SGP(GP/l) = [W(kg) * EP(GP/kg) * EE] / V(l)
  *
  * SG = SGP / 1000
  *

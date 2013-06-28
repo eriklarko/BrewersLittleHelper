@@ -1,6 +1,5 @@
 package blh.core.uncategorized;
 
-import blh.core.formulas.Formula;
 import blh.core.recipe.IngredientsList;
 import blh.core.units.ExtractPotential;
 import blh.core.units.Factor;
@@ -74,14 +73,14 @@ public class FullContext {
     }
 
     public Liters getBoilVolumeAtMinutesLeft(Minutes time) {
-        double timePercent = (time.value() * 1d) / boilTime.value().value();
+        double timePercent = time.value() / boilTime.value().value();
         double totalBoilOff = preBoilVolume.value().value() - postBoilVolume.value().value();
 
         return new Liters(totalBoilOff * timePercent);
     }
 
     public SpecificGravity getBoilGravityAtMinutesLeft(Minutes time) {
-        double timePercent = (time.value() * 1d) / boilTime.value().value();
+        double timePercent = time.value() / boilTime.value().value();
         double totalGravityDifference = postBoilGravity.value().value() - preBoilGravity.value().value();
 
         return new SpecificGravity(totalGravityDifference * timePercent);

@@ -8,7 +8,7 @@ import blh.core.units.volume.Liters;
  *
  * @author thinner
  */
-public class SimplePreBoilGravityFormula extends SimpleOriginalGravityFormula{
+public class SimplePreBoilGravityFormula extends SimpleOriginalGravityFormula {
 
     @Override
     public Liters getVolume(FullContext context) {
