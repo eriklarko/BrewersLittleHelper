@@ -1,12 +1,13 @@
 package blh.core.recipe;
 
-
 import blh.core.units.ExtractPotential;
 import blh.core.units.color.ColorPotential;
 import blh.core.units.weight.Grams;
 import blh.core.units.weight.Kilograms;
 import blh.core.units.weight.Lbs;
+
 import java.util.List;
+import java.util.LinkedList;
 
 /**
  *
@@ -16,6 +17,10 @@ public class IngredientsList {
 
     private List<GristPart> fermentables;
     private List<HopAddition> hopAdditions;
+
+    public List<HopAddition> getHopAdditions() {
+        return new LinkedList<HopAddition>(hopAdditions);
+    }
 
     public Kilograms getTotalGrainWeight() {
         double totalWeight = 0;

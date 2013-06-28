@@ -13,10 +13,10 @@ public class HBUFormula implements Formula<HBU>{
 
     @Override
     public HBU calc(FullContext context) {
-        // TODO: FIX LOOP!
         double totalHBUs = 0;
-        // for each hop addition
-            totalHBUs += getRawHBUs(null);
+        for(HopAddition hopAddition : context.getRecipe().getHopAdditions()) {
+            totalHBUs += getRawHBUs(hopAddition);
+        }
         
         return new HBU(totalHBUs);
     }

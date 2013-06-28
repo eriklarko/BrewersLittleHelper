@@ -11,7 +11,7 @@ import blh.core.units.weight.Grams;
 
 /**
  * Taken from http://www.realbeer.com/hops/research.html
- * 
+ *
  * @author thinner
  */
 public class Tinseth implements Formula<IBU> {
@@ -19,11 +19,11 @@ public class Tinseth implements Formula<IBU> {
     @Override
     public IBU calc(FullContext context) {
         double totalIBUs = 0;
-        //foreach hop addition in context
-        HopAddition addition = null;
-        Liters boilVolume = context.getBoilVolumeWithMinutesLeft(addition.getTimeInBoil());
-        SpecificGravity boilGravity = context.getBoilGravityWithMinutesLeft(addition.getTimeInBoil());
-        totalIBUs += getRawIBUsForAddition(null, boilVolume, boilGravity);
+        for (HopAddition addition : context.getRecipe().getHopAdditions()) {
+            Liters boilVolume = context.getBoilVolumeAtMinutesLeft(addition.getTimeInBoil());
+            SpecificGravity boilGravity = context.getBoilGravityAtMinutesLeft(addition.getTimeInBoil());
+            totalIBUs += getRawIBUsForAddition(null, boilVolume, boilGravity);
+        }
 
         return new IBU(totalIBUs);
     }
@@ -32,8 +32,7 @@ public class Tinseth implements Formula<IBU> {
         double alpha = addition.getHop().alphaAcids;
         Grams mass = addition.getAmount();
         Minutes time = addition.getTimeInBoil();
-        
-        
+
         double milligramsPerLiter = (alpha * mass.value() * 1000) / boilVolume.value();
         double utilization = getUtilization(boilGravity, time);
 

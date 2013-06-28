@@ -73,14 +73,14 @@ public class FullContext {
         return equipment;
     }
 
-    public Liters getBoilVolumeWithMinutesLeft(Minutes time) {
+    public Liters getBoilVolumeAtMinutesLeft(Minutes time) {
         double timePercent = (time.value() * 1d) / boilTime.value().value();
         double totalBoilOff = preBoilVolume.value().value() - postBoilVolume.value().value();
 
         return new Liters(totalBoilOff * timePercent);
     }
 
-    public SpecificGravity getBoilGravityWithMinutesLeft(Minutes time) {
+    public SpecificGravity getBoilGravityAtMinutesLeft(Minutes time) {
         double timePercent = (time.value() * 1d) / boilTime.value().value();
         double totalGravityDifference = postBoilGravity.value().value() - preBoilGravity.value().value();
 

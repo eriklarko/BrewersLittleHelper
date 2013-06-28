@@ -12,7 +12,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 /**
  * Mark Garetz Using Hops, The Complete Guide to Hops for the Craft Brewer, Hop
  * Tech 1994
- *
+ * <p/>
  * Taken from http://realbeer.com/hops/FAQ.html
  *
  * @author thinner
@@ -22,12 +22,11 @@ public class Garetz implements Formula<IBU> {
     @Override
     public IBU calc(FullContext context) {
         double totalIBUs = 0;
-        // foreach hop addition
-        HopAddition addition = null;
-        totalIBUs += getRawIBUsFromAddition(addition, context.finalVolume.value(), 
-                context.getBoilVolumeWithMinutesLeft(addition.getTimeInBoil()), 
-                context.preBoilGravity.value(), context.elevation.value());
-
+        for (HopAddition addition : context.getRecipe().getHopAdditions()) {
+            totalIBUs += getRawIBUsFromAddition(addition, context.finalVolume.value(),
+                    context.getBoilVolumeAtMinutesLeft(addition.getTimeInBoil()),
+                    context.preBoilGravity.value(), context.elevation.value());
+        }
         return new IBU(totalIBUs);
     }
 
