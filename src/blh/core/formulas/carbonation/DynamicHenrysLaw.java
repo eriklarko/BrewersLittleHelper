@@ -10,10 +10,12 @@ import blh.core.units.pressure.Bar;
 import blh.core.units.pressure.BarA;
 import blh.core.units.pressure.PSI;
 import blh.core.units.pressure.PSIA;
-import blh.core.units.temperature.Celcius;
+import blh.core.units.temperature.Celsius;
 import blh.core.units.temperature.Fahrenheit;
 
 /**
+ * From: https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CCkQFjAA&url=http%3A%2F%2Fwww.iul-instruments.de%2Fpdf%2Fvitalsensors_2.pdf&ei=EqvIUdHiHcr24QSFkoCoBg&usg=AFQjCNHuDfxIMs31EoA_WvOCVycK0BD1Tg&bvm=bv.48293060,d.bGE&cad=rja
+ *
  * Created by Erik Larkö at 5/28/13 7:10 AM
  */
 public class DynamicHenrysLaw implements Formula<PSI>{
@@ -31,8 +33,8 @@ public class DynamicHenrysLaw implements Formula<PSI>{
         return new PSI(d);
     }
 
-    public Bar calc(SpecificGravity gravity, ABV abv, Celcius temperature, CO2Volumes desiredVolumes, BarA barometricPressure) {
-        double d = (1.8 * temperature.value() + 34.4) * gravity.value()  * (1 + abv.value() / 0.98625);
+    public Bar calc(SpecificGravity gravity, ABV abv, Celsius temperature, CO2Volumes desiredVolumes, BarA barometricPressure) {
+        double d = (1.8 * temperature.value() + 44.4) * gravity.value()  * (1 + abv.value() / 0.98625);
         d = d * desiredVolumes.value();
         d = d / 5.16;
         d -= barometricPressure.value();

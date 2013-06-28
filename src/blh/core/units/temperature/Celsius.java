@@ -6,9 +6,9 @@ import blh.core.units.Unit;
  *
  * @author thinner
  */
-public class Celcius extends Unit<Double> {
+public class Celsius extends Unit<Double> {
 
-    public Celcius(double value) {
+    public Celsius(double value) {
         super(value);
     }
 }

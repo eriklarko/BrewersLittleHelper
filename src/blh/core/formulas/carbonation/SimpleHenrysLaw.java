@@ -5,7 +5,7 @@ import blh.core.uncategorized.FullContext;
 import blh.core.units.CO2Volumes;
 import blh.core.units.pressure.Bar;
 import blh.core.units.pressure.PSI;
-import blh.core.units.temperature.Celcius;
+import blh.core.units.temperature.Celsius;
 import blh.core.units.temperature.Fahrenheit;
 
 /**
@@ -26,7 +26,7 @@ public class SimpleHenrysLaw implements Formula<PSI> {
         return new PSI(d);
     }
 
-    public Bar calc(CO2Volumes volumes, Celcius temperature) {
+    public Bar calc(CO2Volumes volumes, Celsius temperature) {
         double d = volumes.value() +  1.8 * temperature.value() +34.4;
         d = d/4.85;
         d -= 1;

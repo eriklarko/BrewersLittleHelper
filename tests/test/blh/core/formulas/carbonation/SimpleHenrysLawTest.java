@@ -4,7 +4,7 @@ import blh.core.formulas.carbonation.SimpleHenrysLaw;
 import blh.core.units.CO2Volumes;
 import blh.core.units.pressure.Bar;
 import blh.core.units.pressure.PSI;
-import blh.core.units.temperature.Celcius;
+import blh.core.units.temperature.Celsius;
 import blh.core.units.temperature.Fahrenheit;
 import junit.framework.Assert;
 import org.junit.Test;
@@ -22,7 +22,7 @@ public class SimpleHenrysLawTest {
         Fahrenheit temperatureF = new Fahrenheit(64.4);
         PSI resultPSI = henrysLaw.calc(vols, temperatureF);
 
-        Celcius temperatureC = new Celcius(18);
+        Celsius temperatureC = new Celsius(18);
         Bar resultBar = henrysLaw.calc(vols, temperatureC);
 
         PSI barResultAsPSI = new PSI(resultBar.value() * 14.503773800);
