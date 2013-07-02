@@ -2,6 +2,7 @@ package blh.core.recipe;
 
 import blh.core.units.ExtractPotential;
 import blh.core.units.color.ColorPotential;
+import blh.core.units.gravity.GravityPoints;
 import blh.core.units.weight.Grams;
 import blh.core.units.weight.Kilograms;
 import blh.core.units.weight.Lbs;
@@ -18,6 +19,10 @@ public class IngredientsList {
     private List<GristPart> fermentables;
     private List<HopAddition> hopAdditions;
 
+    public List<GristPart> getFermentables() {
+        return fermentables;
+    }
+
     public List<HopAddition> getHopAdditions() {
         return new LinkedList<HopAddition>(hopAdditions);
     }
@@ -31,15 +36,18 @@ public class IngredientsList {
     }
 
     public ExtractPotential getTotalExtractPotential() {
-        int specificGravityPoints = 0;
-        for (GristPart fermentable : fermentables) {
-            specificGravityPoints += fermentable.getMalt().extractPotential;
-        }
-        
-        
+        GravityPoints gravityPoints = getTotalGravityPoints();
         Kilograms weight = getTotalGrainWeight();
+        return new ExtractPotential(gravityPoints, weight);
+    }
 
-        return new ExtractPotential(specificGravityPoints, weight);
+    public GravityPoints getTotalGravityPoints() {
+        double specificGravityPoints = 0;
+        for (GristPart fermentable : fermentables) {
+            specificGravityPoints += fermentable.getMalt().extractPotential.value();
+        }
+
+        return new GravityPoints(specificGravityPoints);
     }
 
     public ColorPotential getTotalColorPotential() {

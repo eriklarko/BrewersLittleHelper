@@ -50,7 +50,7 @@ public class FullContext {
     public MeasuredOrCalculatedValue<MaltColorUnit> maltColorUnit;
     public MeasuredOrCalculatedValue<ExtractPotential> totalExtractPotential;
     public MeasuredOrCalculatedValue<ColorPotential> totalColorPotential;
-    public MeasuredOrCalculatedValue<Factor> extractionEffiency;
+    public MeasuredOrCalculatedValue<Factor> extractionEfficiency;
     public MeasuredOrCalculatedValue<Kilograms> totalGrainWeight;
     public MeasuredOrCalculatedValue<Grams> totalHopWeight;
     ///////////////
