@@ -11,7 +11,7 @@ import blh.core.units.volume.Liters;
 public class SimplePreBoilGravityFormula extends SimpleOriginalGravityFormula {
 
     @Override
-    public Liters getVolume(FullContext context) {
+    protected Liters getVolume(FullContext context) {
         return context.preBoilVolume.value();
     }
 }

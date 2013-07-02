@@ -30,7 +30,7 @@ public class SimpleOriginalGravityFormula implements Formula<SpecificGravity> {
         return calc(grainWeight, extractPotential, extractionEffiency, volume);
     }
 
-    public Liters getVolume(FullContext context) {
+    protected Liters getVolume(FullContext context) {
         return context.preBoilVolume.value();
     }
 
