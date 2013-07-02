@@ -24,7 +24,7 @@ public class ColorFormulasTest {
     public void danielsTest() {
         Daniels f = new Daniels();
         double mcu = 12;
-        EBC expectedEBCForMCU12 = new EBC(0);
+        EBC expectedEBCForMCU12 = new EBC(21.276);
         doAssert(f, mcu, expectedEBCForMCU12);
     }
 
@@ -32,7 +32,7 @@ public class ColorFormulasTest {
     public void moreyTest() {
         Morey f = new Morey();
         double mcu = 12;
-        EBC expectedEBCForMCU12 = new EBC(0);
+        EBC expectedEBCForMCU12 = new EBC(16.1623191555);
         doAssert(f, mcu, expectedEBCForMCU12);
     }
 
@@ -40,7 +40,7 @@ public class ColorFormulasTest {
     public void mosherTest() {
         Mosher f = new Mosher();
         double mcu = 12;
-        EBC expectedEBCForMCU12 = new EBC(0);
+        EBC expectedEBCForMCU12 = new EBC(16.35);
         doAssert(f, mcu, expectedEBCForMCU12);
     }
 
@@ -52,7 +52,7 @@ public class ColorFormulasTest {
 
         EBC actual = f.calc(context);
 
-        Assert.assertEquals(actual.value(), expected.value(), 0.0001);
+        Assert.assertEquals(expected.value(), actual.value(), 0.01);
     }
 
 

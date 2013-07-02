@@ -4,6 +4,7 @@ import blh.core.formulas.Formula;
 import blh.core.uncategorized.FullContext;
 import blh.core.units.color.EBC;
 import blh.core.units.color.MaltColorUnit;
+import blh.core.units.color.SRM;
 
 /**
  * Daniels’ model differs from Mosher’s and suggests that homebrew is generally
@@ -19,10 +20,10 @@ public class Daniels implements Formula<EBC> {
     public EBC calc(FullContext context) {
         MaltColorUnit mcu = context.maltColorUnit.value();
         
-        return calc(mcu);
+        return calc(mcu).toEBC();
     }
 
-    public EBC calc(MaltColorUnit mcu) {
-        return new EBC(((0.2 * mcu.value()) + 8.4) * 1.97);
+    public SRM calc(MaltColorUnit mcu) {
+        return new SRM(((0.2 * mcu.value()) + 8.4));
     }
 }
