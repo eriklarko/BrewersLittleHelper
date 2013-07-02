@@ -30,7 +30,7 @@ public class AlcoholFormulasTest {
         BYOSimple f = new BYOSimple();
         ABV actual = f.calc(og, fg);
 
-        Assert.assertEquals(actual.value().value(), expected.value().value(), 0.001);
+        Assert.assertEquals(expected.value().value(), actual.value().value(), 0.03);
     }
 
     @Test
@@ -38,6 +38,6 @@ public class AlcoholFormulasTest {
         Daniels f = new Daniels();
         ABV actual = f.calc(og, fg);
 
-        Assert.assertEquals(actual.value().value(), expected.value().value(), 0.001);
+        Assert.assertEquals(expected.value().value(), actual.value().value(), 0.5);
     }
 }
