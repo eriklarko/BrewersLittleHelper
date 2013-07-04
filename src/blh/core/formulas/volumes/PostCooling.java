@@ -1,17 +1,23 @@
 package blh.core.formulas.volumes;
 
-import blh.core.formulas.Formula;
 import blh.core.uncategorized.FullContext;
+import blh.core.units.Factor;
 import blh.core.units.volume.Liters;
 
 /**
  *
  * @author thinner
  */
-public class PostCooling implements Formula<Liters> {
+public class PostCooling implements VolumeStepFormula {
 
     @Override
-    public Liters calc(FullContext context) {
-        return new Liters(context.postBoilVolume.value().value() * context.coolingLoss.value().value());
+    public Liters postStep(Liters preStep, FullContext context) {
+        Factor coolingLoss = context.coolingLoss.value();
+
+        return calc(preStep, coolingLoss);
+    }
+
+    public Liters calc(Liters postBoilVolume, Factor coolingLoss) {
+       return new Liters(postBoilVolume.value() * coolingLoss.value());
     }
 }
