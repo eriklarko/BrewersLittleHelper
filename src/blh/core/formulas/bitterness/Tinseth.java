@@ -19,7 +19,7 @@ public class Tinseth implements Formula<IBU> {
     @Override
     public IBU calc(FullContext context) {
         double totalIBUs = 0;
-        for (HopAddition addition : context.getRecipe().getHopAdditions()) {
+        for (HopAddition addition : context.getIngredientsList().getHopAdditions()) {
             Liters boilVolume = context.getBoilVolumeAtMinutesLeft(addition.getTimeInBoil());
             SpecificGravity boilGravity = context.getBoilGravityAtMinutesLeft(addition.getTimeInBoil());
             totalIBUs += getRawIBUsForAddition(null, boilVolume, boilGravity);

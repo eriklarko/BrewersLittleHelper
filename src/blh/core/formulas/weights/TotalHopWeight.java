@@ -12,6 +12,6 @@ public class TotalHopWeight implements Formula<Grams>{
 
     @Override
     public Grams calc(FullContext context) {
-        return context.getRecipe().getTotalHopWeight();
+        return context.getIngredientsList().getTotalHopWeight();
     }
 }

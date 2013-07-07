@@ -12,7 +12,7 @@ public class ColorPotentialFormula implements Formula<ColorPotential>{
 
     @Override
     public ColorPotential calc(FullContext context) {
-        return context.getRecipe().getTotalColorPotential();
+        return context.getIngredientsList().getTotalColorPotential();
     }
 
 }

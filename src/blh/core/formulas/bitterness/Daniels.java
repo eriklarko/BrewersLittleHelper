@@ -30,7 +30,7 @@ public class Daniels implements Formula<IBU> {
     public IBU calc(FullContext context) {
         double totalIBUs = 0;
 
-        for (HopAddition addition : context.getRecipe().getHopAdditions()) {
+        for (HopAddition addition : context.getIngredientsList().getHopAdditions()) {
             SpecificGravity boilGravity = context.getBoilGravityAtMinutesLeft(addition.getTimeInBoil());
             Liters boilVolume = context.getBoilVolumeAtMinutesLeft(addition.getTimeInBoil());
             totalIBUs += getRawIBUsFromAddition(null, boilGravity, boilVolume);

@@ -14,7 +14,7 @@ public class HBUFormula implements Formula<HBU>{
     @Override
     public HBU calc(FullContext context) {
         double totalHBUs = 0;
-        for(HopAddition hopAddition : context.getRecipe().getHopAdditions()) {
+        for(HopAddition hopAddition : context.getIngredientsList().getHopAdditions()) {
             totalHBUs += getRawHBUs(hopAddition);
         }
         

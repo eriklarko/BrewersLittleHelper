@@ -22,6 +22,7 @@ public class FullContext {
     private IngredientsList recipe;
     private GeneralBreweryInfo brewery;
     private Equipment equipment;
+    private RecipeMetaData recipeMetaData;
     /////////////
     public MeasuredOrCalculatedValue<Liters> preMashVolume;
     /**
@@ -60,7 +61,7 @@ public class FullContext {
      */
     public Input<Factor> coolingLoss;
     
-    public IngredientsList getRecipe() {
+    public IngredientsList getIngredientsList() {
         return recipe;
     }
 
@@ -70,6 +71,10 @@ public class FullContext {
 
     public Equipment getEquipment() {
         return equipment;
+    }
+
+    public RecipeMetaData getRecipeMetaData() {
+        return recipeMetaData;
     }
 
     public Liters getBoilVolumeAtMinutesLeft(Minutes time) {

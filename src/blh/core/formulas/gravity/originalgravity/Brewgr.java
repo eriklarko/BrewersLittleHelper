@@ -22,7 +22,7 @@ public class Brewgr implements Formula<SpecificGravity> {
 
     @Override
     public SpecificGravity calc(FullContext context) {
-        return calc(context.getRecipe().getFermentables(), context.extractionEfficiency.value(), context.finalVolume.value());
+        return calc(context.getIngredientsList().getFermentables(), context.extractionEfficiency.value(), context.finalVolume.value());
     }
 
     private SpecificGravity calc(List<GristPart> fermentables, Factor extractionEfficiency, Liters batchSize) {

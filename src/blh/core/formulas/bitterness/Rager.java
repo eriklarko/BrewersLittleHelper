@@ -27,7 +27,7 @@ public class Rager implements Formula<IBU> {
     @Override
     public IBU calc(FullContext context) {
         double totalIBUs = 0;
-        for (HopAddition addition : context.getRecipe().getHopAdditions()) {
+        for (HopAddition addition : context.getIngredientsList().getHopAdditions()) {
             totalIBUs += getRawIBUsFromAddition(addition,
                     context.getBoilVolumeAtMinutesLeft(addition.getTimeInBoil()),
                     context.getBoilGravityAtMinutesLeft(addition.getTimeInBoil()));

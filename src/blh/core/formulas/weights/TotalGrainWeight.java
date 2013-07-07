@@ -12,6 +12,6 @@ public class TotalGrainWeight implements Formula<Kilograms>{
 
     @Override
     public Kilograms calc(FullContext context) {
-        return context.getRecipe().getTotalGrainWeight();
+        return context.getIngredientsList().getTotalGrainWeight();
     }
 }

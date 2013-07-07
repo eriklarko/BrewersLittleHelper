@@ -12,7 +12,7 @@ public class ExtractPotentialFormula implements Formula<ExtractPotential>{
 
     @Override
     public ExtractPotential calc(FullContext context) {
-        return context.getRecipe().getTotalExtractPotential();
+        return context.getIngredientsList().getTotalExtractPotential();
     }
 
 }
