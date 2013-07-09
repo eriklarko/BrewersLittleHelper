@@ -6,31 +6,31 @@ import blh.core.formulas.Formula;
  *
  * @author thinner
  */
-public class MeasuredOrCalculatedValue<T> {
+public class InputtedOrCalculatedValue<T> {
 
     private T value;
     private Formula<T> formula;
     private FullContext context;
-    private boolean isMeasured;
+    private boolean isInputted;
 
-    public MeasuredOrCalculatedValue(T value) {
+    public InputtedOrCalculatedValue(T value) {
         if (value == null) {
             throw new NullPointerException("Cannot instantiate with null value, please use the constructor with Formula<T> and FullContext");
         }
         this.value = value;
-        this.isMeasured = true;
+        this.isInputted = true;
     }
 
-    public MeasuredOrCalculatedValue(Formula<T> formula, FullContext context) {
+    public InputtedOrCalculatedValue(Formula<T> formula, FullContext context) {
         this.formula = formula;
         this.context = context;
 
         this.value = null;
-        this.isMeasured = false;
+        this.isInputted = false;
     }
 
-    public boolean isMeasured() {
-        return isMeasured;
+    public boolean isInputted() {
+        return isInputted;
     }
 
     public T value() {
@@ -40,11 +40,12 @@ public class MeasuredOrCalculatedValue<T> {
         return value;
     }
     
-    public void setMeasuredValue(T value) {
+    public void setValue(T value) {
         if (value == null) {
-            throw new NullPointerException("Cannot set measured value to null");
+            throw new NullPointerException("Cannot set value to null");
         }
         
+        this.isInputted = true;
         this.formula = null;
         this.context = null;
         this.value = value;

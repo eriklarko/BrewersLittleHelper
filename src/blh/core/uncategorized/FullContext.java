@@ -24,35 +24,35 @@ public class FullContext {
     private Equipment equipment;
     private RecipeMetaData recipeMetaData;
     /////////////
-    public MeasuredOrCalculatedValue<Liters> preMashVolume;
+    public InputtedOrCalculatedValue<Liters> preMashVolume;
     /**
      * The volume added post boil. Probably after cooling
      */
-    public MeasuredOrCalculatedValue<Liters> topUpVolume;
-    public MeasuredOrCalculatedValue<Liters> preBoilVolume;
-    public MeasuredOrCalculatedValue<Liters> boilVolume;
-    public MeasuredOrCalculatedValue<Liters> boilOffPerHour;
-    public MeasuredOrCalculatedValue<Liters> postBoilVolume;
-    public MeasuredOrCalculatedValue<Liters> postCoolingVolume;
-    public MeasuredOrCalculatedValue<Liters> trubLoss;
+    public InputtedOrCalculatedValue<Liters> topUpVolume;
+    public InputtedOrCalculatedValue<Liters> preBoilVolume;
+    public InputtedOrCalculatedValue<Liters> boilVolume;
+    public InputtedOrCalculatedValue<Liters> boilOffPerHour;
+    public InputtedOrCalculatedValue<Liters> postBoilVolume;
+    public InputtedOrCalculatedValue<Liters> postCoolingVolume;
+    public InputtedOrCalculatedValue<Liters> trubLoss;
     /**
      * The amount of beer extracted after fermentation. I.e; the amount of beer
      * that can be drunk.
      */
-    public MeasuredOrCalculatedValue<Liters> finalVolume;
-    public MeasuredOrCalculatedValue<Minutes> boilTime;
-    public MeasuredOrCalculatedValue<SpecificGravity> preBoilGravity;
-    public MeasuredOrCalculatedValue<SpecificGravity> boilGravity;
-    public MeasuredOrCalculatedValue<SpecificGravity> postBoilGravity;
-    public MeasuredOrCalculatedValue<SpecificGravity> originalGravity;
-    public MeasuredOrCalculatedValue<SpecificGravity> finalGravity;
-    public MeasuredOrCalculatedValue<ABV> alcoholContent;
-    public MeasuredOrCalculatedValue<Factor> yeastApparentAttenuation;
-    public MeasuredOrCalculatedValue<MaltColorUnit> maltColorUnit;
-    public MeasuredOrCalculatedValue<ColorPotential> totalColorPotential;
-    public MeasuredOrCalculatedValue<Factor> extractionEfficiency;
-    public MeasuredOrCalculatedValue<Kilograms> totalGrainWeight;
-    public MeasuredOrCalculatedValue<Grams> totalHopWeight;
+    public InputtedOrCalculatedValue<Liters> finalVolume;
+    public InputtedOrCalculatedValue<Minutes> boilTime;
+    public InputtedOrCalculatedValue<SpecificGravity> preBoilGravity;
+    public InputtedOrCalculatedValue<SpecificGravity> boilGravity;
+    public InputtedOrCalculatedValue<SpecificGravity> postBoilGravity;
+    public InputtedOrCalculatedValue<SpecificGravity> originalGravity;
+    public InputtedOrCalculatedValue<SpecificGravity> finalGravity;
+    public InputtedOrCalculatedValue<ABV> alcoholContent;
+    public InputtedOrCalculatedValue<Factor> yeastApparentAttenuation;
+    public InputtedOrCalculatedValue<MaltColorUnit> maltColorUnit;
+    public InputtedOrCalculatedValue<ColorPotential> totalColorPotential;
+    public InputtedOrCalculatedValue<Factor> extractionEfficiency;
+    public InputtedOrCalculatedValue<Kilograms> totalGrainWeight;
+    public InputtedOrCalculatedValue<Grams> totalHopWeight;
     ///////////////
     public Input<Meters> elevation;
     /**
