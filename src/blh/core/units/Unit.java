@@ -41,4 +41,14 @@ public abstract class Unit<T> {
         }
         return true;
     }
+
+    public String toString() {
+        if(this.value == null) {
+            return "NULL";
+        }
+
+        return this.value.toString();
+    }
+
+
 }

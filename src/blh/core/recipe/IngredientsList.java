@@ -35,12 +35,6 @@ public class IngredientsList {
         return new Kilograms(totalWeight);
     }
 
-    public ExtractPotential getTotalExtractPotential() {
-        GravityPoints gravityPoints = getTotalGravityPoints();
-        Kilograms weight = getTotalGrainWeight();
-        return new ExtractPotential(gravityPoints, weight);
-    }
-
     public GravityPoints getTotalGravityPoints() {
         double specificGravityPoints = 0;
         for (GristPart fermentable : fermentables) {

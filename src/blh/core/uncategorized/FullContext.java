@@ -49,7 +49,6 @@ public class FullContext {
     public MeasuredOrCalculatedValue<ABV> alcoholContent;
     public MeasuredOrCalculatedValue<Factor> yeastApparentAttenuation;
     public MeasuredOrCalculatedValue<MaltColorUnit> maltColorUnit;
-    public MeasuredOrCalculatedValue<ExtractPotential> totalExtractPotential;
     public MeasuredOrCalculatedValue<ColorPotential> totalColorPotential;
     public MeasuredOrCalculatedValue<Factor> extractionEfficiency;
     public MeasuredOrCalculatedValue<Kilograms> totalGrainWeight;

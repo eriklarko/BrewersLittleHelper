@@ -1,7 +1,7 @@
 package blh.core.ingredients;
 
+import blh.core.units.ExtractPotential;
 import blh.core.units.color.Lovibond;
-import blh.core.units.gravity.GravityPoints;
 
 /**
  *
@@ -15,10 +15,10 @@ public class Malt {
 
     public final String name;
     public final Lovibond color;
-    public final GravityPoints extractPotential;
+    public final ExtractPotential extractPotential;
     public final TYPE type;
 
-    public Malt(String name, Lovibond color, GravityPoints extractPotential, TYPE type) {
+    public Malt(String name, Lovibond color, ExtractPotential extractPotential, TYPE type) {
         this.name = name;
         this.color = color;
         this.extractPotential = extractPotential;
