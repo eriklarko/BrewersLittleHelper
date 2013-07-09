@@ -38,6 +38,6 @@ public class SimpleHenrysLaw implements Formula<PSI> {
         d = volumes.value() * d;
         d = d - 14.7;
 
-        return new PSI(d).asBar();
+        return new PSI(d).toBar();
     }
 }

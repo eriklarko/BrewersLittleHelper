@@ -1,7 +1,7 @@
 package blh.core.units.color;
 
 import blh.core.units.Unit;
-import blh.core.units.volume.Gallons;
+import blh.core.units.volume.USGallons;
 
 /**
  *
@@ -9,7 +9,7 @@ import blh.core.units.volume.Gallons;
  */
 public class MaltColorUnit extends Unit<Double> {
 
-    public MaltColorUnit(ColorPotential potential, Gallons finalVolume) {
+    public MaltColorUnit(ColorPotential potential, USGallons finalVolume) {
         super(potential.value() / finalVolume.value());
     }
 }

@@ -4,7 +4,7 @@ import blh.core.formulas.Formula;
 import blh.core.uncategorized.FullContext;
 import blh.core.units.color.ColorPotential;
 import blh.core.units.color.MaltColorUnit;
-import blh.core.units.volume.Gallons;
+import blh.core.units.volume.USGallons;
 import blh.core.units.volume.Liters;
 
 /**
@@ -22,7 +22,7 @@ public class MaltColorUnitFormula implements Formula<MaltColorUnit> {
     }
 
     public MaltColorUnit calc(ColorPotential totalColorPotential, Liters finalVolume) {
-        return new MaltColorUnit(totalColorPotential, new Gallons(finalVolume));
+        return new MaltColorUnit(totalColorPotential, new USGallons(finalVolume));
     }
 
 }

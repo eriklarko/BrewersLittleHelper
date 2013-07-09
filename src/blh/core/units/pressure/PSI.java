@@ -16,7 +16,7 @@ public class PSI extends Unit<Double> {
         super(value.value() * CONVERSION_UNIT);
     }
 
-    public Bar asBar() {
+    public Bar toBar() {
         return new Bar(value / CONVERSION_UNIT);
     }
 }

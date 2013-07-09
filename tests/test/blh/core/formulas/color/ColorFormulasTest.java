@@ -5,12 +5,12 @@ import blh.core.formulas.color.Daniels;
 import blh.core.formulas.color.Morey;
 import blh.core.formulas.color.Mosher;
 import blh.core.uncategorized.FullContext;
-import blh.core.uncategorized.MeasuredOrCalculatedValue;
+import blh.core.uncategorized.InputtedOrCalculatedValue;
 import blh.core.units.color.ColorPotential;
 import blh.core.units.color.EBC;
 import blh.core.units.color.Lovibond;
 import blh.core.units.color.MaltColorUnit;
-import blh.core.units.volume.Gallons;
+import blh.core.units.volume.USGallons;
 import blh.core.units.weight.Lbs;
 import junit.framework.Assert;
 import org.junit.Test;
@@ -48,7 +48,7 @@ public class ColorFormulasTest {
     private void doAssert(Formula<EBC> f, double mcuValue, EBC expected) {
         MaltColorUnit mcu = maltColorUnitValueOf(mcuValue);
         FullContext context = new FullContext();
-        context.maltColorUnit = new MeasuredOrCalculatedValue<MaltColorUnit>(mcu);
+        context.maltColorUnit = new InputtedOrCalculatedValue<MaltColorUnit>(mcu);
 
         EBC actual = f.calc(context);
 
@@ -57,6 +57,6 @@ public class ColorFormulasTest {
 
 
     private MaltColorUnit maltColorUnitValueOf(double mcuValue) {
-        return new MaltColorUnit(new ColorPotential(new Lovibond(mcuValue), new Lbs(1)), new Gallons(1));
+        return new MaltColorUnit(new ColorPotential(new Lovibond(mcuValue), new Lbs(1)), new USGallons(1));
     }
 }

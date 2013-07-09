@@ -37,6 +37,6 @@ public class DynamicHenrysLawTest {
         Bar bar = f.calc(gravity, abv, celsius, carbonation, barBaromPressure);
         PSI psi = f.calc(gravity, abw, fahrenheit, carbonation, psiBaromPressure);
 
-        Assert.assertEquals(psi.asBar().value(), bar.value(), 0.001);
+        Assert.assertEquals(psi.toBar().value(), bar.value(), 0.001);
     }
 }

@@ -24,7 +24,7 @@ public class Plato extends Unit<Double> {
         double a = this.value() / 258.2;
         a = a * 227.1;
         a = 258.6 - a;
-        a = this.value() / 1;
+        a = this.value() / a;
         a = a + 1;
         return new SpecificGravity(a);
     }

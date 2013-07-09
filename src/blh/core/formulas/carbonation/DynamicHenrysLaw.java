@@ -39,6 +39,6 @@ public class DynamicHenrysLaw implements Formula<PSI>{
         d = d / 5.16;
         d -= barometricPressure.value();
 
-        return new PSI(d).asBar();
+        return new PSI(d).toBar();
     }
 }

@@ -19,6 +19,6 @@ public class Fahrenheit extends Unit<Double> {
     }
 
     public Celsius toCelsius() {
-        return new Celsius(5/9 * (this.value() - 32));
+        return new Celsius(5d/9 * (this.value() - 32));
     }
 }

@@ -7,7 +7,7 @@ import blh.core.units.ExtractPotential;
 import blh.core.units.Factor;
 import blh.core.units.gravity.GravityPoints;
 import blh.core.units.gravity.SpecificGravity;
-import blh.core.units.volume.Gallons;
+import blh.core.units.volume.USGallons;
 import blh.core.units.volume.Liters;
 import blh.core.units.weight.Kilograms;
 import blh.core.units.weight.Lbs;
@@ -49,7 +49,7 @@ public class OriginalGravityFormulasTest {
         List<GristPart> gristParts = Arrays.asList(extract, pale, crystal);
 
         Factor extractionEfficiency = new Factor(0.83);
-        Gallons volumeG = new Gallons(5);
+        USGallons volumeG = new USGallons(5);
         Liters volumeL = volumeG.toLiters();
 
         SimpleOriginalGravityFormula f = new SimpleOriginalGravityFormula();

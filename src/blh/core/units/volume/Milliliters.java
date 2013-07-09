@@ -14,4 +14,8 @@ public class Milliliters extends Unit<Double> {
     public Milliliters(Liters liters) {
         super(liters.value() * 1000);
     }
+    
+    public Liters toLiters() {
+        return new Liters(this.value / 1000);
+    }
 }

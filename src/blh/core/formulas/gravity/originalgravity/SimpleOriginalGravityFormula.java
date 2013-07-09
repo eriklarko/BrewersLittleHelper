@@ -9,7 +9,7 @@ import blh.core.units.Factor;
 import blh.core.units.Unit;
 import blh.core.units.gravity.GravityPoints;
 import blh.core.units.gravity.SpecificGravity;
-import blh.core.units.volume.Gallons;
+import blh.core.units.volume.USGallons;
 import blh.core.units.volume.Liters;
 import blh.core.units.weight.Kilograms;
 import blh.core.units.weight.Lbs;
@@ -65,7 +65,7 @@ public class SimpleOriginalGravityFormula implements Formula<SpecificGravity> {
         return context.postBoilVolume.value();
     }
 
-    public SpecificGravity calc(List<GristPart> gristParts, Gallons preBoilVolume, Factor efficiency) {
+    public SpecificGravity calc(List<GristPart> gristParts, USGallons preBoilVolume, Factor efficiency) {
         double a = 0;
         for (GristPart gp : gristParts) {
             Lbs grainWeight = new Lbs(gp.getAmount());

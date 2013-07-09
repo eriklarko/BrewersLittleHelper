@@ -7,8 +7,8 @@ import blh.core.units.Unit;
  */
 public class YeastCellCount extends Unit<Billion> {
 
-    public YeastCellCount(int cellCount) {
-        super(new Billion(cellCount));
+    public YeastCellCount(int cellCountInBillions) {
+        super(new Billion(cellCountInBillions));
     }
     
     public YeastCellCount(Million value) {
