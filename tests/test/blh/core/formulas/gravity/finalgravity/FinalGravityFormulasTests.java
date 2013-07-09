@@ -22,9 +22,11 @@ public class FinalGravityFormulasTests {
         SpecificGravity expectedFG = new SpecificGravity(1.01375);
 
         BYOSimple f = new BYOSimple();
-        GravityPoints actualFG = f.calc(new GravityPoints(og), yeastAttenuation);
+        SpecificGravity actualFG1 = f.calc(new GravityPoints(og), yeastAttenuation);
+        SpecificGravity actualFG2 = f.calc(og, yeastAttenuation);
 
-        Assert.assertEquals(expectedFG.value(), actualFG.toSpecificGravity().value(), 0.00001);
+        Assert.assertEquals("Original failed", expectedFG.value(), actualFG1.value(), 0.00001);
+        Assert.assertEquals("Tweaked failed", expectedFG.value(), actualFG2.value(), 0.00001);
     }
 
     @Test

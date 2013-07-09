@@ -19,13 +19,15 @@ public class BYOSimple implements Formula<SpecificGravity> {
 
     @Override
     public SpecificGravity calc(FullContext context) {
-        SpecificGravity og = context.originalGravity.value();
-        GravityPoints fg = calc(new GravityPoints(og), context.yeastApparentAttenuation.value());
-        return fg.toSpecificGravity();
+        return calc(context.originalGravity.value(), context.yeastApparentAttenuation.value());
+    }
+    
+    public SpecificGravity calc(SpecificGravity og, Factor yeastApparentAttenuation) {
+        return calc(new GravityPoints(og), yeastApparentAttenuation);
     }
 
-    public GravityPoints calc(GravityPoints og, Factor yeastApparentAttenuation) {
-        return new GravityPoints(og.value() * (1 - yeastApparentAttenuation.value()));
+    public SpecificGravity calc(GravityPoints og, Factor yeastApparentAttenuation) {
+        return new GravityPoints(og.value() * (1 - yeastApparentAttenuation.value())).toSpecificGravity();
     }
     
 }

@@ -17,10 +17,7 @@ public class Nostrildamus implements Formula<SpecificGravity> {
 
     @Override
     public SpecificGravity calc(FullContext context) {
-        SpecificGravity og = context.originalGravity.value();
-        Factor yeastAttenuation = context.yeastApparentAttenuation.value();
-
-        return calc(og, yeastAttenuation);
+        return calc(context.originalGravity.value(), context.yeastApparentAttenuation.value());
     }
 
     public SpecificGravity calc(SpecificGravity og, Factor yeastAttenuation) {

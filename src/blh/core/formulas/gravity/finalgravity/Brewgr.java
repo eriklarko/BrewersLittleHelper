@@ -16,12 +16,13 @@ public class Brewgr implements Formula<SpecificGravity> {
 
     @Override
     public SpecificGravity calc(FullContext context) {
-        GravityPoints og = new GravityPoints(context.originalGravity.value());
-        Factor yeastAttenuation = context.yeastApparentAttenuation.value();
-
-        return calc(og, yeastAttenuation);
+        return calc(context.originalGravity.value(), context.yeastApparentAttenuation.value());
     }
 
+    public SpecificGravity calc(SpecificGravity og, Factor yeastAttenuation) {
+        return calc(new GravityPoints(og), yeastAttenuation);
+    }
+    
     public SpecificGravity calc(GravityPoints og, Factor yeastAttenuation) {
         return new SpecificGravity(1 + (og.value() * (1 - yeastAttenuation.value()) ) / 1000);
     }
