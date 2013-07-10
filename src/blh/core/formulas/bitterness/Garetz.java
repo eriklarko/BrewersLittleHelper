@@ -12,7 +12,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 /**
  * Mark Garetz Using Hops, The Complete Guide to Hops for the Craft Brewer, Hop
  * Tech 1994
- * <p/>
+ * 
  * Taken from http://realbeer.com/hops/FAQ.html
  *
  * @author thinner

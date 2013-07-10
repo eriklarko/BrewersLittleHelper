@@ -22,7 +22,7 @@ public class Tinseth implements Formula<IBU> {
         for (HopAddition addition : context.getIngredientsList().getHopAdditions()) {
             Liters boilVolume = context.getBoilVolumeAtMinutesLeft(addition.getTimeInBoil());
             SpecificGravity boilGravity = context.getBoilGravityAtMinutesLeft(addition.getTimeInBoil());
-            totalIBUs += getRawIBUsForAddition(null, boilVolume, boilGravity);
+            totalIBUs += getRawIBUsForAddition(addition, boilVolume, boilGravity);
         }
 
         return new IBU(totalIBUs);

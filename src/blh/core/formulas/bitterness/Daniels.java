@@ -10,17 +10,14 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Ray Daniels Designing Great Beers, Brewers Publications 1996
- * <p/>
+ * 
  * Taken from
  * https://www.google.se/url?sa=t&rct=j&q=&esrc=s&source=web&cd=4&ved=0CEUQFjAD&url=http%3A%2F%2Fwww.nthba.org%2Fwww%2Fdocs%2FBrew%2520Day%2520Presentation%2520-%2520Hop%2520Bittering.ppt&ei=J-x6UbGtN4mI4gSK84GgCg&usg=AFQjCNH03nlWzfx6z1ZMThbFdQaaadc_kA&bvm=bv.45645796,d.bGE&cad=rja
- * <p/>
- * IBU = (%U * Woz * %A * 7489) / (Vgal * (1 + GA)) =
- * <p/>
- * (%U * Wg * %A * 1000) / * (Vl * (1 + GA))
- * <p/>
+ * 
+ * IBU = (%U * Woz * %A * 7489) / (Vgal * (1 + GA)) 
+ *     = (%U * Wg * %A * 1000) / * (Vl * (1 + GA))
  * where GA = (GB – 1.050)/.2
- * <p/>
- * GB = (OG-1)*(Ferment Vol)/(Boil * Vol) + 1
+ *       GB = (OG-1)*(Ferment Vol)/(Boil * Vol) + 1
  *
  * @author thinner
  */
@@ -33,7 +30,7 @@ public class Daniels implements Formula<IBU> {
         for (HopAddition addition : context.getIngredientsList().getHopAdditions()) {
             SpecificGravity boilGravity = context.getBoilGravityAtMinutesLeft(addition.getTimeInBoil());
             Liters boilVolume = context.getBoilVolumeAtMinutesLeft(addition.getTimeInBoil());
-            totalIBUs += getRawIBUsFromAddition(null, boilGravity, boilVolume);
+            totalIBUs += getRawIBUsFromAddition(addition, boilGravity, boilVolume);
         }
 
         return new IBU(totalIBUs);

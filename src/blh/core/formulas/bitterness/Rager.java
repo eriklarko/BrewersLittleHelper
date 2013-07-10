@@ -11,12 +11,12 @@ import blh.core.units.weight.Grams;
 
 /**
  * Taken from http://realbeer.com/hops/FAQ.html
- * <p/>
+ * 
  * IBU = (GRAMS OF HOPS) * %UTILIZATION * %ALPHA * 1000 / VOLUME(litres) * (1 +
  * GA)
- * <p/>
+ * 
  * %UTILIZATION = 18.11 + 13.86 * hyptan[(MINUTES - 31.32) / 18.27]
- * <p/>
+ * 
  * GA if BOIL_GRAVITY > 1.050 = (BOIL_GRAVITY - 1.050) / 0.2
  * GA otherwise = 0
  *
