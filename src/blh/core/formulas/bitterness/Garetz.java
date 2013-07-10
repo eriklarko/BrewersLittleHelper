@@ -36,7 +36,7 @@ public class Garetz implements Formula<IBU> {
             oldIBUs = IBUs;
 
             double combinedAdjustments = getCombinedAdjustments(finalVolume, boilVolume, preBoilGravity, elevation, IBUs);
-            IBUs = getUtilization() * addition.getAmount().value() * addition.getHop().alphaAcids * 1000;
+            IBUs = getUtilization() * addition.getAmount().value() * addition.getHop().alphaAcids.value() * 1000;
             IBUs = IBUs / (boilVolume.value() * combinedAdjustments);
         } while (IBUs - oldIBUs > 0.01);
 

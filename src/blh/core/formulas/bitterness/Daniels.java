@@ -40,7 +40,7 @@ public class Daniels implements Formula<IBU> {
         double og = originalGravity.value();
         double gravityAdjustment = (og - 1.050) / 0.2;
 
-        double IBUs = getUtilization() * addition.getAmount().value() * addition.getHop().alphaAcids * 1000;
+        double IBUs = getUtilization() * addition.getAmount().value() * addition.getHop().alphaAcids.value() * 1000;
         IBUs = IBUs / (boilVolume.value() + gravityAdjustment);
         return IBUs;
     }

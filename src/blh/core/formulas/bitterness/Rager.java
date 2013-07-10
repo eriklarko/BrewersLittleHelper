@@ -37,8 +37,8 @@ public class Rager implements Formula<IBU> {
 
     private double getRawIBUsFromAddition(HopAddition addition, Liters volume, SpecificGravity boilGravity) {
         Grams amount = addition.getAmount();
-        double utilization = getUtilization(addition.getTimeInBoil());
-        double alphaAcids = addition.getHop().alphaAcids;
+        double utilization = getUtilization(addition.getTimeInBoil()) / 100;
+        double alphaAcids = addition.getHop().alphaAcids.asFactor().value();
 
         double IBUs = (amount.value() * utilization * alphaAcids * 1000);
         IBUs = IBUs / (volume.value() * (1 + getGravityAdjustment(boilGravity)));
