@@ -6,8 +6,8 @@ import blh.core.uncategorized.FullContext;
 import blh.core.units.bitterness.IBU;
 import blh.core.units.distance.Meters;
 import blh.core.units.gravity.SpecificGravity;
+import blh.core.units.time.Minutes;
 import blh.core.units.volume.Liters;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Mark Garetz Using Hops, The Complete Guide to Hops for the Craft Brewer, Hop
@@ -19,13 +19,56 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  */
 public class Garetz implements Formula<IBU> {
 
+    private static int[] utilizationTable = new int[18];
+
+    static {
+        utilizationTable[0] = 0;   //  0 - 5
+        utilizationTable[1] = 0;   //  6 - 10
+        utilizationTable[2] = 2;   // 11 - 15
+        utilizationTable[3] = 5;   // 16 - 20
+        utilizationTable[4] = 8;   // 21 - 25
+        utilizationTable[5] = 11;  // 26 - 30
+        utilizationTable[6] = 14;  // 21 - 35
+        utilizationTable[7] = 16;  // 36 - 40
+        utilizationTable[8] = 18;  // 41 - 45
+        utilizationTable[9] = 19;  // 46 - 50
+        utilizationTable[10] = 20; // 51 - 60
+        utilizationTable[11] = 20; // 56 - 65
+        utilizationTable[12] = 21; // 61 - 75
+        utilizationTable[13] = 21; // 66 - 70
+        utilizationTable[14] = 22; // 71 - 75
+        utilizationTable[15] = 22; // 76 - 80
+        utilizationTable[16] = 23; // 81 - 85
+        utilizationTable[17] = 23; // 86 - 90
+    }
+
+    private static int closestHigherFive(int n) {
+        if (n == 0) return 5;
+
+        int mod = n % 5;
+        return 5 - mod + n;
+    }
+
+    private static int getUtilization(Minutes timeInBoil) {
+        int i = closestHigherFive((int) Math.round(timeInBoil.value()));
+        return utilizationTable[i / 5 - 1];
+    }
+
+    /**
+     * From http://www.beerandloafing.org/hbd/fetch.php?id=30675
+     */
+    private static double getUtilization(Minutes timeInBoil, int a) {
+        if(timeInBoil.value() < 11.0) return(0.0);
+        return 7.2994 + 15.0746 * Math.tanh((timeInBoil.value() - 21.86) / 24.71);
+    }
+
     @Override
     public IBU calc(FullContext context) {
         double totalIBUs = 0;
         for (HopAddition addition : context.getIngredientsList().getHopAdditions()) {
             totalIBUs += getRawIBUsFromAddition(addition, context.finalVolume.value(),
-                    context.getBoilVolumeAtMinutesLeft(addition.getTimeInBoil()),
-                    context.preBoilGravity.value(), context.elevation.value());
+                     context.getBoilVolumeAtMinutesLeft(addition.getTimeInBoil()),
+                     context.preBoilGravity.value(), context.elevation.value());
         }
         return new IBU(totalIBUs);
     }
@@ -35,20 +78,23 @@ public class Garetz implements Formula<IBU> {
         do {
             oldIBUs = IBUs;
 
+            double utilization = getUtilization(addition.getTimeInBoil());
+            double utilization2 = getUtilization(addition.getTimeInBoil(), Integer.SIZE);
+
             double combinedAdjustments = getCombinedAdjustments(finalVolume, boilVolume, preBoilGravity, elevation, IBUs);
-            IBUs = getUtilization() * addition.getAmount().value() * addition.getHop().alphaAcids.value() * 1000;
+            IBUs = utilization * addition.getAmount().value() * addition.getHop().alphaAcids.value() * 0.1;
             IBUs = IBUs / (boilVolume.value() * combinedAdjustments);
-        } while (IBUs - oldIBUs > 0.01);
+        } while (Math.abs(IBUs - oldIBUs) > 0.01);
 
         return IBUs;
     }
-
-    private double getUtilization() {
-        throw new NotImplementedException();
+    
+    public IBU getIBUsFromAddition(HopAddition addition, Liters finalVolume, Liters boilVolume, SpecificGravity preBoilGravity, Meters elevation) {
+        return new IBU(getRawIBUsFromAddition(addition, finalVolume, boilVolume, preBoilGravity, elevation));
     }
 
     private double gravityFactor(double boilGravity) {
-        return ((boilGravity - 1.050) / 0.2) + 1;
+        return ((boilGravity -  1.050) / 0.2) + 1;
     }
 
     private double boilGravity(double concentrationFactor, SpecificGravity preBoilGravity) {

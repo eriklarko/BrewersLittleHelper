@@ -35,6 +35,7 @@ public class FullContext {
     public InputtedOrCalculatedValue<Liters> postBoilVolume;
     public InputtedOrCalculatedValue<Liters> postCoolingVolume;
     public InputtedOrCalculatedValue<Liters> trubLoss;
+    public InputtedOrCalculatedValue<Liters> preFermentationVolume;
     /**
      * The amount of beer extracted after fermentation. I.e; the amount of beer
      * that can be drunk.

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package test.blh.core.units.volume;
 
 import blh.core.units.volume.Milliliters;
