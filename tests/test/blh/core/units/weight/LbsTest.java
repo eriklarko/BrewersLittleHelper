@@ -24,7 +24,7 @@ public class LbsTest {
     }
     
     @Test
-    public void testKiloLbs() {
+    public void testKilograms() {
         Lbs actual = new Lbs(new Kilograms(2));
         Lbs expected = new Lbs(4.40924524);
         
@@ -32,7 +32,7 @@ public class LbsTest {
     }
 
     @Test
-    public void testToKiloLbs() {
+    public void testToKilograms() {
         Kilograms actual = new Lbs(3).toKilograms();
         Kilograms expected = new Kilograms(1.36077711);
         
