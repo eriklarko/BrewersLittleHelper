@@ -44,7 +44,7 @@ public class PSIATest {
     @Test
     public void testBarA() {
         PSIA actual = new PSIA(new BarA(1));
-        PSIA expected = new PSIA(2 * PSI.CONVERSION_UNIT);
+        PSIA expected = new PSIA(PSI.CONVERSION_UNIT);
         
         Assert.assertEquals(expected.value(), actual.value(), 0.00001);
     }
