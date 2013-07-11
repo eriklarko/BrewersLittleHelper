@@ -3,9 +3,11 @@ package blh.core.formulas.bitterness;
 import blh.core.formulas.Formula;
 import blh.core.recipe.HopAddition;
 import blh.core.uncategorized.FullContext;
+import blh.core.units.Factor;
 import blh.core.units.bitterness.IBU;
 import blh.core.units.gravity.SpecificGravity;
 import blh.core.units.volume.Liters;
+import blh.core.units.weight.Grams;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
@@ -28,24 +30,36 @@ public class Daniels implements Formula<IBU> {
         double totalIBUs = 0;
 
         for (HopAddition addition : context.getIngredientsList().getHopAdditions()) {
-            SpecificGravity boilGravity = context.getBoilGravityAtMinutesLeft(addition.getTimeInBoil());
-            Liters boilVolume = context.getBoilVolumeAtMinutesLeft(addition.getTimeInBoil());
-            totalIBUs += getRawIBUsFromAddition(addition, boilGravity, boilVolume);
+            totalIBUs += getRawIBUsFromAddition(addition.getAmount(), addition.getHop().alphaAcids.asFactor(), 
+                    context.originalGravity.value(), context.postBoilVolume.value(), context.preFermentationVolume.value());
         }
 
         return new IBU(totalIBUs);
     }
 
-    private double getRawIBUsFromAddition(HopAddition addition, SpecificGravity originalGravity, Liters boilVolume) {
+    private double getRawIBUsFromAddition(Grams amount, Factor alphaAcids, SpecificGravity originalGravity, Liters postBoilVolume, Liters preFermentationVolume) {
+        double volume = Math.max(postBoilVolume.value(), preFermentationVolume.value());
         double og = originalGravity.value();
-        double gravityAdjustment = (og - 1.050) / 0.2;
+        double gravityAdjustment = (og < 1.050) ? 1 : (og - 1.050) / 0.2;
 
-        double IBUs = getUtilization() * addition.getAmount().value() * addition.getHop().alphaAcids.value() * 1000;
-        IBUs = IBUs / (boilVolume.value() + gravityAdjustment);
+        double IBUs = getUtilization() * amount.value() * alphaAcids.value() * 1000;
+        IBUs = IBUs / (volume + gravityAdjustment);
         return IBUs;
+    }
+    
+    public IBU getIBUsFromAddition(Grams amount, Factor alphaAcids, SpecificGravity originalGravity, Liters postBoilVolume, Liters preFermentationVolume) {
+        return new IBU(getRawIBUsFromAddition(amount, alphaAcids, originalGravity, postBoilVolume, preFermentationVolume));
     }
 
     private double getUtilization() {
         throw new NotImplementedException();
+    }
+    
+    private double concentrationFactor(Liters finalVolume, Liters boilVolume) {
+        return finalVolume.value() / boilVolume.value();
+    }
+
+    private double hoppingRateFactor(double concentrationFactor, double desiredIBUs) {
+        return ((concentrationFactor * desiredIBUs) / 260) + 1;
     }
 }
