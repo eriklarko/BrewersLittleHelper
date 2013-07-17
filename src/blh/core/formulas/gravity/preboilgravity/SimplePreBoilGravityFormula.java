@@ -12,6 +12,6 @@ public class SimplePreBoilGravityFormula extends SimpleOriginalGravityFormula {
 
     @Override
     protected Liters getVolume(FullContext context) {
-        return context.preBoilVolume.value();
+        return context.volumePre(context.BOIL);
     }
 }

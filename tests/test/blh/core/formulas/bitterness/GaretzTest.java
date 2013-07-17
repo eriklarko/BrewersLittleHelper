@@ -1,6 +1,7 @@
 package test.blh.core.formulas.bitterness;
 
 import blh.core.formulas.bitterness.Garetz;
+import blh.core.formulas.volumes.water.BrewStep;
 import blh.core.ingredients.Hop;
 import blh.core.recipe.HopAddition;
 import blh.core.uncategorized.FullContext;
@@ -38,8 +39,8 @@ public class GaretzTest {
         FullContext context = Mockito.mock(FullContext.class, Mockito.RETURNS_DEEP_STUBS);
         Mockito.when(context.getIngredientsList().getHopAdditions()).thenReturn(hopAdditions);
         Mockito.when(context.getBoilVolumeAtMinutesLeft(Mockito.any(Minutes.class))).thenReturn(boilVolume);
+        Mockito.when(context.volumePre(context.FINAL)).thenReturn(boilVolume);
         context.preBoilGravity = new InputtedOrCalculatedValue<>(boilGravity);
-        context.finalVolume = new InputtedOrCalculatedValue<>(boilVolume);
         context.elevation = new Input<>(elevation);
         
         Garetz f = new Garetz();

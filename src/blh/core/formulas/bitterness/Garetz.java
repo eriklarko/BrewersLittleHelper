@@ -19,7 +19,7 @@ import blh.core.units.volume.Liters;
  */
 public class Garetz implements Formula<IBU> {
 
-    private static int[] utilizationTable = new int[18];
+    private static final int[] utilizationTable = new int[18];
 
     static {
         utilizationTable[0] = 0;   //  0 - 5
@@ -66,7 +66,7 @@ public class Garetz implements Formula<IBU> {
     public IBU calc(FullContext context) {
         double totalIBUs = 0;
         for (HopAddition addition : context.getIngredientsList().getHopAdditions()) {
-            totalIBUs += getRawIBUsFromAddition(addition, context.finalVolume.value(),
+            totalIBUs += getRawIBUsFromAddition(addition, context.volumePre(context.FINAL),
                      context.getBoilVolumeAtMinutesLeft(addition.getTimeInBoil()),
                      context.preBoilGravity.value(), context.elevation.value());
         }

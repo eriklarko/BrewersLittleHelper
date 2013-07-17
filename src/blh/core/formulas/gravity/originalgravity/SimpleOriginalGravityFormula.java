@@ -62,7 +62,7 @@ public class SimpleOriginalGravityFormula implements Formula<SpecificGravity> {
     }
 
     protected Liters getVolume(FullContext context) {
-        return context.postBoilVolume.value();
+        return context.volumePost(context.BOIL);
     }
 
     public SpecificGravity calc(List<GristPart> gristParts, USGallons preBoilVolume, Factor efficiency) {

@@ -15,7 +15,7 @@ public class MaltColorUnitFormula implements Formula<MaltColorUnit> {
 
     @Override
     public MaltColorUnit calc(FullContext context) {
-        Liters finalVolume = context.finalVolume.value();
+        Liters finalVolume = context.volumePost(context.FINAL);
         ColorPotential totalColorPotential = context.totalColorPotential.value();
         
         return calc(totalColorPotential, finalVolume);

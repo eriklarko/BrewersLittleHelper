@@ -31,7 +31,7 @@ public class Daniels implements Formula<IBU> {
 
         for (HopAddition addition : context.getIngredientsList().getHopAdditions()) {
             totalIBUs += getRawIBUsFromAddition(addition.getAmount(), addition.getHop().alphaAcids.asFactor(), 
-                    context.originalGravity.value(), context.postBoilVolume.value(), context.preFermentationVolume.value());
+                    context.originalGravity.value(), context.volumePost(context.BOIL), context.volumePre(context.FERMENTATION));
         }
 
         return new IBU(totalIBUs);

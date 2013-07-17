@@ -20,12 +20,12 @@ import blh.core.units.volume.Milliliters;
  */
 public class FixFormula implements Formula<YeastCellCount>  {
 
-    private static YeastCellCount ALE = new YeastCellCount(new Million(0.75));
-    private static YeastCellCount LAGER = new YeastCellCount(new Million(150));
+    private static final YeastCellCount ALE = new YeastCellCount(new Million(0.75));
+    private static final YeastCellCount LAGER = new YeastCellCount(new Million(150));
 
     @Override
     public YeastCellCount calc(FullContext context) {
-        Milliliters amountOfWort = new Milliliters(context.finalVolume.value());
+        Milliliters amountOfWort = new Milliliters(context.volumePre(context.FINAL));
         Plato wortDensity = new Plato(context.finalGravity.value());
 
         return calc(context.getRecipeMetaData().type, amountOfWort, wortDensity);
