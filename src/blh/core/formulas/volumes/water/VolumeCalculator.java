@@ -61,7 +61,7 @@ public class VolumeCalculator {
             if(step == end) {
                 return base;
             }
-            base = step.forward(base, context);
+            base = step.calculateVolumeAfterStep(base, context);
         }
 
         return null;
@@ -73,7 +73,7 @@ public class VolumeCalculator {
         ListIterator<BrewStep> it = brewSteps.listIterator(brewSteps.indexOf(end));
         while (it.hasPrevious()) {
             BrewStep step = it.previous();
-            base = step.backward(base, context);
+            base = step.calculateVolumeBeforeStep(base, context);
         }
 
         return base;

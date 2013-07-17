@@ -1,5 +1,6 @@
-package blh.core.formulas.volumes.water;
+package blh.core.formulas.volumes.water.impl.generic;
 
+import blh.core.formulas.volumes.water.BrewStep;
 import blh.core.uncategorized.FullContext;
 import blh.core.units.volume.Liters;
 
@@ -17,12 +18,12 @@ public class MultiplicativeStep extends BrewStep {
     }
 
     @Override
-    protected Liters forward(Liters base, FullContext context) {
+    protected Liters calculateVolumeAfterStep(Liters base, FullContext context) {
         return new Liters(base.value() * term);
     }
 
     @Override
-    protected Liters backward(Liters base, FullContext context) {
+    protected Liters calculateVolumeBeforeStep(Liters base, FullContext context) {
         return new Liters(base.value() / term);
     }
 }

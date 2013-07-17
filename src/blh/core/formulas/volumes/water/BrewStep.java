@@ -30,7 +30,7 @@ public abstract class BrewStep {
         return measuredLiters;
     }
 
-    protected abstract Liters forward(Liters volumeBeforeStep, FullContext context);
+    protected abstract Liters calculateVolumeAfterStep(Liters volumeBeforeStep, FullContext context);
     
-    protected abstract Liters backward(Liters volumeAfterStep, FullContext context);
+    protected abstract Liters calculateVolumeBeforeStep(Liters volumeAfterStep, FullContext context);
 }

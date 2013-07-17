@@ -2,6 +2,7 @@ package blh.core.uncategorized;
 
 import blh.core.formulas.volumes.water.BrewStep;
 import blh.core.formulas.volumes.water.VolumeCalculator;
+import blh.core.formulas.volumes.water.impl.FinalStep;
 import blh.core.recipe.IngredientsList;
 import blh.core.units.Factor;
 import blh.core.units.alcohol.ABV;
@@ -24,7 +25,7 @@ public class FullContext {
     public BrewStep BOIL = null;
     public BrewStep COOLING = null;
     public BrewStep FERMENTATION = null;
-    public BrewStep FINAL = null;
+    public FinalStep FINAL = new FinalStep();
 
     private IngredientsList recipe;
     private GeneralBreweryInfo brewery;
