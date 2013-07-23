@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<YEAST>
+	<NAME>Ole English Ale Yeast</NAME>
+	<VERSION>1</VERSION>
+	<TYPE>Ale</TYPE>
+	<FORM>Liquid</FORM>
+	<AMOUNT>0.100</AMOUNT>
+</YEAST>
