@@ -1,16 +1,16 @@
 package org.blh.beerxml.types.builders;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.blh.beerxml.ParseException;
 import org.blh.beerxml.UnknownTagException;
-import org.junit.*;
-import java.util.Map;
-import java.util.HashMap;
-import org.blh.core.units.*;
-import org.blh.beerxml.types.*;
-import org.blh.beerxml.types.builders.*;
+import org.blh.beerxml.types.Equipment;
+import org.blh.core.units.Percentage;
 import org.blh.core.units.time.Minutes;
 import org.blh.core.units.volume.Liters;
 import org.blh.core.units.weight.Kilograms;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class EquipmentBuilderImplTest {
 
@@ -54,8 +54,7 @@ public class EquipmentBuilderImplTest {
             try {
                 builder.set(tag.getKey(), tag.getValue());
             } catch (UnknownTagException ex) {
-                ex.printStackTrace();
-                Assert.fail();
+                Assert.fail(ex.getMessage());
             }
         }
         Equipment actual = builder.create();

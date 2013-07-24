@@ -1,8 +1,7 @@
 package org.blh.beerxml.types.builders;
 
-import org.blh.core.units.Unit;
-
 import java.util.Map;
+import org.blh.core.units.Unit;
 
 /**
  * Created with IntelliJ IDEA.

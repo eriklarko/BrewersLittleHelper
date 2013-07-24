@@ -28,8 +28,6 @@ import org.blh.beerxml.types.builders.WaterBuilderImpl;
 import org.blh.beerxml.types.builders.YeastBuilderImpl;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.ParameterizedType;
-import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -173,8 +171,6 @@ public class DOMParser implements BeerXMLParser {
     }
 
     private BeerXMLRecord marshalRecordToParser(String nodeName, NodeList values) throws ParseException, UnknownRecordException {
-
-        RecordSetParser<? extends BeerXMLRecord> parser;
         switch (nodeName.toUpperCase()) {
             case "RECIPE":
                 return recipeParser.parseRecord(values);

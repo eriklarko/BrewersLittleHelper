@@ -1,29 +1,31 @@
 package org.blh.beerxml.types.builders;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.blh.beerxml.ParseException;
 import org.blh.beerxml.UnknownTagException;
-import org.junit.*;
-import java.util.Map;
-import java.util.HashMap;
-import org.blh.core.units.*;
-import org.blh.beerxml.types.*;
+import org.blh.beerxml.Utils;
+import org.blh.beerxml.types.Recipe;
 import org.blh.beerxml.types.Recipe.TYPE;
-import org.blh.beerxml.types.builders.*;
+import org.blh.core.units.BJCPTasteRating;
+import org.blh.core.units.CO2Volumes;
+import org.blh.core.units.Factor;
+import org.blh.core.units.Percentage;
 import org.blh.core.units.gravity.SpecificGravity;
 import org.blh.core.units.temperature.Celsius;
 import org.blh.core.units.time.Days;
 import org.blh.core.units.time.Minutes;
 import org.blh.core.units.volume.Liters;
-import java.text.DateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import org.joda.time.DateTime;
+import org.joda.time.format.ISODateTimeFormat;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class RecipeBuilderImplTest {
 
     @Test
     public void testSet() {
         Map<String, String> tags = new HashMap<>();
-        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL);
 
         String name = "1";
         TYPE type = TYPE.ALL_GRAIN;
@@ -47,7 +49,7 @@ public class RecipeBuilderImplTest {
         Celsius tertiaryTemperature = new Celsius(28);
         Days ageAfterBottling = new Days(29);
         Celsius temperatureDuringAfterBottlingAge = new Celsius(30);
-        Date date = Calendar.getInstance().getTime();
+        DateTime date = new DateTime();
         CO2Volumes carbonation = new CO2Volumes(32);
         boolean forcedCarbonation = true;
         String primingSugarName = "34";
@@ -78,7 +80,7 @@ public class RecipeBuilderImplTest {
         BuilderUtils.addTag(tags, Recipe.TERTIARY_TEMPERATURE, tertiaryTemperature);
         BuilderUtils.addTag(tags, Recipe.AGE_AFTER_BOTTLING, ageAfterBottling);
         BuilderUtils.addTag(tags, Recipe.TEMPERATURE_DURING_AFTER_BOTTLING_AGE, temperatureDuringAfterBottlingAge);
-        BuilderUtils.addTag(tags, Recipe.DATE, dateFormat.format(date));
+        BuilderUtils.addTag(tags, Recipe.DATE, Utils.getAwesomeFormatter().print(date));
         BuilderUtils.addTag(tags, Recipe.CARBONATION, carbonation);
         BuilderUtils.addTag(tags, Recipe.FORCED_CARBONATION, forcedCarbonation);
         BuilderUtils.addTag(tags, Recipe.PRIMING_SUGAR_NAME, primingSugarName);
@@ -92,8 +94,7 @@ public class RecipeBuilderImplTest {
             try {
                 builder.set(tag.getKey(), tag.getValue());
             } catch (ParseException ex) {
-                ex.printStackTrace();
-                Assert.fail();
+                Assert.fail(ex.getMessage());
             }
         }
         Recipe actual = builder.create();
@@ -102,44 +103,45 @@ public class RecipeBuilderImplTest {
     }
 
     private void assertEquality(Recipe expected, Recipe actual) {
-        Assert.assertEquals(expected.name, actual.name);
-        Assert.assertEquals(expected.type, actual.type);
-        Assert.assertEquals(expected.style, actual.style);
-        Assert.assertEquals(expected.equipment, actual.equipment);
-        Assert.assertEquals(expected.brewer, actual.brewer);
-        Assert.assertEquals(expected.assistantBrewer, actual.assistantBrewer);
-        Assert.assertEquals(expected.batchSize, actual.batchSize);
-        Assert.assertEquals(expected.boilSize, actual.boilSize);
-        Assert.assertEquals(expected.boilTime, actual.boilTime);
-        Assert.assertEquals(expected.efficiency, actual.efficiency);
-        Assert.assertEquals(expected.hops, actual.hops);
-        Assert.assertEquals(expected.fermentables, actual.fermentables);
-        Assert.assertEquals(expected.miscs, actual.miscs);
-        Assert.assertEquals(expected.yeasts, actual.yeasts);
-        Assert.assertEquals(expected.waters, actual.waters);
-        Assert.assertEquals(expected.mashProfile, actual.mashProfile);
-        Assert.assertEquals(expected.notes, actual.notes);
-        Assert.assertEquals(expected.tasteNotes, actual.tasteNotes);
-        Assert.assertEquals(expected.tasteRating, actual.tasteRating);
-        Assert.assertEquals(expected.measuredOriginalGravity, actual.measuredOriginalGravity);
-        Assert.assertEquals(expected.measuredFinalGravity, actual.measuredFinalGravity);
-        Assert.assertEquals(expected.fermentationStages, actual.fermentationStages);
-        Assert.assertEquals(expected.primaryAge, actual.primaryAge);
-        Assert.assertEquals(expected.primaryTemperature, actual.primaryTemperature);
-        Assert.assertEquals(expected.secondaryAge, actual.secondaryAge);
-        Assert.assertEquals(expected.secondaryTemperature, actual.secondaryTemperature);
-        Assert.assertEquals(expected.tertiaryAge, actual.tertiaryAge);
-        Assert.assertEquals(expected.tertiaryTemperature, actual.tertiaryTemperature);
-        Assert.assertEquals(expected.ageAfterBottling, actual.ageAfterBottling);
-        Assert.assertEquals(expected.temperatureDuringAfterBottlingAge, actual.temperatureDuringAfterBottlingAge);
-        Assert.assertTrue(Math.abs(expected.date.getTime() - actual.date.getTime()) < 1000);
-        Assert.assertEquals(expected.carbonation, actual.carbonation);
-        Assert.assertEquals(expected.forcedCarbonation, actual.forcedCarbonation);
-        Assert.assertEquals(expected.primingSugarName, actual.primingSugarName);
-        Assert.assertEquals(expected.carbonationTemperature, actual.carbonationTemperature);
-        Assert.assertEquals(expected.primingSugarEquivalence, actual.primingSugarEquivalence);
-        Assert.assertEquals(expected.kegPrimingFactor, actual.kegPrimingFactor);
-        Assert.assertEquals(expected.carbonationUsed, actual.carbonationUsed);
+        Assert.assertEquals("Name", expected.name, actual.name);
+        Assert.assertEquals("Type", expected.type, actual.type);
+        Assert.assertEquals("Style", expected.style, actual.style);
+        Assert.assertEquals("Equipment", expected.equipment, actual.equipment);
+        Assert.assertEquals("Brewer", expected.brewer, actual.brewer);
+        Assert.assertEquals("Ass brewer", expected.assistantBrewer, actual.assistantBrewer);
+        Assert.assertEquals("Batch size", expected.batchSize, actual.batchSize);
+        Assert.assertEquals("Boil size", expected.boilSize, actual.boilSize);
+        Assert.assertEquals("Boil time", expected.boilTime, actual.boilTime);
+        Assert.assertEquals("Efficiency", expected.efficiency, actual.efficiency);
+        Assert.assertEquals("Hops", expected.hops, actual.hops);
+        Assert.assertEquals("Fermentables", expected.fermentables, actual.fermentables);
+        Assert.assertEquals("Miscs", expected.miscs, actual.miscs);
+        Assert.assertEquals("Yeasts", expected.yeasts, actual.yeasts);
+        Assert.assertEquals("Waters", expected.waters, actual.waters);
+        Assert.assertEquals("Mash profile", expected.mashProfile, actual.mashProfile);
+        Assert.assertEquals("Notes", expected.notes, actual.notes);
+        Assert.assertEquals("Taste notes", expected.tasteNotes, actual.tasteNotes);
+        Assert.assertEquals("Taste rating", expected.tasteRating, actual.tasteRating);
+        Assert.assertEquals("meas og", expected.measuredOriginalGravity, actual.measuredOriginalGravity);
+        Assert.assertEquals("meas fg", expected.measuredFinalGravity, actual.measuredFinalGravity);
+        Assert.assertEquals("Ferm stages", expected.fermentationStages, actual.fermentationStages);
+        Assert.assertEquals("Prim age", expected.primaryAge, actual.primaryAge);
+        Assert.assertEquals("Prim temp", expected.primaryTemperature, actual.primaryTemperature);
+        Assert.assertEquals("Sec age", expected.secondaryAge, actual.secondaryAge);
+        Assert.assertEquals("Sec temp", expected.secondaryTemperature, actual.secondaryTemperature);
+        Assert.assertEquals("Tert age", expected.tertiaryAge, actual.tertiaryAge);
+        Assert.assertEquals("Tert temp", expected.tertiaryTemperature, actual.tertiaryTemperature);
+        Assert.assertEquals("Age", expected.ageAfterBottling, actual.ageAfterBottling);
+        Assert.assertEquals("Bottle age temp", expected.temperatureDuringAfterBottlingAge, actual.temperatureDuringAfterBottlingAge);
+        //Assert.assertTrue("Date", Math.abs(expected.date.getTime() - actual.date.getTime()) < 1000);
+        Assert.assertEquals("Date", expected.date, actual.date);
+        Assert.assertEquals("Carbonation", expected.carbonation, actual.carbonation);
+        Assert.assertEquals("Forced carb", expected.forcedCarbonation, actual.forcedCarbonation);
+        Assert.assertEquals("Priming sugar name", expected.primingSugarName, actual.primingSugarName);
+        Assert.assertEquals("Carb temp", expected.carbonationTemperature, actual.carbonationTemperature);
+        Assert.assertEquals("Prim sug eq", expected.primingSugarEquivalence, actual.primingSugarEquivalence);
+        Assert.assertEquals("Keg priming", expected.kegPrimingFactor, actual.kegPrimingFactor);
+        Assert.assertEquals("Carbonation used", expected.carbonationUsed, actual.carbonationUsed);
     }
     
     @Test

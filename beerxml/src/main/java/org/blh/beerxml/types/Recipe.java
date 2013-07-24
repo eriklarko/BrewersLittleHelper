@@ -1,5 +1,10 @@
 package org.blh.beerxml.types;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import org.blh.beerxml.Utils;
 import org.blh.core.units.BJCPTasteRating;
 import org.blh.core.units.CO2Volumes;
@@ -10,12 +15,7 @@ import org.blh.core.units.temperature.Celsius;
 import org.blh.core.units.time.Days;
 import org.blh.core.units.time.Minutes;
 import org.blh.core.units.volume.Liters;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import org.joda.time.DateTime;
 
 /**
  *
@@ -89,7 +89,7 @@ public class Recipe implements BeerXMLRecord {
     public final Celsius tertiaryTemperature;
     public final Days ageAfterBottling;
     public final Celsius temperatureDuringAfterBottlingAge;
-    public final Date date;
+    public final DateTime date;
     public final CO2Volumes carbonation;
     public final boolean forcedCarbonation;
     /**
@@ -106,7 +106,22 @@ public class Recipe implements BeerXMLRecord {
         EXTRACT, ALL_GRAIN, PARTIAL_MASH
     }
 
-    public Recipe(String name, TYPE type, Style style, Equipment equipment, String brewer, String assistantBrewer, Liters batchSize, Liters boilSize, Minutes boilTime, Percentage efficiency, List<Hop> hops, List<Fermentable> fermentables, List<Misc> miscs, List<Yeast> yeasts, List<Water> waters, MashProfile mashProfile, String notes, String tasteNotes, BJCPTasteRating tasteRating, SpecificGravity measuredOriginalGravity, SpecificGravity measuredFinalGravity, int fermentationStages, Days primaryAge, Celsius primaryTemperature, Days secondaryAge, Celsius secondaryTemperature, Days tertiaryAge, Celsius tertiaryTemperature, Days ageAfterBottling, Celsius temperatureDuringAfterBottlingAge, Date date, CO2Volumes carbonation, boolean forcedCarbonation, String primingSugarName, Celsius carbonationTemperature, Factor primingSugarEquivalence, Factor kegPrimingFactor, String carbonationUsed) {
+    public Recipe(String name, TYPE type, Style style, Equipment equipment,
+            String brewer, String assistantBrewer, Liters batchSize,
+            Liters boilSize, Minutes boilTime, Percentage efficiency,
+            List<Hop> hops, List<Fermentable> fermentables, List<Misc> miscs,
+            List<Yeast> yeasts, List<Water> waters, MashProfile mashProfile,
+            String notes, String tasteNotes, BJCPTasteRating tasteRating,
+            SpecificGravity measuredOriginalGravity,
+            SpecificGravity measuredFinalGravity, int fermentationStages,
+            Days primaryAge, Celsius primaryTemperature, Days secondaryAge,
+            Celsius secondaryTemperature, Days tertiaryAge,
+            Celsius tertiaryTemperature, Days ageAfterBottling,
+            Celsius temperatureDuringAfterBottlingAge, DateTime date,
+            CO2Volumes carbonation, boolean forcedCarbonation,
+            String primingSugarName, Celsius carbonationTemperature,
+            Factor primingSugarEquivalence, Factor kegPrimingFactor,
+            String carbonationUsed) {
         this.name = name;
         this.type = type;
         this.style = style;
@@ -215,6 +230,7 @@ public class Recipe implements BeerXMLRecord {
         return recordSets;
     }
 
+    @Override
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
@@ -340,6 +356,7 @@ public class Recipe implements BeerXMLRecord {
         return true;
     }
 
+    @Override
     public int hashCode() {
         int hash = 3;
         hash = 41 * hash + Objects.hashCode(this.name);

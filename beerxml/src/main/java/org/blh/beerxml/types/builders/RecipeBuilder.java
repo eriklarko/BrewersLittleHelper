@@ -4,6 +4,7 @@
  */
 package org.blh.beerxml.types.builders;
 
+import java.util.List;
 import org.blh.beerxml.types.Equipment;
 import org.blh.beerxml.types.Fermentable;
 import org.blh.beerxml.types.Hop;
@@ -14,7 +15,6 @@ import org.blh.beerxml.types.Recipe.TYPE;
 import org.blh.beerxml.types.Style;
 import org.blh.beerxml.types.Water;
 import org.blh.beerxml.types.Yeast;
-import org.blh.beerxml.types.builders.Builder;
 import org.blh.core.units.BJCPTasteRating;
 import org.blh.core.units.CO2Volumes;
 import org.blh.core.units.Factor;
@@ -24,8 +24,7 @@ import org.blh.core.units.temperature.Celsius;
 import org.blh.core.units.time.Days;
 import org.blh.core.units.time.Minutes;
 import org.blh.core.units.volume.Liters;
-import java.util.Date;
-import java.util.List;
+import org.joda.time.DateTime;
 
 /**
  *
@@ -49,7 +48,7 @@ public interface RecipeBuilder extends Builder<Recipe> {
 
     RecipeBuilder setCarbonationTemperature(Celsius carbonationTemperature);
 
-    RecipeBuilder setDate(Date date);
+    RecipeBuilder setDate(DateTime date);
 
     RecipeBuilder setEfficiency(Percentage efficiency);
 

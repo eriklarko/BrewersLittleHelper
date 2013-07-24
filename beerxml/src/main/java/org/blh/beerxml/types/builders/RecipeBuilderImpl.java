@@ -1,7 +1,10 @@
 package org.blh.beerxml.types.builders;
 
+import java.text.DateFormat;
+import java.util.List;
 import org.blh.beerxml.ParseException;
 import org.blh.beerxml.UnknownTagException;
+import org.blh.beerxml.Utils;
 import org.blh.beerxml.types.BeerXMLRecord;
 import org.blh.beerxml.types.Equipment;
 import org.blh.beerxml.types.Fermentable;
@@ -22,9 +25,7 @@ import org.blh.core.units.temperature.Celsius;
 import org.blh.core.units.time.Days;
 import org.blh.core.units.time.Minutes;
 import org.blh.core.units.volume.Liters;
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.List;
+import org.joda.time.DateTime;
 
 public class RecipeBuilderImpl implements RecipeBuilder {
 
@@ -58,7 +59,7 @@ public class RecipeBuilderImpl implements RecipeBuilder {
     private Celsius tertiaryTemperature;
     private Days ageAfterBottling;
     private Celsius temperatureDuringAfterBottlingAge;
-    private Date date;
+    private DateTime date;
     private CO2Volumes carbonation;
     private boolean forcedCarbonation;
     private String primingSugarName;
@@ -69,7 +70,7 @@ public class RecipeBuilderImpl implements RecipeBuilder {
     private String carbonationUsed;
 
     public RecipeBuilderImpl() {
-        this.dateFormat = DateFormat.getDateInstance(DateFormat.FULL);
+        this.dateFormat = DateFormat.getDateInstance(DateFormat.LONG);
     }
 
     @Override
@@ -253,7 +254,7 @@ public class RecipeBuilderImpl implements RecipeBuilder {
     }
 
     @Override
-    public RecipeBuilderImpl setDate(Date date) {
+    public RecipeBuilderImpl setDate(DateTime date) {
         this.date = date;
         return this;
     }
@@ -373,11 +374,9 @@ public class RecipeBuilderImpl implements RecipeBuilder {
                 temperatureDuringAfterBottlingAge = new Celsius(Double.parseDouble(value));
                 break;
             case Recipe.DATE:
-                try {
-                    date = dateFormat.parse(value);
-                } catch (java.text.ParseException ex) {
-                    //throw new ParseException(ex);
-                    ex.printStackTrace();
+                date = DateTime.parse(value, Utils.getAwesomeFormatter());
+                if (date == null) {
+                    throw new ParseException("Unable to parse date " + value);
                 }
                 break;
             case Recipe.CARBONATION:

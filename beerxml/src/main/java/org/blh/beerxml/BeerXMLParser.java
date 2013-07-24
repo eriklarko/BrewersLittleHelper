@@ -4,10 +4,10 @@
  */
 package org.blh.beerxml;
 
-import org.blh.beerxml.types.BeerXMLRecord;
-import org.blh.beerxml.types.BeerXMLRecordSet;
 import java.io.File;
 import java.util.List;
+import org.blh.beerxml.types.BeerXMLRecord;
+import org.blh.beerxml.types.BeerXMLRecordSet;
 
 /**
  *
