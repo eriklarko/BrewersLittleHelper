@@ -55,8 +55,9 @@ public class PSIATest {
     
     @Test
     public void testToBar() {
-        Bar actual = new PSIA(3 + PSI.CONVERSION_UNIT).toBar();
-        Bar expected = new Bar(1.206842719);
+        PSIA psiPressure = new PSIA(2 * PSI.CONVERSION_UNIT);
+        Bar actual = psiPressure.toBar();
+        Bar expected = new Bar(1);
         
         Assert.assertEquals(expected.value(), actual.value(), 0.00001);
     }
