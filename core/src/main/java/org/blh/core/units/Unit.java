@@ -36,12 +36,10 @@ public abstract class Unit<T> {
        
         @SuppressWarnings("unchecked")
         final Unit<T> other = (Unit<T>) obj;
-        if (!Objects.equals(this.value, other.value)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.value, other.value);
     }
 
+    @Override
     public String toString() {
         if(this.value == null) {
             return "NULL";

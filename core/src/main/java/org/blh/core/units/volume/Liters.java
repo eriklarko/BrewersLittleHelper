@@ -8,6 +8,6 @@ import org.blh.core.units.Unit;
  */
 public class Liters extends Unit<Double> {
     public Liters(double value) {
-	super(value);;
+	super(value);
     }
 }
