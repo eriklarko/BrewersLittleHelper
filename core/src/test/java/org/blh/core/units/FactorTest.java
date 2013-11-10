@@ -1,7 +1,6 @@
 package org.blh.core.units;
 
-import org.blh.core.units.Factor;
-import org.blh.core.units.Percentage;
+import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,12 +10,12 @@ import org.junit.Test;
  */
 public class FactorTest {
     
-        @Test
+    @Test
     public void testDouble() {
         Factor actual = new Factor(2);
-        double expected = 2;
+        BigDecimal expected = new BigDecimal(2);
         
-        Assert.assertEquals(expected, actual.value(), 0);
+        Assert.assertEquals(expected, actual.value());
     }
     
     @Test
@@ -24,7 +23,7 @@ public class FactorTest {
         Factor actual = new Factor(new Percentage(2));
         Factor expected = new Factor(0.02);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0.00001);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 
     @Test
@@ -32,6 +31,6 @@ public class FactorTest {
         Percentage actual = new Factor(0.1).asPercentage();
         Percentage expected = new Percentage(10);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0.00001);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 }

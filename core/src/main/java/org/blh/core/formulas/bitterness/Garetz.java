@@ -19,6 +19,9 @@ import org.blh.core.units.volume.Liters;
  */
 public class Garetz implements Formula<IBU> {
 
+    /**
+     * Index maps to minutes in boil
+     */
     private static final int[] utilizationTable = new int[18];
 
     static {
@@ -49,17 +52,17 @@ public class Garetz implements Formula<IBU> {
         return 5 - mod + n;
     }
 
-    private static int getUtilization(Minutes timeInBoil) {
-        int i = closestHigherFive((int) Math.round(timeInBoil.value()));
+    private static int getUtilizationFromTable(Minutes timeInBoil) {
+        int i = closestHigherFive((int) Math.round(timeInBoil.inexactValue()));
         return utilizationTable[i / 5 - 1];
     }
 
     /**
      * From http://www.beerandloafing.org/hbd/fetch.php?id=30675
      */
-    private static double getUtilization(Minutes timeInBoil, int a) {
-        if(timeInBoil.value() < 11.0) return(0.0);
-        return 7.2994 + 15.0746 * Math.tanh((timeInBoil.value() - 21.86) / 24.71);
+    private static double getUtilization(Minutes timeInBoil) {
+        if(timeInBoil.inexactValue() < 11.0) return(0.0);
+        return 7.2994 + 15.0746 * Math.tanh((timeInBoil.inexactValue() - 21.86) / 24.71);
     }
 
     @Override
@@ -74,16 +77,15 @@ public class Garetz implements Formula<IBU> {
     }
 
     private double getRawIBUsFromAddition(HopAddition addition, Liters finalVolume, Liters boilVolume, SpecificGravity preBoilGravity, Meters elevation) {
-        double IBUs = 1, oldIBUs = 0;
+        double IBUs = 1, oldIBUs;
         do {
             oldIBUs = IBUs;
 
             double utilization = getUtilization(addition.getTimeInBoil());
-            double utilization2 = getUtilization(addition.getTimeInBoil(), Integer.SIZE);
 
             double combinedAdjustments = getCombinedAdjustments(finalVolume, boilVolume, preBoilGravity, elevation, IBUs);
-            IBUs = utilization * addition.getAmount().value() * addition.getHop().alphaAcids.value() * 0.1;
-            IBUs = IBUs / (boilVolume.value() * combinedAdjustments);
+            IBUs = utilization * addition.getAmount().inexactValue() * addition.getHop().alphaAcids.inexactValue() * 0.1;
+            IBUs = IBUs / (boilVolume.inexactValue() * combinedAdjustments);
         } while (Math.abs(IBUs - oldIBUs) > 0.01);
 
         return IBUs;
@@ -98,11 +100,11 @@ public class Garetz implements Formula<IBU> {
     }
 
     private double boilGravity(double concentrationFactor, SpecificGravity preBoilGravity) {
-        return (concentrationFactor * (preBoilGravity.value() - 1)) + 1;
+        return (concentrationFactor * (preBoilGravity.inexactValue() - 1)) + 1;
     }
 
     private double concentrationFactor(Liters finalVolume, Liters boilVolume) {
-        return finalVolume.value() / boilVolume.value();
+        return finalVolume.inexactValue() / boilVolume.inexactValue();
     }
 
     private double hoppingRateFactor(double concentrationFactor, double desiredIBUs) {
@@ -110,7 +112,7 @@ public class Garetz implements Formula<IBU> {
     }
 
     private double temperatureFactor(Meters elevation) {
-        return ((elevation.value() / 167.64) * 0.02) + 1;
+        return ((elevation.inexactValue() / 167.64) * 0.02) + 1;
     }
 
     private double getCombinedAdjustments(Liters finalVolume, Liters boilVolume, SpecificGravity preBoilGravity, Meters elevation, double desiredIBUs) {

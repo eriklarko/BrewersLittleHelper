@@ -1,21 +1,28 @@
 package org.blh.core.units.gravity;
 
-import org.blh.core.units.Unit;
+import java.math.BigDecimal;
+import org.blh.core.units.NumericUnit;
 
 /**
  * Created by Erik Larkö at 7/2/13 10:55 PM
  */
-public class GravityPoints extends Unit<Double> {
+public class GravityPoints extends NumericUnit {
+
+    public static final BigDecimal ONE_THOUSAND = new BigDecimal(1000);
+
+    public GravityPoints(BigDecimal value) {
+        super(value);
+    }
 
     public GravityPoints(double value) {
         super(value);
     }
 
     public GravityPoints(SpecificGravity sg) {
-        this((sg.value() - 1) * 1000);
+        this((sg.value().subtract(BigDecimal.ONE)).multiply(ONE_THOUSAND));
     }
 
     public SpecificGravity toSpecificGravity() {
-        return new SpecificGravity(this.value() / 1000 + 1);
+        return new SpecificGravity(this.value().divide(ONE_THOUSAND).add(BigDecimal.ONE));
     }
 }

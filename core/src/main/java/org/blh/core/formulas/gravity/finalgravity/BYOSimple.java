@@ -27,7 +27,7 @@ public class BYOSimple implements Formula<SpecificGravity> {
     }
 
     public SpecificGravity calc(GravityPoints og, Factor yeastApparentAttenuation) {
-        return new GravityPoints(og.value() * (1 - yeastApparentAttenuation.value())).toSpecificGravity();
+        return new GravityPoints(og.inexactValue() * (1 - yeastApparentAttenuation.inexactValue())).toSpecificGravity();
     }
     
 }

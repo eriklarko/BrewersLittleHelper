@@ -40,7 +40,7 @@ public class TinsethTest {
         IBU actual = f.calc(context);
         IBU expected = new IBU(84.98818390360006);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 
     @Test
@@ -54,6 +54,6 @@ public class TinsethTest {
         IBU actual = f.getIBUsFromAddition(addition, boilVolume, boilGravity);
         IBU expected = new IBU(34.54956542616044);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 }

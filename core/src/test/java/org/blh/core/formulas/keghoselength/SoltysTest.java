@@ -27,6 +27,6 @@ public class SoltysTest {
         Feet length = calculator.calc(gravity, kegPressure, hoseDiam, tapHeight, fillTime);
         Feet expected = new Feet(10.8799);
         
-        Assert.assertEquals(expected.value(), length.value(), 0.0001);
+        Assert.assertEquals(expected.value(), length.value());
     }
 }

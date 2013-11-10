@@ -40,7 +40,7 @@ public class DanielsTest {
         IBU actual = f.calc(context);
         IBU expected = new IBU(84.98818390360006);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 
     @Test
@@ -56,6 +56,6 @@ public class DanielsTest {
         IBU actual = f.getIBUsFromAddition(addition.getAmount(), addition.getHop().alphaAcids.asFactor(), boilGravity, postBoilVolume, preFermentationVolume);
         IBU expected = new IBU(34.54956542616044);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 }

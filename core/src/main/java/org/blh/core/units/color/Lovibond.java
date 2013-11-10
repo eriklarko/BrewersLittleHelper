@@ -1,12 +1,17 @@
 package org.blh.core.units.color;
 
-import org.blh.core.units.Unit;
+import java.math.BigDecimal;
+import org.blh.core.units.NumericUnit;
 
 /**
  *
  * @author thinner
  */
-public class Lovibond extends Unit<Double> {
+public class Lovibond extends NumericUnit {
+
+    public Lovibond(BigDecimal value) {
+        super(value);
+    }
 
     public Lovibond(double value) {
         super(value);

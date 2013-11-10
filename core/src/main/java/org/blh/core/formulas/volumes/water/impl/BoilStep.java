@@ -22,8 +22,8 @@ public class BoilStep extends AdditiveStep {
 
     @Override
     protected double term(FullContext context) {
-        Hour boilTime = new Hour(context.boilTime.value().value());
-        double totalBoilOff = context.getEquipment().getBoilOff().value().value() * boilTime.value();
+        Hour boilTime = new Hour(context.boilTime.value().inexactValue());
+        double totalBoilOff = context.getEquipment().getBoilOff().value().inexactValue() * boilTime.inexactValue();
         
         return totalBoilOff;
     }

@@ -26,7 +26,7 @@ public class SimpleHenrysLaw implements Formula<PSI> {
     }
 
     public PSI calc(CO2Volumes volumes, Fahrenheit temperature) {
-        double d = volumes.value() * (temperature.value() + 12.4);
+        double d = volumes.inexactValue() * (temperature.inexactValue() + 12.4);
         d = d/4.85;
         d -= 14.7;
 
@@ -34,8 +34,8 @@ public class SimpleHenrysLaw implements Formula<PSI> {
     }
 
     public Bar calc(CO2Volumes volumes, Celsius temperature) {
-        double d = (36 * temperature.value() + 888) / 97;
-        d = volumes.value() * d;
+        double d = (36 * temperature.inexactValue() + 888) / 97;
+        d = volumes.inexactValue() * d;
         d = d - 14.7;
 
         return new PSI(d).toBar();

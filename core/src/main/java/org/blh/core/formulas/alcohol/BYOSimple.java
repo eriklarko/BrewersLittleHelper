@@ -32,8 +32,8 @@ public class BYOSimple implements Formula<ABV>{
     }
     
     public ABV calc(SpecificGravity originalGravity, SpecificGravity finalGravity) {
-        double og = originalGravity.value();
-        double fg = finalGravity.value();
+        double og = originalGravity.inexactValue();
+        double fg = finalGravity.inexactValue();
         
         return new ABV((og - fg) * 129);
     }

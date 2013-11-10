@@ -1,12 +1,17 @@
 package org.blh.core.units.weight;
 
-import org.blh.core.units.Unit;
+import java.math.BigDecimal;
+import org.blh.core.units.NumericUnit;
 
 /**
  *
  * @author thinner
  */
-public class Kilograms extends Unit<Double> {
+public class Kilograms extends NumericUnit {
+
+    public Kilograms(BigDecimal value) {
+        super(value);
+    }
 
     public Kilograms(double value) {
         super(value);

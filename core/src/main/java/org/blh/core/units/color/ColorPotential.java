@@ -1,23 +1,23 @@
 package org.blh.core.units.color;
 
-import org.blh.core.units.Unit;
+import org.blh.core.units.NumericUnit;
 import org.blh.core.units.weight.Lbs;
 
 /**
  *
  * @author thinner
  */
-public class ColorPotential extends Unit<Double> {
+public class ColorPotential extends NumericUnit {
 
     public ColorPotential() {
         super(0d);
     }
 
     public ColorPotential(Lovibond color, Lbs amount) {
-        super(color.value() * amount.value());
+        super(color.value().multiply(amount.value()));
     }
 
     public void add(Lovibond color, Lbs amount) {
-        value += color.value() * amount.value();
+        value = value.add(color.value().multiply(amount.value()));
     }
 }

@@ -1,7 +1,6 @@
 package org.blh.core.units.weight;
 
-import org.blh.core.units.weight.Oz;
-import org.blh.core.units.weight.Grams;
+import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,9 +13,9 @@ public class OzTest {
     @Test
     public void testDouble() {
         Oz actual = new Oz(2);
-        double expected = 2;
+        BigDecimal expected = new BigDecimal(2);
         
-        Assert.assertEquals(expected, actual.value(), 0);
+        Assert.assertEquals(expected, actual.value());
     }
     
     @Test
@@ -24,7 +23,7 @@ public class OzTest {
         Oz actual = new Oz(new Grams(2));
         Oz expected = new Oz(0.0705479239);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0.00001);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 
     @Test
@@ -32,6 +31,6 @@ public class OzTest {
         Grams actual = new Oz(3).toGrams();
         Grams expected = new Grams(85.0485694);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0.00001);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 }

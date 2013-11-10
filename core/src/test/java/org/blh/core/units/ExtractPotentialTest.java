@@ -1,6 +1,6 @@
 package org.blh.core.units;
 
-import org.blh.core.units.ExtractPotential;
+import java.math.BigDecimal;
 import org.blh.core.units.gravity.GravityPoints;
 import org.blh.core.units.weight.Kilograms;
 import org.junit.Assert;
@@ -18,10 +18,10 @@ public class ExtractPotentialTest {
         Kilograms weight = new Kilograms(3);
         
         ExtractPotential actual = new ExtractPotential(gp, weight);
-        double expectedValue = 2/3d;
+        BigDecimal expectedValue = new BigDecimal(2).divide(new BigDecimal(3));
         
-        Assert.assertEquals("Value", expectedValue, actual.value(), 0);
-        Assert.assertEquals("Gravity points", gp.value(), actual.getGravityPoints().value(), 0);
-        Assert.assertEquals("Weight", weight.value(), actual.getWeight().value(), 0);
+        Assert.assertEquals("Value", expectedValue, actual.value());
+        Assert.assertEquals("Gravity points", gp.value(), actual.getGravityPoints().value());
+        Assert.assertEquals("Weight", weight.value(), actual.getWeight().value());
     }
 }

@@ -1,8 +1,5 @@
 package org.blh.core.formulas.gravity.finalgravity;
 
-import org.blh.core.formulas.gravity.finalgravity.BYOSimple;
-import org.blh.core.formulas.gravity.finalgravity.Brewgr;
-import org.blh.core.formulas.gravity.finalgravity.Nostrildamus;
 import org.blh.core.units.Factor;
 import org.blh.core.units.gravity.GravityPoints;
 import org.blh.core.units.gravity.SpecificGravity;
@@ -25,8 +22,8 @@ public class FinalGravityFormulasTests {
         SpecificGravity actualFG1 = f.calc(new GravityPoints(og), yeastAttenuation);
         SpecificGravity actualFG2 = f.calc(og, yeastAttenuation);
 
-        Assert.assertEquals("Original failed", expectedFG.value(), actualFG1.value(), 0.00001);
-        Assert.assertEquals("Tweaked failed", expectedFG.value(), actualFG2.value(), 0.00001);
+        Assert.assertEquals("Original failed", expectedFG.value(), actualFG1.value());
+        Assert.assertEquals("Tweaked failed", expectedFG.value(), actualFG2.value());
     }
 
     @Test
@@ -36,7 +33,7 @@ public class FinalGravityFormulasTests {
         Nostrildamus f = new Nostrildamus();
         SpecificGravity actualFG = f.calc(og, yeastAttenuation);
 
-        Assert.assertEquals(expectedFG.value(), actualFG.value(), 0.00001);
+        Assert.assertEquals(expectedFG.value(), actualFG.value());
     }
 
     @Test
@@ -46,6 +43,6 @@ public class FinalGravityFormulasTests {
         Brewgr f = new Brewgr();
         SpecificGravity actualFG = f.calc(new GravityPoints(og), yeastAttenuation);
 
-        Assert.assertEquals(expectedFG.value(), actualFG.value(), 0.00001);
+        Assert.assertEquals(expectedFG.value(), actualFG.value());
     }
 }

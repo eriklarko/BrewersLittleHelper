@@ -1,6 +1,6 @@
 package org.blh.core.recipe;
 
-import org.blh.core.units.ExtractPotential;
+import java.math.BigDecimal;
 import org.blh.core.units.color.ColorPotential;
 import org.blh.core.units.gravity.GravityPoints;
 import org.blh.core.units.weight.Grams;
@@ -24,21 +24,21 @@ public class IngredientsList {
     }
 
     public List<HopAddition> getHopAdditions() {
-        return new LinkedList<HopAddition>(hopAdditions);
+        return new LinkedList<>(hopAdditions);
     }
 
     public Kilograms getTotalGrainWeight() {
-        double totalWeight = 0;
+        BigDecimal totalWeight = BigDecimal.ZERO;
         for (GristPart fermentable : fermentables) {
-            totalWeight += fermentable.getMalt().color.value();
+            totalWeight = totalWeight.add(fermentable.getMalt().color.value());
         }
         return new Kilograms(totalWeight);
     }
 
     public GravityPoints getTotalGravityPoints() {
-        double specificGravityPoints = 0;
+        BigDecimal specificGravityPoints = BigDecimal.ZERO;
         for (GristPart fermentable : fermentables) {
-            specificGravityPoints += fermentable.getMalt().extractPotential.value();
+            specificGravityPoints = specificGravityPoints.add(fermentable.getMalt().extractPotential.value());
         }
 
         return new GravityPoints(specificGravityPoints);
@@ -53,9 +53,9 @@ public class IngredientsList {
     }
 
     public Grams getTotalHopWeight() {
-        double totalGrams = 0;
+        BigDecimal totalGrams = BigDecimal.ZERO;
         for (HopAddition addition : hopAdditions) {
-            totalGrams += addition.getAmount().value();
+            totalGrams = totalGrams.add(addition.getAmount().value());
         }
         return new Grams(totalGrams);
     }

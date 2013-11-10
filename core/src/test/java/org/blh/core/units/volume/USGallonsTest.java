@@ -1,7 +1,6 @@
 package org.blh.core.units.volume;
 
-import org.blh.core.units.volume.USGallons;
-import org.blh.core.units.volume.Liters;
+import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,9 +13,9 @@ public class USGallonsTest {
     @Test
     public void testDouble() {
         USGallons actual = new USGallons(2);
-        double expected = 2;
+        BigDecimal expected = new BigDecimal(2);
         
-        Assert.assertEquals(expected, actual.value(), 0);
+        Assert.assertEquals(expected, actual.value());
     }
     
     @Test
@@ -24,7 +23,7 @@ public class USGallonsTest {
         USGallons actual = new USGallons(new Liters(2));
         USGallons expected = new USGallons(0.528344105);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0.00001);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 
     @Test
@@ -32,6 +31,6 @@ public class USGallonsTest {
         Liters actual = new USGallons(5).toLiters();
         Liters expected = new Liters(18.9270589);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0.00001);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 }

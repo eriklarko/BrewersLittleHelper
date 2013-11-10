@@ -1,6 +1,7 @@
 package org.blh.core.units.gravity;
 
-import org.blh.core.units.Unit;
+import java.math.BigDecimal;
+import org.blh.core.units.NumericUnit;
 
 /**
  * Taken from http://pintwell.com/2011/nov/02/calculate-specific-gravity-plato/ and
@@ -10,22 +11,27 @@ import org.blh.core.units.Unit;
  *
  * Created by Erik Larkö at 7/4/13 10:48 PM
  */
-public class Plato extends Unit<Double> {
+public class Plato extends NumericUnit {
+
+    public static final BigDecimal FOUR = BigDecimal.valueOf(4);
+    public static final BigDecimal _258_2 = BigDecimal.valueOf(258.2);
+    public static final BigDecimal _258_6 = BigDecimal.valueOf(258.6);
+    public static final BigDecimal _227_1 = BigDecimal.valueOf(227.1);
 
     public Plato(double value) {
         super(value);
     }
 
     public Plato(SpecificGravity gravity) {
-        super((gravity.value() - 1) * 1000 / 4);
+        super((gravity.value().subtract(BigDecimal.ONE)).multiply(GravityPoints.ONE_THOUSAND).divide(FOUR));
     }
 
     public SpecificGravity toSpecificGravity() {
-        double a = this.value() / 258.2;
-        a = a * 227.1;
-        a = 258.6 - a;
-        a = this.value() / a;
-        a = a + 1;
+        BigDecimal a = this.value().divide(_258_2);
+        a = a.multiply(_227_1);
+        a = _258_6.subtract(a);
+        a = this.value().divide(a);
+        a = a.add(BigDecimal.ONE);
         return new SpecificGravity(a);
     }
 }

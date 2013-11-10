@@ -20,8 +20,8 @@ public class Daniels implements Formula<ABV> {
     }
     
     public ABV calc(SpecificGravity originalGravity, SpecificGravity finalGravity) {
-        double og = originalGravity.value();
-        double fg = finalGravity.value();
+        double og = originalGravity.inexactValue();
+        double fg = finalGravity.inexactValue();
         
         return new ABV((76.08 * (og-fg) / (1.775-og)) * (fg / 0.794));
     }

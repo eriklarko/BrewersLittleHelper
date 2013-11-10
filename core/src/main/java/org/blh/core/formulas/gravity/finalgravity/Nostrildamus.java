@@ -21,7 +21,7 @@ public class Nostrildamus implements Formula<SpecificGravity> {
     }
 
     public SpecificGravity calc(SpecificGravity og, Factor yeastAttenuation) {
-        double fg = (og.value() - 1) * (1 - yeastAttenuation.value()) + 1;
+        double fg = (og.inexactValue() - 1) * (1 - yeastAttenuation.inexactValue()) + 1;
         return new SpecificGravity(fg);
     }
 }

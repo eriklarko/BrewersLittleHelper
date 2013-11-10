@@ -22,6 +22,6 @@ public class Mosher implements Formula<EBC> {
     }
 
     public EBC calc(MaltColorUnit mcu) {
-        return new EBC(((0.3 * mcu.value()) + 4.7) * 1.97);
+        return new EBC(((0.3 * mcu.inexactValue()) + 4.7) * 1.97);
     }
 }

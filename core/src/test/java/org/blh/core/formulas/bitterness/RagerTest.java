@@ -1,6 +1,5 @@
 package org.blh.core.formulas.bitterness;
 
-import org.blh.core.formulas.bitterness.Rager;
 import org.blh.core.ingredients.Hop;
 import org.blh.core.recipe.HopAddition;
 import org.blh.core.uncategorized.FullContext;
@@ -42,7 +41,7 @@ public class RagerTest {
         IBU actual = f.calc(context);
         IBU expected = new IBU(87.423);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0.001);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 
     @Test
@@ -56,6 +55,6 @@ public class RagerTest {
         IBU actual = f.getIBUsFromAddition(addition, boilVolume, boilGravity);
         IBU expected = new IBU(48.355);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0.001);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 }

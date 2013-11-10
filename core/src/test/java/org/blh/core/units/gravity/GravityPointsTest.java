@@ -1,7 +1,6 @@
 package org.blh.core.units.gravity;
 
-import org.blh.core.units.gravity.GravityPoints;
-import org.blh.core.units.gravity.SpecificGravity;
+import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,9 +13,9 @@ public class GravityPointsTest {
 @Test
     public void testDouble() {
         GravityPoints actual = new GravityPoints(2);
-        double expected = 2;
+        BigDecimal expected = new BigDecimal(2);
         
-        Assert.assertEquals(expected, actual.value(), 0);
+        Assert.assertEquals(expected, actual.value());
     }
 
     @Test
@@ -24,7 +23,7 @@ public class GravityPointsTest {
         GravityPoints actual = new GravityPoints(new SpecificGravity(1.061));
         GravityPoints expected = new GravityPoints(61);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0.00001);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 
     @Test
@@ -32,6 +31,6 @@ public class GravityPointsTest {
         SpecificGravity actual = new GravityPoints(57).toSpecificGravity();
         SpecificGravity expected = new SpecificGravity(1.057);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0.00001);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 }

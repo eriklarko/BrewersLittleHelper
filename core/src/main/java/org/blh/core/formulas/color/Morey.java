@@ -37,6 +37,6 @@ public class Morey implements Formula<EBC> {
     }
 
     public EBC calc(MaltColorUnit mcu) {
-        return new EBC((1.4922 * Math.pow(mcu.value(), 0.6859)) * 1.97);
+        return new EBC((1.4922 * Math.pow(mcu.inexactValue(), 0.6859)) * 1.97);
     }
 }

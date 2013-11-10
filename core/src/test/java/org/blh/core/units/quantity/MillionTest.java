@@ -13,9 +13,9 @@ public class MillionTest {
     @Test
     public void testDouble() {
         Million actual = new Million(2);
-        double expected = 2;
+        BigDecimal expected = new BigDecimal(2);
         
-        Assert.assertEquals(expected, actual.value(), 0);
+        Assert.assertEquals(expected, actual.value());
     }
 
     @Test

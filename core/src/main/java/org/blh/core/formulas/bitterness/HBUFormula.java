@@ -25,7 +25,7 @@ public class HBUFormula implements Formula<HBU>{
     }
     
     private double getRawHBUs(Oz amount, Percentage alphaAcids) {
-        return amount.value() * alphaAcids.value();
+        return amount.inexactValue() * alphaAcids.inexactValue();
     }
     
     public HBU getHBUsForAddition(HopAddition addition) {

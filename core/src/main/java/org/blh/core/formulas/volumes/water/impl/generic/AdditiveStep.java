@@ -32,18 +32,18 @@ public abstract class AdditiveStep extends BrewStep {
     @Override
     protected Liters calculateVolumeAfterStep(Liters base, FullContext context) {
         if (vol == Volume.DECREASES_IN_STEP) {
-            return new Liters(base.value() - term(context));
+            return new Liters(base.inexactValue() - term(context));
         } else {
-            return new Liters(base.value() + term(context));
+            return new Liters(base.inexactValue() + term(context));
         }
     }
 
     @Override
     protected Liters calculateVolumeBeforeStep(Liters base, FullContext context) {
         if (vol == Volume.DECREASES_IN_STEP) {
-            return new Liters(base.value() + term(context));
+            return new Liters(base.inexactValue() + term(context));
         } else {
-            return new Liters(base.value() - term(context));
+            return new Liters(base.inexactValue() - term(context));
         }
     }
 }

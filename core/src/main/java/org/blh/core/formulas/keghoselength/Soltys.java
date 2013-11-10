@@ -2,7 +2,6 @@ package org.blh.core.formulas.keghoselength;
 
 import org.blh.core.formulas.Formula;
 import org.blh.core.uncategorized.FullContext;
-import org.blh.core.units.CO2Volumes;
 import org.blh.core.units.distance.Feet;
 import org.blh.core.units.distance.Inch;
 import org.blh.core.units.distance.Meters;
@@ -26,13 +25,13 @@ public class Soltys implements Formula<Meters> {
     }
 
     public Feet calc(SpecificGravity gravity, PSI kegPressure, Inch hoseDiameter, Feet tapHeight, Seconds pintFillTime) {
-        double deltaP = kegPressure.value() * 144;
-        double specificWeight = gravity.value() * 62.4;
-        double a = deltaP / specificWeight - tapHeight.value();
+        double deltaP = kegPressure.inexactValue() * 144;
+        double specificWeight = gravity.inexactValue() * 62.4;
+        double a = deltaP / specificWeight - tapHeight.inexactValue();
 
-        double D = hoseDiameter.value() / 12;
+        double D = hoseDiameter.inexactValue() / 12;
         double A = Math.pow(D, 2) * Math.PI / 4;
-        double Q = ((1d / 8) / 7.4805) / pintFillTime.value();
+        double Q = ((1d / 8) / 7.4805) / pintFillTime.inexactValue();
         double V = Q / A;
         double f = swameeJain(D, V, HOSE_ROUGHNESS, VISCOSITY);
         double b = D / f * 2;

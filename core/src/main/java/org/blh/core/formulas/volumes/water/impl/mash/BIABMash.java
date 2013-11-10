@@ -15,16 +15,16 @@ public class BIABMash extends BrewStep {
 
     @Override
     protected Liters calculateVolumeAfterStep(Liters volumeBeforeStep, FullContext context) {
-        double litersStuckInGrain = context.getIngredientsList().getTotalGrainWeight().value() * 0.9;
-        double litersLeftAfterBagIsRemoved = volumeBeforeStep.value() - litersStuckInGrain;
+        double litersStuckInGrain = context.getIngredientsList().getTotalGrainWeight().inexactValue() * 0.9;
+        double litersLeftAfterBagIsRemoved = volumeBeforeStep.inexactValue() - litersStuckInGrain;
         
         return new Liters(litersLeftAfterBagIsRemoved);
     }
 
     @Override
     protected Liters calculateVolumeBeforeStep(Liters volumeAfterStep, FullContext context) {
-        double litersStuckInGrain = context.getIngredientsList().getTotalGrainWeight().value() * 0.9;
-        double litersInPotWhenBagIsIn = volumeAfterStep.value() + litersStuckInGrain;
+        double litersStuckInGrain = context.getIngredientsList().getTotalGrainWeight().inexactValue() * 0.9;
+        double litersInPotWhenBagIsIn = volumeAfterStep.inexactValue() + litersStuckInGrain;
         
         return new Liters(litersInPotWhenBagIsIn);
     }

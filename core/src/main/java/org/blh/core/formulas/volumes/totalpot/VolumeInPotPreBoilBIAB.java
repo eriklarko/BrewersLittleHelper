@@ -23,7 +23,7 @@ public class VolumeInPotPreBoilBIAB implements Formula<Liters> {
     }
 
     public Liters calc(Kilograms grainWeight, Liters preMashVolume) {
-        return new Liters(grainWeight.value() * GRAIN_VOLUME + preMashVolume.value());
+        return new Liters(grainWeight.inexactValue() * GRAIN_VOLUME + preMashVolume.inexactValue());
     }
 
 }

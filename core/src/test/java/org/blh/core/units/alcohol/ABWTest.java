@@ -1,5 +1,6 @@
 package org.blh.core.units.alcohol;
 
+import java.math.BigDecimal;
 import org.blh.core.units.Factor;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,15 +16,15 @@ public class ABWTest {
         ABW actual = new ABW(new Factor(1));
         Factor expected = new Factor(1);
         
-        Assert.assertEquals(expected.value(), actual.value().value(), 0);
+        Assert.assertEquals(expected.value(), actual.value().value());
     }
     
         @Test
     public void testDouble() {
         ABW actual = new ABW(1);
-        double expected = 1;
+        BigDecimal expected = new BigDecimal(1);
         
-        Assert.assertEquals(expected, actual.value().value(), 0);
+        Assert.assertEquals(expected, actual.value().value());
     }
         
     @Test
@@ -31,7 +32,7 @@ public class ABWTest {
         ABW actual = new ABW(new ABV(1));
         ABW expected = new ABW(0.8);
         
-        Assert.assertEquals(expected.value().value(), actual.value().value(), 0);
+        Assert.assertEquals(expected.value().value(), actual.value().value());
     }
             
     @Test
@@ -42,6 +43,6 @@ public class ABWTest {
         ABV actual = new ABW(3.2).toABV();
         ABV expected = new ABV(4);
         
-        Assert.assertEquals(expected.value().value(), actual.value().value(), 0);
+        Assert.assertEquals(expected.value().value(), actual.value().value());
     }
 }

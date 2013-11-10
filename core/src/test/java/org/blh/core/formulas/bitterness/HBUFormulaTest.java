@@ -38,7 +38,7 @@ public class HBUFormulaTest {
         HBU actual = f.calc(context);
         HBU expected = new HBU(33);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0.00001);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 
     @Test
@@ -49,6 +49,6 @@ public class HBUFormulaTest {
         HBU actual = f.getHBUsForAddition(addition);
         HBU expected = new HBU(18);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0.00001);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 }

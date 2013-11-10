@@ -7,13 +7,13 @@ import org.blh.core.units.weight.Kilograms;
  *
  * @author thinner
  */
-public class ExtractPotential extends Unit<Double> {
+public class ExtractPotential extends NumericUnit {
 
     private GravityPoints gravityPoints;
     private Kilograms weight;
 
     public ExtractPotential(GravityPoints gravityPoints, Kilograms weight) {
-        super(gravityPoints.value() / weight.value());
+        super(gravityPoints.value().divide(weight.value()));
 
         this.gravityPoints = gravityPoints;
         this.weight = weight;

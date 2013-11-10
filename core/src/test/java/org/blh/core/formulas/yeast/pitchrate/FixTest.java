@@ -34,7 +34,7 @@ public class FixTest {
         YeastCellCount result1 = instance.calc(neededCellsCount, amountOfWort, wortDensity);
         YeastCellCount result2 = instance.calc(type, amountOfWort, wortDensity);
         
-        assertEquals("Specific yeast cell count", expResult.value().value(), result1.value().value(), 0.0001);
-        assertEquals("Type-determined yeast cell count", expResult.value().value(), result2.value().value(), 0.0001);
+        assertEquals("Specific yeast cell count", expResult.value().value(), result1.value().value());
+        assertEquals("Type-determined yeast cell count", expResult.value().value(), result2.value().value());
     }
 }

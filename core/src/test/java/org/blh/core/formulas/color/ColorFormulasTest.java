@@ -1,9 +1,6 @@
 package org.blh.core.formulas.color;
 
 import org.blh.core.formulas.Formula;
-import org.blh.core.formulas.color.Daniels;
-import org.blh.core.formulas.color.Morey;
-import org.blh.core.formulas.color.Mosher;
 import org.blh.core.uncategorized.FullContext;
 import org.blh.core.uncategorized.InputtedOrCalculatedValue;
 import org.blh.core.units.color.ColorPotential;
@@ -48,11 +45,11 @@ public class ColorFormulasTest {
     private void doAssert(Formula<EBC> f, double mcuValue, EBC expected) {
         MaltColorUnit mcu = maltColorUnitValueOf(mcuValue);
         FullContext context = new FullContext();
-        context.maltColorUnit = new InputtedOrCalculatedValue<MaltColorUnit>(mcu);
+        context.maltColorUnit = new InputtedOrCalculatedValue<>(mcu);
 
         EBC actual = f.calc(context);
 
-        Assert.assertEquals(expected.value(), actual.value(), 0.01);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 
 

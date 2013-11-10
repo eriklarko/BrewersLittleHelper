@@ -1,5 +1,6 @@
 package org.blh.core.uncategorized;
 
+import java.math.BigDecimal;
 import org.blh.core.formulas.volumes.water.BrewStep;
 import org.blh.core.formulas.volumes.water.VolumeCalculator;
 import org.blh.core.formulas.volumes.water.impl.FinalStep;
@@ -71,17 +72,17 @@ public class FullContext {
     }
 
     public Liters getBoilVolumeAtMinutesLeft(Minutes time) {
-        double timePercent = time.value() / boilTime.value().value();
-        double totalBoilOff = vc.pre(BOIL, this).value() - vc.post(BOIL, this).value();
+        BigDecimal timePercent = time.value().divide(boilTime.value().value());
+        BigDecimal totalBoilOff = vc.pre(BOIL, this).value().subtract(vc.post(BOIL, this).value());
 
-        return new Liters(totalBoilOff * timePercent);
+        return new Liters(totalBoilOff.multiply(timePercent));
     }
 
     public SpecificGravity getBoilGravityAtMinutesLeft(Minutes time) {
-        double timePercent = time.value() / boilTime.value().value();
-        double totalGravityDifference = postBoilGravity.value().value() - preBoilGravity.value().value();
+        BigDecimal timePercent = time.value().divide(boilTime.value().value());
+        BigDecimal totalGravityDifference = postBoilGravity.value().value().subtract(preBoilGravity.value().value());
 
-        return new SpecificGravity(totalGravityDifference * timePercent);
+        return new SpecificGravity(totalGravityDifference.multiply(timePercent));
     }
 
     public Liters volumePre(BrewStep step) {

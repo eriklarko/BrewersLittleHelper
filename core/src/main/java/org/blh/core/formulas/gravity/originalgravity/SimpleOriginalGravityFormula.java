@@ -6,7 +6,6 @@ import org.blh.core.recipe.GristPart;
 import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.ExtractPotential;
 import org.blh.core.units.Factor;
-import org.blh.core.units.Unit;
 import org.blh.core.units.gravity.GravityPoints;
 import org.blh.core.units.gravity.SpecificGravity;
 import org.blh.core.units.volume.USGallons;
@@ -14,6 +13,7 @@ import org.blh.core.units.volume.Liters;
 import org.blh.core.units.weight.Kilograms;
 import org.blh.core.units.weight.Lbs;
 import java.util.List;
+import org.blh.core.units.NumericUnit;
 
 /**
  *
@@ -58,7 +58,7 @@ public class SimpleOriginalGravityFormula implements Formula<SpecificGravity> {
             a += calcForOneGristPart(gp.getAmount(), gp.getMalt().extractPotential, eff);
         }
 
-        return new GravityPoints(a / preBoilVolume.value()).toSpecificGravity();
+        return new GravityPoints(a / preBoilVolume.inexactValue()).toSpecificGravity();
     }
 
     protected Liters getVolume(FullContext context) {
@@ -75,18 +75,18 @@ public class SimpleOriginalGravityFormula implements Formula<SpecificGravity> {
             a += calcForOneGristPart(grainWeight, ep, eff);
         }
 
-        return new GravityPoints(a / preBoilVolume.value()).toSpecificGravity();
+        return new GravityPoints(a / preBoilVolume.inexactValue()).toSpecificGravity();
     }
 
     private double calcForOneGristPart(Lbs grainWeight, LbsExtractPotential extractPotential, Factor extractionEfficiency) {
-        return grainWeight.value() * extractPotential.value() * extractionEfficiency.value();
+        return grainWeight.inexactValue() * extractPotential.inexactValue() * extractionEfficiency.inexactValue();
     }
 
     private double calcForOneGristPart(Kilograms grainWeight, ExtractPotential extractPotential, Factor extractionEfficiency) {
-        return grainWeight.value() * extractPotential.value() * extractionEfficiency.value();
+        return grainWeight.inexactValue() * extractPotential.inexactValue() * extractionEfficiency.inexactValue();
     }
 
-    private class LbsExtractPotential extends Unit<Double> {
+    private class LbsExtractPotential extends NumericUnit {
 
         /**
          *  EE(GP/Kg) = GP / Kg
@@ -96,7 +96,7 @@ public class SimpleOriginalGravityFormula implements Formula<SpecificGravity> {
          *  EE(GP/Kg)  = GP / (Lbs / 2.20462262)
          */
         public LbsExtractPotential(ExtractPotential value) {
-            super(value.getGravityPoints().value() * new Lbs(value.getWeight()).value());
+            super(value.getGravityPoints().inexactValue() * new Lbs(value.getWeight()).inexactValue());
         }
     }
 }

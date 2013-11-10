@@ -1,7 +1,6 @@
 package org.blh.core.units.temperature;
 
-import org.blh.core.units.temperature.Celsius;
-import org.blh.core.units.temperature.Fahrenheit;
+import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,9 +13,9 @@ public class FahrenheitTest {
     @Test
     public void testDouble() {
         Fahrenheit actual = new Fahrenheit(2);
-        double expected = 2;
+        BigDecimal expected = new BigDecimal(2);
         
-        Assert.assertEquals(expected, actual.value(), 0);
+        Assert.assertEquals(expected, actual.value());
     }
     
     @Test
@@ -24,7 +23,7 @@ public class FahrenheitTest {
         Fahrenheit actual = new Fahrenheit(new Celsius(2));
         Fahrenheit expected = new Fahrenheit(35.6);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 
     @Test
@@ -32,6 +31,6 @@ public class FahrenheitTest {
         Celsius actual = new Fahrenheit(5).toCelsius();
         Celsius expected = new Celsius(-15);
         
-        Assert.assertEquals(expected.value(), actual.value(), 0);
+        Assert.assertEquals(expected.value(), actual.value());
     }
 }

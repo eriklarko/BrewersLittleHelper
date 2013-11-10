@@ -1,8 +1,6 @@
 package org.blh.core.units.quantity;
 
-import org.blh.core.units.quantity.Billion;
-import org.blh.core.units.quantity.Million;
-import org.blh.core.units.quantity.YeastCellCount;
+import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,9 +13,9 @@ public class YeastCellCountTest {
     @Test
     public void testInt() {
         YeastCellCount actual = new YeastCellCount(2);
-        double expected = 2;
+        BigDecimal expected = new BigDecimal(2);
         
-        Assert.assertEquals(expected, actual.value().value(), 0);
+        Assert.assertEquals(expected, actual.value().value());
     }
     
     @Test
@@ -25,7 +23,7 @@ public class YeastCellCountTest {
         YeastCellCount actual = new YeastCellCount(new Million(2));
         Billion expected = new Billion(0.002);
         
-        Assert.assertEquals(expected.value(), actual.value().value(), 0);
+        Assert.assertEquals(expected.value(), actual.value().value());
     }
     
     @Test
@@ -33,6 +31,6 @@ public class YeastCellCountTest {
         YeastCellCount actual = new YeastCellCount(new Billion(2));
         Billion expected = new Billion(2);
         
-        Assert.assertEquals(expected.value(), actual.value().value(), 0);
+        Assert.assertEquals(expected.value(), actual.value().value());
     }
 }

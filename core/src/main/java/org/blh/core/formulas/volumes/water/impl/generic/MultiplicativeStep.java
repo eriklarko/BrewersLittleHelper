@@ -19,11 +19,11 @@ public class MultiplicativeStep extends BrewStep {
 
     @Override
     protected Liters calculateVolumeAfterStep(Liters base, FullContext context) {
-        return new Liters(base.value() * term);
+        return new Liters(base.inexactValue() * term);
     }
 
     @Override
     protected Liters calculateVolumeBeforeStep(Liters base, FullContext context) {
-        return new Liters(base.value() / term);
+        return new Liters(base.inexactValue() / term);
     }
 }

@@ -19,6 +19,6 @@ public class Average implements Formula<SpecificGravity> {
     }
 
     public SpecificGravity calc(SpecificGravity preBoil, SpecificGravity postBoil) {
-        return new SpecificGravity((preBoil.value() + postBoil.value()) / 2);
+        return new SpecificGravity((preBoil.inexactValue()+ postBoil.inexactValue()) / 2);
     }
 }
