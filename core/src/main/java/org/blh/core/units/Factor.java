@@ -7,7 +7,12 @@ import java.math.BigDecimal;
  * @author thinner
  */
 public class Factor extends NumericUnit {
+
     public static final BigDecimal CONVERSION_FACTOR = new BigDecimal(100);
+
+    public Factor(BigDecimal value) {
+        super(value);
+    }
 
     public Factor(BigDecimal value) {
         super(value);

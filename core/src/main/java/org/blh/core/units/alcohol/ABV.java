@@ -18,6 +18,10 @@ public class ABV extends Unit<Factor> {
         super(new Factor(value));
     }
 
+    public ABV(BigDecimal value) {
+        super(new Factor(value));
+    }
+
     public ABV(double value) {
         super(new Factor(value));
     }
