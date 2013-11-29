@@ -6,6 +6,7 @@ import org.blh.core.recipe.GristPart;
 import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.ExtractPotential;
 import org.blh.core.units.Factor;
+import org.blh.core.units.NumericalUnit;
 import org.blh.core.units.gravity.GravityPoints;
 import org.blh.core.units.gravity.SpecificGravity;
 import org.blh.core.units.volume.USGallons;
