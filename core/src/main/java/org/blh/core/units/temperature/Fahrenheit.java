@@ -1,14 +1,14 @@
 package org.blh.core.units.temperature;
 
 import java.math.BigDecimal;
-import org.blh.core.units.NumericUnit;
+import org.blh.core.units.NumericalUnit;
 
 /**
  * F = 9/5 C + 32 C = (F - 32) / (9/5) = 5(F - 32) / 9 = 5/9 * (F - 32)
  *
  * Created by Erik Larkö at 5/28/13 7:06 AM
  */
-public class Fahrenheit extends NumericUnit {
+public class Fahrenheit extends NumericalUnit {
 
     public static final BigDecimal FIVE = BigDecimal.valueOf(5);
     public static final BigDecimal NINE = BigDecimal.valueOf(9);

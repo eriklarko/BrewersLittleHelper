@@ -6,13 +6,9 @@ import java.math.BigDecimal;
  * On the form 0.xyzw. For xy.zw% use Percentage.
  * @author thinner
  */
-public class Factor extends NumericUnit {
+public class Factor extends NumericalUnit {
 
     public static final BigDecimal CONVERSION_FACTOR = new BigDecimal(100);
-
-    public Factor(BigDecimal value) {
-        super(value);
-    }
 
     public Factor(BigDecimal value) {
         super(value);

@@ -4,7 +4,7 @@ package org.blh.core.units;
  *
  * @author thinner
  */
-public class BJCPTasteRating extends NumericUnit {
+public class BJCPTasteRating extends NumericalUnit {
 
     public BJCPTasteRating(double value) {
         super(value);

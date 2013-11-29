@@ -1,14 +1,14 @@
 package org.blh.core.units.color;
 
 import java.math.BigDecimal;
-import org.blh.core.units.NumericUnit;
+import org.blh.core.units.NumericalUnit;
 
 /**
  * EBC = 1.97 * SRM -> SRM = EBC / 1.97
  *
  * @author thinner
  */
-public class SRM extends NumericUnit {
+public class SRM extends NumericalUnit {
 
     public static final BigDecimal CONVERSION_FACTOR = BigDecimal.valueOf(1.97);
 

@@ -1,7 +1,7 @@
 package org.blh.core.units.gravity;
 
 import java.math.BigDecimal;
-import org.blh.core.units.NumericUnit;
+import org.blh.core.units.NumericalUnit;
 
 /**
  * Taken from http://pintwell.com/2011/nov/02/calculate-specific-gravity-plato/ and
@@ -11,7 +11,7 @@ import org.blh.core.units.NumericUnit;
  *
  * Created by Erik Larkö at 7/4/13 10:48 PM
  */
-public class Plato extends NumericUnit {
+public class Plato extends NumericalUnit {
 
     public static final BigDecimal FOUR = BigDecimal.valueOf(4);
     public static final BigDecimal _258_2 = BigDecimal.valueOf(258.2);

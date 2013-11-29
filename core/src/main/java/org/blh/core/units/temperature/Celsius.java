@@ -1,13 +1,13 @@
 package org.blh.core.units.temperature;
 
 import java.math.BigDecimal;
-import org.blh.core.units.NumericUnit;
+import org.blh.core.units.NumericalUnit;
 
 /**
  *
  * @author thinner
  */
-public class Celsius extends NumericUnit {
+public class Celsius extends NumericalUnit {
 
     public Celsius(BigDecimal value) {
         super(value);

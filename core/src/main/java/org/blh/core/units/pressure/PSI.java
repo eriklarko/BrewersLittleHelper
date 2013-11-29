@@ -1,12 +1,12 @@
 package org.blh.core.units.pressure;
 
 import java.math.BigDecimal;
-import org.blh.core.units.NumericUnit;
+import org.blh.core.units.NumericalUnit;
 
 /**
  * Created by Erik Larkö at 5/28/13 7:05 AM
  */
-public class PSI extends NumericUnit {
+public class PSI extends NumericalUnit {
 
     public static final BigDecimal CONVERSION_FACTOR = BigDecimal.valueOf(14.503773800);
 

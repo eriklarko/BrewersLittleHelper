@@ -13,7 +13,7 @@ import org.blh.core.units.volume.Liters;
 import org.blh.core.units.weight.Kilograms;
 import org.blh.core.units.weight.Lbs;
 import java.util.List;
-import org.blh.core.units.NumericUnit;
+import org.blh.core.units.NumericalUnit;
 
 /**
  *
@@ -26,9 +26,9 @@ import org.blh.core.units.NumericUnit;
  * SGP(GP/l) = [W(kg) * EP(GP/kg) * EE] / V(l)
  *
  * SG = SGP / 1000 + 1
- * 
- * 
- * 
+ *
+ *
+ *
  * 1 Lb  = 0.45359237 kilograms = a kg
  * 1 gal = 3.78541178 liters    = b liters
  * SGP(GP/(b*l)     = [W(a*kg) * EP(GP/(b*l)) * EE] / V(b*l)
@@ -37,10 +37,10 @@ import org.blh.core.units.NumericUnit;
  *                  = [(lbs*a*kg) * EE] / (gal*b*l) * (GP/( 1 *a*kg))
  *                  = [(lbs*a*kg) * EE * GP] / (gal*b*l*a*kg)
  *                  = (lbs * EE * GP) / (gal * b * l)
- * 
+ *
  * GP / (gal * b * l) = (lbs * EE * GP) / (gal * b * l)
  * GP = lbs * EE * GP
- * 
+ *
  *
  * @author thinner
  */
@@ -86,12 +86,12 @@ public class SimpleOriginalGravityFormula implements Formula<SpecificGravity> {
         return grainWeight.inexactValue() * extractPotential.inexactValue() * extractionEfficiency.inexactValue();
     }
 
-    private class LbsExtractPotential extends NumericUnit {
+    private class LbsExtractPotential extends NumericalUnit {
 
         /**
          *  EE(GP/Kg) = GP / Kg
          *  EE(GP/Lbs) = GP / Lbs
-         * 
+         *
          *  EE(GP/Lbs) = GP / (2.20462262 * Kg)
          *  EE(GP/Kg)  = GP / (Lbs / 2.20462262)
          */

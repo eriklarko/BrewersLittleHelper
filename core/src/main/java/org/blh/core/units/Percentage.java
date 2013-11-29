@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  *
  * @author thinner
  */
-public class Percentage extends NumericUnit {
+public class Percentage extends NumericalUnit {
 
     public static final BigDecimal CONVERSION_FACTOR = new BigDecimal(100);
 
