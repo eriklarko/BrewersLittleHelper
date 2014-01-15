@@ -29,7 +29,7 @@ public class Tinseth implements Formula<IBU> {
     }
 
     private double getRawIBUsForAddition(HopAddition addition, Liters boilVolume, SpecificGravity boilGravity) {
-        double alpha = addition.getHop().alphaAcids.asFactor().inexactValue();
+        double alpha = addition.getHop().getAlphaAcids().asFactor().inexactValue();
         Grams mass = addition.getAmount();
         Minutes time = addition.getTimeInBoil();
 

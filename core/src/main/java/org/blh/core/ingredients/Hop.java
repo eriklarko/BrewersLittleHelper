@@ -7,11 +7,20 @@ import org.blh.core.units.Percentage;
  * @author thinner
  */
 public class Hop {
-    public final String name;
-    public final Percentage alphaAcids;
-    
+
+    private final String name;
+    private final Percentage alphaAcids;
+
     public Hop(String name, Percentage alphaAcids) {
         this.name = name;
         this.alphaAcids = alphaAcids;
     }
+
+	public String getName() {
+		return name;
+	}
+
+	public Percentage getAlphaAcids() {
+		return alphaAcids;
+	}
 }

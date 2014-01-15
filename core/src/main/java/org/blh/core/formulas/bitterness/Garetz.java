@@ -84,7 +84,7 @@ public class Garetz implements Formula<IBU> {
             double utilization = getUtilization(addition.getTimeInBoil());
 
             double combinedAdjustments = getCombinedAdjustments(finalVolume, boilVolume, preBoilGravity, elevation, IBUs);
-            IBUs = utilization * addition.getAmount().inexactValue() * addition.getHop().alphaAcids.inexactValue() * 0.1;
+            IBUs = utilization * addition.getAmount().inexactValue() * addition.getHop().getAlphaAcids().inexactValue() * 0.1;
             IBUs = IBUs / (boilVolume.inexactValue() * combinedAdjustments);
         } while (Math.abs(IBUs - oldIBUs) > 0.01);
 

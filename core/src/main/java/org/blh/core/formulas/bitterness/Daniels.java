@@ -30,7 +30,7 @@ public class Daniels implements Formula<IBU> {
         double totalIBUs = 0;
 
         for (HopAddition addition : context.getIngredientsList().getHopAdditions()) {
-            totalIBUs += getRawIBUsFromAddition(addition.getAmount(), addition.getHop().alphaAcids.asFactor(), 
+            totalIBUs += getRawIBUsFromAddition(addition.getAmount(), addition.getHop().getAlphaAcids().asFactor(),
                     context.originalGravity.value(), context.volumePost(context.BOIL), context.volumePre(context.FERMENTATION));
         }
 

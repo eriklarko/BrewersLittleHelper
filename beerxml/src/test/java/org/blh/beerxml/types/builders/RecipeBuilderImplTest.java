@@ -17,7 +17,6 @@ import org.blh.core.units.time.Days;
 import org.blh.core.units.time.Minutes;
 import org.blh.core.units.volume.Liters;
 import org.joda.time.DateTime;
-import org.joda.time.format.ISODateTimeFormat;
 import org.junit.Assert;
 import org.junit.Test;
 

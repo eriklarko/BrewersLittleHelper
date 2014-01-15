@@ -18,7 +18,7 @@ public class HBUFormula implements Formula<HBU>{
     public HBU calc(FullContext context) {
         double totalHBUs = 0;
         for(HopAddition addition : context.getIngredientsList().getHopAdditions()) {
-            totalHBUs += getRawHBUs(new Oz(addition.getAmount()), addition.getHop().alphaAcids);
+            totalHBUs += getRawHBUs(new Oz(addition.getAmount()), addition.getHop().getAlphaAcids());
         }
         
         return new HBU(totalHBUs);
@@ -29,7 +29,7 @@ public class HBUFormula implements Formula<HBU>{
     }
     
     public HBU getHBUsForAddition(HopAddition addition) {
-        return new HBU(getRawHBUs(new Oz(addition.getAmount()), addition.getHop().alphaAcids));
+        return new HBU(getRawHBUs(new Oz(addition.getAmount()), addition.getHop().getAlphaAcids()));
     }
 
 }

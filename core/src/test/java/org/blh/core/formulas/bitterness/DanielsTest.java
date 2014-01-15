@@ -53,7 +53,7 @@ public class DanielsTest {
         SpecificGravity boilGravity = new SpecificGravity(1.050);
         
         Daniels f = new Daniels();
-        IBU actual = f.getIBUsFromAddition(addition.getAmount(), addition.getHop().alphaAcids.asFactor(), boilGravity, postBoilVolume, preFermentationVolume);
+        IBU actual = f.getIBUsFromAddition(addition.getAmount(), addition.getHop().getAlphaAcids().asFactor(), boilGravity, postBoilVolume, preFermentationVolume);
         IBU expected = new IBU(34.54956542616044);
         
         Assert.assertEquals(expected.value(), actual.value());

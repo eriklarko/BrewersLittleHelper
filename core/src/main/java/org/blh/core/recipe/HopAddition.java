@@ -10,9 +10,9 @@ import org.blh.core.units.weight.Grams;
  */
 public class HopAddition {
 
-    private Hop hop;
-    private Minutes timeInBoil;
-    private Grams amount;
+    private final Hop hop;
+    private final Minutes timeInBoil;
+    private final Grams amount;
 
     public HopAddition(Hop hop, Minutes timeInBoil, Grams amount) {
         this.hop = hop;
