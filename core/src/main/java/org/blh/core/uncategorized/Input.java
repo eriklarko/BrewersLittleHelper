@@ -5,7 +5,8 @@ package org.blh.core.uncategorized;
  * @author thinner
  */
 public class Input<T> {
-    private T value;
+
+    private final T value;
 
     public Input(T value) {
         this.value = value;

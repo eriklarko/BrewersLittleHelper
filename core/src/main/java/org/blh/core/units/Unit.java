@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author thinner
  */
 public abstract class Unit<T> {
-    
+
     protected T value;
 
     public Unit(T value) {
@@ -33,7 +33,7 @@ public abstract class Unit<T> {
         if (getClass() != obj.getClass()) {
             return false;
         }
-       
+
         @SuppressWarnings("unchecked")
         final Unit<T> other = (Unit<T>) obj;
         return Objects.equals(this.value, other.value);

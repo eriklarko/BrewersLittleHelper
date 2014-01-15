@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.LinkedList;
 
 /**
+ * TODO: It seems that a lot of things here should be observable...
+ * All the calculating methods should be observable imo...
  *
  * @author thinner
  */
