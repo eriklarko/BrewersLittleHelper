@@ -18,6 +18,7 @@ public class IngredientsList {
 
     private List<GristPart> fermentables;
     private List<HopAddition> hopAdditions;
+    private List<YeastAddition<?>> yeastAdditions;
 
     public List<GristPart> getFermentables() {
         return fermentables;
@@ -26,6 +27,10 @@ public class IngredientsList {
     public List<HopAddition> getHopAdditions() {
         return new LinkedList<>(hopAdditions);
     }
+
+	public List<YeastAddition<?>> getYeastAdditions() {
+		return new LinkedList<>(yeastAdditions);
+	}
 
     public Kilograms getTotalGrainWeight() {
         BigDecimal totalWeight = BigDecimal.ZERO;
