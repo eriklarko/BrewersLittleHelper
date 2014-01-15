@@ -13,10 +13,10 @@ public class Malt {
         GRAIN, EXTRACT, SUGAR
     }
 
-    public final String name;
-    public final Lovibond color;
-    public final ExtractPotential extractPotential;
-    public final TYPE type;
+    private final String name;
+    private final Lovibond color;
+    private final ExtractPotential extractPotential;
+    private final TYPE type;
 
     public Malt(String name, Lovibond color, ExtractPotential extractPotential, TYPE type) {
         this.name = name;
@@ -24,4 +24,20 @@ public class Malt {
         this.extractPotential = extractPotential;
         this.type = type;
     }
+
+	public String getName() {
+		return name;
+	}
+
+	public Lovibond getColor() {
+		return color;
+	}
+
+	public ExtractPotential getExtractPotential() {
+		return extractPotential;
+	}
+
+	public TYPE getType() {
+		return type;
+	}
 }

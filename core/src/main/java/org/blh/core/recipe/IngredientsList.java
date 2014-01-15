@@ -35,7 +35,7 @@ public class IngredientsList {
     public Kilograms getTotalGrainWeight() {
         BigDecimal totalWeight = BigDecimal.ZERO;
         for (GristPart fermentable : fermentables) {
-            totalWeight = totalWeight.add(fermentable.getMalt().color.value());
+            totalWeight = totalWeight.add(fermentable.getMalt().getColor().value());
         }
         return new Kilograms(totalWeight);
     }
@@ -43,7 +43,7 @@ public class IngredientsList {
     public GravityPoints getTotalGravityPoints() {
         BigDecimal specificGravityPoints = BigDecimal.ZERO;
         for (GristPart fermentable : fermentables) {
-            specificGravityPoints = specificGravityPoints.add(fermentable.getMalt().extractPotential.value());
+            specificGravityPoints = specificGravityPoints.add(fermentable.getMalt().getExtractPotential().value());
         }
 
         return new GravityPoints(specificGravityPoints);
@@ -52,7 +52,7 @@ public class IngredientsList {
     public ColorPotential getTotalColorPotential() {
         ColorPotential potential = new ColorPotential();
         for (GristPart fermentable : fermentables) {
-            potential.add(fermentable.getMalt().color, new Lbs(fermentable.getAmount()));
+            potential.add(fermentable.getMalt().getColor(), new Lbs(fermentable.getAmount()));
         }
         return potential;
     }

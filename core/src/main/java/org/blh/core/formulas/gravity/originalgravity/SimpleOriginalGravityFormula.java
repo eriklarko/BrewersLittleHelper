@@ -1,5 +1,7 @@
 package org.blh.core.formulas.gravity.originalgravity;
 
+import java.util.List;
+
 import org.blh.core.formulas.Formula;
 import org.blh.core.ingredients.Malt;
 import org.blh.core.recipe.GristPart;
@@ -9,12 +11,10 @@ import org.blh.core.units.Factor;
 import org.blh.core.units.NumericalUnit;
 import org.blh.core.units.gravity.GravityPoints;
 import org.blh.core.units.gravity.SpecificGravity;
-import org.blh.core.units.volume.USGallons;
 import org.blh.core.units.volume.Liters;
+import org.blh.core.units.volume.USGallons;
 import org.blh.core.units.weight.Kilograms;
 import org.blh.core.units.weight.Lbs;
-import java.util.List;
-import org.blh.core.units.NumericalUnit;
 
 /**
  *
@@ -55,8 +55,8 @@ public class SimpleOriginalGravityFormula implements Formula<SpecificGravity> {
     public SpecificGravity calc(List<GristPart> gristParts, Liters preBoilVolume, Factor efficiency) {
         double a = 0;
         for (GristPart gp : gristParts) {
-            Factor eff = (gp.getMalt().type == Malt.TYPE.EXTRACT) ? new Factor(1) : efficiency;
-            a += calcForOneGristPart(gp.getAmount(), gp.getMalt().extractPotential, eff);
+            Factor eff = (gp.getMalt().getType() == Malt.TYPE.EXTRACT) ? new Factor(1) : efficiency;
+            a += calcForOneGristPart(gp.getAmount(), gp.getMalt().getExtractPotential(), eff);
         }
 
         return new GravityPoints(a / preBoilVolume.inexactValue()).toSpecificGravity();
@@ -70,8 +70,8 @@ public class SimpleOriginalGravityFormula implements Formula<SpecificGravity> {
         double a = 0;
         for (GristPart gp : gristParts) {
             Lbs grainWeight = new Lbs(gp.getAmount());
-            Factor eff = (gp.getMalt().type == Malt.TYPE.EXTRACT) ? new Factor(1) : efficiency;
-            LbsExtractPotential ep = new LbsExtractPotential(gp.getMalt().extractPotential);
+            Factor eff = (gp.getMalt().getType() == Malt.TYPE.EXTRACT) ? new Factor(1) : efficiency;
+            LbsExtractPotential ep = new LbsExtractPotential(gp.getMalt().getExtractPotential());
 
             a += calcForOneGristPart(grainWeight, ep, eff);
         }
