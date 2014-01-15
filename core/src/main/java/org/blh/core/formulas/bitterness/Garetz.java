@@ -1,8 +1,6 @@
 package org.blh.core.formulas.bitterness;
 
-import org.blh.core.formulas.Formula;
 import org.blh.core.recipe.HopAddition;
-import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.bitterness.IBU;
 import org.blh.core.units.distance.Meters;
 import org.blh.core.units.gravity.SpecificGravity;
@@ -17,7 +15,7 @@ import org.blh.core.units.volume.Liters;
  *
  * @author thinner
  */
-public class Garetz implements Formula<IBU> {
+public class Garetz  {
 
     /**
      * Index maps to minutes in boil
@@ -65,13 +63,11 @@ public class Garetz implements Formula<IBU> {
         return 7.2994 + 15.0746 * Math.tanh((timeInBoil.inexactValue() - 21.86) / 24.71);
     }
 
-    @Override
-    public IBU calc(FullContext context) {
+    public IBU calc(Iterable<HopAddition> hopAdditions, Liters finalVolume, Liters currentBoilVolume, SpecificGravity preBoilGravity, Meters elevation) {
         double totalIBUs = 0;
-        for (HopAddition addition : context.getIngredientsList().getHopAdditions()) {
-            totalIBUs += getRawIBUsFromAddition(addition, context.volumePre(context.FINAL),
-                     context.getBoilVolumeAtMinutesLeft(addition.getTimeInBoil()),
-                     context.preBoilGravity.value(), context.elevation.value());
+        for (HopAddition addition : hopAdditions) {
+            totalIBUs += getRawIBUsFromAddition(addition, finalVolume, currentBoilVolume,
+                     preBoilGravity, elevation);
         }
         return new IBU(totalIBUs);
     }

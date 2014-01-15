@@ -1,7 +1,5 @@
 package org.blh.core.formulas.carbonation;
 
-import org.blh.core.formulas.Formula;
-import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.CO2Volumes;
 import org.blh.core.units.alcohol.ABV;
 import org.blh.core.units.alcohol.ABW;
@@ -19,18 +17,7 @@ import org.blh.core.units.temperature.Fahrenheit;
  *
  * Created by Erik Larkö at 5/28/13 7:10 AM
  */
-public class DynamicHenrysLaw implements Formula<Bar> {
-
-    @Override
-    public Bar calc(FullContext context) {
-        SpecificGravity finalGravity = context.finalGravity.value();
-        ABV abv = context.alcoholContent.value();
-        //Celsius carbonationTemperature = context.fer
-        //CO2Volumes desiredVolumes = context.
-        //BarA barometricPressure = context.
-
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+public class DynamicHenrysLaw  {
 
     public PSI calc(SpecificGravity gravity, ABW abw, Fahrenheit temperature, CO2Volumes desiredVolumes, PSIA barometricPressure) {
         double d = (temperature.inexactValue() + 12.4) * gravity.inexactValue() * (1 + abw.value().inexactValue() / 0.789);

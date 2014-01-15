@@ -1,7 +1,5 @@
 package org.blh.core.formulas.gravity.finalgravity;
 
-import org.blh.core.formulas.Formula;
-import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.Factor;
 import org.blh.core.units.gravity.GravityPoints;
 import org.blh.core.units.gravity.SpecificGravity;
@@ -12,12 +10,7 @@ import org.blh.core.units.gravity.SpecificGravity;
  *
  * Created by Erik Larkö at 7/2/13 11:10 PM
  */
-public class Brewgr implements Formula<SpecificGravity> {
-
-    @Override
-    public SpecificGravity calc(FullContext context) {
-        return calc(context.originalGravity.value(), context.yeastApparentAttenuation.value());
-    }
+public class Brewgr  {
 
     public SpecificGravity calc(SpecificGravity og, Factor yeastAttenuation) {
         return calc(new GravityPoints(og), yeastAttenuation);

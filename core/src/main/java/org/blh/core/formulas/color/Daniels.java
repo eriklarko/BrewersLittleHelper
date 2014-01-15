@@ -1,8 +1,5 @@
 package org.blh.core.formulas.color;
 
-import org.blh.core.formulas.Formula;
-import org.blh.core.uncategorized.FullContext;
-import org.blh.core.units.color.EBC;
 import org.blh.core.units.color.MaltColorUnit;
 import org.blh.core.units.color.SRM;
 
@@ -14,14 +11,7 @@ import org.blh.core.units.color.SRM;
  *
  * @author thinner
  */
-public class Daniels implements Formula<EBC> {
-
-    @Override
-    public EBC calc(FullContext context) {
-        MaltColorUnit mcu = context.maltColorUnit.value();
-        
-        return calc(mcu).toEBC();
-    }
+public class Daniels  {
 
     public SRM calc(MaltColorUnit mcu) {
         return new SRM(((0.2 * mcu.inexactValue()) + 8.4));

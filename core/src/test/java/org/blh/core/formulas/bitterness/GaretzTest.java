@@ -4,9 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import org.blh.core.ingredients.Hop;
 import org.blh.core.recipe.HopAddition;
-import org.blh.core.uncategorized.FullContext;
-import org.blh.core.uncategorized.Input;
-import org.blh.core.uncategorized.InputtedOrCalculatedValue;
 import org.blh.core.units.Percentage;
 import org.blh.core.units.bitterness.IBU;
 import org.blh.core.units.distance.Meters;
@@ -18,7 +15,6 @@ import org.blh.core.units.weight.Grams;
 import org.blh.core.units.weight.Oz;
 import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 /**
  *
@@ -55,15 +51,8 @@ public class GaretzTest {
         SpecificGravity boilGravity = new SpecificGravity(1.050);
         Meters elevation = new Meters(100);
 
-        FullContext context = Mockito.mock(FullContext.class, Mockito.RETURNS_DEEP_STUBS);
-        Mockito.when(context.getIngredientsList().getHopAdditions()).thenReturn(hopAdditions);
-        Mockito.when(context.getBoilVolumeAtMinutesLeft(Mockito.any(Minutes.class))).thenReturn(boilVolume);
-        Mockito.when(context.volumePre(context.FINAL)).thenReturn(boilVolume);
-        context.preBoilGravity = new InputtedOrCalculatedValue<>(boilGravity);
-        context.elevation = new Input<>(elevation);
-
         Garetz f = new Garetz();
-        IBU actual = f.calc(context);
+        IBU actual = f.calc(hopAdditions, boilVolume, boilVolume, boilGravity, elevation);
         Assert.assertEquals(expected.value(), actual.value());
     }
 

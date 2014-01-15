@@ -1,8 +1,6 @@
 package org.blh.core.formulas.bitterness;
 
-import org.blh.core.formulas.Formula;
 import org.blh.core.recipe.HopAddition;
-import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.Percentage;
 import org.blh.core.units.bitterness.HBU;
 import org.blh.core.units.weight.Oz;
@@ -12,12 +10,11 @@ import org.blh.core.units.weight.Oz;
  *
  * @author thinner
  */
-public class HBUFormula implements Formula<HBU>{
+public class HBUFormula {
 
-    @Override
-    public HBU calc(FullContext context) {
+    public HBU calc(Iterable<HopAddition> hopAdditions) {
         double totalHBUs = 0;
-        for(HopAddition addition : context.getIngredientsList().getHopAdditions()) {
+        for(HopAddition addition : hopAdditions) {
             totalHBUs += getRawHBUs(new Oz(addition.getAmount()), addition.getHop().getAlphaAcids());
         }
         

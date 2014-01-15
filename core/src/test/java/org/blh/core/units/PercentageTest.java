@@ -11,7 +11,7 @@ import org.junit.Test;
  */
 public class PercentageTest {
     
-        @Test
+    @Test
     public void testDouble() {
         Percentage actual = new Percentage(2);
         double ePercentagepected = 2;

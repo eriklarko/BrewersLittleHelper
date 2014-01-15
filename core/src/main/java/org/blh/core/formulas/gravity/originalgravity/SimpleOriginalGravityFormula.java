@@ -2,10 +2,8 @@ package org.blh.core.formulas.gravity.originalgravity;
 
 import java.util.List;
 
-import org.blh.core.formulas.Formula;
 import org.blh.core.ingredients.Malt;
 import org.blh.core.recipe.GristPart;
-import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.ExtractPotential;
 import org.blh.core.units.Factor;
 import org.blh.core.units.NumericalUnit;
@@ -45,12 +43,7 @@ import org.blh.core.units.weight.Lbs;
  *
  * @author thinner
  */
-public class SimpleOriginalGravityFormula implements Formula<SpecificGravity> {
-
-    @Override
-    public SpecificGravity calc(FullContext context) {
-        return calc(context.getIngredientsList().getFermentables(), getVolume(context), context.extractionEfficiency.value());
-    }
+public class SimpleOriginalGravityFormula  {
 
     public SpecificGravity calc(List<GristPart> gristParts, Liters preBoilVolume, Factor efficiency) {
         double a = 0;
@@ -60,10 +53,6 @@ public class SimpleOriginalGravityFormula implements Formula<SpecificGravity> {
         }
 
         return new GravityPoints(a / preBoilVolume.inexactValue()).toSpecificGravity();
-    }
-
-    protected Liters getVolume(FullContext context) {
-        return context.volumePost(context.BOIL);
     }
 
     public SpecificGravity calc(List<GristPart> gristParts, USGallons preBoilVolume, Factor efficiency) {

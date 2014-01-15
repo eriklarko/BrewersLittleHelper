@@ -1,7 +1,5 @@
 package org.blh.core.formulas.color;
 
-import org.blh.core.formulas.Formula;
-import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.color.EBC;
 import org.blh.core.units.color.MaltColorUnit;
 
@@ -28,13 +26,7 @@ import org.blh.core.units.color.MaltColorUnit;
  *
  * @author thinner
  */
-public class Morey implements Formula<EBC> {
-
-    @Override
-    public EBC calc(FullContext context) {
-        MaltColorUnit mcu = context.maltColorUnit.value();
-        return calc(mcu);
-    }
+public class Morey  {
 
     public EBC calc(MaltColorUnit mcu) {
         return new EBC((1.4922 * Math.pow(mcu.inexactValue(), 0.6859)) * 1.97);

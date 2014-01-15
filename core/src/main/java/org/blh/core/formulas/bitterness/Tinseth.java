@@ -1,8 +1,6 @@
 package org.blh.core.formulas.bitterness;
 
-import org.blh.core.formulas.Formula;
 import org.blh.core.recipe.HopAddition;
-import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.bitterness.IBU;
 import org.blh.core.units.gravity.SpecificGravity;
 import org.blh.core.units.time.Minutes;
@@ -14,15 +12,12 @@ import org.blh.core.units.weight.Grams;
  *
  * @author thinner
  */
-public class Tinseth implements Formula<IBU> {
+public class Tinseth  {
 
-    @Override
-    public IBU calc(FullContext context) {
+    public IBU calc(Iterable<HopAddition> hopAdditions, Liters currentBoilVolume, SpecificGravity currentBoilGravity) {
         double totalIBUs = 0;
-        for (HopAddition addition : context.getIngredientsList().getHopAdditions()) {
-            Liters boilVolume = context.getBoilVolumeAtMinutesLeft(addition.getTimeInBoil());
-            SpecificGravity boilGravity = context.getBoilGravityAtMinutesLeft(addition.getTimeInBoil());
-            totalIBUs += getRawIBUsForAddition(addition, boilVolume, boilGravity);
+        for (HopAddition addition : hopAdditions) {
+            totalIBUs += getRawIBUsForAddition(addition, currentBoilVolume, currentBoilGravity);
         }
 
         return new IBU(totalIBUs);

@@ -2,7 +2,6 @@ package org.blh.core.formulas.bitterness;
 
 import org.blh.core.ingredients.Hop;
 import org.blh.core.recipe.HopAddition;
-import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.Percentage;
 import org.blh.core.units.bitterness.HBU;
 import org.blh.core.units.weight.Grams;
@@ -10,7 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 /**
  *
@@ -32,10 +30,8 @@ public class HBUFormulaTest {
         HopAddition addition2 = new HopAddition(new Hop(null, new Percentage(5)), null, new Grams(85.0485694));
         List<HopAddition> hopAdditions = Arrays.asList(addition1, addition2);
         
-        FullContext context = Mockito.mock(FullContext.class, Mockito.RETURNS_DEEP_STUBS);
-        Mockito.when(context.getIngredientsList().getHopAdditions()).thenReturn(hopAdditions);
         HBUFormula f = new HBUFormula();
-        HBU actual = f.calc(context);
+        HBU actual = f.calc(hopAdditions);
         HBU expected = new HBU(33);
         
         Assert.assertEquals(expected.value(), actual.value());

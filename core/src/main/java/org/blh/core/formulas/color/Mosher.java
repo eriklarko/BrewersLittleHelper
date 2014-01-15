@@ -1,7 +1,5 @@
 package org.blh.core.formulas.color;
 
-import org.blh.core.formulas.Formula;
-import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.color.EBC;
 import org.blh.core.units.color.MaltColorUnit;
 
@@ -13,13 +11,7 @@ import org.blh.core.units.color.MaltColorUnit;
  *
  * @author thinner
  */
-public class Mosher implements Formula<EBC> {
-
-    @Override
-    public EBC calc(FullContext context) {
-        MaltColorUnit mcu = context.maltColorUnit.value();
-        return calc(mcu);
-    }
+public class Mosher  {
 
     public EBC calc(MaltColorUnit mcu) {
         return new EBC(((0.3 * mcu.inexactValue()) + 4.7) * 1.97);

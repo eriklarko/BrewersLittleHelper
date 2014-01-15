@@ -1,7 +1,5 @@
 package org.blh.core.formulas.gravity.finalgravity;
 
-import org.blh.core.formulas.Formula;
-import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.Factor;
 import org.blh.core.units.gravity.GravityPoints;
 import org.blh.core.units.gravity.SpecificGravity;
@@ -15,13 +13,8 @@ import org.blh.core.units.gravity.SpecificGravity;
  * 
  * @author thinner
  */
-public class BYOSimple implements Formula<SpecificGravity> {
+public class BYOSimple  {
 
-    @Override
-    public SpecificGravity calc(FullContext context) {
-        return calc(context.originalGravity.value(), context.yeastApparentAttenuation.value());
-    }
-    
     public SpecificGravity calc(SpecificGravity og, Factor yeastApparentAttenuation) {
         return calc(new GravityPoints(og), yeastApparentAttenuation);
     }

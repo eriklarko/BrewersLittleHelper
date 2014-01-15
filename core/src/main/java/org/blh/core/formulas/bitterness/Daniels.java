@@ -1,8 +1,6 @@
 package org.blh.core.formulas.bitterness;
 
-import org.blh.core.formulas.Formula;
 import org.blh.core.recipe.HopAddition;
-import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.Factor;
 import org.blh.core.units.bitterness.IBU;
 import org.blh.core.units.gravity.SpecificGravity;
@@ -23,15 +21,13 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  *
  * @author thinner
  */
-public class Daniels implements Formula<IBU> {
+public class Daniels  {
 
-    @Override
-    public IBU calc(FullContext context) {
+    public IBU calc(Iterable<HopAddition> hopAdditions, SpecificGravity originalGravity, Liters postBoilVolume, Liters preFermentationVolume) {
         double totalIBUs = 0;
-
-        for (HopAddition addition : context.getIngredientsList().getHopAdditions()) {
+        for (HopAddition addition : hopAdditions) {
             totalIBUs += getRawIBUsFromAddition(addition.getAmount(), addition.getHop().getAlphaAcids().asFactor(),
-                    context.originalGravity.value(), context.volumePost(context.BOIL), context.volumePre(context.FERMENTATION));
+                    originalGravity, postBoilVolume, preFermentationVolume);
         }
 
         return new IBU(totalIBUs);

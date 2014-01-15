@@ -1,10 +1,7 @@
 package org.blh.core.formulas.keghoselength;
 
-import org.blh.core.formulas.Formula;
-import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.distance.Feet;
 import org.blh.core.units.distance.Inch;
-import org.blh.core.units.distance.Meters;
 import org.blh.core.units.gravity.SpecificGravity;
 import org.blh.core.units.pressure.PSI;
 import org.blh.core.units.time.Seconds;
@@ -14,15 +11,10 @@ import org.blh.core.units.time.Seconds;
  *
  * Created by Erik Larkö at 6/23/13 4:27 PM
  */
-public class Soltys implements Formula<Meters> {
+public class Soltys  {
 
     public static final double HOSE_ROUGHNESS = 0.000016;
     public static final double VISCOSITY = 0.000016008023434;
-
-    @Override
-    public Meters calc(FullContext context) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
 
     public Feet calc(SpecificGravity gravity, PSI kegPressure, Inch hoseDiameter, Feet tapHeight, Seconds pintFillTime) {
         double deltaP = kegPressure.inexactValue() * 144;

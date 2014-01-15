@@ -1,7 +1,5 @@
 package org.blh.core.formulas.carbonation;
 
-import org.blh.core.formulas.Formula;
-import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.CO2Volumes;
 import org.blh.core.units.pressure.Bar;
 import org.blh.core.units.pressure.PSI;
@@ -18,12 +16,7 @@ import org.blh.core.units.temperature.Fahrenheit;
  *
  * Created by Erik Larkö at 5/28/13 7:03 AM
  */
-public class SimpleHenrysLaw implements Formula<PSI> {
-
-    @Override
-    public PSI calc(FullContext context) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
+public class SimpleHenrysLaw  {
 
     public PSI calc(CO2Volumes volumes, Fahrenheit temperature) {
         double d = volumes.inexactValue() * (temperature.inexactValue() + 12.4);

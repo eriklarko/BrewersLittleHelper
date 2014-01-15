@@ -1,9 +1,7 @@
 package org.blh.core.formulas.bitterness;
 
-import org.blh.core.formulas.bitterness.Tinseth;
 import org.blh.core.ingredients.Hop;
 import org.blh.core.recipe.HopAddition;
-import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.Percentage;
 import org.blh.core.units.bitterness.IBU;
 import org.blh.core.units.gravity.SpecificGravity;
@@ -14,7 +12,6 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 /**
  *
@@ -31,13 +28,8 @@ public class TinsethTest {
         Liters boilVolume = new Liters(18.9270589);
         SpecificGravity boilGravity = new SpecificGravity(1.050);
         
-        FullContext context = Mockito.mock(FullContext.class, Mockito.RETURNS_DEEP_STUBS);
-        Mockito.when(context.getIngredientsList().getHopAdditions()).thenReturn(hopAdditions);
-        Mockito.when(context.getBoilGravityAtMinutesLeft(Mockito.any(Minutes.class))).thenReturn(boilGravity);
-        Mockito.when(context.getBoilVolumeAtMinutesLeft(Mockito.any(Minutes.class))).thenReturn(boilVolume);
-        
         Tinseth f = new Tinseth();
-        IBU actual = f.calc(context);
+        IBU actual = f.calc(hopAdditions, boilVolume, boilGravity);
         IBU expected = new IBU(84.98818390360006);
         
         Assert.assertEquals(expected.value(), actual.value());

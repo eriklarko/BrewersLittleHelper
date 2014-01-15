@@ -1,7 +1,5 @@
 package org.blh.core.formulas.keghoselength;
 
-import org.blh.core.formulas.Formula;
-import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.distance.Meters;
 
 /**
@@ -10,10 +8,9 @@ import org.blh.core.units.distance.Meters;
  * @author Erik Larkö 
  * @since Jul 9, 2013 4:01:50 PM
  */
-public class Smith implements Formula<Meters> {
+public class Smith  {
 
-    @Override
-    public Meters calc(FullContext context) {
+    public Meters calc() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

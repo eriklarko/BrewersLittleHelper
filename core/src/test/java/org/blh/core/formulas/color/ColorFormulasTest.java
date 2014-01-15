@@ -1,8 +1,5 @@
 package org.blh.core.formulas.color;
 
-import org.blh.core.formulas.Formula;
-import org.blh.core.uncategorized.FullContext;
-import org.blh.core.uncategorized.InputtedOrCalculatedValue;
 import org.blh.core.units.color.ColorPotential;
 import org.blh.core.units.color.EBC;
 import org.blh.core.units.color.Lovibond;
@@ -20,38 +17,35 @@ public class ColorFormulasTest {
     @Test
     public void danielsTest() {
         Daniels f = new Daniels();
-        double mcu = 12;
+        double mcuValue = 12;
+
+        MaltColorUnit mcu = maltColorUnitValueOf(mcuValue);
         EBC expectedEBCForMCU12 = new EBC(21.276);
-        doAssert(f, mcu, expectedEBCForMCU12);
+        EBC actual = f.calc(mcu).toEBC();
+        Assert.assertEquals(expectedEBCForMCU12.value(), actual.value());
     }
 
     @Test
     public void moreyTest() {
         Morey f = new Morey();
-        double mcu = 12;
+        double mcuValue = 12;
+
+        MaltColorUnit mcu = maltColorUnitValueOf(mcuValue);
         EBC expectedEBCForMCU12 = new EBC(16.1623191555);
-        doAssert(f, mcu, expectedEBCForMCU12);
+        EBC actual = f.calc(mcu);
+        Assert.assertEquals(expectedEBCForMCU12.value(), actual.value());
     }
 
     @Test
     public void mosherTest() {
         Mosher f = new Mosher();
-        double mcu = 12;
-        EBC expectedEBCForMCU12 = new EBC(16.35);
-        doAssert(f, mcu, expectedEBCForMCU12);
-    }
+        double mcuValue = 12;
 
-
-    private void doAssert(Formula<EBC> f, double mcuValue, EBC expected) {
         MaltColorUnit mcu = maltColorUnitValueOf(mcuValue);
-        FullContext context = new FullContext();
-        context.maltColorUnit = new InputtedOrCalculatedValue<>(mcu);
-
-        EBC actual = f.calc(context);
-
-        Assert.assertEquals(expected.value(), actual.value());
+        EBC expectedEBCForMCU12 = new EBC(16.35);
+        EBC actual = f.calc(mcu);
+        Assert.assertEquals(expectedEBCForMCU12.value(), actual.value());
     }
-
 
     private MaltColorUnit maltColorUnitValueOf(double mcuValue) {
         return new MaltColorUnit(new ColorPotential(new Lovibond(mcuValue), new Lbs(1)), new USGallons(1));

@@ -1,8 +1,6 @@
 package org.blh.core.formulas.bitterness;
 
-import org.blh.core.formulas.Formula;
 import org.blh.core.recipe.HopAddition;
-import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.bitterness.IBU;
 import org.blh.core.units.gravity.SpecificGravity;
 import org.blh.core.units.time.Minutes;
@@ -22,15 +20,12 @@ import org.blh.core.units.weight.Grams;
  *
  * @author thinner
  */
-public class Rager implements Formula<IBU> {
+public class Rager  {
 
-    @Override
-    public IBU calc(FullContext context) {
+    public IBU calc(Iterable<HopAddition> hopAdditions, Liters currentBoilVolume, SpecificGravity currentBoilGravity) {
         double totalIBUs = 0;
-        for (HopAddition addition : context.getIngredientsList().getHopAdditions()) {
-            totalIBUs += getRawIBUsFromAddition(addition,
-                    context.getBoilVolumeAtMinutesLeft(addition.getTimeInBoil()),
-                    context.getBoilGravityAtMinutesLeft(addition.getTimeInBoil()));
+        for (HopAddition addition : hopAdditions) {
+            totalIBUs += getRawIBUsFromAddition(addition, currentBoilVolume, currentBoilGravity);
         }
         return new IBU(totalIBUs);
     }

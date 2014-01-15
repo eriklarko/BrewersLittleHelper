@@ -1,7 +1,5 @@
 package org.blh.core.formulas.alcohol;
 
-import org.blh.core.formulas.Formula;
-import org.blh.core.uncategorized.FullContext;
 import org.blh.core.units.alcohol.ABV;
 import org.blh.core.units.gravity.SpecificGravity;
 
@@ -12,12 +10,7 @@ import org.blh.core.units.gravity.SpecificGravity;
  *
  * @author thinner
  */
-public class Daniels implements Formula<ABV> {
-
-    @Override
-    public ABV calc(FullContext context) {
-        return calc(context.originalGravity.value(), context.finalGravity.value());
-    }
+public class Daniels  {
     
     public ABV calc(SpecificGravity originalGravity, SpecificGravity finalGravity) {
         double og = originalGravity.inexactValue();
