@@ -10,31 +10,30 @@ import org.junit.Test;
  */
 public class AlcoholFormulasTest {
 
-    private SpecificGravity og = new SpecificGravity(1.040);
-    private SpecificGravity fg = new SpecificGravity(1.010);
-    private ABV expected = new ABV(3.9);
+	private SpecificGravity og = new SpecificGravity(1.040);
+	private SpecificGravity fg = new SpecificGravity(1.010);
 
-    @Test
-    public void simpleBrewersFriendTest() {
-        BrewersFriendSimple f = new BrewersFriendSimple();
-        ABV actual = f.calc(og, fg);
+	@Test
+	public void simpleBrewersFriendTest() {
+		BrewersFriendSimple f = new BrewersFriendSimple();
+		ABV actual = f.calc(og, fg);
+		ABV expected = new ABV(3.9);
+		Assert.assertEquals(expected.value().value(), actual.value().value());
+	}
 
-        Assert.assertEquals(expected.value().value(), actual.value().value());
-    }
+	@Test
+	public void BYOSimpleTest() {
+		BYOSimple f = new BYOSimple();
+		ABV actual = f.calc(og, fg);
+		ABV expected = new ABV(3.9);
+		Assert.assertEquals(expected.value().value(), actual.value().value());
+	}
 
-    @Test
-    public void BYOSimpleTest() {
-        BYOSimple f = new BYOSimple();
-        ABV actual = f.calc(og, fg);
-
-        Assert.assertEquals(expected.value().value(), actual.value().value());
-    }
-
-    @Test
-    public void danielsTest() {
-        Daniels f = new Daniels();
-        ABV actual = f.calc(og, fg);
-
-        Assert.assertEquals(expected.value().value(), actual.value().value());
-    }
+	@Test
+	public void danielsTest() {
+		Daniels f = new Daniels();
+		ABV actual = f.calc(og, fg);
+		ABV expected = new ABV(3.9);
+		Assert.assertEquals(expected.value().value(), actual.value().value());
+	}
 }
