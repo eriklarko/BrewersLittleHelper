@@ -13,8 +13,7 @@ import org.blh.core.units.Unit;
 public class ABW extends Unit<Factor> {
 
 	// TODO: Use only one conversion factor
-    public static final double FROM_ABV_CONVERSION_FACTOR = 0.8;
-    public static final double TO_ABV_CONVERSION_FACTOR = 1.25;
+    public static final double CONVERSION_FACTOR = 1.25;
 
     public ABW(Factor value) {
         super(value);
@@ -25,10 +24,10 @@ public class ABW extends Unit<Factor> {
     }
 
     public ABW(ABV abv) {
-        this(abv.value().value() * FROM_ABV_CONVERSION_FACTOR);
+        this(abv.value().value() / CONVERSION_FACTOR);
     }
 
     public ABV toABV() {
-        return new ABV(this.value().value() * TO_ABV_CONVERSION_FACTOR);
+        return new ABV(this.value().value() * CONVERSION_FACTOR);
     }
 }
