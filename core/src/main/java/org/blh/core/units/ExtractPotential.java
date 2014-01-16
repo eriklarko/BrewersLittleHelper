@@ -7,7 +7,7 @@ import org.blh.core.units.weight.Kilograms;
  *
  * @author thinner
  */
-public class ExtractPotential extends Unit<Double> {
+public class ExtractPotential extends DoubleUnit {
 
     private final GravityPoints gravityPoints;
     private final Kilograms weight;

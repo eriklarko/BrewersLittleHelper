@@ -5,7 +5,7 @@ import org.blh.core.ingredients.Malt;
 import org.blh.core.recipe.GristPart;
 import org.blh.core.units.ExtractPotential;
 import org.blh.core.units.Factor;
-import org.blh.core.units.Unit;
+import org.blh.core.units.DoubleUnit;
 import org.blh.core.units.gravity.GravityPoints;
 import org.blh.core.units.gravity.SpecificGravity;
 import org.blh.core.units.volume.Liters;
@@ -75,7 +75,7 @@ public class SimpleOriginalGravityFormula  {
         return grainWeight.value() * extractPotential.value() * extractionEfficiency.value();
     }
 
-    private class LbsExtractPotential extends Unit<Double> {
+    private class LbsExtractPotential extends DoubleUnit {
 
         /**
          *  EE(GP/Kg) = GP / Kg

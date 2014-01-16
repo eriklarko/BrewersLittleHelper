@@ -5,7 +5,7 @@ package org.blh.core.units;
  *
  * @author thinner
  */
-public class Percentage extends Unit<Double> {
+public class Percentage extends DoubleUnit {
 
     public static final int CONVERSION_FACTOR = 100;
 

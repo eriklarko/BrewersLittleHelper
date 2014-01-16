@@ -1,6 +1,6 @@
 package org.blh.core.units.gravity;
 
-import org.blh.core.units.Unit;
+import org.blh.core.units.DoubleUnit;
 
 /**
  * Taken from http://pintwell.com/2011/nov/02/calculate-specific-gravity-plato/ and
@@ -10,7 +10,7 @@ import org.blh.core.units.Unit;
  *
  * Created by Erik Larkö at 7/4/13 10:48 PM
  */
-public class Plato extends Unit<Double> {
+public class Plato extends DoubleUnit {
 
     public Plato(double value) {
         super(value);

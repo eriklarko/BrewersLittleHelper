@@ -1,13 +1,13 @@
 package org.blh.core.units.pressure;
 
-import org.blh.core.units.Unit;
+import org.blh.core.units.DoubleUnit;
 
 /**
  * 1 bar = 2 barA
  *
  * Created by Erik Larkö at 5/29/13 2:13 PM
  */
-public class BarA extends Unit<Double> {
+public class BarA extends DoubleUnit {
 
     public BarA(double value) {
         super(value);

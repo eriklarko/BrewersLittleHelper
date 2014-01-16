@@ -1,11 +1,11 @@
 package org.blh.core.units.gravity;
 
-import org.blh.core.units.Unit;
+import org.blh.core.units.DoubleUnit;
 
 /**
  * Created by Erik Larkö at 7/2/13 10:55 PM
  */
-public class GravityPoints extends Unit<Double> {
+public class GravityPoints extends DoubleUnit {
 
     public GravityPoints(double value) {
         super(value);

@@ -30,7 +30,7 @@ public class FixFormula   {
         } else {
             throw new IllegalArgumentException("Unknown beer type: " + type);
         }
-        
+
         return calc(neededCellsCount, amountOfWort, wortDensity);
     }
 

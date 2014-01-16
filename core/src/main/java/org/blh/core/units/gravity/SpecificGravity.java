@@ -1,12 +1,12 @@
 package org.blh.core.units.gravity;
 
-import org.blh.core.units.Unit;
+import org.blh.core.units.DoubleUnit;
 
 /**
  *
  * @author thinner
  */
-public class SpecificGravity extends Unit<Double> {
+public class SpecificGravity extends DoubleUnit {
 
     public SpecificGravity(double value) {
         super(value);

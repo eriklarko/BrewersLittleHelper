@@ -1,12 +1,12 @@
 package org.blh.core.units.weight;
 
-import org.blh.core.units.Unit;
+import org.blh.core.units.DoubleUnit;
 
 /**
  *
  * @author thinner
  */
-public class Lbs extends Unit<Double> {
+public class Lbs extends DoubleUnit {
 
     public static final double CONVERSION_FACTOR = 2.20462262;
 

@@ -1,12 +1,12 @@
 package org.blh.core.units.volume;
 
-import org.blh.core.units.Unit;
+import org.blh.core.units.DoubleUnit;
 
 /**
  *
  * @author thinner
  */
-public class USGallons extends Unit<Double> {
+public class USGallons extends DoubleUnit {
 
     public static final double CONVERSION_FACTOR = 0.264172;
 

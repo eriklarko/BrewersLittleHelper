@@ -1,13 +1,13 @@
 package org.blh.core.units.quantity;
 
-import org.blh.core.units.Unit;
+import org.blh.core.units.DoubleUnit;
 
 /**
  *
  * @author thinner
  * @since Jul 9, 2013 11:42:05 PM
  */
-public class Billion extends Unit<Double> {
+public class Billion extends DoubleUnit {
 
     public static final int BILLON = 1_000_000_000;
 

@@ -1,13 +1,13 @@
 package org.blh.core.units.temperature;
 
-import org.blh.core.units.Unit;
+import org.blh.core.units.DoubleUnit;
 
 /**
  * F = 9/5 C + 32 C = (F - 32) / (9/5) = 5(F - 32) / 9 = 5/9 * (F - 32)
  *
  * Created by Erik Larkö at 5/28/13 7:06 AM
  */
-public class Fahrenheit extends Unit<Double> {
+public class Fahrenheit extends DoubleUnit {
 
     public Fahrenheit(double value) {
         super(value);

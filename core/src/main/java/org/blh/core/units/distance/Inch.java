@@ -1,13 +1,13 @@
 package org.blh.core.units.distance;
 
-import org.blh.core.units.Unit;
+import org.blh.core.units.DoubleUnit;
 
 /**
  * 1 meter = 39.3700787 inches
  *
  * Created by Erik Larkö at 6/23/13 4:32 PM
  */
-public class Inch extends Unit<Double> {
+public class Inch extends DoubleUnit {
 
     public static final double CONVERSION_FACTOR = 39.3700787;
 

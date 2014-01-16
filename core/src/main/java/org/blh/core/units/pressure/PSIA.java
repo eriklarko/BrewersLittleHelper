@@ -1,11 +1,11 @@
 package org.blh.core.units.pressure;
 
-import org.blh.core.units.Unit;
+import org.blh.core.units.DoubleUnit;
 
 /**
  * Created by Erik Larkö at 5/28/13 7:12 AM
  */
-public class PSIA extends Unit<Double> {
+public class PSIA extends DoubleUnit {
 
     public PSIA(double value) {
         super(value);

@@ -3,8 +3,10 @@ package org.blh.core.units;
 import java.util.Objects;
 
 /**
+ * Represents the base class for all units
  *
- * @author thinner
+ * @author Erik Larkö
+ * @param <T> The type of the unit's value
  */
 public abstract class Unit<T> {
 
@@ -21,7 +23,7 @@ public abstract class Unit<T> {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.value);
+        hash = 97 * hash + Objects.hashCode(this.value());
         return hash;
     }
 
@@ -36,17 +38,15 @@ public abstract class Unit<T> {
 
         @SuppressWarnings("unchecked")
         final Unit<T> other = (Unit<T>) obj;
-        return Objects.equals(this.value, other.value);
+        return Objects.equals(this.value(), other.value());
     }
 
     @Override
     public String toString() {
-        if(this.value == null) {
+        if(this.value() == null) {
             return "NULL";
         }
 
-        return this.value.toString();
+        return this.value().toString();
     }
-
-
 }

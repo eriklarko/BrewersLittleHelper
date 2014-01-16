@@ -1,13 +1,13 @@
 package org.blh.core.units.color;
 
-import org.blh.core.units.Unit;
+import org.blh.core.units.DoubleUnit;
 
 /**
  * EBC = 1.97 * SRM -> SRM = EBC / 1.97
  *
  * @author thinner
  */
-public class SRM extends Unit<Double> {
+public class SRM extends DoubleUnit {
 
     public static final double CONVERSION_FACTOR = 1.97;
 

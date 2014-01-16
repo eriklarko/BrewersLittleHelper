@@ -4,7 +4,7 @@ package org.blh.core.units;
  *
  * @author thinner
  */
-public class CO2Volumes extends Unit<Double> {
+public class CO2Volumes extends DoubleUnit {
 
     public CO2Volumes(double value) {
         super(value);
