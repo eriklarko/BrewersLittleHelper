@@ -22,7 +22,7 @@ public class ColorFormulasTest {
         MaltColorUnit mcu = maltColorUnitValueOf(mcuValue);
         EBC expectedEBCForMCU12 = new EBC(21.276);
         EBC actual = f.calc(mcu).toEBC();
-        Assert.assertEquals(expectedEBCForMCU12.value(), actual.value());
+        Assert.assertEquals(expectedEBCForMCU12, actual);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class ColorFormulasTest {
         MaltColorUnit mcu = maltColorUnitValueOf(mcuValue);
         EBC expectedEBCForMCU12 = new EBC(16.1623191555);
         EBC actual = f.calc(mcu);
-        Assert.assertEquals(expectedEBCForMCU12.value(), actual.value());
+        Assert.assertEquals(expectedEBCForMCU12, actual);
     }
 
     @Test
@@ -43,8 +43,9 @@ public class ColorFormulasTest {
 
         MaltColorUnit mcu = maltColorUnitValueOf(mcuValue);
         EBC expectedEBCForMCU12 = new EBC(16.35);
+		expectedEBCForMCU12.setDelta(2);
         EBC actual = f.calc(mcu);
-        Assert.assertEquals(expectedEBCForMCU12.value(), actual.value());
+        Assert.assertEquals(expectedEBCForMCU12, actual);
     }
 
     private MaltColorUnit maltColorUnitValueOf(double mcuValue) {
