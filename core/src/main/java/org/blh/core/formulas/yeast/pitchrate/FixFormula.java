@@ -16,26 +16,26 @@ import org.blh.core.units.volume.Milliliters;
  *
  * Created by Erik Larkö at 7/4/13 10:57 PM
  */
-public class FixFormula   {
+public class FixFormula {
 
-    private static final YeastCellCount ALE = new YeastCellCount(new Million(0.75));
-    private static final YeastCellCount LAGER = new YeastCellCount(new Million(150));
+	private static final YeastCellCount ALE = new YeastCellCount(new Million(0.75));
+	private static final YeastCellCount LAGER = new YeastCellCount(new Million(150));
 
-    public YeastCellCount calc(RecipeMetaData.BEER_TYPE type, Milliliters amountOfWort, Plato wortDensity) {
-        YeastCellCount neededCellsCount;
-        if(type == RecipeMetaData.BEER_TYPE.ALE) {
-            neededCellsCount = ALE;
-        } else if(type == RecipeMetaData.BEER_TYPE.LAGER) {
-            neededCellsCount = LAGER;
-        } else {
-            throw new IllegalArgumentException("Unknown beer type: " + type);
-        }
+	public YeastCellCount calc(RecipeMetaData.BEER_TYPE type, Milliliters amountOfWort, Plato wortDensity) {
+		YeastCellCount neededCellsCount;
+		if (type == RecipeMetaData.BEER_TYPE.ALE) {
+			neededCellsCount = ALE;
+		} else if (type == RecipeMetaData.BEER_TYPE.LAGER) {
+			neededCellsCount = LAGER;
+		} else {
+			throw new IllegalArgumentException("Unknown beer type: " + type);
+		}
 
-        return calc(neededCellsCount, amountOfWort, wortDensity);
-    }
+		return calc(neededCellsCount, amountOfWort, wortDensity);
+	}
 
-    public YeastCellCount calc(YeastCellCount neededCellsCount, Milliliters amountOfWort, Plato wortDensity) {
-        double cellCountInBillions = neededCellsCount.value().value() * amountOfWort.value() * wortDensity.value();
-        return new YeastCellCount(new Billion(cellCountInBillions));
-    }
+	public YeastCellCount calc(YeastCellCount neededCellsCount, Milliliters amountOfWort, Plato wortDensity) {
+		double cellCountInBillions = neededCellsCount.value().value() * amountOfWort.value() * wortDensity.value();
+		return new YeastCellCount(new Billion(cellCountInBillions));
+	}
 }
