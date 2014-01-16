@@ -17,23 +17,24 @@ public class AlcoholFormulasTest {
 	public void simpleBrewersFriendTest() {
 		BrewersFriendSimple f = new BrewersFriendSimple();
 		ABV actual = f.calc(og, fg);
-		ABV expected = new ABV(3.9);
-		Assert.assertEquals(expected.value().value(), actual.value().value());
+		ABV expected = new ABV(3.9375);
+
+		Assert.assertEquals(expected.value(), actual.value());
 	}
 
 	@Test
 	public void BYOSimpleTest() {
 		BYOSimple f = new BYOSimple();
 		ABV actual = f.calc(og, fg);
-		ABV expected = new ABV(3.9);
-		Assert.assertEquals(expected.value().value(), actual.value().value());
+		ABV expected = new ABV(3.87);
+		Assert.assertEquals(expected.value(), actual.value());
 	}
 
 	@Test
 	public void danielsTest() {
 		Daniels f = new Daniels();
 		ABV actual = f.calc(og, fg);
-		ABV expected = new ABV(3.9);
-		Assert.assertEquals(expected.value().value(), actual.value().value());
+		ABV expected = new ABV(3.95);
+		Assert.assertEquals(expected.value(), actual.value());
 	}
 }
