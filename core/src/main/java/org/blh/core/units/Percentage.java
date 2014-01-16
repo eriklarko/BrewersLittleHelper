@@ -18,6 +18,6 @@ public class Percentage extends NumericalUnit {
     }
 
     public Factor asFactor() {
-        return new Factor(this.value / CONVERSION_FACTOR);
+        return new Factor(this.value() / CONVERSION_FACTOR);
     }
 }

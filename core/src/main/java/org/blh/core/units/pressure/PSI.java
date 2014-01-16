@@ -18,6 +18,6 @@ public class PSI extends NumericalUnit {
     }
 
     public Bar toBar() {
-        return new Bar(this.value / CONVERSION_FACTOR);
+        return new Bar(this.value() / CONVERSION_FACTOR);
     }
 }

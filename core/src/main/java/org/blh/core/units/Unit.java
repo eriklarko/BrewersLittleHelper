@@ -8,8 +8,7 @@ import java.util.Objects;
  */
 public abstract class Unit<T> {
 
-	// TODO: MAKE PRIVATE final
-    protected T value;
+    private final T value;
 
     public Unit(T value) {
         this.value = value;

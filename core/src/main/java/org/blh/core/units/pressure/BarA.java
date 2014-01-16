@@ -18,6 +18,6 @@ public class BarA extends NumericalUnit {
     }
 
     public Bar toBar() {
-        return new Bar(this.value - 1);
+        return new Bar(this.value() - 1);
     }
 }

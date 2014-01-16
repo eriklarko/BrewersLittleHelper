@@ -20,6 +20,6 @@ public class Feet extends NumericalUnit {
     }
 
     public Meters toMeters() {
-        return new Meters(this.value / CONVERSION_FACTOR);
+        return new Meters(this.value() / CONVERSION_FACTOR);
     }
 }

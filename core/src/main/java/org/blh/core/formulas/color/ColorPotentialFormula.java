@@ -13,7 +13,7 @@ public class ColorPotentialFormula {
     public ColorPotential calc(Iterable<GristPart> fermentables) {
         ColorPotential potential = new ColorPotential();
         for (GristPart fermentable : fermentables) {
-            potential.add(fermentable.getMalt().getColor(), new Lbs(fermentable.getAmount()));
+            potential = potential.add(fermentable.getMalt().getColor(), new Lbs(fermentable.getAmount()));
         }
         return potential;
     }

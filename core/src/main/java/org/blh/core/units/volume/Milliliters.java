@@ -18,6 +18,6 @@ public class Milliliters extends NumericalUnit {
     }
 
     public Liters toLiters() {
-        return new Liters(this.value / CONVERSION_FACTOR);
+        return new Liters(this.value() / CONVERSION_FACTOR);
     }
 }

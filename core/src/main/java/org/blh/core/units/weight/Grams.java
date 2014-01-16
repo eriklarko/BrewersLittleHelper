@@ -19,6 +19,6 @@ public class Grams extends NumericalUnit {
     }
 
     public Kilograms toKilograms() {
-        return new Kilograms(this.value / CONVERSION_FACTOR);
+        return new Kilograms(this.value() / CONVERSION_FACTOR);
     }
 }

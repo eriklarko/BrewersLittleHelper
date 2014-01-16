@@ -24,7 +24,7 @@ public class PSIA extends NumericalUnit {
     }
 
     public PSI toPSI() {
-        return new PSI(this.value - PSI.CONVERSION_FACTOR);
+        return new PSI(this.value() - PSI.CONVERSION_FACTOR);
     }
 
     public Bar toBar() {

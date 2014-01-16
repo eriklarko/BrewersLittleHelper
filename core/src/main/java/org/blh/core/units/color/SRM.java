@@ -20,6 +20,6 @@ public class SRM extends NumericalUnit {
     }
 
     public EBC toEBC() {
-        return new EBC(this.value * CONVERSION_FACTOR);
+        return new EBC(this.value() * CONVERSION_FACTOR);
     }
 }
