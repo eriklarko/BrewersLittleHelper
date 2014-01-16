@@ -1,11 +1,11 @@
 package org.blh.core.units.pressure;
 
-import org.blh.core.units.NumericalUnit;
+import org.blh.core.units.Unit;
 
 /**
  * Created by Erik Larkö at 5/28/13 7:05 AM
  */
-public class PSI extends NumericalUnit {
+public class PSI extends Unit<Double> {
 
     public static final double CONVERSION_FACTOR = 14.503773800;
 

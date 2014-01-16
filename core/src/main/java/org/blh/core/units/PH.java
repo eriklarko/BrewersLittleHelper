@@ -4,7 +4,7 @@ package org.blh.core.units;
  *
  * @author thinner
  */
-public class PH extends NumericalUnit {
+public class PH extends Unit<Double> {
 
     public PH(double value) {
         super(value);

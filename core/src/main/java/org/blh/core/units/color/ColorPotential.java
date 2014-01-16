@@ -1,13 +1,13 @@
 package org.blh.core.units.color;
 
-import org.blh.core.units.NumericalUnit;
+import org.blh.core.units.Unit;
 import org.blh.core.units.weight.Lbs;
 
 /**
  *
  * @author thinner
  */
-public class ColorPotential extends NumericalUnit {
+public class ColorPotential extends Unit<Double> {
 
 	private final Lovibond color;
 	private final Lbs amount;

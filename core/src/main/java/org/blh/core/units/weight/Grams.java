@@ -1,12 +1,12 @@
 package org.blh.core.units.weight;
 
-import org.blh.core.units.NumericalUnit;
+import org.blh.core.units.Unit;
 
 /**
  *
  * @author thinner
  */
-public class Grams extends NumericalUnit {
+public class Grams extends Unit<Double> {
 
     public static final int CONVERSION_FACTOR = 1000;
 

@@ -4,7 +4,7 @@ package org.blh.core.units;
  *
  * @author thinner
  */
-public class Lintner extends NumericalUnit {
+public class Lintner extends Unit<Double> {
 
     public Lintner(double value) {
         super(value);

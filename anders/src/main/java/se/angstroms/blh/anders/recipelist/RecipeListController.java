@@ -112,7 +112,7 @@ public class RecipeListController extends HBox {
 
 			@Override
 			public ObservableValue<Number> call(TableColumn.CellDataFeatures<YeastAddition<?>, Number> p) {
-				return new SimpleDoubleProperty(p.getValue().getAmount().value());
+				return new SimpleDoubleProperty(p.getValue().getAmount().value().doubleValue());
 			}
 
 		});
