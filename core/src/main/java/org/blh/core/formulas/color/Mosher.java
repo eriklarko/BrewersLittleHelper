@@ -14,6 +14,6 @@ import org.blh.core.units.color.MaltColorUnit;
 public class Mosher  {
 
     public EBC calc(MaltColorUnit mcu) {
-        return new EBC(((0.3 * mcu.inexactValue()) + 4.7) * 1.97);
+        return new EBC(((0.3 * mcu.value()) + 4.7) * 1.97);
     }
 }

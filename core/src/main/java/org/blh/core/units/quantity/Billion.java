@@ -1,6 +1,5 @@
 package org.blh.core.units.quantity;
 
-import java.math.BigDecimal;
 import org.blh.core.units.NumericalUnit;
 
 /**
@@ -10,17 +9,13 @@ import org.blh.core.units.NumericalUnit;
  */
 public class Billion extends NumericalUnit {
 
-    public static final BigDecimal BILLON = new BigDecimal(1_000_000_000);
-
-    public Billion(BigDecimal billion) {
-        super(billion);
-    }
+    public static final int BILLON = 1_000_000_000;
 
     public Billion(double billion) {
         super(billion);
     }
 
-    public BigDecimal trueValue() {
-        return this.value.multiply(BILLON);
+    public double trueValue() {
+        return this.value() * BILLON;
     }
 }

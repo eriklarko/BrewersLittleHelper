@@ -35,7 +35,7 @@ public class FixFormula   {
     }
 
     public YeastCellCount calc(YeastCellCount neededCellsCount, Milliliters amountOfWort, Plato wortDensity) {
-        double cellCountInBillions = neededCellsCount.value().inexactValue() * amountOfWort.inexactValue() * wortDensity.inexactValue();
+        double cellCountInBillions = neededCellsCount.value().value() * amountOfWort.value() * wortDensity.value();
         return new YeastCellCount(new Billion(cellCountInBillions));
     }
 }

@@ -52,7 +52,7 @@ public class SimpleOriginalGravityFormula  {
             a += calcForOneGristPart(gp.getAmount(), gp.getMalt().getExtractPotential(), eff);
         }
 
-        return new GravityPoints(a / preBoilVolume.inexactValue()).toSpecificGravity();
+        return new GravityPoints(a / preBoilVolume.value()).toSpecificGravity();
     }
 
     public SpecificGravity calc(List<GristPart> gristParts, USGallons preBoilVolume, Factor efficiency) {
@@ -65,15 +65,15 @@ public class SimpleOriginalGravityFormula  {
             a += calcForOneGristPart(grainWeight, ep, eff);
         }
 
-        return new GravityPoints(a / preBoilVolume.inexactValue()).toSpecificGravity();
+        return new GravityPoints(a / preBoilVolume.value()).toSpecificGravity();
     }
 
     private double calcForOneGristPart(Lbs grainWeight, LbsExtractPotential extractPotential, Factor extractionEfficiency) {
-        return grainWeight.inexactValue() * extractPotential.inexactValue() * extractionEfficiency.inexactValue();
+        return grainWeight.value() * extractPotential.value() * extractionEfficiency.value();
     }
 
     private double calcForOneGristPart(Kilograms grainWeight, ExtractPotential extractPotential, Factor extractionEfficiency) {
-        return grainWeight.inexactValue() * extractPotential.inexactValue() * extractionEfficiency.inexactValue();
+        return grainWeight.value() * extractPotential.value() * extractionEfficiency.value();
     }
 
     private class LbsExtractPotential extends NumericalUnit {
@@ -86,7 +86,7 @@ public class SimpleOriginalGravityFormula  {
          *  EE(GP/Kg)  = GP / (Lbs / 2.20462262)
          */
         public LbsExtractPotential(ExtractPotential value) {
-            super(value.getGravityPoints().inexactValue() * new Lbs(value.getWeight()).inexactValue());
+            super(value.getGravityPoints().value() * new Lbs(value.getWeight()).value());
         }
     }
 }

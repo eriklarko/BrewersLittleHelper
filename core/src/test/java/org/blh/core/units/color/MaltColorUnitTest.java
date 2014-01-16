@@ -1,6 +1,5 @@
 package org.blh.core.units.color;
 
-import java.math.BigDecimal;
 import org.blh.core.units.volume.USGallons;
 import org.blh.core.units.weight.Lbs;
 import org.junit.Assert;
@@ -18,8 +17,8 @@ public class MaltColorUnitTest {
         USGallons finalVolume = new USGallons(5);
         
         MaltColorUnit actual = new MaltColorUnit(potential, finalVolume);
-        BigDecimal expected = new BigDecimal(3).divide(new BigDecimal(5));
+        double expected = 3/5;
         
-        Assert.assertEquals(expected, actual.value());
+        Assert.assertEquals(expected, actual.value(), 0.0001);
     }
 }

@@ -1,6 +1,5 @@
 package org.blh.core.units.time;
 
-import java.math.BigDecimal;
 import org.blh.core.units.NumericalUnit;
 
 /**
@@ -10,17 +9,13 @@ import org.blh.core.units.NumericalUnit;
  */
 public class Hour extends NumericalUnit {
 
-    public static final BigDecimal CONVERSION_FACTOR = new BigDecimal(60);
-
-    public Hour(BigDecimal value) {
-        super(value);
-    }
+    public static final int CONVERSION_FACTOR = 60;
 
     public Hour(double value) {
         super(value);
     }
 
     public Hour(Minutes minutes) {
-        super(minutes.value().divide(CONVERSION_FACTOR));
+        super(minutes.value() / CONVERSION_FACTOR);
     }
 }

@@ -1,6 +1,5 @@
 package org.blh.core.units.pressure;
 
-import java.math.BigDecimal;
 import org.blh.core.units.NumericalUnit;
 
 /**
@@ -8,16 +7,12 @@ import org.blh.core.units.NumericalUnit;
  */
 public class PSIA extends NumericalUnit {
 
-    public PSIA(BigDecimal value) {
-        super(value);
-    }
-
     public PSIA(double value) {
         super(value);
     }
 
     public PSIA(PSI value) {
-        super(value.value().add(PSI.CONVERSION_FACTOR));
+        super(value.value() + PSI.CONVERSION_FACTOR);
     }
 
     public PSIA(Bar bar) {
@@ -29,7 +24,7 @@ public class PSIA extends NumericalUnit {
     }
 
     public PSI toPSI() {
-        return new PSI(this.value.subtract(PSI.CONVERSION_FACTOR));
+        return new PSI(this.value - PSI.CONVERSION_FACTOR);
     }
 
     public Bar toBar() {

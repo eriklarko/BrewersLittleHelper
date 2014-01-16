@@ -1,28 +1,22 @@
 package org.blh.core.units;
 
-import java.math.BigDecimal;
-
 /**
  * On the form 0.xyzw. For xy.zw% use Percentage.
  * @author thinner
  */
 public class Factor extends NumericalUnit {
 
-    public static final BigDecimal CONVERSION_FACTOR = new BigDecimal(100);
-
-    public Factor(BigDecimal value) {
-        super(value);
-    }
+    public static final int CONVERSION_FACTOR = 100;
 
     public Factor(double value) {
         super(value);
     }
 
     public Factor(Percentage value) {
-        super(value.value().divide(CONVERSION_FACTOR));
+        super(value.value() / CONVERSION_FACTOR);
     }
 
     public Percentage asPercentage() {
-        return new Percentage(this.value.multiply(CONVERSION_FACTOR));
+        return new Percentage(this.value * CONVERSION_FACTOR);
     }
 }

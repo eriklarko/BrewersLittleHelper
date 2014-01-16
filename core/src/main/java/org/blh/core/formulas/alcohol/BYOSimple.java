@@ -3,7 +3,6 @@ package org.blh.core.formulas.alcohol;
 import org.blh.core.units.alcohol.ABV;
 import org.blh.core.units.gravity.SpecificGravity;
 
-import java.math.BigDecimal;
 
 /**
  * Taken from http://byo.com/component/k2/item/1658-write-your-own-brewing-spreadsheet?Itemid=398
@@ -27,11 +26,11 @@ import java.math.BigDecimal;
  */
 public class BYOSimple {
 
-    public static final BigDecimal SCALING_FACTOR = BigDecimal.valueOf(129);
+    public static final int SCALING_FACTOR = 129;
 
     public ABV calc(SpecificGravity originalGravity, SpecificGravity finalGravity) {
-        BigDecimal ogFgDiff = originalGravity.value().subtract(finalGravity.value());
-        return new ABV(ogFgDiff.multiply(SCALING_FACTOR));
+        double ogFgDiff = originalGravity.value() - finalGravity.value();
+        return new ABV(ogFgDiff * SCALING_FACTOR);
     }
 
 }

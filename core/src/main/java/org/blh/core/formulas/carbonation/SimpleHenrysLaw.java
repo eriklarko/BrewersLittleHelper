@@ -19,7 +19,7 @@ import org.blh.core.units.temperature.Fahrenheit;
 public class SimpleHenrysLaw  {
 
     public PSI calc(CO2Volumes volumes, Fahrenheit temperature) {
-        double d = volumes.inexactValue() * (temperature.inexactValue() + 12.4);
+        double d = volumes.value() * (temperature.value() + 12.4);
         d = d/4.85;
         d -= 14.7;
 
@@ -27,8 +27,8 @@ public class SimpleHenrysLaw  {
     }
 
     public Bar calc(CO2Volumes volumes, Celsius temperature) {
-        double d = (36 * temperature.inexactValue() + 888) / 97;
-        d = volumes.inexactValue() * d;
+        double d = (36 * temperature.value() + 888) / 97;
+        d = volumes.value() * d;
         d = d - 14.7;
 
         return new PSI(d).toBar();

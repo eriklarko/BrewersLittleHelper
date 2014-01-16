@@ -10,6 +10,6 @@ import org.blh.core.units.volume.USGallons;
 public class MaltColorUnit extends NumericalUnit {
 
     public MaltColorUnit(ColorPotential potential, USGallons finalVolume) {
-        super(potential.value().divide(finalVolume.value()));
+        super(potential.value() / finalVolume.value());
     }
 }

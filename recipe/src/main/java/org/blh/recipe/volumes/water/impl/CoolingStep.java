@@ -13,14 +13,14 @@ public class CoolingStep extends BrewStep {
 
     @Override
     protected Liters calculateVolumeAfterStep(Liters volumeBeforeStep, FullContext context) {
-        double percentLeftAfterCooling = 1 - context.getEquipment().getCoolingLoss().asFactor().inexactValue();
-        return new Liters(volumeBeforeStep.inexactValue() * percentLeftAfterCooling);
+        double percentLeftAfterCooling = 1 - context.getEquipment().getCoolingLoss().asFactor().value();
+        return new Liters(volumeBeforeStep.value() * percentLeftAfterCooling);
     }
 
     @Override
     protected Liters calculateVolumeBeforeStep(Liters volumeAfterStep, FullContext context) {
-        double percentLostCooling = 1 + context.getEquipment().getCoolingLoss().asFactor().inexactValue();
-        return new Liters(volumeAfterStep.inexactValue() * percentLostCooling);
+        double percentLostCooling = 1 + context.getEquipment().getCoolingLoss().asFactor().value();
+        return new Liters(volumeAfterStep.value() * percentLostCooling);
     }
 
 }

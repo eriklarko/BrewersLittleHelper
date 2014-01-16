@@ -1,6 +1,5 @@
 package org.blh.core.units.temperature;
 
-import java.math.BigDecimal;
 import org.blh.core.units.NumericalUnit;
 
 /**
@@ -10,23 +9,15 @@ import org.blh.core.units.NumericalUnit;
  */
 public class Fahrenheit extends NumericalUnit {
 
-    public static final BigDecimal FIVE = BigDecimal.valueOf(5);
-    public static final BigDecimal NINE = BigDecimal.valueOf(9);
-    public static final BigDecimal THRITY_TWO = BigDecimal.valueOf(32);
-
-    public Fahrenheit(BigDecimal value) {
-        super(value);
-    }
-
     public Fahrenheit(double value) {
         super(value);
     }
 
     public Fahrenheit(Celsius celsius) {
-        super((NINE.multiply(celsius.value())).divide(FIVE).add(THRITY_TWO));
+        super(( 9 * celsius.value()) / 5 + 32);
     }
 
     public Celsius toCelsius() {
-        return new Celsius((FIVE.divide(NINE)).multiply(this.value.subtract(THRITY_TWO)));
+        return new Celsius((5d/9) * (this.value() - 32));
     }
 }

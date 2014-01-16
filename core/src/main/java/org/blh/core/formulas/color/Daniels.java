@@ -14,6 +14,6 @@ import org.blh.core.units.color.SRM;
 public class Daniels  {
 
     public SRM calc(MaltColorUnit mcu) {
-        return new SRM(((0.2 * mcu.inexactValue()) + 8.4));
+        return new SRM(((0.2 * mcu.value()) + 8.4));
     }
 }

@@ -17,13 +17,13 @@ public class Soltys  {
     public static final double VISCOSITY = 0.000016008023434;
 
     public Feet calc(SpecificGravity gravity, PSI kegPressure, Inch hoseDiameter, Feet tapHeight, Seconds pintFillTime) {
-        double deltaP = kegPressure.inexactValue() * 144;
-        double specificWeight = gravity.inexactValue() * 62.4;
-        double a = deltaP / specificWeight - tapHeight.inexactValue();
+        double deltaP = kegPressure.value() * 144;
+        double specificWeight = gravity.value() * 62.4;
+        double a = deltaP / specificWeight - tapHeight.value();
 
-        double D = hoseDiameter.inexactValue() / 12;
+        double D = hoseDiameter.value() / 12;
         double A = Math.pow(D, 2) * Math.PI / 4;
-        double Q = ((1d / 8) / 7.4805) / pintFillTime.inexactValue();
+        double Q = ((1d / 8) / 7.4805) / pintFillTime.value();
         double V = Q / A;
         double f = swameeJain(D, V, HOSE_ROUGHNESS, VISCOSITY);
         double b = D / f * 2;

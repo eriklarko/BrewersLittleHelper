@@ -17,6 +17,6 @@ public class Brewgr  {
     }
     
     public SpecificGravity calc(GravityPoints og, Factor yeastAttenuation) {
-        return new SpecificGravity(1 + (og.inexactValue() * (1 - yeastAttenuation.inexactValue()) ) / 1000);
+        return new SpecificGravity(1 + (og.value() * (1 - yeastAttenuation.value()) ) / 1000);
     }
 }

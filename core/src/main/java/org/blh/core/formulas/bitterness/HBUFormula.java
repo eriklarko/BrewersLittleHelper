@@ -22,7 +22,7 @@ public class HBUFormula {
     }
     
     private double getRawHBUs(Oz amount, Percentage alphaAcids) {
-        return amount.inexactValue() * alphaAcids.inexactValue();
+        return amount.value() * alphaAcids.value();
     }
     
     public HBU getHBUsForAddition(HopAddition addition) {

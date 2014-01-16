@@ -9,6 +9,6 @@ import org.blh.core.units.gravity.SpecificGravity;
 public class Average  {
 
     public SpecificGravity calc(SpecificGravity preBoil, SpecificGravity postBoil) {
-        return new SpecificGravity((preBoil.inexactValue()+ postBoil.inexactValue()) / 2);
+        return new SpecificGravity((preBoil.value()+ postBoil.value()) / 2);
     }
 }

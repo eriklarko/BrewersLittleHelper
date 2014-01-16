@@ -1,6 +1,5 @@
 package org.blh.core.formulas.gravity.originalgravity;
 
-import java.math.BigDecimal;
 import org.blh.core.ingredients.Malt;
 import org.blh.core.recipe.GristPart;
 import org.blh.core.units.ExtractPotential;
@@ -39,9 +38,9 @@ public class OriginalGravityFormulasTest {
      *  30 GP/Lbs = x GP/Kg
      */
     public void testSimpleOGFormula() {
-        Malt mExtract = new Malt(null, null, new ExtractPotential(new GravityPoints(new BigDecimal(45).divide(Lbs.CONVERSION_FACTOR)), new Kilograms(1)), Malt.TYPE.EXTRACT);
-        Malt mPale = new Malt(null, null, new ExtractPotential(new GravityPoints(new BigDecimal(36).divide(Lbs.CONVERSION_FACTOR)), new Kilograms(1)), Malt.TYPE.GRAIN);
-        Malt mCrystal = new Malt(null, null, new ExtractPotential(new GravityPoints(new BigDecimal(30).divide(Lbs.CONVERSION_FACTOR)), new Kilograms(1)), Malt.TYPE.GRAIN);
+        Malt mExtract = new Malt(null, null, new ExtractPotential(new GravityPoints(45 / Lbs.CONVERSION_FACTOR), new Kilograms(1)), Malt.TYPE.EXTRACT);
+        Malt mPale = new Malt(null, null, new ExtractPotential(new GravityPoints(36 / Lbs.CONVERSION_FACTOR), new Kilograms(1)), Malt.TYPE.GRAIN);
+        Malt mCrystal = new Malt(null, null, new ExtractPotential(new GravityPoints(30 / Lbs.CONVERSION_FACTOR), new Kilograms(1)), Malt.TYPE.GRAIN);
 
         GristPart extract = new GristPart(mExtract, new Lbs(3.5).toKilograms());
         GristPart pale = new GristPart(mPale, new Lbs(4.5).toKilograms());

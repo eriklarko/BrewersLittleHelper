@@ -34,11 +34,11 @@ public class Daniels  {
     }
 
     private double getRawIBUsFromAddition(Grams amount, Factor alphaAcids, SpecificGravity originalGravity, Liters postBoilVolume, Liters preFermentationVolume) {
-        double volume = Math.max(postBoilVolume.inexactValue(), preFermentationVolume.inexactValue());
-        double og = originalGravity.inexactValue();
+        double volume = Math.max(postBoilVolume.value(), preFermentationVolume.value());
+        double og = originalGravity.value();
         double gravityAdjustment = (og < 1.050) ? 1 : (og - 1.050) / 0.2;
 
-        double IBUs = getUtilization() * amount.inexactValue() * alphaAcids.inexactValue() * 1000;
+        double IBUs = getUtilization() * amount.value() * alphaAcids.value() * 1000;
         IBUs = IBUs / (volume + gravityAdjustment);
         return IBUs;
     }
@@ -52,7 +52,7 @@ public class Daniels  {
     }
     
     private double concentrationFactor(Liters finalVolume, Liters boilVolume) {
-        return finalVolume.inexactValue() / boilVolume.inexactValue();
+        return finalVolume.value() / boilVolume.value();
     }
 
     private double hoppingRateFactor(double concentrationFactor, double desiredIBUs) {

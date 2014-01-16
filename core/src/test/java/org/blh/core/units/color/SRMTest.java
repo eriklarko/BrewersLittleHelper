@@ -1,6 +1,5 @@
 package org.blh.core.units.color;
 
-import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,9 +13,9 @@ public class SRMTest {
         @Test
     public void testDouble() {
         SRM actual = new SRM(1);
-        BigDecimal expected = new BigDecimal(1);
+        double expected = 1;
         
-        Assert.assertEquals(expected, actual.value());
+        Assert.assertEquals(expected, actual.value(), 0.0001);
     }
         
     @Test

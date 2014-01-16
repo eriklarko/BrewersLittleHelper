@@ -1,6 +1,5 @@
 package org.blh.core.units.color;
 
-import java.math.BigDecimal;
 import org.blh.core.units.NumericalUnit;
 
 /**
@@ -10,21 +9,17 @@ import org.blh.core.units.NumericalUnit;
  */
 public class SRM extends NumericalUnit {
 
-    public static final BigDecimal CONVERSION_FACTOR = BigDecimal.valueOf(1.97);
-
-    public SRM(BigDecimal value) {
-        super(value);
-    }
+    public static final double CONVERSION_FACTOR = 1.97;
 
     public SRM(double value) {
         super(value);
     }
 
     public SRM(EBC ebc) {
-        super(ebc.value().divide(CONVERSION_FACTOR));
+        super(ebc.value() / CONVERSION_FACTOR);
     }
 
     public EBC toEBC() {
-        return new EBC(this.value.multiply(CONVERSION_FACTOR));
+        return new EBC(this.value * CONVERSION_FACTOR);
     }
 }

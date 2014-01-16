@@ -21,6 +21,6 @@ public class Fermentation extends AdditiveStep {
 
     @Override
     protected double term(FullContext context) {
-        return context.getEquipment().getTrubLoss().inexactValue();
+        return context.getEquipment().getTrubLoss().value();
     }
 }

@@ -1,12 +1,5 @@
 package se.angstroms.blh.anders.recipelist;
 
-import org.blh.core.recipe.GristPart;
-import org.blh.core.recipe.HopAddition;
-import org.blh.recipe.IngredientsList;
-import org.blh.core.recipe.YeastAddition;
-
-import se.angstroms.blh.anders.common.customcontrol.CustomControl;
-
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -17,6 +10,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
+import org.blh.core.recipe.GristPart;
+import org.blh.core.recipe.HopAddition;
+import org.blh.core.recipe.YeastAddition;
+import org.blh.recipe.IngredientsList;
+import se.angstroms.blh.anders.common.customcontrol.CustomControl;
 
 /**
  * FXML Controller class
@@ -58,7 +56,7 @@ public class RecipeListController extends HBox {
 
 			@Override
 			public ObservableValue<Number> call(TableColumn.CellDataFeatures<GristPart, Number> p) {
-				return new SimpleDoubleProperty(p.getValue().getAmount().inexactValue());
+				return new SimpleDoubleProperty(p.getValue().getAmount().value());
 			}
 
 		});
@@ -82,7 +80,7 @@ public class RecipeListController extends HBox {
 
 			@Override
 			public ObservableValue<Number> call(TableColumn.CellDataFeatures<HopAddition, Number> p) {
-				return new SimpleDoubleProperty(p.getValue().getAmount().inexactValue());
+				return new SimpleDoubleProperty(p.getValue().getAmount().value());
 			}
 
 		});
@@ -90,7 +88,7 @@ public class RecipeListController extends HBox {
 
 			@Override
 			public ObservableValue<Number> call(TableColumn.CellDataFeatures<HopAddition, Number> p) {
-				return new SimpleDoubleProperty(p.getValue().getTimeInBoil().inexactValue());
+				return new SimpleDoubleProperty(p.getValue().getTimeInBoil().value());
 			}
 
 		});
@@ -114,7 +112,7 @@ public class RecipeListController extends HBox {
 
 			@Override
 			public ObservableValue<Number> call(TableColumn.CellDataFeatures<YeastAddition<?>, Number> p) {
-				return new SimpleDoubleProperty(p.getValue().getAmount().inexactValue());
+				return new SimpleDoubleProperty(p.getValue().getAmount().value());
 			}
 
 		});

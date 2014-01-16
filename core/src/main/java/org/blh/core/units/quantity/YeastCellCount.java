@@ -1,6 +1,5 @@
 package org.blh.core.units.quantity;
 
-import java.math.BigDecimal;
 import org.blh.core.units.Unit;
 
 /**
@@ -8,14 +7,14 @@ import org.blh.core.units.Unit;
  */
 public class YeastCellCount extends Unit<Billion> {
 
-    public static final BigDecimal CONVERSION_FACTOR = new BigDecimal(1000);
+    public static final int CONVERSION_FACTOR = 1000;
 
     public YeastCellCount(int cellCountInBillions) {
         super(new Billion(cellCountInBillions));
     }
 
     public YeastCellCount(Million value) {
-        super(new Billion(value.value().divide(CONVERSION_FACTOR)));
+        super(new Billion(value.value() / CONVERSION_FACTOR));
     }
 
     public YeastCellCount(Billion value) {

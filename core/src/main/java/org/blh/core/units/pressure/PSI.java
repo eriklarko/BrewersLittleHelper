@@ -1,6 +1,5 @@
 package org.blh.core.units.pressure;
 
-import java.math.BigDecimal;
 import org.blh.core.units.NumericalUnit;
 
 /**
@@ -8,21 +7,17 @@ import org.blh.core.units.NumericalUnit;
  */
 public class PSI extends NumericalUnit {
 
-    public static final BigDecimal CONVERSION_FACTOR = BigDecimal.valueOf(14.503773800);
-
-    public PSI(BigDecimal value) {
-        super(value);
-    }
+    public static final double CONVERSION_FACTOR = 14.503773800;
 
     public PSI(double value) {
         super(value);
     }
 
     public PSI(Bar value) {
-        super(value.value().multiply(CONVERSION_FACTOR));
+        super(value.value() * CONVERSION_FACTOR);
     }
 
     public Bar toBar() {
-        return new Bar(this.value.divide(CONVERSION_FACTOR));
+        return new Bar(this.value / CONVERSION_FACTOR);
     }
 }

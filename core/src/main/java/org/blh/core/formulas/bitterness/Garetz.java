@@ -51,7 +51,7 @@ public class Garetz  {
     }
 
     private static int getUtilizationFromTable(Minutes timeInBoil) {
-        int i = closestHigherFive((int) Math.round(timeInBoil.inexactValue()));
+        int i = closestHigherFive((int) Math.round(timeInBoil.value()));
         return utilizationTable[i / 5 - 1];
     }
 
@@ -59,8 +59,8 @@ public class Garetz  {
      * From http://www.beerandloafing.org/hbd/fetch.php?id=30675
      */
     private static double getUtilization(Minutes timeInBoil) {
-        if(timeInBoil.inexactValue() < 11.0) return(0.0);
-        return 7.2994 + 15.0746 * Math.tanh((timeInBoil.inexactValue() - 21.86) / 24.71);
+        if(timeInBoil.value() < 11.0) return(0.0);
+        return 7.2994 + 15.0746 * Math.tanh((timeInBoil.value() - 21.86) / 24.71);
     }
 
     public IBU calc(Iterable<HopAddition> hopAdditions, Liters finalVolume, Liters currentBoilVolume, SpecificGravity preBoilGravity, Meters elevation) {
@@ -80,8 +80,8 @@ public class Garetz  {
             double utilization = getUtilization(addition.getTimeInBoil());
 
             double combinedAdjustments = getCombinedAdjustments(finalVolume, boilVolume, preBoilGravity, elevation, IBUs);
-            IBUs = utilization * addition.getAmount().inexactValue() * addition.getHop().getAlphaAcids().inexactValue() * 0.1;
-            IBUs = IBUs / (boilVolume.inexactValue() * combinedAdjustments);
+            IBUs = utilization * addition.getAmount().value() * addition.getHop().getAlphaAcids().value() * 0.1;
+            IBUs = IBUs / (boilVolume.value() * combinedAdjustments);
         } while (Math.abs(IBUs - oldIBUs) > 0.01);
 
         return IBUs;
@@ -96,11 +96,11 @@ public class Garetz  {
     }
 
     private double boilGravity(double concentrationFactor, SpecificGravity preBoilGravity) {
-        return (concentrationFactor * (preBoilGravity.inexactValue() - 1)) + 1;
+        return (concentrationFactor * (preBoilGravity.value() - 1)) + 1;
     }
 
     private double concentrationFactor(Liters finalVolume, Liters boilVolume) {
-        return finalVolume.inexactValue() / boilVolume.inexactValue();
+        return finalVolume.value() / boilVolume.value();
     }
 
     private double hoppingRateFactor(double concentrationFactor, double desiredIBUs) {
@@ -108,7 +108,7 @@ public class Garetz  {
     }
 
     private double temperatureFactor(Meters elevation) {
-        return ((elevation.inexactValue() / 167.64) * 0.02) + 1;
+        return ((elevation.value() / 167.64) * 0.02) + 1;
     }
 
     private double getCombinedAdjustments(Liters finalVolume, Liters boilVolume, SpecificGravity preBoilGravity, Meters elevation, double desiredIBUs) {

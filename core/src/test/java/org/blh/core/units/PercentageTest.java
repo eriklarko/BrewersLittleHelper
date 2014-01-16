@@ -1,7 +1,5 @@
 package org.blh.core.units;
 
-import org.blh.core.units.Percentage;
-import org.blh.core.units.Factor;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -10,13 +8,15 @@ import org.junit.Test;
  * @author thinner
  */
 public class PercentageTest {
+
+	private static final double DELTA = 0.00001;
     
     @Test
     public void testDouble() {
         Percentage actual = new Percentage(2);
         double ePercentagepected = 2;
         
-        Assert.assertEquals(ePercentagepected, actual.value());
+        Assert.assertEquals(ePercentagepected, actual.value(), DELTA);
     }
     
     @Test

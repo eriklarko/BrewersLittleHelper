@@ -20,19 +20,19 @@ import org.blh.core.units.temperature.Fahrenheit;
 public class DynamicHenrysLaw  {
 
     public PSI calc(SpecificGravity gravity, ABW abw, Fahrenheit temperature, CO2Volumes desiredVolumes, PSIA barometricPressure) {
-        double d = (temperature.inexactValue() + 12.4) * gravity.inexactValue() * (1 + abw.value().inexactValue() / 0.789);
-        d = d * desiredVolumes.inexactValue();
+        double d = (temperature.value() + 12.4) * gravity.value() * (1 + abw.value().value() / 0.789);
+        d = d * desiredVolumes.value();
         d = d / 5.16;
-        d -= barometricPressure.inexactValue();
+        d -= barometricPressure.value();
 
         return new PSI(d);
     }
 
     public Bar calc(SpecificGravity gravity, ABV abv, Celsius temperature, CO2Volumes desiredVolumes, BarA barometricPressure) {
-        double d = (1.8 * temperature.inexactValue() + 44.4) * gravity.inexactValue() * (1 + abv.value().inexactValue() / 0.98625);
-        d = d * desiredVolumes.inexactValue();
+        double d = (1.8 * temperature.value() + 44.4) * gravity.value() * (1 + abv.value().value() / 0.98625);
+        d = d * desiredVolumes.value();
         d = d / 5.16;
-        d -= barometricPressure.inexactValue();
+        d -= barometricPressure.value();
 
         return new PSI(d).toBar();
     }

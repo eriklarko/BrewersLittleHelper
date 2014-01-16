@@ -1,6 +1,5 @@
 package org.blh.core.units.pressure;
 
-import java.math.BigDecimal;
 import org.blh.core.units.NumericalUnit;
 
 /**
@@ -10,19 +9,15 @@ import org.blh.core.units.NumericalUnit;
  */
 public class BarA extends NumericalUnit {
 
-    public BarA(BigDecimal value) {
-        super(value);
-    }
-
     public BarA(double value) {
         super(value);
     }
 
     public BarA(Bar value) {
-        super(value.value().add(BigDecimal.ONE));
+        super(value.value() + 1);
     }
 
     public Bar toBar() {
-        return new Bar(this.value.subtract(BigDecimal.ONE));
+        return new Bar(this.value - 1);
     }
 }

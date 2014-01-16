@@ -9,11 +9,11 @@ import org.blh.core.units.weight.Kilograms;
  */
 public class ExtractPotential extends NumericalUnit {
 
-    private GravityPoints gravityPoints;
-    private Kilograms weight;
+    private final GravityPoints gravityPoints;
+    private final Kilograms weight;
 
     public ExtractPotential(GravityPoints gravityPoints, Kilograms weight) {
-        super(gravityPoints.value().divide(weight.value()));
+        super(gravityPoints.value() / weight.value());
 
         this.gravityPoints = gravityPoints;
         this.weight = weight;

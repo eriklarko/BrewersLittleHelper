@@ -1,6 +1,5 @@
 package org.blh.core.units;
 
-import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,9 +12,9 @@ public class FactorTest {
     @Test
     public void testDouble() {
         Factor actual = new Factor(2);
-        BigDecimal expected = new BigDecimal(2);
+        double expected = 2;
         
-        Assert.assertEquals(expected, actual.value());
+        Assert.assertEquals(expected, actual.value(), 0.0001);
     }
     
     @Test

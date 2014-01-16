@@ -14,7 +14,7 @@ import org.blh.core.units.gravity.SpecificGravity;
 public class Nostrildamus  {
 
     public SpecificGravity calc(SpecificGravity og, Factor yeastAttenuation) {
-        double fg = (og.inexactValue() - 1) * (1 - yeastAttenuation.inexactValue()) + 1;
+        double fg = (og.value() - 1) * (1 - yeastAttenuation.value()) + 1;
         return new SpecificGravity(fg);
     }
 }

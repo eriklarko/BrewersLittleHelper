@@ -11,12 +11,11 @@ import org.blh.core.units.gravity.SpecificGravity;
  * @author thinner
  */
 public class Daniels  {
-    
+
     public ABV calc(SpecificGravity originalGravity, SpecificGravity finalGravity) {
-        double og = originalGravity.inexactValue();
-        double fg = finalGravity.inexactValue();
+        double og = originalGravity.value();
+        double fg = finalGravity.value();
         
         return new ABV((76.08 * (og-fg) / (1.775-og)) * (fg / 0.794));
     }
-
 }

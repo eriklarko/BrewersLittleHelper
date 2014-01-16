@@ -1,8 +1,5 @@
 package org.blh.recipe.uncategorized;
 
-import java.math.BigDecimal;
-import org.blh.recipe.volumes.water.impl.FinalStep;
-import org.blh.recipe.IngredientsList;
 import org.blh.core.uncategorized.RecipeMetaData;
 import org.blh.core.units.Factor;
 import org.blh.core.units.alcohol.ABV;
@@ -14,8 +11,10 @@ import org.blh.core.units.time.Minutes;
 import org.blh.core.units.volume.Liters;
 import org.blh.core.units.weight.Grams;
 import org.blh.core.units.weight.Kilograms;
+import org.blh.recipe.IngredientsList;
 import org.blh.recipe.volumes.water.BrewStep;
 import org.blh.recipe.volumes.water.VolumeCalculator;
+import org.blh.recipe.volumes.water.impl.FinalStep;
 
 /**
  * Should this object be mutable? Or should all its members be mutable?
@@ -77,17 +76,17 @@ public class FullContext {
 	}
 
 	public Liters getBoilVolumeAtMinutesLeft(Minutes time) {
-		BigDecimal timePercent = time.value().divide(boilTime.value().value());
-		BigDecimal totalBoilOff = vc.pre(BOIL, this).value().subtract(vc.post(BOIL, this).value());
+		double timePercent = time.value() / boilTime.value().value();
+		double totalBoilOff = vc.pre(BOIL, this).value() - vc.post(BOIL, this).value();
 
-		return new Liters(totalBoilOff.multiply(timePercent));
+		return new Liters(totalBoilOff * timePercent);
 	}
 
 	public SpecificGravity getBoilGravityAtMinutesLeft(Minutes time) {
-		BigDecimal timePercent = time.value().divide(boilTime.value().value());
-		BigDecimal totalGravityDifference = postBoilGravity.value().value().subtract(preBoilGravity.value().value());
+		double timePercent = time.value() / boilTime.value().value();
+		double totalGravityDifference = postBoilGravity.value().value() - preBoilGravity.value().value();
 
-		return new SpecificGravity(totalGravityDifference.multiply(timePercent));
+		return new SpecificGravity(totalGravityDifference * timePercent);
 	}
 
 	public Liters volumePre(BrewStep step) {

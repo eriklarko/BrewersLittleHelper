@@ -13,7 +13,7 @@ public class VolumeInPotPreBoilBIAB  {
     private static final double GRAIN_VOLUME = 1;
 
     public Liters calc(Kilograms grainWeight, Liters preMashVolume) {
-        return new Liters(grainWeight.inexactValue() * GRAIN_VOLUME + preMashVolume.inexactValue());
+        return new Liters(grainWeight.value() * GRAIN_VOLUME + preMashVolume.value());
     }
 
 }

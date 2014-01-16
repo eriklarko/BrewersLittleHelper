@@ -1,6 +1,5 @@
 package org.blh.core.units.volume;
 
-import java.math.BigDecimal;
 import org.blh.core.units.NumericalUnit;
 
 /**
@@ -8,17 +7,17 @@ import org.blh.core.units.NumericalUnit;
  */
 public class Milliliters extends NumericalUnit {
 
-    public static final BigDecimal CONVERSION_FACTOR = new BigDecimal(1000);
+    public static final int CONVERSION_FACTOR = 1000;
 
     public Milliliters(double value) {
         super(value);
     }
 
     public Milliliters(Liters liters) {
-        super(liters.value().multiply(BigDecimal.ZERO));
+        super(liters.value() * CONVERSION_FACTOR);
     }
 
     public Liters toLiters() {
-        return new Liters(this.value.divide(CONVERSION_FACTOR));
+        return new Liters(this.value / CONVERSION_FACTOR);
     }
 }

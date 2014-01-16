@@ -1,6 +1,5 @@
 package org.blh.core.units.alcohol;
 
-import java.math.BigDecimal;
 import org.blh.core.units.Factor;
 import org.blh.core.units.Unit;
 
@@ -13,15 +12,12 @@ import org.blh.core.units.Unit;
  */
 public class ABW extends Unit<Factor> {
 
-    public static final BigDecimal FROM_ABV_CONVERSION_FACTOR = BigDecimal.valueOf(0.8);
-    public static final BigDecimal TO_ABV_CONVERSION_FACTOR = BigDecimal.valueOf(1.25);
+	// TODO: Use only one conversion factor
+    public static final double FROM_ABV_CONVERSION_FACTOR = 0.8;
+    public static final double TO_ABV_CONVERSION_FACTOR = 1.25;
 
     public ABW(Factor value) {
         super(value);
-    }
-
-    public ABW(BigDecimal value) {
-        super(new Factor(value));
     }
 
     public ABW(double value) {
@@ -29,10 +25,10 @@ public class ABW extends Unit<Factor> {
     }
 
     public ABW(ABV abv) {
-        this(abv.value().value().multiply(FROM_ABV_CONVERSION_FACTOR));
+        this(abv.value().value() * FROM_ABV_CONVERSION_FACTOR);
     }
 
     public ABV toABV() {
-        return new ABV(this.value().value().multiply(TO_ABV_CONVERSION_FACTOR));
+        return new ABV(this.value().value() * TO_ABV_CONVERSION_FACTOR);
     }
 }

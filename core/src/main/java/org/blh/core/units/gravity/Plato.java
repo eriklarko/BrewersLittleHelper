@@ -1,6 +1,5 @@
 package org.blh.core.units.gravity;
 
-import java.math.BigDecimal;
 import org.blh.core.units.NumericalUnit;
 
 /**
@@ -13,25 +12,20 @@ import org.blh.core.units.NumericalUnit;
  */
 public class Plato extends NumericalUnit {
 
-    public static final BigDecimal FOUR = BigDecimal.valueOf(4);
-    public static final BigDecimal _258_2 = BigDecimal.valueOf(258.2);
-    public static final BigDecimal _258_6 = BigDecimal.valueOf(258.6);
-    public static final BigDecimal _227_1 = BigDecimal.valueOf(227.1);
-
     public Plato(double value) {
         super(value);
     }
 
     public Plato(SpecificGravity gravity) {
-        super((gravity.value().subtract(BigDecimal.ONE)).multiply(GravityPoints.ONE_THOUSAND).divide(FOUR));
+        super((gravity.value() - 1) * 1000 / 4);
     }
 
     public SpecificGravity toSpecificGravity() {
-        BigDecimal a = this.value().divide(_258_2);
-        a = a.multiply(_227_1);
-        a = _258_6.subtract(a);
-        a = this.value().divide(a);
-        a = a.add(BigDecimal.ONE);
+        double a = this.value() / 258.2;
+        a = a * 227.1;
+        a = 258.6 - a;
+        a = this.value() / a;
+        a = a + 1;
         return new SpecificGravity(a);
     }
 }
