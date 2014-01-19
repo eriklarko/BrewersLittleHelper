@@ -1,6 +1,5 @@
 package org.blh.recipe.uncategorized;
 
-import org.blh.core.uncategorized.RecipeMetaData;
 import org.blh.core.units.Factor;
 import org.blh.core.units.alcohol.ABV;
 import org.blh.core.units.color.ColorPotential;
@@ -11,7 +10,6 @@ import org.blh.core.units.time.Minutes;
 import org.blh.core.units.volume.Liters;
 import org.blh.core.units.weight.Grams;
 import org.blh.core.units.weight.Kilograms;
-import org.blh.recipe.IngredientsList;
 import org.blh.recipe.volumes.water.BrewStep;
 import org.blh.recipe.volumes.water.VolumeCalculator;
 import org.blh.recipe.volumes.water.impl.FinalStep;
@@ -29,10 +27,9 @@ public class FullContext {
 	public BrewStep FERMENTATION = null;
 	public FinalStep FINAL = new FinalStep();
 
-	private IngredientsList recipe;
+	private Recipe recipe;
 	private GeneralBreweryInfo brewery;
 	private Equipment equipment;
-	private RecipeMetaData recipeMetaData;
 	private VolumeCalculator vc;
 	/////////////
 	public InputtedOrCalculatedValue<Liters> preMashVolume;
@@ -59,7 +56,7 @@ public class FullContext {
 	public FullContext() {
 	}
 
-	public IngredientsList getIngredientsList() {
+	public Recipe getRecipe() {
 		return recipe;
 	}
 
@@ -69,10 +66,6 @@ public class FullContext {
 
 	public Equipment getEquipment() {
 		return equipment;
-	}
-
-	public RecipeMetaData getRecipeMetaData() {
-		return recipeMetaData;
 	}
 
 	public Liters getBoilVolumeAtMinutesLeft(Minutes time) {
