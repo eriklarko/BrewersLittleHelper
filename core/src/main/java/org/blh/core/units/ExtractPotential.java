@@ -9,21 +9,25 @@ import org.blh.core.units.weight.Kilograms;
  */
 public class ExtractPotential extends DoubleUnit {
 
-    private final GravityPoints gravityPoints;
-    private final Kilograms weight;
+	private final GravityPoints gravityPoints;
+	private final Kilograms weight;
 
-    public ExtractPotential(GravityPoints gravityPoints, Kilograms weight) {
-        super(gravityPoints.value() / weight.value());
+	public ExtractPotential(GravityPoints gravityPoints) {
+		this(gravityPoints, new Kilograms(1));
+	}
 
-        this.gravityPoints = gravityPoints;
-        this.weight = weight;
-    }
+	public ExtractPotential(GravityPoints gravityPoints, Kilograms weight) {
+		super(gravityPoints.value() / weight.value());
 
-    public GravityPoints getGravityPoints() {
-        return gravityPoints;
-    }
+		this.gravityPoints = gravityPoints;
+		this.weight = weight;
+	}
 
-    public Kilograms getWeight() {
-        return weight;
-    }
+	public GravityPoints getGravityPoints() {
+		return gravityPoints;
+	}
+
+	public Kilograms getWeight() {
+		return weight;
+	}
 }
