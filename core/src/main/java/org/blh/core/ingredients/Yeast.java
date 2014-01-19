@@ -1,5 +1,7 @@
 package org.blh.core.ingredients;
 
+import org.blh.core.units.Percentage;
+
 /**
  *
  * @author Erik Larkö <erik.larko@purplescout.se>
@@ -8,9 +10,9 @@ public class Yeast {
 
 	private final String name;
 	private final String manufacturer;
-	private final String attenuation;
+	private final Percentage attenuation;
 
-	public Yeast(String name, String manufacturer, String attenuation) {
+	public Yeast(String name, String manufacturer, Percentage attenuation) {
 		this.name = name;
 		this.manufacturer = manufacturer;
 		this.attenuation = attenuation;
@@ -24,7 +26,7 @@ public class Yeast {
 		return manufacturer;
 	}
 
-	public String getAttenuation() {
+	public Percentage getAttenuation() {
 		return attenuation;
 	}
 }
