@@ -9,8 +9,8 @@ import org.blh.core.units.weight.Kilograms;
  */
 public class GristPart {
 
-    private Malt malt;
-    private Kilograms amount;
+    private final Malt malt;
+    private final Kilograms amount;
 
     public GristPart(Malt malt, Kilograms amount) {
         this.malt = malt;
