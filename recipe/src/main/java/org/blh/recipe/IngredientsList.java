@@ -1,7 +1,7 @@
 package org.blh.recipe;
 
+import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 import org.blh.core.recipe.GristPart;
 import org.blh.core.recipe.HopAddition;
 import org.blh.core.recipe.YeastAddition;
@@ -19,19 +19,25 @@ import org.blh.core.units.weight.Lbs;
  */
 public class IngredientsList {
 
-    private List<GristPart> fermentables;
-    private List<HopAddition> hopAdditions;
-    private List<YeastAddition<?>> yeastAdditions;
+    private final Collection<GristPart> fermentables;
+    private final Collection<HopAddition> hopAdditions;
+    private final Collection<YeastAddition<?>> yeastAdditions;
 
-    public List<GristPart> getFermentables() {
+	public IngredientsList(Collection<GristPart> fermentables, Collection<HopAddition> hopAdditions, Collection<YeastAddition<?>> yeastAdditions) {
+		this.fermentables = fermentables;
+		this.hopAdditions = hopAdditions;
+		this.yeastAdditions = yeastAdditions;
+	}
+
+    public Collection<GristPart> getFermentables() {
         return fermentables;
     }
 
-    public List<HopAddition> getHopAdditions() {
+    public Collection<HopAddition> getHopAdditions() {
         return new LinkedList<>(hopAdditions);
     }
 
-	public List<YeastAddition<?>> getYeastAdditions() {
+	public Collection<YeastAddition<?>> getYeastAdditions() {
 		return new LinkedList<>(yeastAdditions);
 	}
 
