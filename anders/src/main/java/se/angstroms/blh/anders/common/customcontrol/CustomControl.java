@@ -1,8 +1,8 @@
 package se.angstroms.blh.anders.common.customcontrol;
 
 import java.io.IOException;
-
 import javafx.fxml.FXMLLoader;
+import se.angstroms.blh.anders.utils.ResourceBundleUtil;
 
 /**
  * Boilerplate code for creating custom FX-controls
@@ -39,6 +39,7 @@ public class CustomControl {
 	}
 
 	public static void setup(Object instance, FXMLLoader fxmlLoader) {
+		fxmlLoader.setResources(ResourceBundleUtil.getCurrentResourceBundle());
 		fxmlLoader.setRoot(instance);
 		fxmlLoader.setController(instance);
 

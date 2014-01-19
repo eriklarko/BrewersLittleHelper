@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+    <stylesheets>
+        <URL value="@/styles/anders.css"/>
+    </stylesheets>
+
+    <TableView fx:id="fermentablesTable" editable="true" tableMenuButtonVisible="true">
+        <columns>
+            <TableColumn text="%ingredientsList.fermentables.name" fx:id="fermentablesName" />
+            <TableColumn text="%ingredientsList.fermentables.amount" fx:id="fermentablesAmount" />
+        </columns>
+        <sortOrder>
+            <fx:reference source="fermentablesName" />
+        </sortOrder>
+    </TableView>
+
+    <TableView fx:id="hopsTable" editable="true" tableMenuButtonVisible="true">
+        <columns>
+            <TableColumn text="%ingredientsList.hops.name" fx:id="hopsName" />
+            <TableColumn text="%ingredientsList.hops.amount" fx:id="hopsAmount" />
+            <TableColumn text="%ingredientsList.hops.timeInBoil" fx:id="hopsTimeInBoil" />
+        </columns>
+        <sortOrder>
+            <fx:reference source="hopsTimeInBoil" />
+        </sortOrder>
+    </TableView>
+
+    <TableView fx:id="yeastsTable" editable="true" tableMenuButtonVisible="true">
+        <columns>
+            <TableColumn text="%ingredientsList.yeasts.name" fx:id="yeastsName" />
+            <TableColumn text="%ingredientsList.yeasts.amount" fx:id="yeastsAmount" />
+        </columns>
+        <sortOrder>
+            <fx:reference source="yeastsName" />
+        </sortOrder>
+    </TableView>
+
+    <TableView fx:id="othersTable" editable="true" tableMenuButtonVisible="true">
+        <columns>
+            <TableColumn text="%ingredientsList.others.name" fx:id="othersName" />
+            <TableColumn text="%ingredientsList.others.amount" fx:id="othersAmount" />
+        </columns>
+        <sortOrder>
+            <fx:reference source="othersName" />
+        </sortOrder>
+    </TableView>
+</fx:root>
