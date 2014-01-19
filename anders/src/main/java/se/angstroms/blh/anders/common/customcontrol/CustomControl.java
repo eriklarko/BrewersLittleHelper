@@ -33,6 +33,23 @@ public class CustomControl {
 		}
 	}
 
+	/**
+	 * Sets up the controller to use a fxml-file in the same package named
+	 * as the controller without the word "Controller".
+	 *
+	 * Ex.
+	 *  RecipeDetailsController in se.angstroms.anders.recipe.details looks for
+	 *  an fxml-file named RecipeDetails.fxml in se.angstroms.anders.recipe.details
+	 *
+	 * @param instance
+	 */
+	public static void setup(Object instance) {
+		Class<?> clazz = instance.getClass();
+		String className = clazz.getSimpleName();
+		String fxmlFileName = className.replace("Controller", "") + ".fxml";
+		setup(instance, fxmlFileName);
+	}
+
 	public static void setup(Object instance, String fxmlPath) {
 		FXMLLoader fxmlLoader = new FXMLLoader(instance.getClass().getResource(fxmlPath));
 		setup(instance, fxmlLoader);

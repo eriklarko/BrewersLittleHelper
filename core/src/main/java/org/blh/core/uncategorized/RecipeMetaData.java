@@ -9,9 +9,19 @@ public class RecipeMetaData {
         ALE, LAGER, HYBRID
     }
 
-    public final BEER_TYPE type;
+    private final BEER_TYPE type;
+	private final String name;
 
-    public RecipeMetaData(BEER_TYPE type) {
-        this.type = type;
-    }
+	public RecipeMetaData(BEER_TYPE type, String name) {
+		this.type = type;
+		this.name = name;
+	}
+
+	public BEER_TYPE getType() {
+		return type;
+	}
+
+	public String getName() {
+		return name;
+	}
 }

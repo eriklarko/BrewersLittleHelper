@@ -7,8 +7,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="se.angstroms.blh.anders.recipe.list.RecipeListController">
+<fx:root type="javafx.scene.control.TableView" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
     <stylesheets>
         <URL value="@/styles/anders.css"/>
     </stylesheets>
-</AnchorPane>
+
+    <columns>
+        <TableColumn text="%recipeList.recipeName" fx:id="recipeName"/>
+    </columns>
+</fx:root>

@@ -13,7 +13,7 @@
         <TabPane tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="%tab.recipes">
-                    <se.angstroms.blh.anders.recipe.details.RecipeDetailsController fx:id="recipeDetails" />
+                    <Pane fx:id="recipesContainer"/>
                 </Tab>
                 <Tab text="%tab.equipment">
                     <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />

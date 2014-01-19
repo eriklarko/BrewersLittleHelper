@@ -36,7 +36,7 @@ public class IngredientsListController extends HBox {
 	@FXML private TableView<String> othersTable;
 
 	public IngredientsListController() {
-		CustomControl.setup(this, "IngredientsList.fxml");
+		CustomControl.setup(this);
 
 		buildFermentablesTable();
 		buildHopsTable();
