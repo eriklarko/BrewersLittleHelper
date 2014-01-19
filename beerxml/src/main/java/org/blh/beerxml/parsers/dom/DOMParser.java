@@ -1,11 +1,20 @@
 package org.blh.beerxml.parsers.dom;
 
-import org.blh.beerxml.types.BeerXMLRecordSet;
+import java.io.File;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import org.blh.beerxml.BeerXMLParser;
 import org.blh.beerxml.ParseException;
 import org.blh.beerxml.UnknownRecordException;
 import org.blh.beerxml.UnknownRecordSetException;
 import org.blh.beerxml.types.BeerXMLRecord;
+import org.blh.beerxml.types.BeerXMLRecordSet;
 import org.blh.beerxml.types.Equipment;
 import org.blh.beerxml.types.Fermentable;
 import org.blh.beerxml.types.Hop;
@@ -26,15 +35,6 @@ import org.blh.beerxml.types.builders.RecipeBuilderImpl;
 import org.blh.beerxml.types.builders.StyleBuilderImpl;
 import org.blh.beerxml.types.builders.WaterBuilderImpl;
 import org.blh.beerxml.types.builders.YeastBuilderImpl;
-import java.io.File;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -47,16 +47,16 @@ import org.xml.sax.SAXException;
  */
 public class DOMParser implements BeerXMLParser {
 
-    private RecordSetParser<Recipe> recipeParser;
-    private RecordSetParser<Style> styleParser;
-    private RecordSetParser<Equipment> equipmentParser;
-    private RecordSetParser<Hop> hopsParser;
-    private RecordSetParser<Fermentable> fermentablesParser;
-    private RecordSetParser<Misc> miscsParser;
-    private RecordSetParser<Yeast> yeastsParser;
-    private RecordSetParser<Water> watersParser;
-    private RecordSetParser<MashStep> mashStepsParser;
-    private RecordSetParser<MashProfile> mashProfileParser;
+    private final RecordSetParser<Recipe> recipeParser;
+    private final RecordSetParser<Style> styleParser;
+    private final RecordSetParser<Equipment> equipmentParser;
+    private final RecordSetParser<Hop> hopsParser;
+    private final RecordSetParser<Fermentable> fermentablesParser;
+    private final RecordSetParser<Misc> miscsParser;
+    private final RecordSetParser<Yeast> yeastsParser;
+    private final RecordSetParser<Water> watersParser;
+    private final RecordSetParser<MashStep> mashStepsParser;
+    private final RecordSetParser<MashProfile> mashProfileParser;
 
     public static DOMParser defaultDOMParser() {
         RecordSetParser<Style> styleParser = new RecordSetParser<>(new StyleBuilderImpl());
@@ -70,8 +70,8 @@ public class DOMParser implements BeerXMLParser {
         RecordSetParser<MashProfile> mashProfileParser = new MashProfileParser(new MashProfileBuilderImpl(), mashStepParser);
 
         RecordSetParser<Recipe> recipeParser = new RecipeParser(
-                new RecipeBuilderImpl(), styleParser, equipmentParser, 
-                hopsParser, fermentablesParser, miscsParser, yeastsParser, 
+                new RecipeBuilderImpl(), styleParser, equipmentParser,
+                hopsParser, fermentablesParser, miscsParser, yeastsParser,
                 watersParser, mashProfileParser
         );
 
@@ -85,7 +85,7 @@ public class DOMParser implements BeerXMLParser {
                 watersParser,
                 mashStepParser,
                 mashProfileParser
-        );      
+        );
     }
 
     public DOMParser(RecordSetParser<Recipe> recipeParser, RecordSetParser<Style> styleParser, RecordSetParser<Equipment> equipmentParser, RecordSetParser<Hop> hopsParser, RecordSetParser<Fermentable> fermentablesParser, RecordSetParser<Misc> miscsParser, RecordSetParser<Yeast> yeastsParser, RecordSetParser<Water> watersParser, RecordSetParser<MashStep> mashStepsParser, RecordSetParser<MashProfile> mashProfileParser) {

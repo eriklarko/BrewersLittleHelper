@@ -350,10 +350,7 @@ public class Recipe implements BeerXMLRecord {
         if (!Objects.equals(this.kegPrimingFactor, other.kegPrimingFactor)) {
             return false;
         }
-        if (!Objects.equals(this.carbonationUsed, other.carbonationUsed)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.carbonationUsed, other.carbonationUsed);
     }
 
     @Override

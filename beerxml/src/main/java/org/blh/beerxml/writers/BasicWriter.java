@@ -1,10 +1,5 @@
 package org.blh.beerxml.writers;
 
-import org.blh.beerxml.BeerXMLWriter;
-import org.blh.beerxml.ClassToRecordNameMapper;
-import org.blh.beerxml.UnknownRecordSetException;
-import org.blh.beerxml.types.BeerXMLRecord;
-import org.blh.beerxml.types.BeerXMLRecordSet;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,15 +7,20 @@ import java.io.OutputStreamWriter;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import org.blh.beerxml.BeerXMLWriter;
+import org.blh.beerxml.ClassToRecordNameMapper;
+import org.blh.beerxml.UnknownRecordSetException;
+import org.blh.beerxml.types.BeerXMLRecord;
+import org.blh.beerxml.types.BeerXMLRecordSet;
 
 /**
- * 
+ *
  * @author Erik Larkö
  * @since May 21, 2013 9:28:03 PM
  */
 public class BasicWriter implements BeerXMLWriter<BeerXMLRecord> {
 
-    private ClassToRecordNameMapper recordNameMapper;
+    private final ClassToRecordNameMapper recordNameMapper;
 
     public BasicWriter(ClassToRecordNameMapper recordNameMapper) {
         this.recordNameMapper = recordNameMapper;

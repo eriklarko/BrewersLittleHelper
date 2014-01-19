@@ -30,5 +30,4 @@ public interface MiscBuilder extends Builder<Misc> {
     MiscBuilder setUse(MISC_USE use);
 
     MiscBuilder setUseFor(String useFor);
-    
 }

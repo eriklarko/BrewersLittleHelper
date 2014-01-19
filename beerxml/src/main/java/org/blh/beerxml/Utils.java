@@ -15,7 +15,7 @@ import org.joda.time.format.DateTimePrinter;
 public class Utils {
     public static final String DEFAULT_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
 
-    public static String toStringOrNull(Unit unit) {
+    public static String toStringOrNull(Unit<?> unit) {
         if (unit == null) {
             return null;
         }
@@ -58,11 +58,11 @@ public class Utils {
             DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss").getParser(),
             DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss Z").getParser(),
             DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").getParser(),
-            
+
             DateTimeFormat.forPattern("d MMM yy").getParser()
-                
+
         };
-        
+
         DateTimePrinter printer = DateTimeFormat.forPattern(DEFAULT_TIME_FORMAT).getPrinter();
         return new DateTimeFormatterBuilder().append(printer, parsers).toFormatter();
     }
