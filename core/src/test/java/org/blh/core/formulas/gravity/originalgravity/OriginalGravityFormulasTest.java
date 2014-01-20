@@ -1,17 +1,18 @@
 package org.blh.core.formulas.gravity.originalgravity;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.blh.core.ingredients.Malt;
 import org.blh.core.recipe.GristPart;
 import org.blh.core.units.ExtractPotential;
 import org.blh.core.units.Factor;
 import org.blh.core.units.gravity.GravityPoints;
 import org.blh.core.units.gravity.SpecificGravity;
-import org.blh.core.units.volume.USGallons;
 import org.blh.core.units.volume.Liters;
+import org.blh.core.units.volume.USGallons;
 import org.blh.core.units.weight.Kilograms;
 import org.blh.core.units.weight.Lbs;
-import java.util.Arrays;
-import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -22,17 +23,17 @@ public class OriginalGravityFormulasTest {
 
     @Test
     /**
-     * You plan to use 3.5 lbs. malt extract, plus 4.5 lbs. pale malt and 1/2 lb. 
-     * crystal malt (40° Lovibond). Your extraction efficiency, from before, 
-     * was 83%. From Table 1, you can see that dried malt extract yields 45 GP/lb. 
-     * Extraction efficiency for malt extract is always 100%, so its extraction 
-     * efficiency is 1.0. The extract potential for pale malt is 36 GU/lb., 
-     * while the EP for the crystal is 30. Substituting the numbers for 
+     * You plan to use 3.5 lbs. malt extract, plus 4.5 lbs. pale malt and 1/2 lb.
+     * crystal malt (40° Lovibond). Your extraction efficiency, from before,
+     * was 83%. From Table 1, you can see that dried malt extract yields 45 GP/lb.
+     * Extraction efficiency for malt extract is always 100%, so its extraction
+     * efficiency is 1.0. The extract potential for pale malt is 36 GU/lb.,
+     * while the EP for the crystal is 30. Substituting the numbers for
      * the variables gives you:
      *
      *   SGP = [3.5*45*1.00]/5 + [4.5*36 *0.83]/5 + [0.5*30*0.83]/5 = 60.882
      *   -> 1.060882
-     * 
+     *
      *  45 GP/Lbs = x GP/Kg, 45 / Lbs.CONVERSION_FACTOR
      *  36 GP/Lbs = x GP/Kg
      *  30 GP/Lbs = x GP/Kg
@@ -57,7 +58,7 @@ public class OriginalGravityFormulasTest {
 
         SpecificGravity expected = new SpecificGravity(1.060882);
 
-        Assert.assertEquals("Metric differs", expected.value(), ogMetric.value());
-        Assert.assertEquals("Imperial differs", expected.value(), ogImperial.value());
+        Assert.assertEquals("Metric differs", expected, ogMetric);
+        Assert.assertEquals("Imperial differs", expected, ogImperial);
     }
 }
