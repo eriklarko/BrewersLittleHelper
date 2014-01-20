@@ -1,6 +1,5 @@
 package org.blh.core.formulas.carbonation;
 
-import org.blh.core.formulas.carbonation.SimpleHenrysLaw;
 import org.blh.core.units.CO2Volumes;
 import org.blh.core.units.pressure.Bar;
 import org.blh.core.units.pressure.PSI;
@@ -26,6 +25,6 @@ public class SimpleHenrysLawTest {
         Bar resultBar = henrysLaw.calc(vols, temperatureC);
 
         PSI barResultAsPSI = new PSI(resultBar);
-        Assert.assertEquals(resultPSI.value(), barResultAsPSI.value());
+        Assert.assertEquals(resultPSI, barResultAsPSI);
     }
 }
