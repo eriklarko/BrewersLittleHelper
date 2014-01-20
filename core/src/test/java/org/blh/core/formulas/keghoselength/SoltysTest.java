@@ -1,6 +1,5 @@
 package org.blh.core.formulas.keghoselength;
 
-import org.blh.core.formulas.keghoselength.Soltys;
 import org.blh.core.units.distance.Feet;
 import org.blh.core.units.distance.Inch;
 import org.blh.core.units.gravity.SpecificGravity;
@@ -26,7 +25,7 @@ public class SoltysTest {
 
         Feet length = calculator.calc(gravity, kegPressure, hoseDiam, tapHeight, fillTime);
         Feet expected = new Feet(10.8799);
-        
-        Assert.assertEquals(expected.value(), length.value());
+
+        Assert.assertEquals(expected, length);
     }
 }
