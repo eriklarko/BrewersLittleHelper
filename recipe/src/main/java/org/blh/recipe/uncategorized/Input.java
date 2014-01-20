@@ -1,6 +1,7 @@
 package org.blh.recipe.uncategorized;
 
 /**
+ * Represents a value that the user have given as input
  *
  * @author thinner
  */

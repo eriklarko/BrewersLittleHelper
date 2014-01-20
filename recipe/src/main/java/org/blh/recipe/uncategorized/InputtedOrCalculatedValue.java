@@ -1,6 +1,10 @@
 package org.blh.recipe.uncategorized;
 
+import org.blh.recipe.formulas.Formula;
+
 /**
+ * Represents a value that is either inputted by the user or calculated by a
+ * formula.
  *
  * @author thinner
  */

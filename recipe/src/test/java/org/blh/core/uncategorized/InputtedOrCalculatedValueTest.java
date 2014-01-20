@@ -2,7 +2,7 @@ package org.blh.core.uncategorized;
 
 import org.blh.recipe.uncategorized.InputtedOrCalculatedValue;
 import org.blh.recipe.uncategorized.FullContext;
-import org.blh.recipe.uncategorized.Formula;
+import org.blh.recipe.formulas.Formula;
 import org.junit.Assert;
 import org.junit.Test;
 

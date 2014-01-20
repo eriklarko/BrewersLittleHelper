@@ -1,6 +1,7 @@
-package org.blh.recipe.uncategorized;
+package org.blh.recipe.formulas;
 
 import java.util.Map;
+
 
 /**
  * Created by Erik Larkö at 6/28/13 1:28 PM
