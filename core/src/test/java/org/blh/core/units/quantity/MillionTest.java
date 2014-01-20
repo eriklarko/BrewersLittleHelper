@@ -1,5 +1,6 @@
 package org.blh.core.units.quantity;
 
+import org.blh.core.unit.quantity.Million;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,5 +1,8 @@
 package org.blh.core.units.quantity;
 
+import org.blh.core.unit.quantity.Million;
+import org.blh.core.unit.quantity.Billion;
+import org.blh.core.unit.quantity.YeastCellCount;
 import org.junit.Assert;
 import org.junit.Test;
 

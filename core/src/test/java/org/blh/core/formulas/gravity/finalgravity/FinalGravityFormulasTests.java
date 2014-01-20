@@ -1,8 +1,11 @@
 package org.blh.core.formulas.gravity.finalgravity;
 
-import org.blh.core.units.Factor;
-import org.blh.core.units.gravity.GravityPoints;
-import org.blh.core.units.gravity.SpecificGravity;
+import org.blh.core.formula.gravity.finalgravity.BYOSimple;
+import org.blh.core.formula.gravity.finalgravity.Nostrildamus;
+import org.blh.core.formula.gravity.finalgravity.Brewgr;
+import org.blh.core.unit.Factor;
+import org.blh.core.unit.gravity.GravityPoints;
+import org.blh.core.unit.gravity.SpecificGravity;
 import org.junit.Assert;
 import org.junit.Test;
 

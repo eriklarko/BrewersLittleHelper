@@ -1,6 +1,6 @@
 package org.blh.core.units;
 
-import org.blh.core.units.PH;
+import org.blh.core.unit.PH;
 import org.junit.Test;
 
 /**

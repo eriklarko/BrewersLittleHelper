@@ -1,11 +1,12 @@
 package org.blh.recipe.volumes.water.impl;
 
-import org.blh.recipe.volumes.water.impl.generic.AdditiveStep;
-import org.blh.core.units.time.Hour;
-import org.blh.core.units.volume.Liters;
+import org.blh.core.unit.time.Hour;
+import org.blh.core.unit.volume.Liters;
 import org.blh.recipe.uncategorized.FullContext;
+import org.blh.recipe.volumes.water.impl.generic.AdditiveStep;
 
 /**
+ * Represent the effect boiling the wort has on water volume.
  *
  * @author Erik Larkö <erik.larko@purplescout.se>
  * @since Jul 17, 2013 10:17:11 PM
@@ -22,7 +23,7 @@ public class BoilStep extends AdditiveStep {
 
     @Override
     protected double term(FullContext context) {
-        Hour boilTime = new Hour(context.boilTime.value().value());
+        Hour boilTime = new Hour(context.getBoilTime().value().value());
         double totalBoilOff = context.getEquipment().getBoilOff().value().value() * boilTime.value();
 
         return totalBoilOff;

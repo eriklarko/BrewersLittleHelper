@@ -1,5 +1,7 @@
 package org.blh.core.units.temperature;
 
+import org.blh.core.unit.temperature.Celsius;
+import org.blh.core.unit.temperature.Fahrenheit;
 import org.junit.Assert;
 import org.junit.Test;
 

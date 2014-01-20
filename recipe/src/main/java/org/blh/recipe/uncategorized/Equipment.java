@@ -1,11 +1,12 @@
 package org.blh.recipe.uncategorized;
 
-import org.blh.core.units.Fraction;
-import org.blh.core.units.Percentage;
-import org.blh.core.units.time.Hour;
-import org.blh.core.units.volume.Liters;
+import org.blh.core.unit.Fraction;
+import org.blh.core.unit.Percentage;
+import org.blh.core.unit.time.Hour;
+import org.blh.core.unit.volume.Liters;
 
 /**
+ * Defines the properties of the equipment used when brewing.
  *
  * @author thinner
  */

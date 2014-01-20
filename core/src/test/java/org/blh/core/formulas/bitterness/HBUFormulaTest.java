@@ -1,13 +1,14 @@
 package org.blh.core.formulas.bitterness;
 
+import org.blh.core.formula.bitterness.HBUFormula;
 import java.util.Arrays;
 import java.util.List;
 
-import org.blh.core.ingredients.Hop;
+import org.blh.core.ingredient.Hop;
 import org.blh.core.recipe.HopAddition;
-import org.blh.core.units.Percentage;
-import org.blh.core.units.bitterness.HBU;
-import org.blh.core.units.weight.Grams;
+import org.blh.core.unit.Percentage;
+import org.blh.core.unit.bitterness.HBU;
+import org.blh.core.unit.weight.Grams;
 import org.junit.Assert;
 import org.junit.Test;
 

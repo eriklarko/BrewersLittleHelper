@@ -1,11 +1,14 @@
 package org.blh.core.formulas.color;
 
-import org.blh.core.units.color.ColorPotential;
-import org.blh.core.units.color.EBC;
-import org.blh.core.units.color.Lovibond;
-import org.blh.core.units.color.MaltColorUnit;
-import org.blh.core.units.volume.USGallons;
-import org.blh.core.units.weight.Lbs;
+import org.blh.core.formula.color.Daniels;
+import org.blh.core.formula.color.Mosher;
+import org.blh.core.formula.color.Morey;
+import org.blh.core.unit.color.ColorPotential;
+import org.blh.core.unit.color.EBC;
+import org.blh.core.unit.color.Lovibond;
+import org.blh.core.unit.color.MaltColorUnit;
+import org.blh.core.unit.volume.USGallons;
+import org.blh.core.unit.weight.Lbs;
 import org.junit.Assert;
 import org.junit.Test;
 

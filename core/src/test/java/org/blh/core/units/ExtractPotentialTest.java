@@ -1,7 +1,8 @@
 package org.blh.core.units;
 
-import org.blh.core.units.gravity.GravityPoints;
-import org.blh.core.units.weight.Kilograms;
+import org.blh.core.unit.ExtractPotential;
+import org.blh.core.unit.gravity.GravityPoints;
+import org.blh.core.unit.weight.Kilograms;
 import org.junit.Assert;
 import org.junit.Test;
 

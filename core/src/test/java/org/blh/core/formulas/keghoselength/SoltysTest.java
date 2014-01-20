@@ -1,10 +1,11 @@
 package org.blh.core.formulas.keghoselength;
 
-import org.blh.core.units.distance.Feet;
-import org.blh.core.units.distance.Inch;
-import org.blh.core.units.gravity.SpecificGravity;
-import org.blh.core.units.pressure.PSI;
-import org.blh.core.units.time.Seconds;
+import org.blh.core.formula.keghoselength.Soltys;
+import org.blh.core.unit.distance.Feet;
+import org.blh.core.unit.distance.Inch;
+import org.blh.core.unit.gravity.SpecificGravity;
+import org.blh.core.unit.pressure.PSI;
+import org.blh.core.unit.time.Seconds;
 import org.junit.Assert;
 import org.junit.Test;
 

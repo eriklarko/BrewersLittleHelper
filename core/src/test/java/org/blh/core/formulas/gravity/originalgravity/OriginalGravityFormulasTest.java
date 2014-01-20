@@ -1,18 +1,19 @@
 package org.blh.core.formulas.gravity.originalgravity;
 
+import org.blh.core.formula.gravity.originalgravity.SimpleOriginalGravityFormula;
 import java.util.Arrays;
 import java.util.List;
 
-import org.blh.core.ingredients.Malt;
+import org.blh.core.ingredient.Malt;
 import org.blh.core.recipe.GristPart;
-import org.blh.core.units.ExtractPotential;
-import org.blh.core.units.Factor;
-import org.blh.core.units.gravity.GravityPoints;
-import org.blh.core.units.gravity.SpecificGravity;
-import org.blh.core.units.volume.Liters;
-import org.blh.core.units.volume.USGallons;
-import org.blh.core.units.weight.Kilograms;
-import org.blh.core.units.weight.Lbs;
+import org.blh.core.unit.ExtractPotential;
+import org.blh.core.unit.Factor;
+import org.blh.core.unit.gravity.GravityPoints;
+import org.blh.core.unit.gravity.SpecificGravity;
+import org.blh.core.unit.volume.Liters;
+import org.blh.core.unit.volume.USGallons;
+import org.blh.core.unit.weight.Kilograms;
+import org.blh.core.unit.weight.Lbs;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,10 +1,12 @@
 package org.blh.recipe.volumes.water;
 
-import org.blh.core.units.volume.Liters;
+import org.blh.core.unit.volume.Liters;
 import org.blh.recipe.uncategorized.FullContext;
 
 /**
- *
+ * Represent the effect on water volume in each brew step, such as lautering,
+ * boiling etc..
+ * 
  * @author Erik Larkö <erik.larko@purplescout.se>
  */
 public abstract class BrewStep {
@@ -15,7 +17,7 @@ public abstract class BrewStep {
     }
 
     public BrewStep(Liters measuredLiters) {
-        if(measuredLiters == null) {
+        if (measuredLiters == null) {
             throw new NullPointerException("The measured liters cannot be null");
         }
 

@@ -1,5 +1,7 @@
 package org.blh.core.units;
 
+import org.blh.core.unit.Factor;
+import org.blh.core.unit.Percentage;
 import org.junit.Assert;
 import org.junit.Test;
 

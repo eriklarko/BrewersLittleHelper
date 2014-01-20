@@ -1,23 +1,28 @@
 package org.blh.beerxml;
 
-import org.blh.beerxml.types.BeerXMLRecord;
-import org.blh.beerxml.types.BeerXMLRecordSet;
-import org.blh.beerxml.types.Equipment;
-import org.blh.beerxml.types.Fermentable;
-import org.blh.beerxml.types.Hop;
-import org.blh.beerxml.types.MashProfile;
-import org.blh.beerxml.types.MashStep;
-import org.blh.beerxml.types.Misc;
-import org.blh.beerxml.types.Recipe;
-import org.blh.beerxml.types.Style;
-import org.blh.beerxml.types.Water;
-import org.blh.beerxml.types.Yeast;
 import java.util.HashMap;
 import java.util.Map;
+import org.blh.beerxml.type.BeerXMLRecord;
+import org.blh.beerxml.type.BeerXMLRecordSet;
+import org.blh.beerxml.type.Equipment;
+import org.blh.beerxml.type.Fermentable;
+import org.blh.beerxml.type.Hop;
+import org.blh.beerxml.type.MashProfile;
+import org.blh.beerxml.type.MashStep;
+import org.blh.beerxml.type.Misc;
+import org.blh.beerxml.type.Recipe;
+import org.blh.beerxml.type.Style;
+import org.blh.beerxml.type.Water;
+import org.blh.beerxml.type.Yeast;
 
+/**
+ * A basic implementation of ClassToRecordNameMapper.
+ *
+ * @author Erik Larkö <erik.larko@purplescout.se>
+ */
 public class ClassToRecordNameMapperImpl implements ClassToRecordNameMapper {
 
-    private Map<Class, String> map;
+    private final Map<Class, String> map;
 
     public ClassToRecordNameMapperImpl() {
         map = new HashMap<>();
@@ -34,25 +39,25 @@ public class ClassToRecordNameMapperImpl implements ClassToRecordNameMapper {
     }
 
     @Override
-    public String getRecordName(BeerXMLRecord record) throws UnknownRecordSetException {
-        return getRecordName(record.getClass());
+    public String getRecordName(BeerXMLRecord record) throws NoRecordNameException {
+        return getRecordNameRecursive(record.getClass());
     }
 
-    private String getRecordName(Class c) throws UnknownRecordSetException {
+    private String getRecordNameRecursive(Class c) throws NoRecordNameException {
         String name = map.get(c);
         if (name == null) {
             if (c == Object.class) {
-                throw new UnknownRecordSetException("I don't know what this is.. " + c.toString());
+                throw new NoRecordNameException("I don't know what this is.. " + c.toString());
             } else {
-                name = getRecordName(c.getSuperclass());
+                name = getRecordNameRecursive(c.getSuperclass());
             }
         }
         return name;
     }
 
     @Override
-    public String getRecordSetName(BeerXMLRecordSet recordSet) throws UnknownRecordSetException {
-        String singular = getRecordName(recordSet.getType());
+    public String getRecordSetName(BeerXMLRecordSet recordSet) throws NoRecordNameException {
+        String singular = getRecordNameRecursive(recordSet.getType());
         return singular + "S";
     }
 }

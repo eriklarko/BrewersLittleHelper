@@ -1,11 +1,12 @@
 package org.blh.core.recipe;
 
-import org.blh.core.ingredients.Hop;
-import org.blh.core.units.time.Minutes;
-import org.blh.core.units.weight.Grams;
+import org.blh.core.ingredient.Hop;
+import org.blh.core.unit.time.Minutes;
+import org.blh.core.unit.weight.Grams;
 
 /**
- *
+ * Represent part of the hop schedule.
+ * 
  * @author thinner
  */
 public class HopAddition {

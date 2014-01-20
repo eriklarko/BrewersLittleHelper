@@ -1,16 +1,21 @@
 package org.blh.recipe.volumes.water.impl.generic;
 
-import org.blh.recipe.volumes.water.BrewStep;
-import org.blh.core.units.volume.Liters;
+import org.blh.core.unit.volume.Liters;
 import org.blh.recipe.uncategorized.FullContext;
+import org.blh.recipe.volumes.water.BrewStep;
 
 /**
+ * A generic brew step used by steps whose water effect is calculated by a
+ * simple addition or subtraction.
  *
  * @author Erik Larkö <erik.larko@purplescout.se>
  * @since Jul 15, 2013 8:39:55 PM
  */
 public abstract class AdditiveStep extends BrewStep {
 
+    /**
+     * Determines if the volume increases or decreases in this step.
+     */
     public static enum Volume {
 
         DECREASES_IN_STEP, INCREASES_IN_STEP

@@ -1,6 +1,6 @@
 package org.blh.core.units;
 
-import org.blh.core.units.BJCPTasteRating;
+import org.blh.core.unit.BJCPTasteRating;
 import org.junit.Test;
 
 /**

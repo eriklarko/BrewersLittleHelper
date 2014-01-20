@@ -1,10 +1,12 @@
 package org.blh.recipe.volumes.water.impl.generic;
 
-import org.blh.recipe.volumes.water.BrewStep;
-import org.blh.core.units.volume.Liters;
+import org.blh.core.unit.volume.Liters;
 import org.blh.recipe.uncategorized.FullContext;
+import org.blh.recipe.volumes.water.BrewStep;
 
 /**
+ * A generic brew step used by steps whose water effect is calculated by a
+ * simple multiplication.
  *
  * @author Erik Larkö <erik.larko@purplescout.se>
  * @since Jul 15, 2013 8:39:55 PM

@@ -1,6 +1,7 @@
 package org.blh.core.units.alcohol;
 
-import org.blh.core.units.Factor;
+import org.blh.core.unit.alcohol.ABV;
+import org.blh.core.unit.Factor;
 import org.junit.Assert;
 import org.junit.Test;
 

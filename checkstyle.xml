@@ -28,7 +28,35 @@ under the License.
 
 <module name="Checker">
 
-    <module name="FileLength"/>
+	<module name="SuppressionFilter">
+		<property name="file" value="checkstyle-suppressions.xml"/>
+	</module>
+
+	<module name="SuppressWithNearbyCommentFilter">
+		<property name="commentFormat" value="This is as complex as it needs to be"/>
+		<property name="checkFormat" value="CyclomaticComplexityCheck"/>
+		<property name="messageFormat" value="$1"/>
+		<property name="influenceFormat" value="1"/>
+	</module>
+	<module name="SuppressWithNearbyCommentFilter">
+		<property name="commentFormat" value="This is as complex as it needs to be"/>
+		<property name="checkFormat" value="MethodLengthCheck"/>
+		<property name="messageFormat" value="$1"/>
+		<property name="influenceFormat" value="1"/>
+	</module>
+	<module name="SuppressWithNearbyCommentFilter">
+		<property name="commentFormat" value="No magic numbers here"/>
+		<property name="checkFormat" value="MagicNumberCheck"/>
+		<property name="messageFormat" value="$1"/>
+		<property name="influenceFormat" value="1"/>
+	</module>
+	<module name="SuppressionCommentFilter">
+	  <property name="offCommentFormat" value="This hash is ok"/>
+	  <property name="onCommentFormat" value="End this hash is ok"/>
+	  <property name="checkFormat" value="MagicNumberCheck"/>
+	</module>
+	
+	<module name="FileLength"/>
     <module name="FileTabCharacter"/>
     <module name="Translation"/>
 
@@ -47,11 +75,12 @@ under the License.
     <module name="JavadocPackage"/>
 
     <module name="TreeWalker">
-
-        <property name="cacheFile" value="${checkstyle.cache.file}"/>
-
+	    <property name="cacheFile" value="${checkstyle.cache.file}"/>
         <property name="tabWidth" value="4"/>
 
+		<!-- Make comments available to the filter -->
+		<module name="FileContentsHolder"/>
+		
         <module name="MemberName" />
 
         <!-- Checks for Javadoc comments.                     -->
@@ -70,7 +99,11 @@ under the License.
           <property name="severity" value="info"/>
           <property name="scope" value="protected"/>
         </module>
-        <module name="JavadocStyle"/>
+        <module name="JavadocStyle">
+			<property name="checkFirstSentence" value="false"/>
+			<property name="checkEmptyJavadoc" value="true"/>
+			<property name="checkHtml" value="true"/>
+		</module>
 
 
         <!-- Checks for Naming Conventions.                  -->
@@ -100,11 +133,12 @@ under the License.
           <property name="ignorePattern" value="@version|@see|@todo|TODO"/>
         </module>
         <module name="MethodLength">
-            <property name="max" value="20"/>
+            <property name="max" value="30"/>
         </module>
         <!--module name="AnonInnerLength"-->
         <module name="ParameterNumber">
             <property name="max" value="4"/>
+            <property name="tokens" value="METHOD_DEF"/>
         </module>
         <!--module name="OuterTypeNumber"/-->
         <!--module name="MethodCount"/-->
@@ -172,6 +206,7 @@ under the License.
         <module name="MissingSwitchDefault"/>
         <module name="ModifiedControlVariable"/>
         <module name="RedundantThrows">
+			<property name="allowUnchecked" value="true"/>
             <property name="allowSubclasses" value="true"/>
         </module>
         <module name="SimplifyBooleanExpression"/>
@@ -193,7 +228,7 @@ under the License.
         <module name="IllegalCatch"/>
         <module name="IllegalThrows"/>
         <module name="PackageDeclaration"/>
-        <module name="JUnitTestCase"/>
+        <!--module name="JUnitTestCase"/-->
         <!--module name="ReturnCount"-->
         <!--module name="IllegalType"-->
         <!--module name="DeclarationOrder"/-->
@@ -222,6 +257,9 @@ under the License.
         </module>
         <!--module name="InnerTypeLast"/-->
 
+        <!-- Metrics                                                   -->
+        <!-- See http://checkstyle.sourceforge.net/config_metrics.html -->
+		<module name="CyclomaticComplexity"/>
 
         <!-- Miscellaneous other checks.                   -->
         <!-- See http://checkstyle.sf.net/config_misc.html -->

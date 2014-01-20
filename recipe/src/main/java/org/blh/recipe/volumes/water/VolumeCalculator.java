@@ -1,11 +1,12 @@
 package org.blh.recipe.volumes.water;
 
-import org.blh.core.units.volume.Liters;
 import java.util.LinkedList;
 import java.util.ListIterator;
+import org.blh.core.unit.volume.Liters;
 import org.blh.recipe.uncategorized.FullContext;
 
 /**
+ * Calculates the water volume before or after a brew step.
  *
  * @author Erik Larkö <erik.larko@purplescout.se>
  * @since Jul 15, 2013 8:45:32 PM
@@ -20,7 +21,7 @@ public class VolumeCalculator {
 
     public Liters pre(BrewStep target, FullContext context) {
         BrewStep measuredStep = findEarlierMeasuredBrewStep(target);
-        if(measuredStep == null) {
+        if (measuredStep == null) {
             measuredStep = findLaterMeasuredBrewStep(measuredStep);
             return calculateVolumeFromLaterStep(measuredStep, context, target);
         } else {
@@ -62,7 +63,7 @@ public class VolumeCalculator {
         ListIterator<BrewStep> it = brewSteps.listIterator(brewSteps.indexOf(start));
         while (it.hasNext()) {
             BrewStep step = it.next();
-            if(step == end) {
+            if (step == end) {
                 return base;
             }
             base = step.calculateVolumeAfterStep(base, context);

@@ -1,5 +1,7 @@
 package org.blh.core.units.weight;
 
+import org.blh.core.unit.weight.Grams;
+import org.blh.core.unit.weight.Kilograms;
 import org.junit.Assert;
 import org.junit.Test;
 

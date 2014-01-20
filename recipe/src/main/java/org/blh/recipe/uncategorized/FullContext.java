@@ -1,15 +1,15 @@
 package org.blh.recipe.uncategorized;
 
-import org.blh.core.units.Factor;
-import org.blh.core.units.alcohol.ABV;
-import org.blh.core.units.color.ColorPotential;
-import org.blh.core.units.color.MaltColorUnit;
-import org.blh.core.units.distance.Meters;
-import org.blh.core.units.gravity.SpecificGravity;
-import org.blh.core.units.time.Minutes;
-import org.blh.core.units.volume.Liters;
-import org.blh.core.units.weight.Grams;
-import org.blh.core.units.weight.Kilograms;
+import org.blh.core.unit.Factor;
+import org.blh.core.unit.alcohol.ABV;
+import org.blh.core.unit.color.ColorPotential;
+import org.blh.core.unit.color.MaltColorUnit;
+import org.blh.core.unit.distance.Meters;
+import org.blh.core.unit.gravity.SpecificGravity;
+import org.blh.core.unit.time.Minutes;
+import org.blh.core.unit.volume.Liters;
+import org.blh.core.unit.weight.Grams;
+import org.blh.core.unit.weight.Kilograms;
 import org.blh.recipe.volumes.water.BrewStep;
 import org.blh.recipe.volumes.water.VolumeCalculator;
 import org.blh.recipe.volumes.water.impl.FinalStep;
@@ -21,72 +21,140 @@ import org.blh.recipe.volumes.water.impl.FinalStep;
  */
 public class FullContext {
 
-	public BrewStep MASH = null;
-	public BrewStep BOIL = null;
-	public BrewStep COOLING = null;
-	public BrewStep FERMENTATION = null;
-	public FinalStep FINAL = new FinalStep();
+    public static final BrewStep MASH = null;
+    public static final BrewStep BOIL = null;
+    public static final BrewStep COOLING = null;
+    public static final BrewStep FERMENTATION = null;
+    public static final FinalStep FINAL = new FinalStep();
 
-	private Recipe recipe;
-	private GeneralBreweryInfo brewery;
-	private Equipment equipment;
-	private VolumeCalculator vc;
-	/////////////
-	public InputtedOrCalculatedValue<Liters> preMashVolume;
-	public InputtedOrCalculatedValue<Minutes> boilTime;
-	public InputtedOrCalculatedValue<SpecificGravity> preBoilGravity;
-	public InputtedOrCalculatedValue<SpecificGravity> boilGravity;
-	public InputtedOrCalculatedValue<SpecificGravity> postBoilGravity;
-	public InputtedOrCalculatedValue<SpecificGravity> originalGravity;
-	public InputtedOrCalculatedValue<SpecificGravity> finalGravity;
-	public InputtedOrCalculatedValue<ABV> alcoholContent;
-	public InputtedOrCalculatedValue<Factor> yeastApparentAttenuation;
-	public InputtedOrCalculatedValue<MaltColorUnit> maltColorUnit;
-	public InputtedOrCalculatedValue<ColorPotential> totalColorPotential;
-	public InputtedOrCalculatedValue<Factor> extractionEfficiency;
-	public InputtedOrCalculatedValue<Kilograms> totalGrainWeight;
-	public InputtedOrCalculatedValue<Grams> totalHopWeight;
-	///////////////
-	public Input<Meters> elevation;
-	/**
-	 * How many percent of the volume is lost when cooling.
-	 */
-	public Input<Factor> coolingLoss;
+    private Recipe recipe;
+    private GeneralBreweryInfo brewery;
+    private Equipment equipment;
+    private VolumeCalculator vc;
+    /////////////
+    private InputtedOrCalculatedValue<Liters> preMashVolume;
+    private InputtedOrCalculatedValue<Minutes> boilTime;
+    private InputtedOrCalculatedValue<SpecificGravity> preBoilGravity;
+    private InputtedOrCalculatedValue<SpecificGravity> boilGravity;
+    private InputtedOrCalculatedValue<SpecificGravity> postBoilGravity;
+    private InputtedOrCalculatedValue<SpecificGravity> originalGravity;
+    private InputtedOrCalculatedValue<SpecificGravity> finalGravity;
+    private InputtedOrCalculatedValue<ABV> alcoholContent;
+    private InputtedOrCalculatedValue<Factor> yeastApparentAttenuation;
+    private InputtedOrCalculatedValue<MaltColorUnit> maltColorUnit;
+    private InputtedOrCalculatedValue<ColorPotential> totalColorPotential;
+    private InputtedOrCalculatedValue<Factor> extractionEfficiency;
+    private InputtedOrCalculatedValue<Kilograms> totalGrainWeight;
+    private InputtedOrCalculatedValue<Grams> totalHopWeight;
+    ///////////////
+    private Input<Meters> elevation;
+    /**
+     * How many percent of the volume is lost when cooling.
+     */
+    private Input<Factor> coolingLoss;
 
-	public FullContext() {
-	}
+    public FullContext() {
+    }
 
-	public Recipe getRecipe() {
-		return recipe;
-	}
+    public Recipe getRecipe() {
+        return recipe;
+    }
 
-	public GeneralBreweryInfo getBrewery() {
-		return brewery;
-	}
+    public GeneralBreweryInfo getBrewery() {
+        return brewery;
+    }
 
-	public Equipment getEquipment() {
-		return equipment;
-	}
+    public Equipment getEquipment() {
+        return equipment;
+    }
 
-	public Liters getBoilVolumeAtMinutesLeft(Minutes time) {
-		double timePercent = time.value() / boilTime.value().value();
-		double totalBoilOff = vc.pre(BOIL, this).value() - vc.post(BOIL, this).value();
+    public VolumeCalculator getVc() {
+        return vc;
+    }
 
-		return new Liters(totalBoilOff * timePercent);
-	}
+    public InputtedOrCalculatedValue<Liters> getPreMashVolume() {
+        return preMashVolume;
+    }
 
-	public SpecificGravity getBoilGravityAtMinutesLeft(Minutes time) {
-		double timePercent = time.value() / boilTime.value().value();
-		double totalGravityDifference = postBoilGravity.value().value() - preBoilGravity.value().value();
+    public InputtedOrCalculatedValue<Minutes> getBoilTime() {
+        return boilTime;
+    }
 
-		return new SpecificGravity(totalGravityDifference * timePercent);
-	}
+    public InputtedOrCalculatedValue<SpecificGravity> getPreBoilGravity() {
+        return preBoilGravity;
+    }
 
-	public Liters volumePre(BrewStep step) {
-		return vc.pre(step, this);
-	}
+    public InputtedOrCalculatedValue<SpecificGravity> getBoilGravity() {
+        return boilGravity;
+    }
 
-	public Liters volumePost(BrewStep step) {
-		return vc.post(step, this);
-	}
+    public InputtedOrCalculatedValue<SpecificGravity> getPostBoilGravity() {
+        return postBoilGravity;
+    }
+
+    public InputtedOrCalculatedValue<SpecificGravity> getOriginalGravity() {
+        return originalGravity;
+    }
+
+    public InputtedOrCalculatedValue<SpecificGravity> getFinalGravity() {
+        return finalGravity;
+    }
+
+    public InputtedOrCalculatedValue<ABV> getAlcoholContent() {
+        return alcoholContent;
+    }
+
+    public InputtedOrCalculatedValue<Factor> getYeastApparentAttenuation() {
+        return yeastApparentAttenuation;
+    }
+
+    public InputtedOrCalculatedValue<MaltColorUnit> getMaltColorUnit() {
+        return maltColorUnit;
+    }
+
+    public InputtedOrCalculatedValue<ColorPotential> getTotalColorPotential() {
+        return totalColorPotential;
+    }
+
+    public InputtedOrCalculatedValue<Factor> getExtractionEfficiency() {
+        return extractionEfficiency;
+    }
+
+    public InputtedOrCalculatedValue<Kilograms> getTotalGrainWeight() {
+        return totalGrainWeight;
+    }
+
+    public InputtedOrCalculatedValue<Grams> getTotalHopWeight() {
+        return totalHopWeight;
+    }
+
+    public Input<Meters> getElevation() {
+        return elevation;
+    }
+
+    public Input<Factor> getCoolingLoss() {
+        return coolingLoss;
+    }
+
+    public Liters getBoilVolumeAtMinutesLeft(Minutes time) {
+        double timePercent = time.value() / boilTime.value().value();
+        double totalBoilOff = vc.pre(BOIL, this).value() - vc.post(BOIL, this).value();
+
+        return new Liters(totalBoilOff * timePercent);
+    }
+
+    public SpecificGravity getBoilGravityAtMinutesLeft(Minutes time) {
+        double timePercent = time.value() / boilTime.value().value();
+        double totalGravityDifference = postBoilGravity.value().value() - preBoilGravity.value().value();
+
+        return new SpecificGravity(totalGravityDifference * timePercent);
+    }
+
+    public Liters volumePre(BrewStep step) {
+        return vc.pre(step, this);
+    }
+
+    public Liters volumePost(BrewStep step) {
+        return vc.post(step, this);
+    }
 }

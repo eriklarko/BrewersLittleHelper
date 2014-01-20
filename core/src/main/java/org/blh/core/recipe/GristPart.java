@@ -1,9 +1,10 @@
 package org.blh.core.recipe;
 
-import org.blh.core.ingredients.Malt;
-import org.blh.core.units.weight.Kilograms;
+import org.blh.core.ingredient.Malt;
+import org.blh.core.unit.weight.Kilograms;
 
 /**
+ * Represents part of the grist, i.e. a malt addition.
  *
  * @author thinner
  */

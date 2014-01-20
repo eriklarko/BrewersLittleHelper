@@ -1,5 +1,7 @@
 package org.blh.core.units.distance;
 
+import org.blh.core.unit.distance.Feet;
+import org.blh.core.unit.distance.Meters;
 import org.junit.Assert;
 import org.junit.Test;
 

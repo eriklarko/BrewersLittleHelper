@@ -1,5 +1,9 @@
 package org.blh.core.units.pressure;
 
+import org.blh.core.unit.pressure.Bar;
+import org.blh.core.unit.pressure.BarA;
+import org.blh.core.unit.pressure.PSIA;
+import org.blh.core.unit.pressure.PSI;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,6 +1,7 @@
 package org.blh.recipe.volumes.water.impl.mash;
 
-import org.blh.core.units.volume.Liters;
+import org.blh.core.unit.Factor;
+import org.blh.core.unit.volume.Liters;
 import org.blh.recipe.uncategorized.FullContext;
 import org.blh.recipe.volumes.water.BrewStep;
 
@@ -13,9 +14,11 @@ import org.blh.recipe.volumes.water.BrewStep;
  */
 public class BIABMash extends BrewStep {
 
+    private static final Factor GRAIN_ABSORBTION = new Factor(0.9);
+
     @Override
     protected Liters calculateVolumeAfterStep(Liters volumeBeforeStep, FullContext context) {
-        double litersStuckInGrain = context.getRecipe().getIngredientsList().getTotalGrainWeight().value() * 0.9;
+        double litersStuckInGrain = context.getRecipe().getIngredientsList().getTotalGrainWeight().value() * GRAIN_ABSORBTION.value();
         double litersLeftAfterBagIsRemoved = volumeBeforeStep.value() - litersStuckInGrain;
 
         return new Liters(litersLeftAfterBagIsRemoved);
@@ -23,7 +26,7 @@ public class BIABMash extends BrewStep {
 
     @Override
     protected Liters calculateVolumeBeforeStep(Liters volumeAfterStep, FullContext context) {
-        double litersStuckInGrain = context.getRecipe().getIngredientsList().getTotalGrainWeight().value() * 0.9;
+        double litersStuckInGrain = context.getRecipe().getIngredientsList().getTotalGrainWeight().value() * GRAIN_ABSORBTION.value();
         double litersInPotWhenBagIsIn = volumeAfterStep.value() + litersStuckInGrain;
 
         return new Liters(litersInPotWhenBagIsIn);

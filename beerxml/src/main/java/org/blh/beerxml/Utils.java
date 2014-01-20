@@ -1,6 +1,6 @@
 package org.blh.beerxml;
 
-import org.blh.core.units.Unit;
+import org.blh.core.unit.Unit;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
@@ -8,11 +8,13 @@ import org.joda.time.format.DateTimeParser;
 import org.joda.time.format.DateTimePrinter;
 
 /**
+ * Basic utility class handling null-safe toStrings and date parsing.
+ * TODO: JodaTime is part of Java8, is it not? Remove JodaTime as a dependency.
  *
  * @author thinner
  * @since May 23, 2013 10:56:04 PM
  */
-public class Utils {
+public final class Utils {
     public static final String DEFAULT_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
 
     public static String toStringOrNull(Unit<?> unit) {

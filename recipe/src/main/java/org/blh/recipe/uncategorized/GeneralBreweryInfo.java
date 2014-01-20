@@ -1,8 +1,9 @@
 package org.blh.recipe.uncategorized;
 
-import org.blh.core.units.Factor;
+import org.blh.core.unit.Factor;
 
 /**
+ * Some data unique to each brewery.
  *
  * @author thinner
  */
@@ -12,6 +13,4 @@ public class GeneralBreweryInfo {
     public Factor getEffiency() {
         return effiency.value();
     }
-
-
 }

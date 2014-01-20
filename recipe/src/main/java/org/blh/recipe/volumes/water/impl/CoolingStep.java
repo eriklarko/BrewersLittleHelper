@@ -1,11 +1,12 @@
 package org.blh.recipe.volumes.water.impl;
 
-import org.blh.recipe.volumes.water.BrewStep;
-import org.blh.core.units.volume.Liters;
+import org.blh.core.unit.volume.Liters;
 import org.blh.recipe.uncategorized.FullContext;
+import org.blh.recipe.volumes.water.BrewStep;
 
 /**
- *
+ * Represents the effect cooling has on water volume.
+ * 
  * @author Erik Larkö <erik.larko@purplescout.se>
  * @since Jul 17, 2013 10:37:44 PM
  */

@@ -1,6 +1,8 @@
 package org.blh.core.units.color;
 
-import org.blh.core.units.weight.Lbs;
+import org.blh.core.unit.color.ColorPotential;
+import org.blh.core.unit.color.Lovibond;
+import org.blh.core.unit.weight.Lbs;
 import org.junit.Assert;
 import org.junit.Test;
 

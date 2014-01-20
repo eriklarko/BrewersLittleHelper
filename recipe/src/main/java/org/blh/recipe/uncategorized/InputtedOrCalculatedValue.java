@@ -1,5 +1,6 @@
 package org.blh.recipe.uncategorized;
 
+import org.blh.core.unit.Unit;
 import org.blh.recipe.formulas.Formula;
 
 /**
@@ -8,7 +9,7 @@ import org.blh.recipe.formulas.Formula;
  *
  * @author thinner
  */
-public class InputtedOrCalculatedValue<T> {
+public class InputtedOrCalculatedValue<T extends Unit<?>> {
 
     private T value;
     private Formula<T> formula;
@@ -17,7 +18,8 @@ public class InputtedOrCalculatedValue<T> {
 
     public InputtedOrCalculatedValue(T value) {
         if (value == null) {
-            throw new NullPointerException("Cannot instantiate with null value, please use the constructor with Formula<T> and FullContext");
+            throw new NullPointerException("Cannot instantiate with null value, "
+                    + "please use the constructor with Formula<T> and FullContext");
         }
         this.value = value;
         this.isInputted = true;

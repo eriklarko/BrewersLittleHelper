@@ -1,5 +1,6 @@
 package org.blh.recipe.formulas;
 
+import org.blh.core.unit.Unit;
 import org.blh.recipe.uncategorized.FullContext;
 
 /**
@@ -7,8 +8,9 @@ import org.blh.recipe.uncategorized.FullContext;
  * method signature.
  *
  * @author Erik Larkö
+ * @param <T> The type of unit to calculate.
  */
-public interface Formula<T> {
+public interface Formula<T extends Unit<?>> {
 
-    public T calc(FullContext context);
+    T calc(FullContext context);
 }
