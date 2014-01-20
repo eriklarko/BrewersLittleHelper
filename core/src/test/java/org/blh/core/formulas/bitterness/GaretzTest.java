@@ -2,6 +2,7 @@ package org.blh.core.formulas.bitterness;
 
 import java.util.Arrays;
 import java.util.List;
+
 import org.blh.core.ingredients.Hop;
 import org.blh.core.recipe.HopAddition;
 import org.blh.core.units.Percentage;
@@ -53,10 +54,10 @@ public class GaretzTest {
 
         Garetz f = new Garetz();
         IBU actual = f.calc(hopAdditions, boilVolume, boilVolume, boilGravity, elevation);
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 
-    //@Test
+    @Test
     public void testGetIBUsForAddition() {
         Hop hop = new Hop(null, new Percentage(5));
         HopAddition addition = new HopAddition(hop, new Minutes(60), new Grams(50));
@@ -69,6 +70,6 @@ public class GaretzTest {
         IBU actual = f.getIBUsFromAddition(addition, finalVolume, boilVolume, boilGravity, elevation);
         IBU expected = new IBU(28.6);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 }
