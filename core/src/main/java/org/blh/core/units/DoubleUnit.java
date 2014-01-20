@@ -7,8 +7,15 @@ package org.blh.core.units;
  */
 public class DoubleUnit extends Unit<Double> {
 
-	private static final double getDeltaFromDecimalPlaces(int decimalPlaces) {
+	private static double getDeltaFromDecimalPlaces(int decimalPlaces) {
 		return 1 / (Math.pow(10, decimalPlaces));
+	}
+
+	private static void setDelta(DoubleUnit unit, double delta) {
+		if(delta >= 1 || delta < 0) {
+			throw new IllegalArgumentException("The delta should be in the range [0, 1)");
+		}
+		unit.delta = delta;
 	}
 
 	private double delta;
@@ -23,14 +30,11 @@ public class DoubleUnit extends Unit<Double> {
 
 	public DoubleUnit(double value, double delta) {
 		super(value);
-		if(delta >= 1 || delta < 0) {
-			throw new IllegalArgumentException("The delta should be in the range [0, 1)");
-		}
-		this.delta = delta;
+		setDelta(this, delta);
 	}
 
 	public void setDelta(double delta) {
-		this.delta = delta;
+		setDelta(this, delta);
 	}
 
 	public void setDelta(int equalsToDecimalPlace) {
