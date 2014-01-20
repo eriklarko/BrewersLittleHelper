@@ -1,12 +1,14 @@
 package org.blh.core.formulas.keghoselength;
 
+import static org.junit.Assert.fail;
+import org.junit.Ignore;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
  * @author thinner
  */
+@Ignore
 public class SmithTest {
 
     /**
