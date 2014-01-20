@@ -15,7 +15,7 @@ public class Grams extends DoubleUnit {
     }
 
     public Grams(Kilograms kg) {
-        super(kg.value() / CONVERSION_FACTOR);
+        super(kg.value() * CONVERSION_FACTOR);
     }
 
     public Kilograms toKilograms() {
