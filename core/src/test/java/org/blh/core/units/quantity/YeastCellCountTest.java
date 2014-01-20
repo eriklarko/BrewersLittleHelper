@@ -22,7 +22,7 @@ public class YeastCellCountTest {
         YeastCellCount actual = new YeastCellCount(new Million(2));
         Billion expected = new Billion(0.002);
 
-        Assert.assertEquals(expected.value(), actual.value().value());
+        Assert.assertEquals(expected, actual.value());
     }
 
     @Test
@@ -30,6 +30,6 @@ public class YeastCellCountTest {
         YeastCellCount actual = new YeastCellCount(new Billion(2));
         Billion expected = new Billion(2);
 
-        Assert.assertEquals(expected.value(), actual.value().value());
+        Assert.assertEquals(expected, actual.value());
     }
 }

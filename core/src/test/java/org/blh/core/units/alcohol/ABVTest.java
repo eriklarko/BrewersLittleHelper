@@ -15,7 +15,7 @@ public class ABVTest {
         ABV actual = new ABV(new Factor(1));
         Factor expected = new Factor(1);
 
-        Assert.assertEquals(expected.value(), actual.value().value());
+        Assert.assertEquals(expected, actual.value());
     }
 
     @Test

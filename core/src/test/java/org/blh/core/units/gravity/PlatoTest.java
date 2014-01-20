@@ -22,7 +22,7 @@ public class PlatoTest {
         Plato actual = new Plato(new SpecificGravity(1.020));
         Plato expected = new Plato(5);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -30,6 +30,8 @@ public class PlatoTest {
         SpecificGravity actual = new Plato(3).toSpecificGravity();
         SpecificGravity expected = new SpecificGravity(1.012);
 
-        Assert.assertEquals(expected.value(), actual.value());
+		actual.setDelta(2);
+		expected.setDelta(2);
+        Assert.assertEquals(expected, actual);
     }
 }

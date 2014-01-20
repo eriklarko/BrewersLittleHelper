@@ -13,7 +13,7 @@ public class FeetTest {
     public void testDouble() {
         Feet actual = new Feet(2);
         double expected = 2;
-        
+
         Assert.assertEquals(expected, actual.value(), 0.0001);
     }
 
@@ -21,15 +21,15 @@ public class FeetTest {
     public void testMeters() {
         Feet actual = new Feet(new Meters(2));
         Feet expected = new Feet(6.56167979);
-        
-        Assert.assertEquals(expected.value(), actual.value());
+
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void testToMeters() {
         Meters actual = new Feet(2).toMeters();
         Meters expected = new Meters(0.6096);
-        
-        Assert.assertEquals(expected.value(), actual.value());
+
+        Assert.assertEquals(expected, actual);
     }
 }

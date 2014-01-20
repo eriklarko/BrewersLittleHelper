@@ -9,11 +9,11 @@ import org.junit.Test;
  * @author thinner
  */
 public class ColorPotentialTest {
-    
+
     @Test
     public void testConstructor() {
         ColorPotential actual = new ColorPotential();
-        
+
         Assert.assertEquals(0d, actual.value(), 0.0001);
     }
 
@@ -21,16 +21,16 @@ public class ColorPotentialTest {
     public void testAdd() {
         Lovibond color = new Lovibond(3);
         Lbs amount = new Lbs(5);
-        
+
         ColorPotential actual = new ColorPotential();
-        
-        actual.add(color, amount);
+
+        actual = actual.add(color, amount);
         Assert.assertEquals("First add", 15d, actual.value(), 0.0001);
-        
-        actual.add(color, amount);
+
+        actual = actual.add(color, amount);
         Assert.assertEquals("Second add", 30d, actual.value(), 0.0001);
-        
-        actual.add(color, amount);
+
+        actual = actual.add(color, amount);
         Assert.assertEquals("Third add", 45d, actual.value(), 0.0001);
     }
 }

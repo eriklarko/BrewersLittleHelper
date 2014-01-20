@@ -22,7 +22,7 @@ public class GramsTest {
         Grams actual = new Grams(new Kilograms(2));
         Grams expected = new Grams(2000);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -30,6 +30,6 @@ public class GramsTest {
         Kilograms actual = new Grams(3000).toKilograms();
         Kilograms expected = new Kilograms(3);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 }

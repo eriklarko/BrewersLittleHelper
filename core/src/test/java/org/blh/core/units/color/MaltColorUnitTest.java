@@ -10,15 +10,15 @@ import org.junit.Test;
  * @author thinner
  */
 public class MaltColorUnitTest {
-    
-    @Test
-    public void testSomeMethod() {
-        ColorPotential potential = new ColorPotential(new Lovibond(3), new Lbs(1));
-        USGallons finalVolume = new USGallons(5);
-        
-        MaltColorUnit actual = new MaltColorUnit(potential, finalVolume);
-        double expected = 3/5;
-        
-        Assert.assertEquals(expected, actual.value(), 0.0001);
-    }
+
+	@Test
+	public void testSomeMethod() {
+		ColorPotential potential = new ColorPotential(new Lovibond(3), new Lbs(1));
+		USGallons finalVolume = new USGallons(5);
+
+		MaltColorUnit actual = new MaltColorUnit(potential, finalVolume);
+		double expected = 3d / 5;
+
+		Assert.assertEquals(expected, actual.value(), 0.0001);
+	}
 }

@@ -22,7 +22,7 @@ public class USGallonsTest {
         USGallons actual = new USGallons(new Liters(2));
         USGallons expected = new USGallons(0.528344105);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -30,6 +30,6 @@ public class USGallonsTest {
         Liters actual = new USGallons(5).toLiters();
         Liters expected = new Liters(18.9270589);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 }

@@ -22,7 +22,7 @@ public class LbsTest {
         Lbs actual = new Lbs(new Kilograms(2));
         Lbs expected = new Lbs(4.40924524);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -30,6 +30,6 @@ public class LbsTest {
         Kilograms actual = new Lbs(3).toKilograms();
         Kilograms expected = new Kilograms(1.36077711);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 }

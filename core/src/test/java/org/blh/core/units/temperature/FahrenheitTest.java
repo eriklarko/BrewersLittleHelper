@@ -22,7 +22,7 @@ public class FahrenheitTest {
         Fahrenheit actual = new Fahrenheit(new Celsius(2));
         Fahrenheit expected = new Fahrenheit(35.6);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -30,6 +30,6 @@ public class FahrenheitTest {
         Celsius actual = new Fahrenheit(5).toCelsius();
         Celsius expected = new Celsius(-15);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 }

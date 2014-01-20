@@ -22,7 +22,7 @@ public class PSITest {
         PSI actual = new PSI(new Bar(1));
         PSI expected = new PSI(14.5037738);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -30,6 +30,6 @@ public class PSITest {
         Bar actual = new PSI(1).toBar();
         Bar expected = new Bar(0.0689475729);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 }

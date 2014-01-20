@@ -22,7 +22,7 @@ public class GravityPointsTest {
         GravityPoints actual = new GravityPoints(new SpecificGravity(1.061));
         GravityPoints expected = new GravityPoints(61);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -30,6 +30,6 @@ public class GravityPointsTest {
         SpecificGravity actual = new GravityPoints(57).toSpecificGravity();
         SpecificGravity expected = new SpecificGravity(1.057);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 }

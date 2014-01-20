@@ -15,7 +15,7 @@ public class ABWTest {
         ABW actual = new ABW(new Factor(1));
         Factor expected = new Factor(1);
 
-        Assert.assertEquals(expected.value(), actual.value().value());
+        Assert.assertEquals(expected, actual.value());
     }
 
 	@Test
@@ -31,7 +31,7 @@ public class ABWTest {
         ABW actual = new ABW(new ABV(1));
         ABW expected = new ABW(0.8);
 
-        Assert.assertEquals(expected.value().value(), actual.value().value());
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -42,6 +42,6 @@ public class ABWTest {
         ABV actual = new ABW(3.2).toABV();
         ABV expected = new ABV(4);
 
-        Assert.assertEquals(expected.value().value(), actual.value().value());
+        Assert.assertEquals(expected, actual);
     }
 }

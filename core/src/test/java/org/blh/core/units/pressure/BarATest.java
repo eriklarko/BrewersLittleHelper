@@ -22,7 +22,7 @@ public class BarATest {
         BarA actual = new BarA(new Bar(1));
         BarA expected = new BarA(2);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -30,6 +30,6 @@ public class BarATest {
         Bar actual = new BarA(3).toBar();
         Bar expected = new Bar(2);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 }

@@ -22,7 +22,7 @@ public class InchTest {
         Inch actual = new Inch(new Meters(2));
         Inch expected = new Inch(78.7401575);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -30,6 +30,6 @@ public class InchTest {
         Meters actual = new Inch(2).toMeters();
         Meters expected = new Meters(0.0508);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 }

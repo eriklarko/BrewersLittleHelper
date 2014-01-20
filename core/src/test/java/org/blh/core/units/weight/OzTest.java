@@ -22,7 +22,7 @@ public class OzTest {
         Oz actual = new Oz(new Grams(2));
         Oz expected = new Oz(0.0705479239);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -30,6 +30,6 @@ public class OzTest {
         Grams actual = new Oz(3).toGrams();
         Grams expected = new Grams(85.0485694);
 
-        Assert.assertEquals(expected.value(), actual.value());
+        Assert.assertEquals(expected, actual);
     }
 }
