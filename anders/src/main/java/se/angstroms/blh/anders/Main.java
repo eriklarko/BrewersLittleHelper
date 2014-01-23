@@ -11,7 +11,7 @@ import se.angstroms.blh.anders.util.ResourceLoader;
 import se.angstroms.blh.anders.view.mainwindow.MainWindowPresenter;
 
 /**
- * The entrypoint for Anders.
+ * This is the entry point for Anders
  *
  * @author Erik Larkö <erik.larko@purplescout.se>
  */
@@ -19,8 +19,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(ResourceLoader.getResource(MainWindowPresenter.class, "MainWindow.fxml"),
-                ResourceBundleUtil.getCurrentResourceBundle());
+        Parent root = FXMLLoader.load(
+                ResourceLoader.getResource(MainWindowPresenter.class, "MainWindow.fxml"),
+                ResourceBundleUtil.getCurrentResourceBundle()
+        );
 
         Scene scene = new Scene(root);
 
