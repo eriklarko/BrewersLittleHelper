@@ -4,12 +4,7 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.layout.Pane;
+
 import org.blh.core.ingredient.Hop;
 import org.blh.core.ingredient.Malt;
 import org.blh.core.ingredient.Yeast;
@@ -26,9 +21,16 @@ import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
 import org.blh.recipe.uncategorized.IngredientsList;
 import org.blh.recipe.uncategorized.Recipe;
-import org.blh.recipe.uncategorized.RecipeMetaData;
+
 import se.angstroms.blh.anders.view.recipe.details.RecipeDetailsPresenter;
 import se.angstroms.blh.anders.view.recipe.list.RecipeListPresenter;
+
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.layout.Pane;
 
 /**
  * The main window.
@@ -78,6 +80,6 @@ public class MainWindowPresenter implements Initializable {
 
         IngredientsList ingredientsList = new IngredientsList(fermentables, hops, yeasts);
 
-        return FXCollections.observableArrayList(new Recipe(ingredientsList, null, new RecipeMetaData(BeerType.ALE, "Dodo IPA")));
+        return FXCollections.observableArrayList(new Recipe(ingredientsList, null, BeerType.ALE, "Dodo IPA"));
     }
 }

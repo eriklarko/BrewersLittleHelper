@@ -1,5 +1,10 @@
 package se.angstroms.blh.anders.view.recipe.list;
 
+import org.blh.recipe.uncategorized.Recipe;
+
+import se.angstroms.blh.anders.view.util.CustomControl;
+import se.angstroms.blh.anders.view.util.DoubleClickableCellFactory;
+
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
@@ -8,9 +13,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
-import org.blh.recipe.uncategorized.Recipe;
-import se.angstroms.blh.anders.view.util.CustomControl;
-import se.angstroms.blh.anders.view.util.DoubleClickableCellFactory;
 
 /**
  * Lists some recipes
@@ -35,7 +37,7 @@ public class RecipeListPresenter extends TableView<Recipe> implements DoubleClic
         this.setEditable(false);
 
         recipeName.setCellFactory(new DoubleClickableCellFactory<>(recipeName.getCellFactory(), this));
-        recipeName.setCellValueFactory((TableColumn.CellDataFeatures<Recipe, String> cdf) -> new SimpleStringProperty(cdf.getValue().getMetaData().getName()));
+        recipeName.setCellValueFactory((TableColumn.CellDataFeatures<Recipe, String> cdf) -> new SimpleStringProperty(cdf.getValue().getName()));
     }
 
     public void setRecipes(ObservableList<Recipe> recipes) {

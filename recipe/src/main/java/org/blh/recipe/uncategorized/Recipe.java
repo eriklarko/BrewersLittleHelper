@@ -1,5 +1,7 @@
 package org.blh.recipe.uncategorized;
 
+import org.blh.core.uncategorized.BeerType;
+
 /**
  * Describes a beer recipe. The what and the how, so to speak.
  *
@@ -9,12 +11,14 @@ public class Recipe {
 
     private final IngredientsList ingredientsList;
     private final InstructionsList instructionsList;
-    private final RecipeMetaData metaData;
+    private final BeerType type;
+    private final String name;
 
-    public Recipe(IngredientsList ingredientsList, InstructionsList instructionsList, RecipeMetaData metaData) {
+    public Recipe(IngredientsList ingredientsList, InstructionsList instructionsList, BeerType type, String name) {
         this.ingredientsList = ingredientsList;
         this.instructionsList = instructionsList;
-        this.metaData = metaData;
+        this.type = type;
+        this.name = name;
     }
 
     public IngredientsList getIngredientsList() {
@@ -25,7 +29,11 @@ public class Recipe {
         return instructionsList;
     }
 
-    public RecipeMetaData getMetaData() {
-        return metaData;
+    public BeerType getType() {
+        return type;
+    }
+
+    public String getName() {
+        return name;
     }
 }
