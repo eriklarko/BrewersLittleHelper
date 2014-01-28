@@ -15,7 +15,8 @@ public class InputtedOrCalculatedValueTest {
 
     @Test
     public void testInputConstructor() {
-        InputtedOrCalculatedValue<DoubleUnit> v = new InputtedOrCalculatedValue<>(new DoubleUnit(2d) {});
+        DoubleUnit two = new DoubleUnit(2d) {};
+        InputtedOrCalculatedValue<DoubleUnit> v = new InputtedOrCalculatedValue<>(two);
 
         Assert.assertTrue(v.isInputted());
         Assert.assertEquals(2d, v.value().value(), 0);
