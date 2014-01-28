@@ -3,6 +3,7 @@ package org.blh.beerxml.writer;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+
 import org.blh.beerxml.ClassToRecordNameMapper;
 import org.blh.beerxml.ClassToRecordNameMapperImpl;
 import org.blh.beerxml.ParseException;
@@ -27,7 +28,7 @@ public class BasicWriterTest {
             try {
                 test(templateFile);
             } catch (Exception ex) {
-                throw new RuntimeException("Failed on " + templateFile.getAbsolutePath(), ex);
+                throw new RuntimeException("Failed on " + templateFile.getAbsolutePath() + " " + ex.getMessage(), ex);
             }
         }
     }
