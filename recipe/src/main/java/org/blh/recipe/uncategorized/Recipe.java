@@ -14,19 +14,11 @@ public class Recipe {
     private final BeerType type;
     private final String name;
 
-    public Recipe(IngredientsList ingredientsList, InstructionsList instructionsList, BeerType type, String name) {
+    public Recipe(String name, BeerType type, IngredientsList ingredientsList, InstructionsList instructionsList) {
         this.ingredientsList = ingredientsList;
         this.instructionsList = instructionsList;
         this.type = type;
         this.name = name;
-    }
-
-    public IngredientsList getIngredientsList() {
-        return ingredientsList;
-    }
-
-    public InstructionsList getInstructionsList() {
-        return instructionsList;
     }
 
     public BeerType getType() {
@@ -35,5 +27,13 @@ public class Recipe {
 
     public String getName() {
         return name;
+    }
+
+    public IngredientsList getIngredientsList() {
+        return ingredientsList;
+    }
+
+    public InstructionsList getInstructionsList() {
+        return instructionsList;
     }
 }

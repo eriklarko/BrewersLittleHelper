@@ -1,9 +1,11 @@
 package se.angstroms.blh.anders.view.recipe.details;
 
+import org.blh.recipe.uncategorized.Recipe;
+
+import se.angstroms.blh.anders.view.util.CustomControl;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
-import org.blh.recipe.uncategorized.Recipe;
-import se.angstroms.blh.anders.view.util.CustomControl;
 
 /**
  * Shows the details of a recipe

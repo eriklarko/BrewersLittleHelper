@@ -80,6 +80,6 @@ public class MainWindowPresenter implements Initializable {
 
         IngredientsList ingredientsList = new IngredientsList(fermentables, hops, yeasts);
 
-        return FXCollections.observableArrayList(new Recipe(ingredientsList, null, BeerType.ALE, "Dodo IPA"));
+        return FXCollections.observableArrayList(new Recipe("Dodo IPA", BeerType.ALE, ingredientsList, null));
     }
 }
