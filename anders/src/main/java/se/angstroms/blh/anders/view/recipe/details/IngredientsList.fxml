@@ -27,6 +27,7 @@
         <columns>
             <TableColumn text="%ingredientsList.hops.name" fx:id="hopsName" />
             <TableColumn text="%ingredientsList.hops.amount" fx:id="hopsAmount" />
+            <TableColumn text="%ingredientsList.hops.alphaAcids" fx:id="hopsAlphaAcids" />
             <TableColumn text="%ingredientsList.hops.timeInBoil" fx:id="hopsTimeInBoil" />
         </columns>
         <sortOrder>

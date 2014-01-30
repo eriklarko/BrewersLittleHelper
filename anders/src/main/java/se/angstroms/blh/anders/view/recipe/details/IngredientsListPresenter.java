@@ -27,6 +27,7 @@ public class IngredientsListPresenter extends HBox {
     @FXML private TableView<HopAddition> hopsTable;
     @FXML private TableColumn<HopAddition, String> hopsName;
     @FXML private TableColumn<HopAddition, String> hopsAmount;
+    @FXML private TableColumn<HopAddition, String> hopsAlphaAcids;
     @FXML private TableColumn<HopAddition, String> hopsTimeInBoil;
 
     @FXML private TableView<YeastAddition<?>> yeastsTable;
@@ -58,6 +59,9 @@ public class IngredientsListPresenter extends HBox {
         );
         hopsAmount.setCellValueFactory(
                 (TableColumn.CellDataFeatures<HopAddition, String> p) -> new SimpleStringProperty(p.getValue().getAmount().value().toString())
+        );
+        hopsAlphaAcids.setCellValueFactory(
+                (TableColumn.CellDataFeatures<HopAddition, String> p) -> new SimpleStringProperty(p.getValue().getHop().getAlphaAcids().toString())
         );
         hopsTimeInBoil.setCellValueFactory(
                 (TableColumn.CellDataFeatures<HopAddition, String> p) -> new SimpleStringProperty(p.getValue().getTimeInBoil().value().toString())
