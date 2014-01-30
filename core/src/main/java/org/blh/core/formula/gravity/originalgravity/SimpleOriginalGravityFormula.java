@@ -1,6 +1,5 @@
 package org.blh.core.formula.gravity.originalgravity;
 
-import java.util.List;
 
 import org.blh.core.ingredient.Malt;
 import org.blh.core.recipe.GristPart;
@@ -45,11 +44,11 @@ import org.blh.core.unit.weight.Lbs;
  */
 public class SimpleOriginalGravityFormula  {
 
-    public SpecificGravity calc(List<GristPart> gristParts, Liters preBoilVolume, Factor efficiency) {
+    public SpecificGravity calc(Iterable<GristPart> gristParts, Liters preBoilVolume, Factor efficiency) {
         return calc(gristParts, new USGallons(preBoilVolume), efficiency);
     }
 
-    public SpecificGravity calc(List<GristPart> gristParts, USGallons preBoilVolume, Factor efficiency) {
+    public SpecificGravity calc(Iterable<GristPart> gristParts, USGallons preBoilVolume, Factor efficiency) {
         double a = 0;
         for (GristPart gp : gristParts) {
             Lbs grainWeight = new Lbs(gp.getAmount());

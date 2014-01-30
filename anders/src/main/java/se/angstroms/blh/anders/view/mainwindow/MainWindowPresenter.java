@@ -1,10 +1,18 @@
 package se.angstroms.blh.anders.view.mainwindow;
 
+import com.airhacks.afterburner.injection.InjectionProvider;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
-
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.layout.Pane;
+import javax.inject.Inject;
+import org.blh.FullContext;
 import org.blh.core.ingredient.Hop;
 import org.blh.core.ingredient.Malt;
 import org.blh.core.ingredient.Yeast;
@@ -16,21 +24,14 @@ import org.blh.core.unit.ExtractPotential;
 import org.blh.core.unit.Percentage;
 import org.blh.core.unit.color.Lovibond;
 import org.blh.core.unit.gravity.GravityPoints;
+import org.blh.core.unit.gravity.SpecificGravity;
 import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
 import org.blh.recipe.uncategorized.IngredientsList;
 import org.blh.recipe.uncategorized.Recipe;
-
 import se.angstroms.blh.anders.view.recipe.details.RecipeDetailsPresenter;
 import se.angstroms.blh.anders.view.recipe.list.RecipeListPresenter;
-
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.layout.Pane;
 
 /**
  * The main window.
@@ -42,6 +43,9 @@ public class MainWindowPresenter implements Initializable {
     @FXML
     private Pane recipesContainer;
 
+    @Inject
+    private FullContext fullContext;
+
     private RecipeListPresenter recipeList;
     private RecipeDetailsPresenter recipeDetails;
 
@@ -49,13 +53,13 @@ public class MainWindowPresenter implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         recipeList = new RecipeListPresenter();
         recipeDetails = new RecipeDetailsPresenter();
-
+        
         recipeList.getSelectedRecipeProperty().addListener((ObservableValue<? extends Recipe> ov, Recipe oldValue, Recipe newValue) -> {
             recipeDetails.setRecipe(newValue);
             showRecipeDetails();
         });
-
         recipeList.setRecipes(getDummyRecipeList());
+
         showRecipeList();
     }
 
@@ -70,6 +74,8 @@ public class MainWindowPresenter implements Initializable {
     }
 
     private ObservableList<Recipe> getDummyRecipeList() {
+        InjectionProvider.registerExistingAndInject(this);
+
         List<GristPart> fermentables = new LinkedList<>();
         List<HopAddition> hops = new LinkedList<>();
         List<YeastAddition<?>> yeasts = new LinkedList<>();
@@ -79,7 +85,11 @@ public class MainWindowPresenter implements Initializable {
         yeasts.add(new YeastAddition<>(new Yeast("US-05", "Safale", new Percentage(88)), new Grams(11)));
 
         IngredientsList ingredientsList = new IngredientsList(fermentables, hops, yeasts);
+        Recipe recipe = new Recipe("Dodo IPA", BeerType.ALE, ingredientsList, null);
 
-        return FXCollections.observableArrayList(new Recipe("Dodo IPA", BeerType.ALE, ingredientsList, null));
+        fullContext.setRecipe(recipe);
+        fullContext.getOriginalGravity().setValue(new SpecificGravity(1.02));
+
+        return FXCollections.observableArrayList(recipe);
     }
 }

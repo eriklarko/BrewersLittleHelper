@@ -1,9 +1,12 @@
 package org.blh.formulas;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
-
 import org.blh.core.unit.Unit;
+import org.blh.core.unit.bitterness.IBU;
+import org.blh.formulas.decorated.bitterness.DecoratedTinseth;
 
 /**
  * An attempt at dependency injection for formulas.
@@ -25,6 +28,9 @@ public final class FormulaFactory {
     }
 
     private FormulaFactory() {
+        formulas = new HashMap<>();
+
+        formulas.put(IBU.class, Arrays.asList(new DecoratedTinseth()));
     }
 
     public <T extends Unit<?>> Collection<Formula<T>> getFormulasFor(Class<T> clazz) throws NoFormulaFoundException, NoMatchingFormulaFoundException {

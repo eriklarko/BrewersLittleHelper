@@ -10,6 +10,7 @@ import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.volume.Liters;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
+import org.blh.formulas.decorated.gravity.DecoratedSimpleOriginalGravityFormula;
 import org.blh.recipe.uncategorized.Recipe;
 
 /**
@@ -45,10 +46,18 @@ public class FullContext {
     private Input<Factor> coolingLoss;
 
     public FullContext() {
+        extractionEfficiency = new InputtedOrCalculatedValue<>(new Factor(0.8));
+        originalGravity = new InputtedOrCalculatedValue<>(
+                new DecoratedSimpleOriginalGravityFormula(), this
+        );
     }
 
     public Recipe getRecipe() {
         return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 
     public GeneralBreweryInfo getBrewery() {
