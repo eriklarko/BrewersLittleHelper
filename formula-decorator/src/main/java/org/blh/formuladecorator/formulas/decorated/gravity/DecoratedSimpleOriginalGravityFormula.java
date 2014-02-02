@@ -1,11 +1,11 @@
 
-package org.blh.formulas.decorated.gravity;
+package org.blh.formuladecorator.formulas.decorated.gravity;
 
-import org.blh.FullContext;
+import org.blh.formuladecorator.FullContext;
 import org.blh.core.formula.gravity.originalgravity.SimpleOriginalGravityFormula;
 import org.blh.core.unit.gravity.SpecificGravity;
 import org.blh.core.unit.volume.Liters;
-import org.blh.formulas.Formula;
+import org.blh.formuladecorator.formulas.Formula;
 
 /**
  *

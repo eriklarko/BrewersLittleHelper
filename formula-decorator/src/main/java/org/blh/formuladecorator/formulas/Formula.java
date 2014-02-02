@@ -1,6 +1,6 @@
-package org.blh.formulas;
+package org.blh.formuladecorator.formulas;
 
-import org.blh.FullContext;
+import org.blh.formuladecorator.FullContext;
 import org.blh.core.unit.Unit;
 
 /**

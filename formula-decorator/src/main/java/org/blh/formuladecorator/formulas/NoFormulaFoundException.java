@@ -1,4 +1,4 @@
-package org.blh.formulas;
+package org.blh.formuladecorator.formulas;
 
 /**
  * Created by Erik Larkö at 6/28/13 1:31 PM

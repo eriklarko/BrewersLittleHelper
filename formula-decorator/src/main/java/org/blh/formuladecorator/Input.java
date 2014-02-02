@@ -1,4 +1,4 @@
-package org.blh;
+package org.blh.formuladecorator;
 
 /**
  * Represents a value that the user have given as input

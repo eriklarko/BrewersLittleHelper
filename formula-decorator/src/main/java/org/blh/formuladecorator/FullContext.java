@@ -1,4 +1,4 @@
-package org.blh;
+package org.blh.formuladecorator;
 
 import org.blh.core.unit.Factor;
 import org.blh.core.unit.alcohol.ABV;
@@ -10,7 +10,7 @@ import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.volume.Liters;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
-import org.blh.formulas.decorated.gravity.DecoratedSimpleOriginalGravityFormula;
+import org.blh.formuladecorator.formulas.decorated.gravity.DecoratedSimpleOriginalGravityFormula;
 import org.blh.recipe.uncategorized.Recipe;
 
 /**

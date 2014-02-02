@@ -1,4 +1,4 @@
-package org.blh.formulas;
+package org.blh.formuladecorator.formulas;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.blh.core.unit.Unit;
 import org.blh.core.unit.bitterness.IBU;
-import org.blh.formulas.decorated.bitterness.DecoratedTinseth;
+import org.blh.formuladecorator.formulas.decorated.bitterness.DecoratedTinseth;
 
 /**
  * An attempt at dependency injection for formulas.

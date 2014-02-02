@@ -1,11 +1,11 @@
 
-package org.blh.formulas.decorated.bitterness;
+package org.blh.formuladecorator.formulas.decorated.bitterness;
 
-import org.blh.FullContext;
+import org.blh.formuladecorator.FullContext;
 import org.blh.core.formula.bitterness.Tinseth;
 import org.blh.core.unit.bitterness.IBU;
 import org.blh.core.unit.volume.Liters;
-import org.blh.formulas.Formula;
+import org.blh.formuladecorator.formulas.Formula;
 
 /**
  *

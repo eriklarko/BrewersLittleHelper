@@ -1,7 +1,7 @@
-package org.blh;
+package org.blh.formuladecorator;
 
 import org.blh.core.unit.Unit;
-import org.blh.formulas.Formula;
+import org.blh.formuladecorator.formulas.Formula;
 
 /**
  * Represents a value that is either inputted by the user or calculated by a

@@ -1,7 +1,8 @@
 package org.blh.formulas;
 
-import org.blh.FullContext;
-import org.blh.InputtedOrCalculatedValue;
+import org.blh.formuladecorator.formulas.Formula;
+import org.blh.formuladecorator.FullContext;
+import org.blh.formuladecorator.InputtedOrCalculatedValue;
 import org.blh.core.unit.DoubleUnit;
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package org.blh;
+package org.blh.formuladecorator;
 
 import org.blh.core.unit.Factor;
 
