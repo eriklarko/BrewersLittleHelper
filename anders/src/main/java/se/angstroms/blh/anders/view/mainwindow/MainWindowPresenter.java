@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import javax.inject.Inject;
-import org.blh.FullContext;
+import org.blh.formuladecorator.FullContext;
 import org.blh.core.ingredient.Hop;
 import org.blh.core.ingredient.Malt;
 import org.blh.core.ingredient.Yeast;

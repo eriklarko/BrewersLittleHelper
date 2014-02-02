@@ -4,9 +4,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml">
-    <HBox>
-        <Label fx:id="title" />
-        <Label fx:id="value" />
-    </HBox>
+<fx:root type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml">
+    <Label fx:id="value" onMouseClicked="#onValueClicked" />
 </fx:root>

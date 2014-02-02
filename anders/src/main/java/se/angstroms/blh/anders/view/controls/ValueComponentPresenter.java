@@ -11,10 +11,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javax.inject.Inject;
-import org.blh.FullContext;
+import org.blh.formuladecorator.FullContext;
 import org.blh.core.unit.Unit;
-import org.blh.formulas.Formula;
-import org.blh.formulas.decorated.bitterness.DecoratedTinseth;
+import org.blh.formuladecorator.formulas.Formula;
+import org.blh.formuladecorator.formulas.decorated.bitterness.DecoratedTinseth;
 import se.angstroms.blh.anders.view.util.CustomControl;
 
 /**
