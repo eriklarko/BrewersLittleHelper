@@ -28,8 +28,9 @@ import org.blh.core.unit.gravity.SpecificGravity;
 import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
+import org.blh.recipe.attempts.composite.BasicRecipe;
+import org.blh.recipe.attempts.composite.Recipe;
 import org.blh.recipe.uncategorized.IngredientsList;
-import org.blh.recipe.uncategorized.Recipe;
 import se.angstroms.blh.anders.view.recipe.details.RecipeDetailsPresenter;
 import se.angstroms.blh.anders.view.recipe.list.RecipeListPresenter;
 
@@ -53,7 +54,7 @@ public class MainWindowPresenter implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         recipeList = new RecipeListPresenter();
         recipeDetails = new RecipeDetailsPresenter();
-        
+
         recipeList.getSelectedRecipeProperty().addListener((ObservableValue<? extends Recipe> ov, Recipe oldValue, Recipe newValue) -> {
             recipeDetails.setRecipe(newValue);
             showRecipeDetails();
@@ -85,7 +86,7 @@ public class MainWindowPresenter implements Initializable {
         yeasts.add(new YeastAddition<>(new Yeast("US-05", "Safale", new Percentage(88)), new Grams(11)));
 
         IngredientsList ingredientsList = new IngredientsList(fermentables, hops, yeasts);
-        Recipe recipe = new Recipe("Dodo IPA", BeerType.ALE, ingredientsList, null);
+        Recipe recipe = new BasicRecipe(ingredientsList, null, BeerType.ALE, "Dodo IPA");
 
         fullContext.setRecipe(recipe);
         fullContext.getOriginalGravity().setValue(new SpecificGravity(1.02));

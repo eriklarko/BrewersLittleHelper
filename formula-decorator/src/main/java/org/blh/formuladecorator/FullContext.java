@@ -11,7 +11,7 @@ import org.blh.core.unit.volume.Liters;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
 import org.blh.formuladecorator.formulas.decorated.gravity.DecoratedSimpleOriginalGravityFormula;
-import org.blh.recipe.uncategorized.Recipe;
+import org.blh.recipe.attempts.composite.Recipe;
 
 /**
  * Should this object be mutable? Or should all its members be mutable?

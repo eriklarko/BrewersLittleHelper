@@ -1,21 +1,23 @@
-package org.blh.recipe.uncategorized;
+package org.blh.recipe.attempts.separateclasses;
 
 import org.blh.core.uncategorized.BeerType;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.blh.recipe.uncategorized.IngredientsList;
+import org.blh.recipe.uncategorized.InstructionsList;
 
 /**
  * Recognizes that building recipes is an ongoing process.
  *
  * @author Erik Larkö <erik.larko@purplescout.se>
  */
-public class RecipeWithVersions {
+public class RecipeeWithVersions {
 
     private final String name;
     private final ObservableList<RecipeVersion> versions;
 
-    public RecipeWithVersions(ObservableList<Recipe> recipeVersions) {
+    public RecipeeWithVersions(ObservableList<Recipee> recipeVersions) {
         if (recipeVersions.isEmpty() || recipeVersions.get(0) == null) {
             throw new IllegalArgumentException("You provided an empty list of versions or the first version was null");
         }
@@ -24,10 +26,10 @@ public class RecipeWithVersions {
         this.name = recipeVersions.get(0).getName();
     }
 
-    private ObservableList<RecipeVersion> validateAndDecorateInput(Iterable<Recipe> recipes) throws IllegalArgumentException {
+    private ObservableList<RecipeVersion> validateAndDecorateInput(Iterable<Recipee> recipes) throws IllegalArgumentException {
         ObservableList<RecipeVersion> verisons = FXCollections.emptyObservableList();
         String previousName = null;
-        for (Recipe version : recipes) {
+        for (Recipee version : recipes) {
             if (previousName != null && !version.getName().equals(previousName)) {
                 throw new IllegalArgumentException("Not all versions have the same name");
             }
@@ -52,9 +54,9 @@ public class RecipeWithVersions {
      */
     public static class RecipeVersion {
 
-        private final Recipe toDecorate;
+        private final Recipee toDecorate;
 
-        public RecipeVersion(Recipe toDecorate) {
+        public RecipeVersion(Recipee toDecorate) {
             this.toDecorate = toDecorate;
         }
 

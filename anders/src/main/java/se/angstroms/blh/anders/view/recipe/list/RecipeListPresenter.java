@@ -1,6 +1,5 @@
 package se.angstroms.blh.anders.view.recipe.list;
 
-import org.blh.recipe.uncategorized.Recipe;
 
 import se.angstroms.blh.anders.view.util.CustomControl;
 import se.angstroms.blh.anders.view.util.DoubleClickableCellFactory;
@@ -13,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import org.blh.recipe.attempts.composite.Recipe;
 
 /**
  * Lists some recipes

@@ -3,7 +3,7 @@ package se.angstroms.blh.anders.view.recipe.details;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import org.blh.recipe.uncategorized.Recipe;
+import org.blh.recipe.attempts.composite.Recipe;
 import se.angstroms.blh.anders.view.util.CustomControl;
 
 /**
