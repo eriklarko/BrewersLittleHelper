@@ -7,6 +7,6 @@
 <fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml">
     <HBox>
         <Label fx:id="title" />
-        <Label fx:id="value" />
+        <Label fx:id="value" onMouseClicked="#onValueClicked" />
     </HBox>
 </fx:root>

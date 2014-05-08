@@ -1,5 +1,6 @@
-package se.angstroms.blh.anders.view.controls.inputtedorcalculatedvalue;
+package se.angstroms.blh.anders.view.recipe.details.data.value;
 
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -21,6 +22,18 @@ public class InputtedValuePresenter extends HBox implements ChangeListener<Boole
 
         input.focusedProperty().addListener(this);
     }
+
+	public String getValue() {
+		return input.getText();
+	}
+
+	public void setValue(String text) {
+		input.setText(text);
+	}
+
+	public StringProperty valueProperty() {
+		return input.textProperty();
+	}
 
     @Override
     public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean blurred) {

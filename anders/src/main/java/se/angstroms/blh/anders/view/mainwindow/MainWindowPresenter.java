@@ -55,12 +55,14 @@ public class MainWindowPresenter implements Initializable {
         recipeList = new RecipeListPresenter();
         recipeDetails = new RecipeDetailsPresenter();
 
-        recipeList.getSelectedRecipeProperty().addListener((ObservableValue<? extends Recipe> ov, Recipe oldValue, Recipe newValue) -> {
-            recipeDetails.setRecipe(newValue);
-            showRecipeDetails();
+		recipeDetails.recipeProperty().bind(recipeList.selectedRecipeProperty());
+        recipeList.selectedRecipeProperty().addListener((ObservableValue<? extends Recipe> ov, Recipe oldValue, Recipe newValue) -> {
+            if (oldValue != newValue) {
+				showRecipeDetails();
+			}
         });
-        recipeList.setRecipes(getDummyRecipeList());
 
+        recipeList.setRecipes(getDummyRecipeList());
         showRecipeList();
     }
 

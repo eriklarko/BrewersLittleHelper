@@ -3,6 +3,8 @@ package org.blh.recipe.attempts.composite;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import org.blh.core.uncategorized.BeerType;
 
@@ -45,7 +47,7 @@ public class RecipeWithVersions implements Recipe {
         return recipes;
     }
 
-    @Override
+	@Override
     public String getName() {
         return name;
     }

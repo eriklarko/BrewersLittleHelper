@@ -6,12 +6,12 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import se.angstroms.blh.anders.view.controls.*?>
+<?import se.angstroms.blh.anders.view.recipe.details.data.value.*?>
 
 <fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
     <stylesheets>
         <URL value="@/styles/anders.css"/>
     </stylesheets>
-    
-    <ValueComponentPresenter fx:id="ibuComponent" title="Bitterness" unit="org.blh.core.unit.bitterness.IBU" />
+
+    <ValuePresenter fx:id="ibuComponent" title="Bitterness" />
 </fx:root>

@@ -1,6 +1,10 @@
-package se.angstroms.blh.anders.view.recipe.details;
+package se.angstroms.blh.anders.view.recipe.details.ingredientslist;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -36,8 +40,19 @@ public class IngredientsListPresenter extends HBox {
 
     @FXML private TableView<String> othersTable;
 
+	private final ObjectProperty<IngredientsList> ingredientsListProperty;
+
     public IngredientsListPresenter() {
         CustomControl.setup(this);
+
+		ingredientsListProperty = new SimpleObjectProperty<>();
+		ingredientsListProperty.addListener(new ChangeListener<IngredientsList>() {
+
+			@Override
+			public void changed(ObservableValue<? extends IngredientsList> ov, IngredientsList t, IngredientsList newValue) {
+				setIngredientsList(newValue);
+			}
+		});
 
         buildFermentablesTable();
         buildHopsTable();
@@ -77,7 +92,11 @@ public class IngredientsListPresenter extends HBox {
         );
     }
 
-    public void setIngredientsList(IngredientsList ingredientsList) {
+	public ObjectProperty<IngredientsList> ingredientsListProperty() {
+		return ingredientsListProperty;
+	}
+
+    private void setIngredientsList(IngredientsList ingredientsList) {
         ObservableList<GristPart> gristParts = FXCollections.observableArrayList(ingredientsList.getFermentables());
         ObservableList<HopAddition> hopAdditions = FXCollections.observableArrayList(ingredientsList.getHopAdditions());
         ObservableList<YeastAddition<?>> yeastAdditions = FXCollections.observableArrayList(ingredientsList.getYeastAdditions());

@@ -14,14 +14,29 @@ import org.blh.formuladecorator.formulas.Formula;
 public class NewIOCV<T extends Unit<?>> {
 
     private final ReadOnlyObjectWrapper<T> value;
-    private final FullContext context;
     private final ReadOnlyBooleanWrapper isInputted;
+	private final ReadOnlyObjectWrapper<Class<T>> type;
+	private final ReadOnlyObjectWrapper<Formula<T>> formula;
+    private final FullContext context;
 
-    public NewIOCV(FullContext context) {
+    public NewIOCV(FullContext context, Class<T> clazz) {
         this.context = context;
+		this.type = new ReadOnlyObjectWrapper<>(clazz);
+
         value = new ReadOnlyObjectWrapper<>();
         isInputted = new ReadOnlyBooleanWrapper();
+		formula = new ReadOnlyObjectWrapper();
     }
+
+	public NewIOCV(FullContext context, Class<T> clazz, T value) {
+		this(context, clazz);
+		setValue(value);
+	}
+
+	public NewIOCV(FullContext context, Class<T> clazz, Formula<T> formula) {
+		this(context, clazz);
+		calculateUsing(formula);
+	}
 
     public ReadOnlyBooleanProperty getIsInputtedProperty() {
         return isInputted.getReadOnlyProperty();
@@ -31,9 +46,25 @@ public class NewIOCV<T extends Unit<?>> {
         return isInputted.get();
     }
 
+	public T value() {
+		if (this.isInputted()) {
+			return value.get();
+		} else {
+			T calculatedValue = this.formula.get().calc(context);
+			if (!calculatedValue.equals(value.get())) {
+				value.set(calculatedValue);
+			}
+			return value.get();
+		}
+	}
+
     public ReadOnlyObjectProperty<T> getValueProperty() {
         return value.getReadOnlyProperty();
     }
+
+	public ReadOnlyObjectProperty<Class<T>> getTypeProperty() {
+		return type.getReadOnlyProperty();
+	}
 
     public void setValue(T value) {
         if (value == null) {
@@ -46,6 +77,6 @@ public class NewIOCV<T extends Unit<?>> {
 
     public void calculateUsing(Formula<T> formula) {
         this.isInputted.set(false);
-        this.value.set(formula.calc(context));
+		this.formula.set(formula);
     }
 }

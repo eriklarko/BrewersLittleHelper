@@ -44,7 +44,7 @@ public class RecipeListPresenter extends TableView<Recipe> implements DoubleClic
         this.setItems(recipes);
     }
 
-    public ReadOnlyObjectProperty<Recipe> getSelectedRecipeProperty() {
+    public ReadOnlyObjectProperty<Recipe> selectedRecipeProperty() {
         return selectedRecipe.getReadOnlyProperty();
     }
 

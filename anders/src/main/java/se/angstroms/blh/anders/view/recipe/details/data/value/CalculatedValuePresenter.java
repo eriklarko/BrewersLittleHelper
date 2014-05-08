@@ -1,5 +1,6 @@
-package se.angstroms.blh.anders.view.controls.inputtedorcalculatedvalue;
+package se.angstroms.blh.anders.view.recipe.details.data.value;
 
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -17,6 +18,18 @@ public class CalculatedValuePresenter extends HBox {
     public CalculatedValuePresenter() {
         CustomControl.setup(this);
     }
+
+	public String getValue() {
+		return value.getText();
+	}
+
+	public void setValue(String text) {
+		value.setText(text);
+	}
+
+	public StringProperty valueProperty() {
+		return value.textProperty();
+	}
 
     @FXML
     private void onValueClicked() {
