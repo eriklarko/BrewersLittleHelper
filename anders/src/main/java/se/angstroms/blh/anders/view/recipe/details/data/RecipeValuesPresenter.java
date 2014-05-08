@@ -7,10 +7,12 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import javax.inject.Inject;
+import org.blh.core.unit.Unit;
 import org.blh.core.unit.bitterness.IBU;
 import org.blh.formuladecorator.FullContext;
 import org.blh.formuladecorator.NewIOCV;
-import org.blh.formuladecorator.formulas.decorated.bitterness.DecoratedTinseth;
+import org.blh.formuladecorator.formulas.ObservableFormula;
+import org.blh.formuladecorator.formulas.observable.bitterness.ObservableTinseth;
 import org.blh.recipe.attempts.composite.Recipe;
 import se.angstroms.blh.anders.view.recipe.details.data.value.ValuePresenter;
 import se.angstroms.blh.anders.view.util.CustomControl;
@@ -27,34 +29,18 @@ public class RecipeValuesPresenter extends VBox {
     @FXML
     private ValuePresenter ibuComponent;
 
-	private final ObjectProperty<Recipe> recipeProperty;
-
     public RecipeValuesPresenter() {
         CustomControl.setup(this);
 
-		recipeProperty = new SimpleObjectProperty<>();
-		recipeProperty.addListener(new ChangeListener<Recipe>() {
-
-			@Override
-			public void changed(ObservableValue<? extends Recipe> ov, Recipe t, Recipe t1) {
-				recalculateValues();
-			}
-		});
+		registerValuesToContextVariables();
     }
 
 	private void registerValuesToContextVariables() {
-
+		// TODO: Use some kind of attribute in the ValuePresenter instead
+		ibuComponent.setInputtedOrCalculatedValue(asd(IBU.class, new ObservableTinseth(fullContext)));
 	}
 
-	public ObjectProperty<Recipe> recipeProperty() {
-		return recipeProperty;
+	private <T extends Unit<?>> NewIOCV<T> asd(Class<T> clazz, ObservableFormula<T> f) {
+		return new NewIOCV<>(clazz, f);
 	}
-
-    private void recalculateValues() {
-        this.getChildren().stream().filter((child) -> (child instanceof ValuePresenter)).map((child) -> (ValuePresenter) child).forEach((val) -> {
-			NewIOCV<IBU> newIOCV = new NewIOCV<>(fullContext, IBU.class);
-			val.setInputtedOrCalculatedValue(newIOCV);
-			newIOCV.calculateUsing(new DecoratedTinseth());
-        });
-    }
 }

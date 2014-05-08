@@ -24,7 +24,6 @@ import org.blh.core.unit.ExtractPotential;
 import org.blh.core.unit.Percentage;
 import org.blh.core.unit.color.Lovibond;
 import org.blh.core.unit.gravity.GravityPoints;
-import org.blh.core.unit.gravity.SpecificGravity;
 import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
@@ -52,11 +51,14 @@ public class MainWindowPresenter implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        InjectionProvider.registerExistingAndInject(this);
+
         recipeList = new RecipeListPresenter();
         recipeDetails = new RecipeDetailsPresenter();
 
-		recipeDetails.recipeProperty().bind(recipeList.selectedRecipeProperty());
         recipeList.selectedRecipeProperty().addListener((ObservableValue<? extends Recipe> ov, Recipe oldValue, Recipe newValue) -> {
+			fullContext.setRecipe(newValue);
+			recipeDetails.recipeProperty().set(newValue);
             if (oldValue != newValue) {
 				showRecipeDetails();
 			}
@@ -77,7 +79,6 @@ public class MainWindowPresenter implements Initializable {
     }
 
     private ObservableList<Recipe> getDummyRecipeList() {
-        InjectionProvider.registerExistingAndInject(this);
 
         List<GristPart> fermentables = new LinkedList<>();
         List<HopAddition> hops = new LinkedList<>();
@@ -89,9 +90,6 @@ public class MainWindowPresenter implements Initializable {
 
         IngredientsList ingredientsList = new IngredientsList(fermentables, hops, yeasts);
         Recipe recipe = new BasicRecipe(ingredientsList, null, BeerType.ALE, "Dodo IPA");
-
-        fullContext.setRecipe(recipe);
-        fullContext.getOriginalGravity().setValue(new SpecificGravity(1.02));
 
         return FXCollections.observableArrayList(recipe);
     }

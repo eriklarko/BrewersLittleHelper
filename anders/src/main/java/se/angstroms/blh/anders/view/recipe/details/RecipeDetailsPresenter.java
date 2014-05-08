@@ -37,7 +37,6 @@ public class RecipeDetailsPresenter extends VBox {
 				ingredientsList.ingredientsListProperty().set(newValue.getIngredientsList());
 			}
 		});
-		recipeValues.recipeProperty().bind(recipeProperty);
     }
 
 	public ObjectProperty<Recipe> recipeProperty() {

@@ -1,5 +1,7 @@
 package org.blh.formuladecorator;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import org.blh.core.unit.Factor;
 import org.blh.core.unit.alcohol.ABV;
 import org.blh.core.unit.color.ColorPotential;
@@ -11,6 +13,7 @@ import org.blh.core.unit.volume.Liters;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
 import org.blh.recipe.attempts.composite.Recipe;
+import org.blh.formuladecorator.formulas.observable.gravity.ObservableSimpleOriginalGravityFormula;
 
 /**
  * Should this object be mutable? Or should all its members be mutable?
@@ -19,7 +22,7 @@ import org.blh.recipe.attempts.composite.Recipe;
  */
 public class FullContext {
 
-    private Recipe recipe;
+    private final ObjectProperty<Recipe> recipeProperty;
     private GeneralBreweryInfo brewery;
     private Equipment equipment;
     /////////////
@@ -45,17 +48,23 @@ public class FullContext {
     private Input<Factor> coolingLoss;
 
     public FullContext() {
-		extractionEfficiency = new NewIOCV<>(this, Factor.class, new Factor(0.8));
-        originalGravity = new NewIOCV<>(this, SpecificGravity.class, new DecoratedSimpleOriginalGravityFormula());
+		recipeProperty = new SimpleObjectProperty<>();
+
+		extractionEfficiency = new NewIOCV<>(Factor.class, new Factor(0.8));
+        originalGravity = new NewIOCV<>(SpecificGravity.class, new ObservableSimpleOriginalGravityFormula(this));
     }
 
     public Recipe getRecipe() {
-        return recipe;
+        return recipeProperty.get();
     }
 
     public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
+        this.recipeProperty.setValue(recipe);
     }
+
+	public ObjectProperty<Recipe> recipeProperty() {
+		return recipeProperty;
+	}
 
     public GeneralBreweryInfo getBrewery() {
         return brewery;
