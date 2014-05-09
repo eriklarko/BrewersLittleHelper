@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import org.blh.formuladecorator.NewIOCV;
+import org.blh.formuladecorator.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.view.util.CustomControl;
 
 /**
@@ -27,19 +27,9 @@ public class ValuePresenter extends HBox {
 
     private final InputtedValuePresenter inputtedValue;
     private final CalculatedValuePresenter calculatedValue;
-    private final ObjectProperty<NewIOCV<?>> inputtedOrCalculatedValueProperty;
 
     public ValuePresenter() {
         CustomControl.setup(this);
-
-        inputtedOrCalculatedValueProperty = new SimpleObjectProperty<>();
-		inputtedOrCalculatedValueProperty.addListener(new ChangeListener<NewIOCV<?>>() {
-
-			@Override
-			public void changed(ObservableValue<? extends NewIOCV<?>> ov, NewIOCV<?> t, NewIOCV<?> t1) {
-				setInputtedOrCalculatedValue(t1);
-			}
-		});
 
         inputtedValue = new InputtedValuePresenter();
         calculatedValue = new CalculatedValuePresenter();
@@ -57,33 +47,25 @@ public class ValuePresenter extends HBox {
         return this.title.textProperty();
     }
 
-	public NewIOCV<?> getInputtedOrCalculatedValue() {
-		return this.inputtedOrCalculatedValueProperty.get();
-	}
+	public void setInputtedOrCalculatedValue(InputtedOrCalculatedValue<?> inputtedOrCalculatedValue) {
 
-	public void setInputtedOrCalculatedValue(NewIOCV<?> inputtedOrCalculatedValue) {
-        this.inputtedOrCalculatedValueProperty.set(inputtedOrCalculatedValue);
-
-        inputtedOrCalculatedValue.getIsInputtedProperty().addListener(new ChangeListener<Boolean>() {
+        inputtedOrCalculatedValue.isInputtedProperty().addListener(new ChangeListener<Boolean>() {
 
 			@Override
 			public void changed(ObservableValue<? extends Boolean> ov, Boolean oldValue, Boolean isInputted) {
 				handleInputtedState(isInputted);
 			}
 		});
-		inputtedOrCalculatedValue.getValueProperty().addListener(new ChangeListener<Object>() {
+		inputtedOrCalculatedValue.valueProperty().addListener(new ChangeListener<Object>() {
 
 			@Override
-			public void changed(ObservableValue<? extends Object> ov, Object t, Object t1) {
-				inputtedValue.setValue(String.valueOf(t1));
-				calculatedValue.setValue(String.valueOf(t1));
+			public void changed(ObservableValue<? extends Object> ov, Object oldValue, Object newValue) {
+				System.out.println("Updating " + title.getText() + " to " + String.valueOf(newValue));
+				inputtedValue.setValue(String.valueOf(newValue));
+				calculatedValue.setValue(String.valueOf(newValue));
 			}
 		});
         handleInputtedState(inputtedOrCalculatedValue.isInputted());
-    }
-
-    public ObjectProperty<NewIOCV<?>> inputtedOrCalculatedValueProperty() {
-        return inputtedOrCalculatedValueProperty;
     }
 
     private void showInputtedValue() {

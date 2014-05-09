@@ -26,20 +26,20 @@ public class FullContext {
     private GeneralBreweryInfo brewery;
     private Equipment equipment;
     /////////////
-    private NewIOCV<Liters> preMashVolume;
-    private NewIOCV<Minutes> boilTime;
-    private NewIOCV<SpecificGravity> preBoilGravity;
-    private NewIOCV<SpecificGravity> boilGravity;
-    private NewIOCV<SpecificGravity> postBoilGravity;
-    private NewIOCV<SpecificGravity> originalGravity;
-    private NewIOCV<SpecificGravity> finalGravity;
-    private NewIOCV<ABV> alcoholContent;
-    private NewIOCV<Factor> yeastApparentAttenuation;
-    private NewIOCV<MaltColorUnit> maltColorUnit;
-    private NewIOCV<ColorPotential> totalColorPotential;
-    private NewIOCV<Factor> extractionEfficiency;
-    private NewIOCV<Kilograms> totalGrainWeight;
-    private NewIOCV<Grams> totalHopWeight;
+    private InputtedOrCalculatedValue<Liters> preMashVolume;
+    private InputtedOrCalculatedValue<Minutes> boilTime;
+    private InputtedOrCalculatedValue<SpecificGravity> preBoilGravity;
+    private InputtedOrCalculatedValue<SpecificGravity> boilGravity;
+    private InputtedOrCalculatedValue<SpecificGravity> postBoilGravity;
+    private InputtedOrCalculatedValue<SpecificGravity> originalGravity;
+    private InputtedOrCalculatedValue<SpecificGravity> finalGravity;
+    private InputtedOrCalculatedValue<ABV> alcoholContent;
+    private InputtedOrCalculatedValue<Factor> yeastApparentAttenuation;
+    private InputtedOrCalculatedValue<MaltColorUnit> maltColorUnit;
+    private InputtedOrCalculatedValue<ColorPotential> totalColorPotential;
+    private InputtedOrCalculatedValue<Factor> extractionEfficiency;
+    private InputtedOrCalculatedValue<Kilograms> totalGrainWeight;
+    private InputtedOrCalculatedValue<Grams> totalHopWeight;
     ///////////////
     private Input<Meters> elevation;
     /**
@@ -50,8 +50,8 @@ public class FullContext {
     public FullContext() {
 		recipeProperty = new SimpleObjectProperty<>();
 
-		extractionEfficiency = new NewIOCV<>(Factor.class, new Factor(0.8));
-        originalGravity = new NewIOCV<>(SpecificGravity.class, new ObservableSimpleOriginalGravityFormula(this));
+		extractionEfficiency = new InputtedOrCalculatedValue<>(new Factor(0.8));
+        originalGravity = new InputtedOrCalculatedValue<>(new ObservableSimpleOriginalGravityFormula(this));
     }
 
     public Recipe getRecipe() {
@@ -74,59 +74,59 @@ public class FullContext {
         return equipment;
     }
 
-    public NewIOCV<Liters> getPreMashVolume() {
+    public InputtedOrCalculatedValue<Liters> getPreMashVolume() {
         return preMashVolume;
     }
 
-    public NewIOCV<Minutes> getBoilTime() {
+    public InputtedOrCalculatedValue<Minutes> getBoilTime() {
         return boilTime;
     }
 
-    public NewIOCV<SpecificGravity> getPreBoilGravity() {
+    public InputtedOrCalculatedValue<SpecificGravity> getPreBoilGravity() {
         return preBoilGravity;
     }
 
-    public NewIOCV<SpecificGravity> getBoilGravity() {
+    public InputtedOrCalculatedValue<SpecificGravity> getBoilGravity() {
         return boilGravity;
     }
 
-    public NewIOCV<SpecificGravity> getPostBoilGravity() {
+    public InputtedOrCalculatedValue<SpecificGravity> getPostBoilGravity() {
         return postBoilGravity;
     }
 
-    public NewIOCV<SpecificGravity> getOriginalGravity() {
+    public InputtedOrCalculatedValue<SpecificGravity> getOriginalGravity() {
         return originalGravity;
     }
 
-    public NewIOCV<SpecificGravity> getFinalGravity() {
+    public InputtedOrCalculatedValue<SpecificGravity> getFinalGravity() {
         return finalGravity;
     }
 
-    public NewIOCV<ABV> getAlcoholContent() {
+    public InputtedOrCalculatedValue<ABV> getAlcoholContent() {
         return alcoholContent;
     }
 
-    public NewIOCV<Factor> getYeastApparentAttenuation() {
+    public InputtedOrCalculatedValue<Factor> getYeastApparentAttenuation() {
         return yeastApparentAttenuation;
     }
 
-    public NewIOCV<MaltColorUnit> getMaltColorUnit() {
+    public InputtedOrCalculatedValue<MaltColorUnit> getMaltColorUnit() {
         return maltColorUnit;
     }
 
-    public NewIOCV<ColorPotential> getTotalColorPotential() {
+    public InputtedOrCalculatedValue<ColorPotential> getTotalColorPotential() {
         return totalColorPotential;
     }
 
-    public NewIOCV<Factor> getExtractionEfficiency() {
+    public InputtedOrCalculatedValue<Factor> getExtractionEfficiency() {
         return extractionEfficiency;
     }
 
-    public NewIOCV<Kilograms> getTotalGrainWeight() {
+    public InputtedOrCalculatedValue<Kilograms> getTotalGrainWeight() {
         return totalGrainWeight;
     }
 
-    public NewIOCV<Grams> getTotalHopWeight() {
+    public InputtedOrCalculatedValue<Grams> getTotalHopWeight() {
         return totalHopWeight;
     }
 
