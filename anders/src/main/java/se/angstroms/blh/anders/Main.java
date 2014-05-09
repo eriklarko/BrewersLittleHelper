@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import se.angstroms.blh.anders.util.AndersBuilderFactory;
 import se.angstroms.blh.anders.util.ResourceBundleUtil;
 import se.angstroms.blh.anders.util.ResourceLoader;
 import se.angstroms.blh.anders.view.mainwindow.MainWindowPresenter;
@@ -21,7 +22,8 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(
                 ResourceLoader.getResource(MainWindowPresenter.class, "MainWindow.fxml"),
-                ResourceBundleUtil.getCurrentResourceBundle()
+                ResourceBundleUtil.getCurrentResourceBundle(),
+				new AndersBuilderFactory()
         );
 
         Scene scene = new Scene(root);

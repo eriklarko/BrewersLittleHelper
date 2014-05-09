@@ -3,6 +3,7 @@ package se.angstroms.blh.anders.view.util;
 import com.airhacks.afterburner.injection.InjectionProvider;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
+import se.angstroms.blh.anders.util.AndersBuilderFactory;
 import se.angstroms.blh.anders.util.ResourceBundleUtil;
 import se.angstroms.blh.anders.util.ResourceLoader;
 
@@ -58,12 +59,15 @@ public final class CustomControl {
     }
 
     public static void setup(Object instance, String fxmlPath) {
-        FXMLLoader fxmlLoader = new FXMLLoader(ResourceLoader.getResource(instance.getClass(), fxmlPath));
+        FXMLLoader fxmlLoader = new FXMLLoader(
+				ResourceLoader.getResource(instance.getClass(), fxmlPath),
+				ResourceBundleUtil.getCurrentResourceBundle(),
+				new AndersBuilderFactory()
+		);
         setup(instance, fxmlLoader);
     }
 
     public static void setup(Object instance, FXMLLoader fxmlLoader) {
-        fxmlLoader.setResources(ResourceBundleUtil.getCurrentResourceBundle());
         InjectionProvider.registerExistingAndInject(instance);
         fxmlLoader.setRoot(instance);
         fxmlLoader.setController(instance);

@@ -22,11 +22,14 @@ import org.blh.core.recipe.YeastAddition;
 import org.blh.core.uncategorized.BeerType;
 import org.blh.core.unit.ExtractPotential;
 import org.blh.core.unit.Percentage;
+import org.blh.core.unit.bitterness.IBU;
 import org.blh.core.unit.color.Lovibond;
 import org.blh.core.unit.gravity.GravityPoints;
 import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
+import org.blh.formuladecorator.FormulaFactory;
+import org.blh.formuladecorator.formulas.observable.bitterness.ObservableTinseth;
 import org.blh.recipe.attempts.composite.BasicRecipe;
 import org.blh.recipe.attempts.composite.Recipe;
 import org.blh.recipe.uncategorized.IngredientsList;
@@ -52,6 +55,9 @@ public class MainWindowPresenter implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         InjectionProvider.registerExistingAndInject(this);
+
+		// TODO: LOL
+		FormulaFactory.getInstance().register(IBU.class, new ObservableTinseth(fullContext));
 
         recipeList = new RecipeListPresenter();
         recipeDetails = new RecipeDetailsPresenter();
@@ -79,7 +85,6 @@ public class MainWindowPresenter implements Initializable {
     }
 
     private ObservableList<Recipe> getDummyRecipeList() {
-
         List<GristPart> fermentables = new LinkedList<>();
         List<HopAddition> hops = new LinkedList<>();
         List<YeastAddition<?>> yeasts = new LinkedList<>();

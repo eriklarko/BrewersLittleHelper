@@ -13,5 +13,5 @@
         <URL value="@/styles/anders.css"/>
     </stylesheets>
 
-    <ValuePresenter fx:id="ibuComponent" title="Bitterness" />
+    <ValuePresenter fx:id="ibuComponent" title="Bitterness" clazz='org.blh.core.unit.bitterness.IBU'/>
 </fx:root>
