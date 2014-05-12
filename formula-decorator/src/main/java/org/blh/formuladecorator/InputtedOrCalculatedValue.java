@@ -66,6 +66,7 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> {
     }
 
     public final void calculateUsing(ObservableFormula<T> formula) {
+
         this.isInputted.set(false);
 		this.formula.set(formula);
 

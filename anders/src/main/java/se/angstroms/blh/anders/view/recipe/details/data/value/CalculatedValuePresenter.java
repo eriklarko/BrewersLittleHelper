@@ -30,9 +30,4 @@ public class CalculatedValuePresenter extends HBox {
 	public StringProperty valueProperty() {
 		return value.textProperty();
 	}
-
-    @FXML
-    private void onValueClicked() {
-        System.out.println("Blurred the liiiiiines!");
-    }
 }

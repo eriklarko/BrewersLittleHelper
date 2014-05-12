@@ -16,10 +16,10 @@
                     <Pane fx:id="recipesContainer"/>
                 </Tab>
                 <Tab text="%tab.equipment">
-                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    <AnchorPane id="Content" minHeight="180.0" minWidth="200.0" />
                 </Tab>
                 <Tab text="%tab.brewery">
-                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    <AnchorPane id="Content" minHeight="180.0" minWidth="200.0" />
                 </Tab>
             </tabs>
         </TabPane>

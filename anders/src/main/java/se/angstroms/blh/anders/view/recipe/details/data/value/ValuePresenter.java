@@ -1,17 +1,26 @@
 package se.angstroms.blh.anders.view.recipe.details.data.value;
 
-import javafx.beans.property.StringProperty;
+import javafx.animation.FadeTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.util.Builder;
+import javafx.util.Duration;
+import javax.inject.Inject;
 import org.blh.core.unit.Unit;
-import org.blh.formuladecorator.FormulaFactory;
+import org.blh.core.unit.bitterness.IBU;
+import org.blh.core.unit.gravity.SpecificGravity;
 import org.blh.formuladecorator.InputtedOrCalculatedValue;
+import se.angstroms.blh.anders.uncategorized.ValueId;
 import se.angstroms.blh.anders.view.util.CustomControl;
+import se.angstroms.blh.anders.util.InputtedOrCalculatedValueFactory;
+import se.angstroms.blh.anders.util.NoDefaultFormulaException;
+import se.angstroms.blh.anders.util.UnitStringFormatter;
+import se.angstroms.blh.anders.view.recipe.details.data.value.InputtedValuePresenter.CommitEvent;
 
 
 /**
@@ -19,78 +28,75 @@ import se.angstroms.blh.anders.view.util.CustomControl;
  *
  * @author nichlassa
  */
-public class ValuePresenter extends HBox {
+public class ValuePresenter<T extends Unit<?>> extends HBox {
 
 	public static class ValuePresenterBuilder implements Builder<ValuePresenter> {
 
-		private String title;
-		private Class<? extends Unit<?>> clazz;
+		private ValueId type;
 
-		public String getTitle() {
-			return title;
+		public ValueId getType() {
+			return type;
 		}
 
-		public void setTitle(String title) {
-			this.title = title;
-		}
-
-		public void setClazz(Class<? extends Unit<?>> clazz) {
-			this.clazz = clazz;
-		}
-
-		public Class<? extends Unit<?>> getClazz() {
-			return clazz;
+		public void setType(ValueId type) {
+			this.type = type;
 		}
 
 		@Override
 		public ValuePresenter build() {
-			ValuePresenter a;
-			if (clazz == null) {
-				a = new ValuePresenter();
+			ValuePresenter object;
+			if (type == null) {
+				throw new RuntimeException("Mwääää måste vara satt!");
 			} else {
-				a = new ValuePresenter(clazz);
+				try {
+					object = new ValuePresenter(InputtedOrCalculatedValueFactory.getInstance().fromDefaultFormula(type));
+				} catch (NoDefaultFormulaException ex) {
+					throw new RuntimeException(ex);
+				}
 			}
-			a.setTitle(title);
 
-			return a;
+			return object;
 		}
 	}
-
-	@FXML
-    private Label title;
 
     @FXML
     private Pane valueContainer;
 
+	@Inject
+	private UnitStringFormatter unitStringFormatter;
+
     private final InputtedValuePresenter inputtedValue;
     private final CalculatedValuePresenter calculatedValue;
+	private InputtedOrCalculatedValue<T> inputtedOrCalculatedValue;
+	private boolean scaryFuckingIgnoreChangeEvent = false;
 
-    private ValuePresenter() {
+
+	private ValuePresenter(InputtedOrCalculatedValue<T> inputtedOrCalculatedValue) {
         CustomControl.setup(this);
 
         inputtedValue = new InputtedValuePresenter();
-        calculatedValue = new CalculatedValuePresenter();
-    }
+		inputtedValue.addOnTextChangedListener(new EventHandler<CommitEvent>() {
 
-	private <T extends Unit<?>> ValuePresenter(Class<T> clazz) {
-		this();
-		InputtedOrCalculatedValue<T> a = new InputtedOrCalculatedValue<>(FormulaFactory.getInstance().lol(clazz));
-		setInputtedOrCalculatedValue(a);
+			@Override
+			public void handle(CommitEvent t) {
+				Double d = Double.parseDouble(t.getText());
+				scaryFuckingIgnoreChangeEvent = true;
+				ValuePresenter.this.inputtedOrCalculatedValue.setValue((T) new SpecificGravity(d));
+			}
+		});
+        calculatedValue = new CalculatedValuePresenter();
+		calculatedValue.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent mouseEvent) {
+				showInputtedValue();
+			}
+		});
+		setInputtedOrCalculatedValue(inputtedOrCalculatedValue);
 	}
 
-	public String getTitle() {
-        return this.title.getText();
-    }
-
-    public void setTitle(String title) {
-        this.title.setText(title);
-    }
-
-    public StringProperty titleProperty() {
-        return this.title.textProperty();
-    }
-
-	public void setInputtedOrCalculatedValue(InputtedOrCalculatedValue<? extends Unit<?>> inputtedOrCalculatedValue) {
+	public void setInputtedOrCalculatedValue(InputtedOrCalculatedValue<T> inputtedOrCalculatedValue) {
+		this.inputtedOrCalculatedValue = inputtedOrCalculatedValue;
         inputtedOrCalculatedValue.isInputtedProperty().addListener(new ChangeListener<Boolean>() {
 
 			@Override
@@ -98,13 +104,21 @@ public class ValuePresenter extends HBox {
 				handleInputtedState(isInputted);
 			}
 		});
-		inputtedOrCalculatedValue.valueProperty().addListener(new ChangeListener<Object>() {
+		inputtedOrCalculatedValue.valueProperty().addListener(new ChangeListener<T>() {
 
 			@Override
-			public void changed(ObservableValue<? extends Object> ov, Object oldValue, Object newValue) {
-				System.out.println("Updating " + title.getText() + " to " + String.valueOf(newValue));
-				inputtedValue.setValue(String.valueOf(newValue));
-				calculatedValue.setValue(String.valueOf(newValue));
+			public void changed(ObservableValue<? extends T> ov, T oldValue, T newValue) {
+				if (scaryFuckingIgnoreChangeEvent) {
+					scaryFuckingIgnoreChangeEvent = false;
+					return;
+				}
+
+				String valueAsString = unitStringFormatter.format(newValue);
+
+				inputtedValue.setValue(valueAsString);
+				calculatedValue.setValue(valueAsString);
+
+				triggerValueChangedVisualization();
 			}
 		});
         handleInputtedState(inputtedOrCalculatedValue.isInputted());
@@ -127,6 +141,15 @@ public class ValuePresenter extends HBox {
             showCalculatedValue();
         }
     }
+
+	private void triggerValueChangedVisualization() {
+		FadeTransition animation = new FadeTransition(Duration.millis(500), this);
+		animation.setFromValue(0.4);
+		animation.setToValue(1);
+		animation.setCycleCount(1);
+		animation.setAutoReverse(false);
+		animation.play();
+	}
 
     @FXML
     private void showAvailableFormulas() {

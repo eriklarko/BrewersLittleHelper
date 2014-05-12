@@ -22,17 +22,17 @@ import org.blh.core.recipe.YeastAddition;
 import org.blh.core.uncategorized.BeerType;
 import org.blh.core.unit.ExtractPotential;
 import org.blh.core.unit.Percentage;
-import org.blh.core.unit.bitterness.IBU;
 import org.blh.core.unit.color.Lovibond;
 import org.blh.core.unit.gravity.GravityPoints;
 import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
-import org.blh.formuladecorator.FormulaFactory;
+import se.angstroms.blh.anders.util.FormulaFactory;
 import org.blh.formuladecorator.formulas.observable.bitterness.ObservableTinseth;
 import org.blh.recipe.attempts.composite.BasicRecipe;
 import org.blh.recipe.attempts.composite.Recipe;
 import org.blh.recipe.uncategorized.IngredientsList;
+import se.angstroms.blh.anders.uncategorized.ValueId;
 import se.angstroms.blh.anders.view.recipe.details.RecipeDetailsPresenter;
 import se.angstroms.blh.anders.view.recipe.list.RecipeListPresenter;
 
@@ -49,6 +49,9 @@ public class MainWindowPresenter implements Initializable {
     @Inject
     private FullContext fullContext;
 
+	@Inject
+	private FormulaFactory formulaFactory;
+
     private RecipeListPresenter recipeList;
     private RecipeDetailsPresenter recipeDetails;
 
@@ -57,7 +60,7 @@ public class MainWindowPresenter implements Initializable {
         InjectionProvider.registerExistingAndInject(this);
 
 		// TODO: LOL
-		FormulaFactory.getInstance().register(IBU.class, new ObservableTinseth(fullContext));
+		formulaFactory.register(ValueId.BITTERNESS, new ObservableTinseth(fullContext));
 
         recipeList = new RecipeListPresenter();
         recipeDetails = new RecipeDetailsPresenter();

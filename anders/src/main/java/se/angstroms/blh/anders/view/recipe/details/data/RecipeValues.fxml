@@ -13,5 +13,11 @@
         <URL value="@/styles/anders.css"/>
     </stylesheets>
 
-    <ValuePresenter fx:id="ibuComponent" title="Bitterness" clazz='org.blh.core.unit.bitterness.IBU'/>
+    <GridPane fx:id="grid">
+        <!--Label text="Bitterness" GridPane.rowIndex="0" GridPane.columnIndex="0"  />
+        <ValuePresenter fx:id="ibuComponent" type="BITTERNESS" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Original Gravity" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <ValuePresenter fx:id="ibuComponent" type="OG" GridPane.rowIndex="1" GridPane.columnIndex="1"/-->
+    </GridPane>
 </fx:root>

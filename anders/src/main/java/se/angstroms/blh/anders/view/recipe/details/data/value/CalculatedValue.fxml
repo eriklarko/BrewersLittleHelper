@@ -5,5 +5,5 @@
 <?import javafx.scene.layout.*?>
 
 <fx:root type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml">
-    <Label fx:id="value" onMouseClicked="#onValueClicked" />
+    <Label fx:id="value" />
 </fx:root>

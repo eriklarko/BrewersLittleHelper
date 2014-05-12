@@ -22,6 +22,7 @@ public final class CustomControl {
     public static class FXMLLoadException extends RuntimeException {
 
         public FXMLLoadException() {
+			super();
         }
 
         public FXMLLoadException(String message) {
