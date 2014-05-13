@@ -31,11 +31,10 @@ public class RecipeListPresenter extends TableView<Recipe> implements DoubleClic
     private final ReadOnlyObjectWrapper<Recipe> selectedRecipe;
 
     public RecipeListPresenter() {
-        selectedRecipe = new ReadOnlyObjectWrapper<>();
-
         CustomControl.setup(this);
         this.setEditable(false);
 
+        selectedRecipe = new ReadOnlyObjectWrapper<>();
         recipeName.setCellFactory(new DoubleClickableCellFactory<>(recipeName.getCellFactory(), this));
         recipeName.setCellValueFactory((TableColumn.CellDataFeatures<Recipe, String> cdf) -> new SimpleStringProperty(cdf.getValue().getName()));
     }

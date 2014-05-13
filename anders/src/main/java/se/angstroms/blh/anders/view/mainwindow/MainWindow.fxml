@@ -6,6 +6,7 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import se.angstroms.blh.anders.view.recipe.*?>
 <?scenebuilder-preview-i18n-resource ../../../../i18n/en_US.properties?>
 
 <StackPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="se.angstroms.blh.anders.view.mainwindow.MainWindowPresenter">
@@ -13,7 +14,7 @@
         <TabPane tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="%tab.recipes">
-                    <Pane fx:id="recipesContainer"/>
+                    <RecipesTab/>
                 </Tab>
                 <Tab text="%tab.equipment">
                     <AnchorPane id="Content" minHeight="180.0" minWidth="200.0" />

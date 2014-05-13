@@ -19,6 +19,13 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> {
     private final ReadOnlyObjectWrapper<T> value;
     private final ReadOnlyBooleanWrapper isInputted;
 	private final ReadOnlyObjectWrapper<ObservableFormula<T>> formula;
+	private final InvalidationListener formulaInvalidationListener = new InvalidationListener() {
+
+			@Override
+			public void invalidated(Observable o) {
+				value.set(formula.get().calc());
+			}
+		};
 
     private InputtedOrCalculatedValue() {
         value = new ReadOnlyObjectWrapper<>();
@@ -57,25 +64,29 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> {
     }
 
     public final void setValue(T value) {
-        if (value == null) {
-            throw new NullPointerException("Cannot set value to null");
-        }
+		assertValueNotNull(value);
+		removeFormulaListener();
 
         this.isInputted.set(true);
         this.value.set(value);
     }
 
+	private void assertValueNotNull(T value) throws NullPointerException {
+		if (value == null) {
+			throw new NullPointerException("Cannot set value to null");
+		}
+	}
+
+	private void removeFormulaListener() {
+		if (this.formula.get() != null) {
+			this.formula.get().removeListener(formulaInvalidationListener);
+		}
+	}
+
     public final void calculateUsing(ObservableFormula<T> formula) {
 
         this.isInputted.set(false);
 		this.formula.set(formula);
-
-		formula.addListener(new InvalidationListener() {
-
-			@Override
-			public void invalidated(Observable o) {
-				value.set(formula.calc());
-			}
-		});
+		formula.addListener(formulaInvalidationListener);
     }
 }

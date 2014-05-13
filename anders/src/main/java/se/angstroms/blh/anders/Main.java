@@ -6,7 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javax.inject.Inject;
+import org.blh.formuladecorator.FullContext;
+import org.blh.formuladecorator.formulas.observable.bitterness.ObservableTinseth;
+import se.angstroms.blh.anders.uncategorized.ValueId;
 import se.angstroms.blh.anders.util.AndersBuilderFactory;
+import se.angstroms.blh.anders.util.FormulaFactory;
 import se.angstroms.blh.anders.util.ResourceBundleUtil;
 import se.angstroms.blh.anders.util.ResourceLoader;
 import se.angstroms.blh.anders.view.mainwindow.MainWindowPresenter;
@@ -18,8 +23,18 @@ import se.angstroms.blh.anders.view.mainwindow.MainWindowPresenter;
  */
 public class Main extends Application {
 
+	@Inject
+	private FullContext fullContext;
+
+	@Inject
+	private FormulaFactory formulaFactory;
+
     @Override
     public void start(Stage stage) throws Exception {
+		InjectionProvider.registerExistingAndInject(this);
+		setupEnvironment();
+
+
         Parent root = FXMLLoader.load(
                 ResourceLoader.getResource(MainWindowPresenter.class, "MainWindow.fxml"),
                 ResourceBundleUtil.getCurrentResourceBundle(),
@@ -50,4 +65,10 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+	private void setupEnvironment() {
+
+		// TODO: LOL
+		formulaFactory.register(ValueId.BITTERNESS, new ObservableTinseth(fullContext));
+	}
 }
