@@ -67,7 +67,7 @@ public class Main extends Application {
     }
 
 	private void setupEnvironment() {
-
+		// TODO: Loading indicator. Splash screen?
 		// TODO: LOL
 		formulaFactory.register(ValueId.BITTERNESS, new ObservableTinseth(fullContext));
 	}

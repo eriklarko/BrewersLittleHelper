@@ -1,9 +1,7 @@
 package se.angstroms.blh.anders.view.recipe;
 
-import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,7 +27,7 @@ import org.blh.recipe.attempts.composite.BasicRecipe;
 import org.blh.recipe.attempts.composite.Recipe;
 import org.blh.recipe.uncategorized.IngredientsList;
 import se.angstroms.blh.anders.view.recipe.details.RecipeDetailsPresenter;
-import se.angstroms.blh.anders.view.recipe.list.RecipeListPresenter;
+import se.angstroms.blh.anders.view.recipe.selector.RecipeSelectorPresenter;
 import se.angstroms.blh.anders.view.util.CustomControl;
 
 /**
@@ -42,7 +40,7 @@ public class RecipesTab extends VBox {
 	private FullContext fullContext;
 
 	@FXML
-	private RecipeListPresenter recipeList;
+	private RecipeSelectorPresenter recipeSelector;
 
 	@FXML
     private RecipeDetailsPresenter recipeDetails;
@@ -50,7 +48,7 @@ public class RecipesTab extends VBox {
 	public RecipesTab() {
 		CustomControl.setup(this);
 
-		recipeList.selectedRecipeProperty().addListener((ObservableValue<? extends Recipe> ov, Recipe oldValue, Recipe newValue) -> {
+		recipeSelector.selectedRecipeProperty().addListener((ObservableValue<? extends Recipe> ov, Recipe oldValue, Recipe newValue) -> {
 			fullContext.setRecipe(newValue);
 			recipeDetails.recipeProperty().set(newValue);
             if (oldValue != newValue) {
@@ -58,14 +56,14 @@ public class RecipesTab extends VBox {
 			}
         });
 
-        recipeList.setRecipes(getDummyRecipeList());
+		recipeSelector.availableRecipesProperty().set(getDummyRecipeList());
 
 		showRecipeList();
 	}
 
 	private void showRecipeList() {
 		this.getChildren().clear();
-		this.getChildren().add(recipeList);
+		this.getChildren().add(recipeSelector);
     }
 
     private void showRecipeDetails() {

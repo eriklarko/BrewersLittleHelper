@@ -6,7 +6,7 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import se.angstroms.blh.anders.view.recipe.list.*?>
+<?import se.angstroms.blh.anders.view.recipe.selector.*?>
 <?import se.angstroms.blh.anders.view.recipe.details.*?>
 
 <fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
@@ -14,6 +14,6 @@
         <URL value="@/styles/anders.css"/>
     </stylesheets>
 
-    <RecipeListPresenter fx:id="recipeList"/>
+    <RecipeSelectorPresenter fx:id="recipeSelector"/>
     <RecipeDetailsPresenter fx:id="recipeDetails"/>
 </fx:root>
