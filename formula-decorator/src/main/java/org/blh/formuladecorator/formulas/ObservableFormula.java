@@ -1,20 +1,22 @@
 package org.blh.formuladecorator.formulas;
 
-import javafx.beans.property.ReadOnlyObjectPropertyBase;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import org.blh.core.unit.Unit;
 import org.blh.formuladecorator.FullContext;
 import org.blh.formuladecorator.InputtedOrCalculatedValue;
+import org.blh.formuladecorator.ObservableHelper;
 
 /**
  *
  * @author eriklark
  */
-public abstract class ObservableFormula<T extends Unit<?>> extends ReadOnlyObjectPropertyBase<T> {
+public abstract class ObservableFormula<T extends Unit<?>> implements Observable {
 
 	private final FullContext context;
-	private T value;
+	private ObservableHelper helper;
 	private final ChangeListener<Object> onRegisteredVariableChanged = new ChangeListener<Object>() {
 
 		@Override
@@ -29,21 +31,6 @@ public abstract class ObservableFormula<T extends Unit<?>> extends ReadOnlyObjec
 		registerDependentVariables(context);
 	}
 
-	@Override
-	public T get() {
-		return value;
-	}
-
-	@Override
-	public Object getBean() {
-		return null;
-	}
-
-	@Override
-	public String getName() {
-		return "";
-	}
-
 	protected abstract void registerDependentVariables(FullContext context);
 
 	protected final void registerDependentVariable(InputtedOrCalculatedValue<?> variable) {
@@ -54,15 +41,24 @@ public abstract class ObservableFormula<T extends Unit<?>> extends ReadOnlyObjec
 		variable.addListener(onRegisteredVariableChanged);
 	}
 
-	private void recalculate() {
-		value = this.calc();
-		fireValueChangedEvent();
-	}
-
 	public abstract T calc();
 
 	protected FullContext getContext() {
 		return context;
+	}
+
+	@Override
+	public void addListener(InvalidationListener il) {
+		helper = ObservableHelper.addListener(helper, this, il);
+	}
+
+	@Override
+	public void removeListener(InvalidationListener il) {
+		helper = ObservableHelper.removeListener(helper, il);
+	}
+
+	private void recalculate() {
+		ObservableHelper.fireEvent(helper);
 	}
 
     public abstract String getSomeMathLangRepresentation();

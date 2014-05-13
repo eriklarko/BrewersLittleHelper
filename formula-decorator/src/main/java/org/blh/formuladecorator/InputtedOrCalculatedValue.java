@@ -1,11 +1,11 @@
 package org.blh.formuladecorator;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import org.blh.core.unit.Unit;
 import org.blh.formuladecorator.formulas.ObservableFormula;
 
@@ -70,11 +70,11 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> {
         this.isInputted.set(false);
 		this.formula.set(formula);
 
-		formula.addListener(new ChangeListener<T>() {
+		formula.addListener(new InvalidationListener() {
 
 			@Override
-			public void changed(ObservableValue<? extends T> ov, T oldValue, T newValue) {
-				InputtedOrCalculatedValue.this.value.set(newValue);
+			public void invalidated(Observable o) {
+				value.set(formula.calc());
 			}
 		});
     }

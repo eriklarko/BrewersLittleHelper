@@ -12,7 +12,6 @@ import javafx.util.Builder;
 import javafx.util.Duration;
 import javax.inject.Inject;
 import org.blh.core.unit.Unit;
-import org.blh.core.unit.bitterness.IBU;
 import org.blh.core.unit.gravity.SpecificGravity;
 import org.blh.formuladecorator.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.uncategorized.ValueId;
