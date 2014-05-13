@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import org.blh.recipe.attempts.composite.Recipe;
+import se.angstroms.blh.anders.view.recipe.selector.grid.RecipeGridPresenter;
 import se.angstroms.blh.anders.view.recipe.selector.list.RecipeListPresenter;
 
 /**
@@ -32,7 +33,7 @@ public class RecipeSelectorPresenter extends HBox {
 
 		availableRecipes = new SimpleListProperty<>();
 		selectedRecipe = new SimpleObjectProperty<>();
-		selectors = new LinkedList<>(Arrays.asList(/*new RecipeGridPresenter(), */new RecipeListPresenter()));
+		selectors = new LinkedList<>(Arrays.asList(new RecipeGridPresenter(), new RecipeListPresenter()));
 
 		bindProperties();
 		showSelector(selectors.iterator().next());
