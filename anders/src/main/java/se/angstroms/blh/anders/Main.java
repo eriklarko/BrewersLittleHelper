@@ -42,7 +42,7 @@ public class Main extends Application {
         );
 
         Scene scene = new Scene(root);
-
+		stage.setTitle("Anders");
         stage.setScene(scene);
 		stage.setMaximized(true);
         stage.show();
