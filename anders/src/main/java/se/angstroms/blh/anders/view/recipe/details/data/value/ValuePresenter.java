@@ -1,8 +1,6 @@
 package se.angstroms.blh.anders.view.recipe.details.data.value;
 
 import com.airhacks.afterburner.injection.InjectionProvider;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -14,7 +12,6 @@ import javafx.scene.layout.Pane;
 import javafx.util.Builder;
 import javafx.util.Duration;
 import javax.inject.Inject;
-import org.blh.core.unit.Factor;
 import org.blh.core.unit.Unit;
 import org.blh.formuladecorator.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.uncategorized.ValueId;

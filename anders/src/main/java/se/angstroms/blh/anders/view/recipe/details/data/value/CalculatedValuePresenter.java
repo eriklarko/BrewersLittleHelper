@@ -17,6 +17,9 @@ public class CalculatedValuePresenter extends HBox {
 
     public CalculatedValuePresenter() {
         CustomControl.setup(this);
+        this.setMinHeight(25); // TODO: zomg, this is le ugly hack
+
+        value.minHeightProperty().bind(this.minHeightProperty());
     }
 
 	public String getValue() {
