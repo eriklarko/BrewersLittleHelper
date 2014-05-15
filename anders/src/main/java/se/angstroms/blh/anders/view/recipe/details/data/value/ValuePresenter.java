@@ -1,5 +1,8 @@
 package se.angstroms.blh.anders.view.recipe.details.data.value;
 
+import com.airhacks.afterburner.injection.InjectionProvider;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -11,14 +14,17 @@ import javafx.scene.layout.Pane;
 import javafx.util.Builder;
 import javafx.util.Duration;
 import javax.inject.Inject;
+import org.blh.core.unit.Factor;
 import org.blh.core.unit.Unit;
-import org.blh.core.unit.gravity.SpecificGravity;
 import org.blh.formuladecorator.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.uncategorized.ValueId;
 import se.angstroms.blh.anders.view.util.CustomControl;
 import se.angstroms.blh.anders.util.InputtedOrCalculatedValueFactory;
 import se.angstroms.blh.anders.util.NoDefaultFormulaException;
+import se.angstroms.blh.anders.util.ParseException;
 import se.angstroms.blh.anders.util.UnitStringFormatter;
+import se.angstroms.blh.anders.util.UnitStringParser;
+import se.angstroms.blh.anders.util.UnitStringParserFactory;
 import se.angstroms.blh.anders.view.recipe.details.data.value.InputtedValuePresenter.CommitEvent;
 
 
@@ -31,7 +37,17 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 
 	public static class ValuePresenterBuilder implements Builder<ValuePresenter> {
 
+        @Inject
+        private InputtedOrCalculatedValueFactory inputtedOrCalculatedValueFactory;
+
+        @Inject
+        private UnitStringParserFactory parserFactory;
+
 		private ValueId type;
+
+        public ValuePresenterBuilder() {
+            InjectionProvider.injectMembers(ValuePresenterBuilder.class, this);
+        }
 
 		public ValueId getType() {
 			return type;
@@ -48,7 +64,10 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 				throw new RuntimeException("Mwääää måste vara satt!");
 			} else {
 				try {
-					object = new ValuePresenter(InputtedOrCalculatedValueFactory.getInstance().fromDefaultFormula(type));
+					object = new ValuePresenter(
+                            inputtedOrCalculatedValueFactory.fromDefaultFormula(type),
+                            parserFactory.getParserFor(type)
+                    );
 				} catch (NoDefaultFormulaException ex) {
 					throw new RuntimeException(ex);
 				}
@@ -70,17 +89,27 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 	private boolean scaryFuckingIgnoreChangeEvent = false;
 
 
-	private ValuePresenter(InputtedOrCalculatedValue<T> inputtedOrCalculatedValue) {
+	private ValuePresenter(InputtedOrCalculatedValue<T> inputtedOrCalculatedValue, UnitStringParser<T> parser) {
         CustomControl.setup(this);
 
         inputtedValue = new InputtedValuePresenter();
 		inputtedValue.addOnTextChangedListener(new EventHandler<CommitEvent>() {
 
+            private String lastLegal = "";
+
 			@Override
 			public void handle(CommitEvent t) {
-				Double d = Double.parseDouble(t.getText());
-				scaryFuckingIgnoreChangeEvent = true;
-				ValuePresenter.this.inputtedOrCalculatedValue.setValue((T) new SpecificGravity(d));
+                try {
+                    T newValue = parser.parse(t.getText());
+                    scaryFuckingIgnoreChangeEvent = true;
+                    lastLegal = t.getText();
+                    ValuePresenter.this.inputtedOrCalculatedValue.setValue(newValue);
+                } catch (ParseException ex) {
+                    inputtedValue.setValue(lastLegal);
+
+                    // TODO: Handle exceptions
+                    System.err.println(ex.getMessage());
+                }
 			}
 		});
         calculatedValue = new CalculatedValuePresenter();

@@ -14,38 +14,40 @@ import se.angstroms.blh.anders.view.util.CustomControl;
  */
 public class RecipeValuesPresenter extends VBox {
 
-	private static enum GridElement {
-		bitterness("Bitterness", ValueId.BITTERNESS, 0 , 0),
-		og("Original gravity", ValueId.OG, 1 , 0);
+    private static enum GridElement {
 
-		private final String title;
-		private final ValueId type;
-		private final int row;
-		private final int column;
+        bitterness("Bitterness", ValueId.BITTERNESS, 0, 0),
+        og("Original gravity", ValueId.OG, 1, 0),
+        extractionEfficency("Extraction efficiency", ValueId.EXTRACTION_EFFICIENCY, 0, 1);
 
-		private GridElement(String title, ValueId type, int row, int column) {
-			this.title = title;
-			this.type = type;
-			this.row = row;
-			this.column = column;
-		}
+        private final String title;
+        private final ValueId type;
+        private final int row;
+        private final int column;
 
-		public String getTitle() {
-			return title;
-		}
+        private GridElement(String title, ValueId type, int row, int column) {
+            this.title = title;
+            this.type = type;
+            this.row = row;
+            this.column = column;
+        }
 
-		public ValueId getType() {
-			return type;
-		}
+        public String getTitle() {
+            return title;
+        }
 
-		public int getRow() {
-			return row;
-		}
+        public ValueId getType() {
+            return type;
+        }
 
-		public int getColumn() {
-			return column;
-		}
-	}
+        public int getRow() {
+            return row;
+        }
+
+        public int getColumn() {
+            return column;
+        }
+    }
 
     @FXML
     private GridPane grid;
@@ -53,21 +55,21 @@ public class RecipeValuesPresenter extends VBox {
     public RecipeValuesPresenter() {
         CustomControl.setup(this);
 
-		populateGrid();
+        populateGrid();
     }
 
-	private void populateGrid() {
-		for (GridElement element : GridElement.values()) {
-			int column = element.getColumn() * 2;
+    private void populateGrid() {
+        for (GridElement element : GridElement.values()) {
+            int column = element.getColumn() * 2;
 
-			grid.add(new Label(element.title), column, element.getRow());
-			grid.add(typeToValuePresenter(element.getType()), column * 2 + 1, element.getRow());
-		}
-	}
+            grid.add(new Label(element.title), column, element.getRow());
+            grid.add(typeToValuePresenter(element.getType()), column * 2 + 1, element.getRow());
+        }
+    }
 
-	private ValuePresenter typeToValuePresenter(ValueId type) {
-		ValuePresenter.ValuePresenterBuilder valuePresenterBuilder = new ValuePresenter.ValuePresenterBuilder();
-		valuePresenterBuilder.setType(type);
-		return valuePresenterBuilder.build();
-	}
+    private ValuePresenter typeToValuePresenter(ValueId type) {
+        ValuePresenter.ValuePresenterBuilder valuePresenterBuilder = new ValuePresenter.ValuePresenterBuilder();
+        valuePresenterBuilder.setType(type);
+        return valuePresenterBuilder.build();
+    }
 }

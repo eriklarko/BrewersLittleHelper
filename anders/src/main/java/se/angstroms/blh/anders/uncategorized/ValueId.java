@@ -5,5 +5,5 @@ package se.angstroms.blh.anders.uncategorized;
  * @author eriklark
  */
 public enum ValueId {
-	BITTERNESS, OG
+	BITTERNESS, OG, EXTRACTION_EFFICIENCY
 }
