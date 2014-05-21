@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package se.angstroms.blh.anders.uncategorized;
+package se.angstroms.blh.anders.uncategorized.iocv.findingformulas;
 
 /**
  *

@@ -1,4 +1,4 @@
-package se.angstroms.blh.anders.uncategorized;
+package se.angstroms.blh.anders.uncategorized.debug;
 
 import java.io.File;
 import java.io.IOException;

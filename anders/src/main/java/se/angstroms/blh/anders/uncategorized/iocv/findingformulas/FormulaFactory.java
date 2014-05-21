@@ -1,16 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package se.angstroms.blh.anders.uncategorized;
+package se.angstroms.blh.anders.uncategorized.iocv.findingformulas;
 
 import java.util.HashMap;
 import java.util.Map;
 import org.blh.core.unit.Unit;
 import org.blh.formuladecorator.formulas.ObservableFormula;
-import se.angstroms.blh.anders.uncategorized.ValueId;
+import se.angstroms.blh.anders.uncategorized.iocv.ValueId;
 
 /**
  *

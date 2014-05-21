@@ -5,7 +5,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import se.angstroms.blh.anders.util.AndersBuilderFactory;
 import se.angstroms.blh.anders.util.ResourceBundleUtil;
-import se.angstroms.blh.anders.util.ResourceLoader;
+import se.angstroms.blh.anders.uncategorized.ResourceLoader;
 
 /**
  * Boilerplate code for creating custom FX-controls

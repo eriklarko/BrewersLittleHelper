@@ -1,6 +1,6 @@
-package se.angstroms.blh.anders.util;
+package se.angstroms.blh.anders.uncategorized;
 
-import se.angstroms.blh.anders.uncategorized.ClassEnumerator;
+import se.angstroms.blh.anders.uncategorized.debug.ClassEnumerator;
 import java.net.URL;
 import java.util.Collection;
 import java.util.MissingResourceException;

@@ -9,11 +9,11 @@ import javafx.stage.Stage;
 import javax.inject.Inject;
 import org.blh.formuladecorator.FullContext;
 import org.blh.formuladecorator.formulas.observable.bitterness.ObservableTinseth;
-import se.angstroms.blh.anders.uncategorized.ValueId;
+import se.angstroms.blh.anders.uncategorized.iocv.ValueId;
 import se.angstroms.blh.anders.util.AndersBuilderFactory;
-import se.angstroms.blh.anders.uncategorized.FormulaFactory;
+import se.angstroms.blh.anders.uncategorized.iocv.findingformulas.FormulaFactory;
 import se.angstroms.blh.anders.util.ResourceBundleUtil;
-import se.angstroms.blh.anders.util.ResourceLoader;
+import se.angstroms.blh.anders.uncategorized.ResourceLoader;
 import se.angstroms.blh.anders.view.mainwindow.MainWindowPresenter;
 
 /**

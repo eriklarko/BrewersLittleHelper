@@ -1,11 +1,12 @@
-package se.angstroms.blh.anders.uncategorized;
+package se.angstroms.blh.anders.uncategorized.iocv;
 
+import se.angstroms.blh.anders.uncategorized.iocv.findingformulas.FormulaFactory;
+import se.angstroms.blh.anders.uncategorized.iocv.findingformulas.NoDefaultFormulaException;
 import javax.inject.Inject;
 import org.blh.core.unit.Unit;
 import org.blh.formuladecorator.FullContext;
 import org.blh.formuladecorator.InputtedOrCalculatedValue;
 import org.blh.formuladecorator.formulas.ObservableFormula;
-import se.angstroms.blh.anders.uncategorized.ValueId;
 
 /**
  * Mappar upp IOCVs till ValuePresenters och FullContext
