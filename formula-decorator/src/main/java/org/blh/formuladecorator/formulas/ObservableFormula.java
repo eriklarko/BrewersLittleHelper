@@ -58,7 +58,9 @@ public abstract class ObservableFormula<T extends Unit<?>> implements Observable
 	}
 
 	private void recalculate() {
-        ObservableHelper.fireEvent(helper);
+        if (helper != null) {
+            ObservableHelper.fireEvent(helper);
+        }
 	}
 
     public abstract String getSomeMathLangRepresentation();

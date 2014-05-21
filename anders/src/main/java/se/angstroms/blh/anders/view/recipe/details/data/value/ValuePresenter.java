@@ -58,12 +58,12 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 
 		@Override
 		public ValuePresenter build() {
-			ValuePresenter object;
+			ValuePresenter valuePresenter;
 			if (type == null) {
 				throw new RuntimeException("Mwääää, typen måste vara satt!");
 			} else {
 				try {
-					object = new ValuePresenter(
+					valuePresenter = new ValuePresenter(
                             inputtedOrCalculatedValueFactory.fromDefaultFormula(type),
                             parserFactory.getParserFor(type)
                     );
@@ -72,7 +72,7 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 				}
 			}
 
-			return object;
+			return valuePresenter;
 		}
 	}
 
@@ -130,6 +130,7 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
                 handleInputtedState(newState == STATE.INPUTTED);
             }
 		});
+
 		inputtedOrCalculatedValue.valueProperty().addListener(new ChangeListener<T>() {
 
 			@Override
@@ -139,15 +140,22 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 					return;
 				}
 
-				String valueAsString = unitStringFormatter.format(newValue);
-
-				inputtedValue.setValue(valueAsString);
-				calculatedValue.setValue(valueAsString);
-
+                setValue(newValue);
 				triggerValueChangedVisualization();
 			}
 		});
+        if (inputtedOrCalculatedValue.stateProperty().get() == STATE.INPUTTED) {
+            setValue(inputtedOrCalculatedValue.value());
+        }
+
         handleInputtedState(inputtedOrCalculatedValue.stateProperty().get() == STATE.INPUTTED);
+    }
+
+    private void setValue(T newValue) {
+        String valueAsString = unitStringFormatter.format(newValue);
+
+        inputtedValue.setValue(valueAsString);
+        calculatedValue.setValue(valueAsString);
     }
 
     private void showInputtedValue() {
