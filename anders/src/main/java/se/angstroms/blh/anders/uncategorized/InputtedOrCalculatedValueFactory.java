@@ -1,15 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package se.angstroms.blh.anders.util;
+package se.angstroms.blh.anders.uncategorized;
 
-import com.airhacks.afterburner.injection.InjectionProvider;
 import javax.inject.Inject;
-import org.blh.core.unit.Factor;
 import org.blh.core.unit.Unit;
-import org.blh.core.unit.gravity.SpecificGravity;
 import org.blh.formuladecorator.FullContext;
 import org.blh.formuladecorator.InputtedOrCalculatedValue;
 import org.blh.formuladecorator.formulas.ObservableFormula;

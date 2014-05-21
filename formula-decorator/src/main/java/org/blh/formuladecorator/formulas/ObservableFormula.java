@@ -13,7 +13,7 @@ import org.blh.formuladecorator.ObservableHelper;
  *
  * @author eriklark
  */
-public abstract class ObservableFormula<T extends Unit<?>> implements Observable {
+public abstract class ObservableFormula<T extends Unit<?>> implements Observable{
 
 	private final FullContext context;
 	private ObservableHelper helper;
@@ -58,7 +58,7 @@ public abstract class ObservableFormula<T extends Unit<?>> implements Observable
 	}
 
 	private void recalculate() {
-		ObservableHelper.fireEvent(helper);
+        ObservableHelper.fireEvent(helper);
 	}
 
     public abstract String getSomeMathLangRepresentation();

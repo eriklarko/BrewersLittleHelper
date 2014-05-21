@@ -8,9 +8,9 @@ import org.blh.core.unit.Factor;
  * @author thinner
  */
 public class GeneralBreweryInfo {
-    private Input<Factor> effiency;
+    private InputtedValue<Factor> effiency;
 
     public Factor getEffiency() {
-        return effiency.value();
+        return effiency.get();
     }
 }

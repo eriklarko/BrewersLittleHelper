@@ -11,7 +11,7 @@ import org.blh.formuladecorator.FullContext;
 import org.blh.formuladecorator.formulas.observable.bitterness.ObservableTinseth;
 import se.angstroms.blh.anders.uncategorized.ValueId;
 import se.angstroms.blh.anders.util.AndersBuilderFactory;
-import se.angstroms.blh.anders.util.FormulaFactory;
+import se.angstroms.blh.anders.uncategorized.FormulaFactory;
 import se.angstroms.blh.anders.util.ResourceBundleUtil;
 import se.angstroms.blh.anders.util.ResourceLoader;
 import se.angstroms.blh.anders.view.mainwindow.MainWindowPresenter;

@@ -4,25 +4,27 @@ import com.airhacks.afterburner.injection.InjectionProvider;
 import javafx.animation.FadeTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.util.Builder;
 import javafx.util.Duration;
 import javax.inject.Inject;
 import org.blh.core.unit.Unit;
 import org.blh.formuladecorator.InputtedOrCalculatedValue;
+import org.blh.formuladecorator.InputtedOrCalculatedValue.STATE;
 import se.angstroms.blh.anders.uncategorized.ValueId;
-import se.angstroms.blh.anders.view.util.CustomControl;
-import se.angstroms.blh.anders.util.InputtedOrCalculatedValueFactory;
-import se.angstroms.blh.anders.util.NoDefaultFormulaException;
-import se.angstroms.blh.anders.util.ParseException;
-import se.angstroms.blh.anders.util.UnitStringFormatter;
-import se.angstroms.blh.anders.util.UnitStringParser;
-import se.angstroms.blh.anders.util.UnitStringParserFactory;
+import se.angstroms.blh.anders.uncategorized.InputtedOrCalculatedValueFactory;
+import se.angstroms.blh.anders.uncategorized.NoDefaultFormulaException;
+import se.angstroms.blh.anders.uncategorized.ParseException;
+import se.angstroms.blh.anders.uncategorized.UnitStringFormatter;
+import se.angstroms.blh.anders.uncategorized.UnitStringParser;
+import se.angstroms.blh.anders.uncategorized.UnitStringParserFactory;
 import se.angstroms.blh.anders.view.recipe.details.data.value.InputtedValuePresenter.CommitEvent;
+import se.angstroms.blh.anders.view.util.CustomControl;
 
 
 /**
@@ -58,7 +60,7 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 		public ValuePresenter build() {
 			ValuePresenter object;
 			if (type == null) {
-				throw new RuntimeException("Mwääää måste vara satt!");
+				throw new RuntimeException("Mwääää, typen måste vara satt!");
 			} else {
 				try {
 					object = new ValuePresenter(
@@ -75,21 +77,21 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 	}
 
     @FXML
-    private Pane valueContainer;
+    private InputtedValuePresenter inputtedValue;
+
+    @FXML
+    private CalculatedValuePresenter calculatedValue;
 
 	@Inject
 	private UnitStringFormatter unitStringFormatter;
 
-    private final InputtedValuePresenter inputtedValue;
-    private final CalculatedValuePresenter calculatedValue;
 	private InputtedOrCalculatedValue<T> inputtedOrCalculatedValue;
 	private boolean scaryFuckingIgnoreChangeEvent = false;
-
+    private Button goBackToCalculatedButton;
 
 	private ValuePresenter(InputtedOrCalculatedValue<T> inputtedOrCalculatedValue, UnitStringParser<T> parser) {
         CustomControl.setup(this);
 
-        inputtedValue = new InputtedValuePresenter();
 		inputtedValue.addOnTextChangedListener(new EventHandler<CommitEvent>() {
 
             private String lastLegal = "";
@@ -109,12 +111,11 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
                 }
 			}
 		});
-        calculatedValue = new CalculatedValuePresenter();
 		calculatedValue.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent mouseEvent) {
-				showInputtedValue();
+				ValuePresenter.this.inputtedOrCalculatedValue.setValue(ValuePresenter.this.inputtedOrCalculatedValue.value());
 			}
 		});
 		setInputtedOrCalculatedValue(inputtedOrCalculatedValue);
@@ -122,12 +123,12 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 
 	public void setInputtedOrCalculatedValue(InputtedOrCalculatedValue<T> inputtedOrCalculatedValue) {
 		this.inputtedOrCalculatedValue = inputtedOrCalculatedValue;
-        inputtedOrCalculatedValue.isInputtedProperty().addListener(new ChangeListener<Boolean>() {
+        inputtedOrCalculatedValue.stateProperty().addListener(new ChangeListener<STATE>() {
 
-			@Override
-			public void changed(ObservableValue<? extends Boolean> ov, Boolean oldValue, Boolean isInputted) {
-				handleInputtedState(isInputted);
-			}
+            @Override
+            public void changed(ObservableValue<? extends STATE> ov, STATE oldState, STATE newState) {
+                handleInputtedState(newState == STATE.INPUTTED);
+            }
 		});
 		inputtedOrCalculatedValue.valueProperty().addListener(new ChangeListener<T>() {
 
@@ -146,17 +147,17 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 				triggerValueChangedVisualization();
 			}
 		});
-        handleInputtedState(inputtedOrCalculatedValue.isInputted());
+        handleInputtedState(inputtedOrCalculatedValue.stateProperty().get() == STATE.INPUTTED);
     }
 
     private void showInputtedValue() {
-        valueContainer.getChildren().clear();
-        valueContainer.getChildren().add(inputtedValue);
+        inputtedValue.setVisible(true);
+        calculatedValue.setVisible(false);
     }
 
     private void showCalculatedValue() {
-        valueContainer.getChildren().clear();
-        valueContainer.getChildren().add(calculatedValue);
+        inputtedValue.setVisible(false);
+        calculatedValue.setVisible(true);
     }
 
     private void handleInputtedState(Boolean isInputted) {
@@ -176,8 +177,15 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 		animation.play();
 	}
 
-    @FXML
-    private void showAvailableFormulas() {
+    public Button getGoBackToCalculatedButton() {
+        if (goBackToCalculatedButton == null) {
+            goBackToCalculatedButton = new Button("M");
 
+            goBackToCalculatedButton.visibleProperty().bind(this.inputtedValue.visibleProperty());
+            goBackToCalculatedButton.setOnAction((ActionEvent t) ->
+                ValuePresenter.this.inputtedOrCalculatedValue.enterCalculatedState()
+            );
+        }
+        return goBackToCalculatedButton;
     }
 }

@@ -5,6 +5,8 @@
 <?import javafx.scene.layout.*?>
 
 <fx:root type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml">
-    <Pane fx:id="valueContainer"/>
-    <Button onMouseClicked="#showAvailableFormulas"/>
+    <Pane>
+        <se.angstroms.blh.anders.view.recipe.details.data.value.InputtedValuePresenter fx:id="inputtedValue" />
+        <se.angstroms.blh.anders.view.recipe.details.data.value.CalculatedValuePresenter fx:id="calculatedValue" />
+    </Pane>
 </fx:root>

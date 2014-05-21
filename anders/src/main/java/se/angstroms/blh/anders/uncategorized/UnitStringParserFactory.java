@@ -1,4 +1,4 @@
-package se.angstroms.blh.anders.util;
+package se.angstroms.blh.anders.uncategorized;
 
 import org.blh.core.unit.Factor;
 import org.blh.core.unit.Unit;

@@ -12,6 +12,7 @@ import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.volume.Liters;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
+import org.blh.formuladecorator.formulas.NopFormula;
 import org.blh.recipe.attempts.composite.Recipe;
 import org.blh.formuladecorator.formulas.observable.gravity.ObservableSimpleOriginalGravityFormula;
 
@@ -41,16 +42,16 @@ public class FullContext {
     private InputtedOrCalculatedValue<Kilograms> totalGrainWeight;
     private InputtedOrCalculatedValue<Grams> totalHopWeight;
     ///////////////
-    private Input<Meters> elevation;
+    private InputtedValue<Meters> elevation;
     /**
      * How many percent of the volume is lost when cooling.
      */
-    private Input<Factor> coolingLoss;
+    private InputtedValue<Factor> coolingLoss;
 
     public FullContext() {
 		recipeProperty = new SimpleObjectProperty<>();
 
-		extractionEfficiency = new InputtedOrCalculatedValue<>(new Factor(0.8));
+		extractionEfficiency = new InputtedOrCalculatedValue<>(new Factor(0.8), new NopFormula<Factor>(new Factor(0.8), this));
         originalGravity = new InputtedOrCalculatedValue<>(new ObservableSimpleOriginalGravityFormula(this));
     }
 
@@ -130,11 +131,11 @@ public class FullContext {
         return totalHopWeight;
     }
 
-    public Input<Meters> getElevation() {
+    public InputtedValue<Meters> getElevation() {
         return elevation;
     }
 
-    public Input<Factor> getCoolingLoss() {
+    public InputtedValue<Factor> getCoolingLoss() {
         return coolingLoss;
     }
 

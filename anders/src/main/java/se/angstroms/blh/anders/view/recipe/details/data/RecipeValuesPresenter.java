@@ -59,11 +59,15 @@ public class RecipeValuesPresenter extends VBox {
     }
 
     private void populateGrid() {
+        int cellsPerElement = 3;
+
         for (GridElement element : GridElement.values()) {
-            int column = element.getColumn() * 2;
+            int column = element.getColumn() * cellsPerElement;
+            ValuePresenter valuePresenter = typeToValuePresenter(element.getType());
 
             grid.add(new Label(element.title), column, element.getRow());
-            grid.add(typeToValuePresenter(element.getType()), column * 2 + 1, element.getRow());
+            grid.add(valuePresenter, column + 1, element.getRow());
+            grid.add(valuePresenter.getGoBackToCalculatedButton(), column + 2, element.getRow());
         }
     }
 
