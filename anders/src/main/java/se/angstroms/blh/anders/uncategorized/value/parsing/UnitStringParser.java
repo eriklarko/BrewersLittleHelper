@@ -1,4 +1,4 @@
-package se.angstroms.blh.anders.uncategorized.iocv.parsing;
+package se.angstroms.blh.anders.uncategorized.value.parsing;
 
 import org.blh.core.unit.Unit;
 

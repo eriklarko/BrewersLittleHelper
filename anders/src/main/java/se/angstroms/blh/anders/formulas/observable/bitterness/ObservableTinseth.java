@@ -1,7 +1,7 @@
 
 package se.angstroms.blh.anders.formulas.observable.bitterness;
 
-import se.angstroms.blh.anders.uncategorized.FullContext;
+import se.angstroms.blh.anders.uncategorized.context.FullContext;
 import org.blh.core.formula.bitterness.Tinseth;
 import org.blh.core.unit.bitterness.IBU;
 import org.blh.core.unit.volume.Liters;

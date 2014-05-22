@@ -1,10 +1,10 @@
-package se.angstroms.blh.anders.uncategorized.iocv.findingformulas;
+package se.angstroms.blh.anders.uncategorized.value.findingformulas;
 
 import java.util.HashMap;
 import java.util.Map;
 import org.blh.core.unit.Unit;
 import se.angstroms.blh.anders.formulas.ObservableFormula;
-import se.angstroms.blh.anders.uncategorized.iocv.ValueId;
+import se.angstroms.blh.anders.uncategorized.value.ValueId;
 
 /**
  *

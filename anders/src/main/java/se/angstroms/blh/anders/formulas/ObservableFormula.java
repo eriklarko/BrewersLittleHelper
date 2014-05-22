@@ -5,8 +5,8 @@ import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import org.blh.core.unit.Unit;
-import se.angstroms.blh.anders.uncategorized.FullContext;
-import se.angstroms.blh.anders.uncategorized.iocv.InputtedOrCalculatedValue;
+import se.angstroms.blh.anders.uncategorized.context.FullContext;
+import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.uncategorized.ObservableHelper;
 
 /**

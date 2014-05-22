@@ -1,7 +1,7 @@
-package se.angstroms.blh.anders.uncategorized;
+package se.angstroms.blh.anders.uncategorized.context;
 
 import org.blh.core.unit.Factor;
-import se.angstroms.blh.anders.uncategorized.iocv.InputtedValue;
+import se.angstroms.blh.anders.uncategorized.value.InputtedValue;
 
 /**
  * Some data unique to each brewery.

@@ -1,11 +1,11 @@
-package se.angstroms.blh.anders.uncategorized.iocv.parsing;
+package se.angstroms.blh.anders.uncategorized.value.parsing;
 
 import org.blh.core.unit.Factor;
 import org.blh.core.unit.Unit;
 import org.blh.core.unit.bitterness.IBU;
 import org.blh.core.unit.gravity.SpecificGravity;
-import se.angstroms.blh.anders.uncategorized.iocv.ValueId;
-import se.angstroms.blh.anders.uncategorized.iocv.ValueId;
+import se.angstroms.blh.anders.uncategorized.value.ValueId;
+import se.angstroms.blh.anders.uncategorized.value.ValueId;
 
 /**
  *

@@ -8,12 +8,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javax.inject.Inject;
 import se.angstroms.blh.anders.formulas.observable.bitterness.ObservableTinseth;
-import se.angstroms.blh.anders.uncategorized.FullContext;
-import se.angstroms.blh.anders.uncategorized.iocv.ValueId;
+import se.angstroms.blh.anders.uncategorized.context.FullContext;
+import se.angstroms.blh.anders.uncategorized.value.ValueId;
 import se.angstroms.blh.anders.util.AndersBuilderFactory;
-import se.angstroms.blh.anders.uncategorized.iocv.findingformulas.FormulaFactory;
+import se.angstroms.blh.anders.uncategorized.value.findingformulas.FormulaFactory;
 import se.angstroms.blh.anders.util.ResourceBundleUtil;
 import se.angstroms.blh.anders.uncategorized.ResourceLoader;
+import se.angstroms.blh.anders.uncategorized.value.annot.InputtedOrCalculatedValueLookup;
+import se.angstroms.blh.anders.uncategorized.value.annot.ValueMappingException;
 import se.angstroms.blh.anders.view.mainwindow.MainWindowPresenter;
 
 /**
@@ -28,6 +30,9 @@ public class Main extends Application {
 
 	@Inject
 	private FormulaFactory formulaFactory;
+
+    @Inject
+    private InputtedOrCalculatedValueLookup valueLookup;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -66,9 +71,12 @@ public class Main extends Application {
         launch(args);
     }
 
-	private void setupEnvironment() {
+	private void setupEnvironment() throws ValueMappingException {
 		// TODO: Loading indicator. Splash screen?
-		// TODO: LOL
+
+        valueLookup.read(fullContext);
+
+		// TODO: Add forumlas
 		formulaFactory.register(ValueId.BITTERNESS, new ObservableTinseth(fullContext));
 	}
 }

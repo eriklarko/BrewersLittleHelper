@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package se.angstroms.blh.anders.uncategorized.iocv;
+package se.angstroms.blh.anders.uncategorized.value;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;

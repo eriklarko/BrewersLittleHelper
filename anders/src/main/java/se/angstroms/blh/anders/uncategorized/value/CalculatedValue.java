@@ -1,4 +1,4 @@
-package se.angstroms.blh.anders.uncategorized.iocv;
+package se.angstroms.blh.anders.uncategorized.value;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.ObjectProperty;

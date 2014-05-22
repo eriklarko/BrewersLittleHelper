@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import se.angstroms.blh.anders.uncategorized.iocv.ValueId;
+import se.angstroms.blh.anders.uncategorized.value.ValueId;
 import se.angstroms.blh.anders.view.recipe.details.data.value.ValuePresenter;
 import se.angstroms.blh.anders.view.util.CustomControl;
 

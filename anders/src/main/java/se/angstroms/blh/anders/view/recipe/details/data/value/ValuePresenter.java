@@ -14,15 +14,15 @@ import javafx.util.Builder;
 import javafx.util.Duration;
 import javax.inject.Inject;
 import org.blh.core.unit.Unit;
-import se.angstroms.blh.anders.uncategorized.iocv.InputtedOrCalculatedValue;
-import se.angstroms.blh.anders.uncategorized.iocv.InputtedOrCalculatedValue.STATE;
-import se.angstroms.blh.anders.uncategorized.iocv.ValueId;
-import se.angstroms.blh.anders.uncategorized.iocv.InputtedOrCalculatedValueFactory;
-import se.angstroms.blh.anders.uncategorized.iocv.findingformulas.NoDefaultFormulaException;
-import se.angstroms.blh.anders.uncategorized.iocv.parsing.ParseException;
-import se.angstroms.blh.anders.uncategorized.iocv.UnitStringFormatter;
-import se.angstroms.blh.anders.uncategorized.iocv.parsing.UnitStringParser;
-import se.angstroms.blh.anders.uncategorized.iocv.parsing.UnitStringParserFactory;
+import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
+import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue.STATE;
+import se.angstroms.blh.anders.uncategorized.value.ValueId;
+import se.angstroms.blh.anders.uncategorized.value.annot.InputtedOrCalculatedValueLookup;
+import se.angstroms.blh.anders.uncategorized.value.findingformulas.NoDefaultFormulaException;
+import se.angstroms.blh.anders.uncategorized.value.parsing.ParseException;
+import se.angstroms.blh.anders.uncategorized.value.UnitStringFormatter;
+import se.angstroms.blh.anders.uncategorized.value.parsing.UnitStringParser;
+import se.angstroms.blh.anders.uncategorized.value.parsing.UnitStringParserFactory;
 import se.angstroms.blh.anders.view.recipe.details.data.value.InputtedValuePresenter.CommitEvent;
 import se.angstroms.blh.anders.view.util.CustomControl;
 
@@ -37,7 +37,7 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 	public static class ValuePresenterBuilder implements Builder<ValuePresenter> {
 
         @Inject
-        private InputtedOrCalculatedValueFactory inputtedOrCalculatedValueFactory;
+        private InputtedOrCalculatedValueLookup inputtedOrCalculatedValueFactory;
 
         @Inject
         private UnitStringParserFactory parserFactory;

@@ -1,4 +1,4 @@
-package se.angstroms.blh.anders.uncategorized;
+package se.angstroms.blh.anders.uncategorized.context;
 
 import org.blh.core.unit.Fraction;
 import org.blh.core.unit.Percentage;

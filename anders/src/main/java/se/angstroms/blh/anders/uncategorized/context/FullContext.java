@@ -1,5 +1,6 @@
-package se.angstroms.blh.anders.uncategorized;
+package se.angstroms.blh.anders.uncategorized.context;
 
+import se.angstroms.blh.anders.uncategorized.value.annot.Value;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import org.blh.core.unit.Factor;
@@ -15,8 +16,9 @@ import org.blh.core.unit.weight.Kilograms;
 import se.angstroms.blh.anders.formulas.NopFormula;
 import org.blh.recipe.attempts.composite.Recipe;
 import se.angstroms.blh.anders.formulas.observable.gravity.ObservableSimpleOriginalGravityFormula;
-import se.angstroms.blh.anders.uncategorized.iocv.InputtedOrCalculatedValue;
-import se.angstroms.blh.anders.uncategorized.iocv.InputtedValue;
+import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
+import se.angstroms.blh.anders.uncategorized.value.InputtedValue;
+import se.angstroms.blh.anders.uncategorized.value.ValueId;
 
 /**
  * Should this object be mutable? Or should all its members be mutable?
@@ -33,14 +35,14 @@ public class FullContext {
     private InputtedOrCalculatedValue<Minutes> boilTime;
     private InputtedOrCalculatedValue<SpecificGravity> preBoilGravity;
     private InputtedOrCalculatedValue<SpecificGravity> boilGravity;
-    private InputtedOrCalculatedValue<SpecificGravity> postBoilGravity;
-    private InputtedOrCalculatedValue<SpecificGravity> originalGravity;
+    InputtedOrCalculatedValue<SpecificGravity> postBoilGravity;
+    @Value(id = ValueId.OG) private InputtedOrCalculatedValue<SpecificGravity> originalGravity;
     private InputtedOrCalculatedValue<SpecificGravity> finalGravity;
     private InputtedOrCalculatedValue<ABV> alcoholContent;
     private InputtedOrCalculatedValue<Factor> yeastApparentAttenuation;
     private InputtedOrCalculatedValue<MaltColorUnit> maltColorUnit;
     private InputtedOrCalculatedValue<ColorPotential> totalColorPotential;
-    private InputtedOrCalculatedValue<Factor> extractionEfficiency;
+    @Value(id = ValueId.EXTRACTION_EFFICIENCY) private InputtedOrCalculatedValue<Factor> extractionEfficiency;
     private InputtedOrCalculatedValue<Kilograms> totalGrainWeight;
     private InputtedOrCalculatedValue<Grams> totalHopWeight;
     ///////////////

@@ -1,7 +1,7 @@
 
 package se.angstroms.blh.anders.formulas.observable.gravity;
 
-import se.angstroms.blh.anders.uncategorized.FullContext;
+import se.angstroms.blh.anders.uncategorized.context.FullContext;
 import org.blh.core.formula.gravity.originalgravity.SimpleOriginalGravityFormula;
 import org.blh.core.unit.gravity.SpecificGravity;
 import org.blh.core.unit.volume.Liters;
