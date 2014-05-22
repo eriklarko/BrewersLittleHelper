@@ -1,11 +1,11 @@
 
-package org.blh.formuladecorator.formulas.observable.bitterness;
+package se.angstroms.blh.anders.formulas.observable.bitterness;
 
-import org.blh.formuladecorator.FullContext;
+import se.angstroms.blh.anders.uncategorized.FullContext;
 import org.blh.core.formula.bitterness.Tinseth;
 import org.blh.core.unit.bitterness.IBU;
 import org.blh.core.unit.volume.Liters;
-import org.blh.formuladecorator.formulas.ObservableFormula;
+import se.angstroms.blh.anders.formulas.ObservableFormula;
 
 /**
  *

@@ -1,13 +1,13 @@
-package org.blh.formuladecorator.formulas;
+package se.angstroms.blh.anders.formulas;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import org.blh.core.unit.Unit;
-import org.blh.formuladecorator.FullContext;
-import org.blh.formuladecorator.InputtedOrCalculatedValue;
-import org.blh.formuladecorator.ObservableHelper;
+import se.angstroms.blh.anders.uncategorized.FullContext;
+import se.angstroms.blh.anders.uncategorized.iocv.InputtedOrCalculatedValue;
+import se.angstroms.blh.anders.uncategorized.ObservableHelper;
 
 /**
  *

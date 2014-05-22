@@ -22,7 +22,7 @@ import org.blh.core.unit.gravity.GravityPoints;
 import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
-import org.blh.formuladecorator.FullContext;
+import se.angstroms.blh.anders.uncategorized.FullContext;
 import org.blh.recipe.attempts.composite.BasicRecipe;
 import org.blh.recipe.attempts.composite.Recipe;
 import org.blh.recipe.uncategorized.IngredientsList;

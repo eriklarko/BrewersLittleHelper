@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package org.blh.formuladecorator;
+package se.angstroms.blh.anders.uncategorized;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;

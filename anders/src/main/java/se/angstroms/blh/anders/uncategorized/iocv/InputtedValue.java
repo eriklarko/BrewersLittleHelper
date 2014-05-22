@@ -1,4 +1,4 @@
-package org.blh.formuladecorator;
+package se.angstroms.blh.anders.uncategorized.iocv;
 
 import javafx.beans.property.ObjectPropertyBase;
 

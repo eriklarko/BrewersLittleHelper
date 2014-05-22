@@ -3,7 +3,7 @@ package se.angstroms.blh.anders.uncategorized.iocv.findingformulas;
 import java.util.HashMap;
 import java.util.Map;
 import org.blh.core.unit.Unit;
-import org.blh.formuladecorator.formulas.ObservableFormula;
+import se.angstroms.blh.anders.formulas.ObservableFormula;
 import se.angstroms.blh.anders.uncategorized.iocv.ValueId;
 
 /**

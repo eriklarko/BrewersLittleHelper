@@ -1,4 +1,4 @@
-package org.blh.formuladecorator;
+package se.angstroms.blh.anders.uncategorized;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -12,9 +12,11 @@ import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.volume.Liters;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
-import org.blh.formuladecorator.formulas.NopFormula;
+import se.angstroms.blh.anders.formulas.NopFormula;
 import org.blh.recipe.attempts.composite.Recipe;
-import org.blh.formuladecorator.formulas.observable.gravity.ObservableSimpleOriginalGravityFormula;
+import se.angstroms.blh.anders.formulas.observable.gravity.ObservableSimpleOriginalGravityFormula;
+import se.angstroms.blh.anders.uncategorized.iocv.InputtedOrCalculatedValue;
+import se.angstroms.blh.anders.uncategorized.iocv.InputtedValue;
 
 /**
  * Should this object be mutable? Or should all its members be mutable?

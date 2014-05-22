@@ -1,4 +1,4 @@
-package org.blh.formuladecorator;
+package se.angstroms.blh.anders.uncategorized;
 
 import org.blh.core.unit.Fraction;
 import org.blh.core.unit.Percentage;

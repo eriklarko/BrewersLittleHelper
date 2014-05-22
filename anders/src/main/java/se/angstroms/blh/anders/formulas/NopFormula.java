@@ -1,7 +1,7 @@
-package org.blh.formuladecorator.formulas;
+package se.angstroms.blh.anders.formulas;
 
 import org.blh.core.unit.Unit;
-import org.blh.formuladecorator.FullContext;
+import se.angstroms.blh.anders.uncategorized.FullContext;
 
 /**
  *

@@ -1,10 +1,10 @@
-package org.blh.formuladecorator;
+package se.angstroms.blh.anders.uncategorized.iocv;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import org.blh.core.unit.Unit;
-import org.blh.formuladecorator.formulas.ObservableFormula;
+import se.angstroms.blh.anders.formulas.ObservableFormula;
 
 /**
  *

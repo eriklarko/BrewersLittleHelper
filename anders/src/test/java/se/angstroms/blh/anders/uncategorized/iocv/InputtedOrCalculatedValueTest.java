@@ -1,13 +1,12 @@
-package org.blh.formulas;
+package se.angstroms.blh.anders.uncategorized.iocv;
 
-import org.blh.formuladecorator.formulas.ObservableFormula;
-import org.blh.formuladecorator.FullContext;
+import se.angstroms.blh.anders.formulas.ObservableFormula;
 import org.blh.core.unit.DoubleUnit;
-import org.blh.formuladecorator.InputtedOrCalculatedValue;
-import org.blh.formuladecorator.InputtedOrCalculatedValue.STATE;
-import org.blh.formuladecorator.formulas.NopFormula;
+import se.angstroms.blh.anders.formulas.NopFormula;
 import org.junit.Assert;
 import org.junit.Test;
+import se.angstroms.blh.anders.uncategorized.FullContext;
+import se.angstroms.blh.anders.uncategorized.iocv.InputtedOrCalculatedValue.STATE;
 
 /**
  *

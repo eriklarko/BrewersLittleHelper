@@ -1,12 +1,13 @@
 package se.angstroms.blh.anders.uncategorized.iocv;
 
+import java.util.HashMap;
+import java.util.Map;
 import se.angstroms.blh.anders.uncategorized.iocv.findingformulas.FormulaFactory;
 import se.angstroms.blh.anders.uncategorized.iocv.findingformulas.NoDefaultFormulaException;
 import javax.inject.Inject;
 import org.blh.core.unit.Unit;
-import org.blh.formuladecorator.FullContext;
-import org.blh.formuladecorator.InputtedOrCalculatedValue;
-import org.blh.formuladecorator.formulas.ObservableFormula;
+import se.angstroms.blh.anders.uncategorized.FullContext;
+import se.angstroms.blh.anders.formulas.ObservableFormula;
 
 /**
  * Mappar upp IOCVs till ValuePresenters och FullContext
@@ -21,16 +22,22 @@ public class InputtedOrCalculatedValueFactory {
     @Inject
     private FormulaFactory formulaFactory;
 
-    public <E extends Unit<?>> InputtedOrCalculatedValue<E> fromDefaultFormula(ValueId type) throws NoDefaultFormulaException {
+    private final Map<ValueId, InputtedOrCalculatedValue<? extends Unit<?>>> map;
 
-        switch (type) {
-            case OG:
-                return (InputtedOrCalculatedValue<E>) context.getOriginalGravity();
-            case EXTRACTION_EFFICIENCY:
-                return (InputtedOrCalculatedValue<E>) context.getExtractionEfficiency();
-            default:
-                ObservableFormula<E> defaultFormula = formulaFactory.getDefaultFormula(type);
-                return new InputtedOrCalculatedValue<>(defaultFormula);
+    public InputtedOrCalculatedValueFactory() {
+        map = new HashMap<>();
+
+        map.put(ValueId.OG, context.getOriginalGravity());
+        map.put(ValueId.EXTRACTION_EFFICIENCY, context.getExtractionEfficiency());
+    }
+
+    public <E extends Unit<?>> InputtedOrCalculatedValue<E> fromDefaultFormula(ValueId type) throws NoDefaultFormulaException {
+        InputtedOrCalculatedValue<E> value = (InputtedOrCalculatedValue<E>) map.get(type);
+        if (value == null) {
+            ObservableFormula<E> defaultFormula = formulaFactory.getDefaultFormula(type);
+            value = new InputtedOrCalculatedValue<>(defaultFormula);
         }
+
+        return value;
     }
 }

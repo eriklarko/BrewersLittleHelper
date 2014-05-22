@@ -11,7 +11,6 @@
 		<module>anders</module>
 		<module>recipe</module>
 		<module>core</module>
-		<module>formula-decorator</module>
 	</modules>
 
 	<name>blh</name>

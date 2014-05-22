@@ -1,11 +1,11 @@
 
-package org.blh.formuladecorator.formulas.observable.gravity;
+package se.angstroms.blh.anders.formulas.observable.gravity;
 
-import org.blh.formuladecorator.FullContext;
+import se.angstroms.blh.anders.uncategorized.FullContext;
 import org.blh.core.formula.gravity.originalgravity.SimpleOriginalGravityFormula;
 import org.blh.core.unit.gravity.SpecificGravity;
 import org.blh.core.unit.volume.Liters;
-import org.blh.formuladecorator.formulas.ObservableFormula;
+import se.angstroms.blh.anders.formulas.ObservableFormula;
 
 /**
  *
