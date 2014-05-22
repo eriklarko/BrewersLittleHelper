@@ -14,6 +14,10 @@ public class CalculatedValue<T extends Unit<?>> {
 
     private final ObjectProperty<ObservableFormula<T>> formulaProperty;
 
+    public CalculatedValue() {
+        this.formulaProperty = new SimpleObjectProperty<>();
+    }
+
     public CalculatedValue(ObservableFormula<T> formula) {
         this.formulaProperty = new SimpleObjectProperty<>(formula);
     }

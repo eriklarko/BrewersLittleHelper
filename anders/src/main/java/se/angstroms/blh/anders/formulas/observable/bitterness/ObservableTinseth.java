@@ -6,11 +6,14 @@ import org.blh.core.formula.bitterness.Tinseth;
 import org.blh.core.unit.bitterness.IBU;
 import org.blh.core.unit.volume.Liters;
 import se.angstroms.blh.anders.formulas.ObservableFormula;
+import se.angstroms.blh.anders.uncategorized.value.ValueId;
+import se.angstroms.blh.anders.uncategorized.value.findingformulas.Formula;
 
 /**
  *
  * @author Thinner
  */
+@Formula(calculates = ValueId.BITTERNESS)
 public class ObservableTinseth extends ObservableFormula<IBU> {
 
 	Tinseth tinseth = new Tinseth();

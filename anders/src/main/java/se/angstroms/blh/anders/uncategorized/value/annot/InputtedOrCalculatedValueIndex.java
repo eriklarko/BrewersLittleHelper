@@ -1,11 +1,8 @@
 package se.angstroms.blh.anders.uncategorized.value.annot;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import se.angstroms.blh.anders.uncategorized.value.findingformulas.FormulaFactory;
 import se.angstroms.blh.anders.uncategorized.value.findingformulas.NoDefaultFormulaException;
 import javax.inject.Inject;
@@ -16,22 +13,22 @@ import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.uncategorized.value.ValueId;
 
 /**
- * Mappar upp IOCVs till ValuePresenters och FullContext
+ * Builds an index of ValueIds to variables in the FullContext
  *
  * @author eriklark
  */
-public class InputtedOrCalculatedValueLookup {
+public class InputtedOrCalculatedValueIndex {
 
     @Inject
     private FormulaFactory formulaFactory;
 
     private final Map<ValueId, InputtedOrCalculatedValue<? extends Unit<?>>> map;
 
-    public InputtedOrCalculatedValueLookup() {
+    public InputtedOrCalculatedValueIndex() {
         map = new HashMap<>();
     }
 
-    public void read(FullContext context) throws ValueMappingException {
+    public void buildIndex(FullContext context) throws ValueMappingException {
         for (Field field : context.getClass().getDeclaredFields()) {
             try {
                 if (field.isAnnotationPresent(Value.class)) {

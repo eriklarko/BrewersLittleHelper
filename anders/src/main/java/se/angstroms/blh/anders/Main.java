@@ -7,15 +7,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javax.inject.Inject;
-import se.angstroms.blh.anders.formulas.observable.bitterness.ObservableTinseth;
+import org.blh.core.unit.Factor;
+import org.blh.core.unit.gravity.SpecificGravity;
+import se.angstroms.blh.anders.formulas.NopFormula;
 import se.angstroms.blh.anders.uncategorized.context.FullContext;
-import se.angstroms.blh.anders.uncategorized.value.ValueId;
-import se.angstroms.blh.anders.util.AndersBuilderFactory;
+import se.angstroms.blh.anders.view.util.AndersBuilderFactory;
 import se.angstroms.blh.anders.uncategorized.value.findingformulas.FormulaFactory;
 import se.angstroms.blh.anders.util.ResourceBundleUtil;
 import se.angstroms.blh.anders.uncategorized.ResourceLoader;
-import se.angstroms.blh.anders.uncategorized.value.annot.InputtedOrCalculatedValueLookup;
+import se.angstroms.blh.anders.uncategorized.context.FullContextInitializer;
+import se.angstroms.blh.anders.uncategorized.context.InitializerException;
+import se.angstroms.blh.anders.uncategorized.value.ValueId;
+import se.angstroms.blh.anders.uncategorized.value.annot.InputtedOrCalculatedValueIndex;
 import se.angstroms.blh.anders.uncategorized.value.annot.ValueMappingException;
+import se.angstroms.blh.anders.uncategorized.value.findingformulas.FormulaClasspathScanner;
+import se.angstroms.blh.anders.uncategorized.value.findingformulas.FormulaClasspathScanner.FormulaFinderException;
 import se.angstroms.blh.anders.view.mainwindow.MainWindowPresenter;
 
 /**
@@ -25,14 +31,20 @@ import se.angstroms.blh.anders.view.mainwindow.MainWindowPresenter;
  */
 public class Main extends Application {
 
-	@Inject
+    @Inject
 	private FullContext fullContext;
 
 	@Inject
 	private FormulaFactory formulaFactory;
 
     @Inject
-    private InputtedOrCalculatedValueLookup valueLookup;
+    private FullContextInitializer fullContextInitializer;
+
+    @Inject
+    private InputtedOrCalculatedValueIndex valueIndex;
+
+    @Inject
+    private FormulaClasspathScanner formulaScanner;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -71,12 +83,15 @@ public class Main extends Application {
         launch(args);
     }
 
-	private void setupEnvironment() throws ValueMappingException {
+	private void setupEnvironment() throws InitializerException, ValueMappingException, FormulaFinderException {
 		// TODO: Loading indicator. Splash screen?
 
-        valueLookup.read(fullContext);
+        // TODO: Remove these two lines
+		formulaFactory.register(ValueId.EXTRACTION_EFFICIENCY, new NopFormula<>(new Factor(1), fullContext));
+		formulaFactory.register(ValueId.OG, new NopFormula<>(new SpecificGravity(1.050), fullContext));
+        formulaScanner.findAndAddFormulas(formulaFactory, fullContext);
 
-		// TODO: Add forumlas
-		formulaFactory.register(ValueId.BITTERNESS, new ObservableTinseth(fullContext));
+        fullContextInitializer.initializeMeEmpty(fullContext);
+        valueIndex.buildIndex(fullContext);
 	}
 }

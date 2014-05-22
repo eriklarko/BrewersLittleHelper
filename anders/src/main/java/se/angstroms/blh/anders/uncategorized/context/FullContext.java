@@ -13,9 +13,7 @@ import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.volume.Liters;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
-import se.angstroms.blh.anders.formulas.NopFormula;
 import org.blh.recipe.attempts.composite.Recipe;
-import se.angstroms.blh.anders.formulas.observable.gravity.ObservableSimpleOriginalGravityFormula;
 import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.uncategorized.value.InputtedValue;
 import se.angstroms.blh.anders.uncategorized.value.ValueId;
@@ -27,37 +25,36 @@ import se.angstroms.blh.anders.uncategorized.value.ValueId;
  */
 public class FullContext {
 
-    private final ObjectProperty<Recipe> recipeProperty;
-    private GeneralBreweryInfo brewery;
-    private Equipment equipment;
+    private final ObjectProperty<Recipe> recipeProperty = new SimpleObjectProperty<>();;
+    private final GeneralBreweryInfo brewery = new GeneralBreweryInfo();
+    private final Equipment equipment = new Equipment();
     /////////////
-    private InputtedOrCalculatedValue<Liters> preMashVolume;
-    private InputtedOrCalculatedValue<Minutes> boilTime;
-    private InputtedOrCalculatedValue<SpecificGravity> preBoilGravity;
-    private InputtedOrCalculatedValue<SpecificGravity> boilGravity;
-    InputtedOrCalculatedValue<SpecificGravity> postBoilGravity;
-    @Value(id = ValueId.OG) private InputtedOrCalculatedValue<SpecificGravity> originalGravity;
-    private InputtedOrCalculatedValue<SpecificGravity> finalGravity;
-    private InputtedOrCalculatedValue<ABV> alcoholContent;
-    private InputtedOrCalculatedValue<Factor> yeastApparentAttenuation;
-    private InputtedOrCalculatedValue<MaltColorUnit> maltColorUnit;
-    private InputtedOrCalculatedValue<ColorPotential> totalColorPotential;
-    @Value(id = ValueId.EXTRACTION_EFFICIENCY) private InputtedOrCalculatedValue<Factor> extractionEfficiency;
-    private InputtedOrCalculatedValue<Kilograms> totalGrainWeight;
-    private InputtedOrCalculatedValue<Grams> totalHopWeight;
+    private final InputtedOrCalculatedValue<Liters> preMashVolume = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<Minutes> boilTime = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<SpecificGravity> preBoilGravity = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<SpecificGravity> boilGravity = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<SpecificGravity> postBoilGravity = new InputtedOrCalculatedValue<>();
+
+    @Value(id = ValueId.OG)
+    private final InputtedOrCalculatedValue<SpecificGravity> originalGravity = new InputtedOrCalculatedValue<>();
+
+    private final InputtedOrCalculatedValue<SpecificGravity> finalGravity = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<ABV> alcoholContent = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<Factor> yeastApparentAttenuation = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<MaltColorUnit> maltColorUnit = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<ColorPotential> totalColorPotential = new InputtedOrCalculatedValue<>();
+
+    @Value(id = ValueId.EXTRACTION_EFFICIENCY)
+    private final InputtedOrCalculatedValue<Factor> extractionEfficiency = new InputtedOrCalculatedValue<>();
+
+    private final InputtedOrCalculatedValue<Kilograms> totalGrainWeight = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<Grams> totalHopWeight = new InputtedOrCalculatedValue<>();
     ///////////////
-    private InputtedValue<Meters> elevation;
+    private final InputtedValue<Meters> elevation = new InputtedValue<>();
     /**
      * How many percent of the volume is lost when cooling.
      */
-    private InputtedValue<Factor> coolingLoss;
-
-    public FullContext() {
-		recipeProperty = new SimpleObjectProperty<>();
-
-		extractionEfficiency = new InputtedOrCalculatedValue<>(new Factor(0.8), new NopFormula<Factor>(new Factor(0.8), this));
-        originalGravity = new InputtedOrCalculatedValue<>(new ObservableSimpleOriginalGravityFormula(this));
-    }
+    private final InputtedValue<Factor> coolingLoss = new InputtedValue<>();
 
     public Recipe getRecipe() {
         return recipeProperty.get();

@@ -14,7 +14,7 @@ import se.angstroms.blh.anders.formulas.ObservableFormula;
 public class InputtedOrCalculatedValue<T extends Unit<?>> {
 
     public static enum STATE {
-        INPUTTED, CALCULATED;
+        INVALID, INPUTTED, CALCULATED;
     }
 
     private final ReadOnlyObjectWrapper<STATE> state = new ReadOnlyObjectWrapper<>();
@@ -22,12 +22,15 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> {
     private final CalculatedValue<T> calculatedValue;
     private final InputtedValue<T> inputtedValue;
 
-	public InputtedOrCalculatedValue(T value, ObservableFormula<T> formula) {
-        inputtedValue = new InputtedValue<>(value);
-        calculatedValue = new CalculatedValue<>(formula);
+    /*Behöver en tom konstruktor. Tänker att den sätter objektet i PENDING state eller något.
+    Denna tomma konstruktor ska sedan användas av FullContext för att initiera sina variabler.
+    Efter det måste FullContextInitializer ändras till att sätta formeln istället för att skapa nya IOCVs.*/
 
-        setValue(value);
-	}
+    public InputtedOrCalculatedValue() {
+        this.state.set(STATE.INVALID);
+        calculatedValue = new CalculatedValue<>();
+        inputtedValue = new InputtedValue<>();
+    }
 
 	public InputtedOrCalculatedValue(ObservableFormula<T> formula) {
         inputtedValue = new InputtedValue<>();
@@ -35,6 +38,13 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> {
 
         this.state.set(STATE.CALCULATED);
         this.calculatedValue.addFormulaListener(this::calculateAndSetValue);
+	}
+
+	public InputtedOrCalculatedValue(T value, ObservableFormula<T> formula) {
+        inputtedValue = new InputtedValue<>(value);
+        calculatedValue = new CalculatedValue<>(formula);
+
+        setValue(value);
 	}
 
     public ReadOnlyObjectProperty<STATE> stateProperty() {
@@ -77,11 +87,19 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> {
 	}
 
     public void enterCalculatedState() {
+        if (this.state.get() == STATE.INVALID) {
+            throw new IllegalStateException("Cannot enter calculated state without a formula");
+        }
+
         this.value.unbind();
 
         this.state.set(STATE.CALCULATED);
         calculateAndSetValue(null);
 
         this.calculatedValue.addFormulaListener(this::calculateAndSetValue);
+    }
+
+    public void setFormula(ObservableFormula<T> formula) {
+        this.calculatedValue.formulaProperty().set(formula);
     }
 }

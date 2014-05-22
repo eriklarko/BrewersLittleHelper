@@ -17,7 +17,7 @@ import org.blh.core.unit.Unit;
 import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue.STATE;
 import se.angstroms.blh.anders.uncategorized.value.ValueId;
-import se.angstroms.blh.anders.uncategorized.value.annot.InputtedOrCalculatedValueLookup;
+import se.angstroms.blh.anders.uncategorized.value.annot.InputtedOrCalculatedValueIndex;
 import se.angstroms.blh.anders.uncategorized.value.findingformulas.NoDefaultFormulaException;
 import se.angstroms.blh.anders.uncategorized.value.parsing.ParseException;
 import se.angstroms.blh.anders.uncategorized.value.UnitStringFormatter;
@@ -37,7 +37,7 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 	public static class ValuePresenterBuilder implements Builder<ValuePresenter> {
 
         @Inject
-        private InputtedOrCalculatedValueLookup inputtedOrCalculatedValueFactory;
+        private InputtedOrCalculatedValueIndex inputtedOrCalculatedValueFactory;
 
         @Inject
         private UnitStringParserFactory parserFactory;
