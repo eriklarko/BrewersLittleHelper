@@ -102,7 +102,7 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
                     T newValue = parser.parse(t.getText());
                     scaryFuckingIgnoreChangeEvent = true;
                     lastLegal = t.getText();
-                    ValuePresenter.this.inputtedOrCalculatedValue.setValue(newValue);
+                    ValuePresenter.this.inputtedOrCalculatedValue.set(newValue);
                 } catch (ParseException ex) {
                     inputtedValue.setValue(lastLegal);
 
@@ -115,7 +115,7 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 
 			@Override
 			public void handle(MouseEvent mouseEvent) {
-				ValuePresenter.this.inputtedOrCalculatedValue.setValue(ValuePresenter.this.inputtedOrCalculatedValue.value());
+				ValuePresenter.this.inputtedOrCalculatedValue.set(ValuePresenter.this.inputtedOrCalculatedValue.get());
 			}
 		});
 		setInputtedOrCalculatedValue(inputtedOrCalculatedValue);
@@ -145,7 +145,7 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 			}
 		});
         if (inputtedOrCalculatedValue.stateProperty().get() == STATE.INPUTTED) {
-            setValue(inputtedOrCalculatedValue.value());
+            setValue(inputtedOrCalculatedValue.get());
         }
 
         handleInputtedState(inputtedOrCalculatedValue.stateProperty().get() == STATE.INPUTTED);

@@ -11,7 +11,7 @@ import se.angstroms.blh.anders.formulas.ObservableFormula;
  * @author Thinner
  * @param <T>
  */
-public class InputtedOrCalculatedValue<T extends Unit<?>> {
+public class InputtedOrCalculatedValue<T extends Unit<?>> implements Value<T> {
 
     public static enum STATE {
         INVALID, INPUTTED, CALCULATED;
@@ -44,14 +44,14 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> {
         inputtedValue = new InputtedValue<>(value);
         calculatedValue = new CalculatedValue<>(formula);
 
-        setValue(value);
+        set(value);
 	}
 
     public ReadOnlyObjectProperty<STATE> stateProperty() {
         return state.getReadOnlyProperty();
     }
 
-	public T value() {
+	public T get() {
 		if (value.get() == null && this.state.get() != STATE.INPUTTED) {
 			calculateAndSetValue(null);
 		}
@@ -67,7 +67,7 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> {
         return value.getReadOnlyProperty();
     }
 
-    public final void setValue(T value) {
+    public final void set(T value) {
 		assertValueNotNull(value);
 
         if (state.get() != STATE.INPUTTED) {

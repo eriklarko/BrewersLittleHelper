@@ -21,7 +21,7 @@ public class InputtedOrCalculatedValueTest {
         InputtedOrCalculatedValue<DoubleUnit> v = new InputtedOrCalculatedValue<>(two, new NopFormula<>(new DoubleUnit(2) {}, null));
 
         Assert.assertEquals(STATE.INPUTTED, v.stateProperty().get());
-        Assert.assertEquals(2d, v.value().value(), 0);
+        Assert.assertEquals(2d, v.get().value(), 0);
     }
 
     @Test
@@ -47,22 +47,22 @@ public class InputtedOrCalculatedValueTest {
         InputtedOrCalculatedValue<DoubleUnit> v = new InputtedOrCalculatedValue<>(f);
 
         Assert.assertEquals(STATE.CALCULATED, v.stateProperty().get());
-        Assert.assertEquals(1d, v.value().value(), 0);
+        Assert.assertEquals(1d, v.get().value(), 0);
     }
 
     @Test(expected = NullPointerException.class)
     public void testSetValueNull() {
         InputtedOrCalculatedValue<DoubleUnit> v = new InputtedOrCalculatedValue<DoubleUnit>(new DoubleUnit(2) {}, new NopFormula<>(new DoubleUnit(2) {}, null));
-        v.setValue(null);
+        v.set(null);
     }
 
     @Test
     public void testSetValueFromInputted() {
         InputtedOrCalculatedValue<DoubleUnit> v = new InputtedOrCalculatedValue<DoubleUnit>(new DoubleUnit(2d) {}, new NopFormula<>(new DoubleUnit(2) {}, null));
-        v.setValue(new DoubleUnit(3d) {});
+        v.set(new DoubleUnit(3d) {});
 
         Assert.assertEquals(STATE.INPUTTED, v.stateProperty().get());
-        Assert.assertEquals(3d, v.value().value(), 0);
+        Assert.assertEquals(3d, v.get().value(), 0);
     }
 
     @Test
@@ -86,9 +86,9 @@ public class InputtedOrCalculatedValueTest {
         FullContext context = new FullContext();
         InputtedOrCalculatedValue<DoubleUnit> v = new InputtedOrCalculatedValue<>(f);
 
-        v.setValue(new DoubleUnit(3d) {});
+        v.set(new DoubleUnit(3d) {});
 
         Assert.assertEquals(STATE.INPUTTED, v.stateProperty().get());
-        Assert.assertEquals(3d, v.value().value(), 0);
+        Assert.assertEquals(3d, v.get().value(), 0);
     }
 }

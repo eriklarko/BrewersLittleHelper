@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javax.inject.Inject;
 import org.blh.core.unit.Factor;
-import org.blh.core.unit.gravity.SpecificGravity;
 import se.angstroms.blh.anders.formulas.NopFormula;
 import se.angstroms.blh.anders.uncategorized.context.FullContext;
 import se.angstroms.blh.anders.view.util.AndersBuilderFactory;
@@ -88,7 +87,6 @@ public class Main extends Application {
 
         // TODO: Remove these two lines
 		formulaFactory.register(ValueId.EXTRACTION_EFFICIENCY, new NopFormula<>(new Factor(1), fullContext));
-		formulaFactory.register(ValueId.OG, new NopFormula<>(new SpecificGravity(1.050), fullContext));
         formulaScanner.findAndAddFormulas(formulaFactory, fullContext);
 
         fullContextInitializer.initializeMeEmpty(fullContext);

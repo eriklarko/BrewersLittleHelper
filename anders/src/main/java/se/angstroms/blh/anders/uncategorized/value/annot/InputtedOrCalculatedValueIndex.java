@@ -10,6 +10,7 @@ import org.blh.core.unit.Unit;
 import se.angstroms.blh.anders.uncategorized.context.FullContext;
 import se.angstroms.blh.anders.formulas.ObservableFormula;
 import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
+import se.angstroms.blh.anders.uncategorized.value.Value;
 import se.angstroms.blh.anders.uncategorized.value.ValueId;
 
 /**
@@ -22,7 +23,7 @@ public class InputtedOrCalculatedValueIndex {
     @Inject
     private FormulaFactory formulaFactory;
 
-    private final Map<ValueId, InputtedOrCalculatedValue<? extends Unit<?>>> map;
+    private final Map<ValueId, Value<? extends Unit<?>>> map;
 
     public InputtedOrCalculatedValueIndex() {
         map = new HashMap<>();
@@ -31,7 +32,7 @@ public class InputtedOrCalculatedValueIndex {
     public void buildIndex(FullContext context) throws ValueMappingException {
         for (Field field : context.getClass().getDeclaredFields()) {
             try {
-                if (field.isAnnotationPresent(Value.class)) {
+                if (field.isAnnotationPresent(ValueAnnot.class)) {
                     tryToBindField(field, context);
                 }
             } catch (IllegalArgumentException | IllegalAccessException ex) {
@@ -45,8 +46,9 @@ public class InputtedOrCalculatedValueIndex {
         Object fieldValue = field.get(context);
 
         if (fieldValue instanceof InputtedOrCalculatedValue) {
-            Value annotation = field.getAnnotation(Value.class);
-            InputtedOrCalculatedValue<? extends Unit<?>> oldValue = map.putIfAbsent(annotation.id(), (InputtedOrCalculatedValue<? extends Unit<?>>) fieldValue);
+            ValueAnnot annotation = field.getAnnotation(ValueAnnot.class);
+            Value<? extends Unit<?>> oldValueAsValue = map.putIfAbsent(annotation.id(), (InputtedOrCalculatedValue<? extends Unit<?>>) fieldValue);
+            InputtedOrCalculatedValue<? extends Unit<?>> oldValue = (InputtedOrCalculatedValue<? extends Unit<?>>) oldValueAsValue;
 
             if (oldValue != null) {
                 throw new ValueMappingException("Failed to add " + field.getName() + ", " + annotation.id() + " was already associated with " + map.get(annotation.id()));

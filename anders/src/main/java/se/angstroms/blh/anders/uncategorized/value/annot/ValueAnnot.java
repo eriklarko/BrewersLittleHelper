@@ -12,7 +12,7 @@ import se.angstroms.blh.anders.uncategorized.value.ValueId;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface Value {
+public @interface ValueAnnot {
 
     public ValueId id();
 }

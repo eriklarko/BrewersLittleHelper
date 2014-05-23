@@ -4,14 +4,11 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 import javax.inject.Inject;
-import org.blh.core.unit.Factor;
 import org.blh.core.unit.Unit;
-import se.angstroms.blh.anders.formulas.NopFormula;
 import se.angstroms.blh.anders.formulas.ObservableFormula;
 import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.uncategorized.value.InputtedValue;
-import se.angstroms.blh.anders.uncategorized.value.ValueId;
-import se.angstroms.blh.anders.uncategorized.value.annot.Value;
+import se.angstroms.blh.anders.uncategorized.value.annot.ValueAnnot;
 import se.angstroms.blh.anders.uncategorized.value.findingformulas.FormulaFactory;
 import se.angstroms.blh.anders.uncategorized.value.findingformulas.NoDefaultFormulaException;
 
@@ -20,19 +17,6 @@ import se.angstroms.blh.anders.uncategorized.value.findingformulas.NoDefaultForm
  * @author eriklark
  */
 public class FullContextInitializer {
-
-    public static void main(String[] args) throws InitializerException {
-        FullContext fullContext = new FullContext();
-
-        FullContextInitializer fullContextInitializer = new FullContextInitializer();
-        fullContextInitializer.formulaFactory = new FormulaFactory();
-        fullContextInitializer.formulaFactory.register(ValueId.OG, new NopFormula<>(new Factor(1), fullContext));
-        fullContextInitializer.formulaFactory.register(ValueId.EXTRACTION_EFFICIENCY, new NopFormula<>(new Factor(2), fullContext));
-        fullContextInitializer.initializeMeEmpty(fullContext);
-
-        System.out.println("EE: " + fullContext.getExtractionEfficiency().value());
-        System.out.println("OG: " + fullContext.getOriginalGravity().value());
-    }
 
     @Inject
     private FormulaFactory formulaFactory;
@@ -51,7 +35,7 @@ public class FullContextInitializer {
     public void initializeMeEmpty(FullContext context) throws InitializerException {
         for (Field field : context.getClass().getDeclaredFields()) {
             try {
-                if (field.isAnnotationPresent(Value.class)) {
+                if (field.isAnnotationPresent(ValueAnnot.class)) {
 
                     Initializer initializer = initializers.get(field.getType());
                     if (initializer == null) {
@@ -68,7 +52,7 @@ public class FullContextInitializer {
     }
 
     private void initializeEmptyInputtedOrCalculatedValue(Field field, FullContext context) throws IllegalArgumentException, IllegalAccessException, NoDefaultFormulaException {
-        Value annotation = field.getAnnotation(Value.class);
+        ValueAnnot annotation = field.getAnnotation(ValueAnnot.class);
         ObservableFormula<? extends Unit<?>> formula = formulaFactory.getDefaultFormula(annotation.id());
         InputtedOrCalculatedValue value = (InputtedOrCalculatedValue) field.get(context);
         value.setFormula(formula);

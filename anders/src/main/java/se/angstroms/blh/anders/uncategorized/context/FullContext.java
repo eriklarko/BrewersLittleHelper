@@ -1,6 +1,6 @@
 package se.angstroms.blh.anders.uncategorized.context;
 
-import se.angstroms.blh.anders.uncategorized.value.annot.Value;
+import se.angstroms.blh.anders.uncategorized.value.annot.ValueAnnot;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import org.blh.core.unit.Factor;
@@ -35,7 +35,7 @@ public class FullContext {
     private final InputtedOrCalculatedValue<SpecificGravity> boilGravity = new InputtedOrCalculatedValue<>();
     private final InputtedOrCalculatedValue<SpecificGravity> postBoilGravity = new InputtedOrCalculatedValue<>();
 
-    @Value(id = ValueId.OG)
+    @ValueAnnot(id = ValueId.OG)
     private final InputtedOrCalculatedValue<SpecificGravity> originalGravity = new InputtedOrCalculatedValue<>();
 
     private final InputtedOrCalculatedValue<SpecificGravity> finalGravity = new InputtedOrCalculatedValue<>();
@@ -44,7 +44,7 @@ public class FullContext {
     private final InputtedOrCalculatedValue<MaltColorUnit> maltColorUnit = new InputtedOrCalculatedValue<>();
     private final InputtedOrCalculatedValue<ColorPotential> totalColorPotential = new InputtedOrCalculatedValue<>();
 
-    @Value(id = ValueId.EXTRACTION_EFFICIENCY)
+    @ValueAnnot(id = ValueId.EXTRACTION_EFFICIENCY)
     private final InputtedOrCalculatedValue<Factor> extractionEfficiency = new InputtedOrCalculatedValue<>();
 
     private final InputtedOrCalculatedValue<Kilograms> totalGrainWeight = new InputtedOrCalculatedValue<>();
@@ -141,8 +141,8 @@ public class FullContext {
     }
 
     public SpecificGravity getBoilGravityAtMinutesLeft(Minutes time) {
-        double timePercent = time.value() / boilTime.value().value();
-        double totalGravityDifference = postBoilGravity.value().value() - preBoilGravity.value().value();
+        double timePercent = time.value() / boilTime.get().value();
+        double totalGravityDifference = postBoilGravity.get().value() - preBoilGravity.get().value();
 
         return new SpecificGravity(totalGravityDifference * timePercent);
     }

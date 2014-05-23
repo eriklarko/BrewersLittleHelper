@@ -31,7 +31,7 @@ public class ObservableTinseth extends ObservableFormula<IBU> {
 	@Override
 	public IBU calc() {
 		System.out.println("Calculating tinseth");
-		return tinseth.calc(getContext().getRecipe().getIngredientsList().getHopAdditions(), new Liters(12), getContext().getOriginalGravity().value());
+		return tinseth.calc(getContext().getRecipe().getIngredientsList().getHopAdditions(), new Liters(12), getContext().getOriginalGravity().get());
 	}
 
 	@Override

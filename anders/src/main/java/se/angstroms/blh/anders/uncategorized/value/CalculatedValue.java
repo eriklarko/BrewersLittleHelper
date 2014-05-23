@@ -10,7 +10,7 @@ import se.angstroms.blh.anders.formulas.ObservableFormula;
  *
  * @author eriklark
  */
-public class CalculatedValue<T extends Unit<?>> {
+public class CalculatedValue<T extends Unit<?>> implements Value<T> {
 
     private final ObjectProperty<ObservableFormula<T>> formulaProperty;
 
@@ -33,4 +33,9 @@ public class CalculatedValue<T extends Unit<?>> {
     public void removeFormulaListener(InvalidationListener invalidationListener) {
         formulaProperty.get().removeListener(invalidationListener);
 	}
+
+    @Override
+    public T get() {
+        return formulaProperty.get().calc();
+    }
 }
