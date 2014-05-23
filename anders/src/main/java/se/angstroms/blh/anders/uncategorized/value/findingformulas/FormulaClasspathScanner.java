@@ -32,15 +32,14 @@ public class FormulaClasspathScanner {
         ObservableFormula formula = c.getConstructor(FullContext.class).newInstance(context);
 
         Formula annotation = c.getAnnotation(Formula.class);
-        registerFormula(formulaFactory, annotation, formula);
-        for (ValueId valueId : annotation.calculatesMany()) {
-            registerFormula(formulaFactory, annotation, formula);
+        for (ValueId valueId : annotation.calculates()) {
+            registerFormula(formulaFactory, valueId, formula);
         }
     }
 
-    private void registerFormula(FormulaFactory formulaFactory, Formula annotation, ObservableFormula formula) {
-        if (annotation.calculates() != ValueId.NOTHING) {
-            formulaFactory.register(annotation.calculates(), formula);
+    private void registerFormula(FormulaFactory formulaFactory, ValueId valueId, ObservableFormula formula) {
+        if (valueId != ValueId.NOTHING) {
+            formulaFactory.register(valueId, formula);
         }
     }
 

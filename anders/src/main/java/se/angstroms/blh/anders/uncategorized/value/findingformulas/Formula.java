@@ -15,7 +15,5 @@ import se.angstroms.blh.anders.uncategorized.value.ValueId;
 @Target(ElementType.TYPE)
 public @interface Formula {
 
-    public ValueId calculates() default ValueId.NOTHING;
-
-    public ValueId[] calculatesMany() default ValueId.NOTHING;
+    public ValueId[] calculates() default ValueId.NOTHING;
 }
