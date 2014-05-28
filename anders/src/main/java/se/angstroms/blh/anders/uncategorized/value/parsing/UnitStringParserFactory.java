@@ -7,6 +7,8 @@ import org.blh.core.unit.gravity.SpecificGravity;
 import se.angstroms.blh.anders.uncategorized.value.ValueId;
 
 /**
+ * Maps Units and ValudIds with methods that take Strings and turns them into
+ * said Units.
  *
  * @author eriklark
  */

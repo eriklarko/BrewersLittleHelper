@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package se.angstroms.blh.anders.uncategorized;
 
 import java.util.Collection;
@@ -12,6 +6,8 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 
 /**
+ * A copy of com.sun.javafx.binding.ExpressionBinding for use on Observables
+ * instead of ObservableValues
  *
  * @author eriklark
  */

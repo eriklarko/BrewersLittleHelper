@@ -8,6 +8,9 @@ import se.angstroms.blh.anders.uncategorized.context.FullContext;
 import se.angstroms.blh.anders.uncategorized.value.ValueId;
 
 /**
+ * Searches set set of all loaded classes for those classes implementing
+ * ObservableFormula and annotated with @Formula. These classes are then used
+ * to find which formulas are available when calculcating values of FullContext
  *
  * @author eriklark
  */
