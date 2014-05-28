@@ -15,10 +15,17 @@ import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue.STA
  */
 public class InputtedOrCalculatedValueTest {
 
+    private static class DoubleUnitImpl extends DoubleUnit {
+
+        public DoubleUnitImpl(double value) {
+            super(value);
+        }
+    }
+
     @Test
     public void testInputConstructor() {
         DoubleUnit two = new DoubleUnit(2d) {};
-        InputtedOrCalculatedValue<DoubleUnit> v = new InputtedOrCalculatedValue<>(two, new NopFormula<>(new DoubleUnit(2) {}, null));
+        InputtedOrCalculatedValue<DoubleUnit> v = new InputtedOrCalculatedValue<>(two, new NopFormula<>(new DoubleUnitImpl(2), null));
 
         Assert.assertEquals(STATE.INPUTTED, v.stateProperty().get());
         Assert.assertEquals(2d, v.get().value(), 0);
@@ -26,22 +33,7 @@ public class InputtedOrCalculatedValueTest {
 
     @Test
     public void testCalculatedConstructor() {
-        ObservableFormula<DoubleUnit> f = new ObservableFormula<DoubleUnit>(null) {
-
-            @Override
-            public DoubleUnit calc() {
-                return new DoubleUnit(1) {};
-            }
-
-            @Override
-            public String getSomeMathLangRepresentation() {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-			@Override
-			protected void registerDependentVariables(FullContext context) {
-			}
-        };
+        ObservableFormula<DoubleUnit> f = new NopFormula<>(new DoubleUnitImpl(1), null);
         FullContext context = new FullContext();
 
         InputtedOrCalculatedValue<DoubleUnit> v = new InputtedOrCalculatedValue<>(f);
@@ -52,13 +44,13 @@ public class InputtedOrCalculatedValueTest {
 
     @Test(expected = NullPointerException.class)
     public void testSetValueNull() {
-        InputtedOrCalculatedValue<DoubleUnit> v = new InputtedOrCalculatedValue<DoubleUnit>(new DoubleUnit(2) {}, new NopFormula<>(new DoubleUnit(2) {}, null));
+        InputtedOrCalculatedValue<DoubleUnit> v = new InputtedOrCalculatedValue<>(new DoubleUnitImpl(2), new NopFormula<>(new DoubleUnitImpl(2), null));
         v.set(null);
     }
 
     @Test
     public void testSetValueFromInputted() {
-        InputtedOrCalculatedValue<DoubleUnit> v = new InputtedOrCalculatedValue<DoubleUnit>(new DoubleUnit(2d) {}, new NopFormula<>(new DoubleUnit(2) {}, null));
+        InputtedOrCalculatedValue<DoubleUnit> v = new InputtedOrCalculatedValue<>(new DoubleUnitImpl(2d), new NopFormula<>(new DoubleUnitImpl(2), null));
         v.set(new DoubleUnit(3d) {});
 
         Assert.assertEquals(STATE.INPUTTED, v.stateProperty().get());
@@ -67,22 +59,7 @@ public class InputtedOrCalculatedValueTest {
 
     @Test
     public void testSetValueFromCalculated() {
-        ObservableFormula<DoubleUnit> f = new ObservableFormula<DoubleUnit>(null) {
-
-            @Override
-            public DoubleUnit calc() {
-                return new DoubleUnit(1) {};
-            }
-
-            @Override
-            public String getSomeMathLangRepresentation() {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-			@Override
-			protected void registerDependentVariables(FullContext context) {
-			}
-        };
+        ObservableFormula<DoubleUnit> f = new NopFormula<>(new DoubleUnitImpl(1), null);
         FullContext context = new FullContext();
         InputtedOrCalculatedValue<DoubleUnit> v = new InputtedOrCalculatedValue<>(f);
 
