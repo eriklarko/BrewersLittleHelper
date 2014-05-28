@@ -2,6 +2,8 @@ package se.angstroms.blh.anders.view.recipe;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +28,8 @@ import se.angstroms.blh.anders.uncategorized.context.FullContext;
 import org.blh.recipe.attempts.composite.BasicRecipe;
 import org.blh.recipe.attempts.composite.Recipe;
 import org.blh.recipe.uncategorized.IngredientsList;
+import se.angstroms.blh.anders.uncategorized.context.FullContextInitializer;
+import se.angstroms.blh.anders.uncategorized.context.InitializerException;
 import se.angstroms.blh.anders.view.recipe.details.RecipeDetailsPresenter;
 import se.angstroms.blh.anders.view.recipe.selector.RecipeSelectorPresenter;
 import se.angstroms.blh.anders.view.util.CustomControl;
@@ -35,6 +39,9 @@ import se.angstroms.blh.anders.view.util.CustomControl;
  * @author eriklark
  */
 public class RecipesTab extends VBox {
+
+    @Inject
+    private FullContextInitializer fullContextInitializer;
 
 	@Inject
 	private FullContext fullContext;
@@ -49,7 +56,17 @@ public class RecipesTab extends VBox {
 		CustomControl.setup(this);
 
 		recipeSelector.selectedRecipeProperty().addListener((ObservableValue<? extends Recipe> ov, Recipe oldValue, Recipe newValue) -> {
+            System.out.println("Setting recipe");
+
+            try {
+                // TODO: The following line should only be invoked when creating a new recipe.
+                fullContextInitializer.initializeMeEmpty(fullContext);
+            } catch (InitializerException ex) {
+                Logger.getLogger(RecipesTab.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
 			fullContext.setRecipe(newValue);
+            System.out.println("Döne");
 			recipeDetails.recipeProperty().set(newValue);
             if (oldValue != newValue) {
 				showRecipeDetails();

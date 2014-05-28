@@ -58,7 +58,9 @@ public abstract class ObservableFormula<T extends Unit<?>> implements Observable
 	}
 
 	private void recalculate() {
-        if (helper != null) {
+        if (helper == null) {
+            System.out.println("A formula changed but no one listened");
+        } else {
             ObservableHelper.fireEvent(helper);
         }
 	}

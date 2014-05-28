@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.GridPane;
 import org.blh.core.recipe.GristPart;
 import org.blh.core.recipe.HopAddition;
 import org.blh.core.recipe.YeastAddition;
@@ -22,7 +22,7 @@ import se.angstroms.blh.anders.view.util.CustomControl;
  *
  * @author Erik Larkö <erik.larko@purplescout.se>
  */
-public class IngredientsListPresenter extends HBox {
+public class IngredientsListPresenter extends GridPane {
 
     @FXML private TableView<GristPart> fermentablesTable;
     @FXML private TableColumn<GristPart, String> fermentablesName;

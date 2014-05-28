@@ -31,8 +31,10 @@ public class CalculatedValue<T extends Unit<?>> implements Value<T> {
     }
 
     public void removeFormulaListener(InvalidationListener invalidationListener) {
-        formulaProperty.get().removeListener(invalidationListener);
-	}
+        if (formulaProperty.get() != null) {
+            formulaProperty.get().removeListener(invalidationListener);
+        }
+    }
 
     @Override
     public T get() {

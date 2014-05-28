@@ -37,7 +37,7 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 	public static class ValuePresenterBuilder implements Builder<ValuePresenter> {
 
         @Inject
-        private InputtedOrCalculatedValueIndex inputtedOrCalculatedValueFactory;
+        private InputtedOrCalculatedValueIndex inputtedOrCalculatedValueIndex;
 
         @Inject
         private UnitStringParserFactory parserFactory;
@@ -64,7 +64,7 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 			} else {
 				try {
 					valuePresenter = new ValuePresenter(
-                            inputtedOrCalculatedValueFactory.fromDefaultFormula(type),
+                            (InputtedOrCalculatedValue) inputtedOrCalculatedValueIndex.fromDefaultFormula(type),
                             parserFactory.getParserFor(type)
                     );
 				} catch (NoDefaultFormulaException ex) {
@@ -144,6 +144,7 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 				triggerValueChangedVisualization();
 			}
 		});
+
         if (inputtedOrCalculatedValue.stateProperty().get() == STATE.INPUTTED) {
             setValue(inputtedOrCalculatedValue.get());
         }

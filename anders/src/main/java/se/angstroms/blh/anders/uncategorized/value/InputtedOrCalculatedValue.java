@@ -51,6 +51,7 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> implements Value<T> {
         return state.getReadOnlyProperty();
     }
 
+    @Override
 	public T get() {
 		if (value.get() == null && this.state.get() != STATE.INPUTTED) {
 			calculateAndSetValue(null);
@@ -87,19 +88,31 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> implements Value<T> {
 	}
 
     public void enterCalculatedState() {
-        if (this.state.get() == STATE.INVALID) {
+        if (this.calculatedValue.formulaProperty().get() == null) {
             throw new IllegalStateException("Cannot enter calculated state without a formula");
         }
 
-        this.value.unbind();
-
-        this.state.set(STATE.CALCULATED);
+        doEnterCalculatedState();
         calculateAndSetValue(null);
+    }
 
+    private void doEnterCalculatedState() {
+        this.value.unbind();
+        this.state.set(STATE.CALCULATED);
         this.calculatedValue.addFormulaListener(this::calculateAndSetValue);
     }
 
+    /**
+     * Changes the formula that is used to calculate the value. This method
+     * puts the object in the CALCULATED state, but doesn't update the value.
+     * @param formula
+     */
     public void setFormula(ObservableFormula<T> formula) {
         this.calculatedValue.formulaProperty().set(formula);
+        doEnterCalculatedState();
+    }
+
+    public ReadOnlyObjectProperty<ObservableFormula<T>> formulaProperty() {
+        return this.calculatedValue.formulaProperty();
     }
 }

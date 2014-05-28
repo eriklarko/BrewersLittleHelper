@@ -11,6 +11,10 @@ public class NopFormula<T extends Unit<?>> extends ObservableFormula<T> {
 
     private final T val;
 
+    public NopFormula(FullContext context) {
+        this(null, context);
+    }
+
     public NopFormula(T val, FullContext context) {
         super(context);
         this.val = val;
@@ -18,7 +22,6 @@ public class NopFormula<T extends Unit<?>> extends ObservableFormula<T> {
 
     @Override
     protected void registerDependentVariables(FullContext context) {
-        //registerDependentVariable(context.getAlcoholContent());
     }
 
     @Override

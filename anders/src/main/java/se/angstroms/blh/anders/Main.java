@@ -84,12 +84,10 @@ public class Main extends Application {
 
 	private void setupEnvironment() throws InitializerException, ValueMappingException, FormulaFinderException {
 		// TODO: Loading indicator. Splash screen?
+        valueIndex.buildIndex(fullContext);
 
         // TODO: Remove these two lines
 		formulaFactory.register(ValueId.EXTRACTION_EFFICIENCY, new NopFormula<>(new Factor(1), fullContext));
         formulaScanner.findAndAddFormulas(formulaFactory, fullContext);
-
-        fullContextInitializer.initializeMeEmpty(fullContext);
-        valueIndex.buildIndex(fullContext);
 	}
 }

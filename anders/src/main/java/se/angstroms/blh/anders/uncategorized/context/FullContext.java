@@ -5,6 +5,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import org.blh.core.unit.Factor;
 import org.blh.core.unit.alcohol.ABV;
+import org.blh.core.unit.bitterness.IBU;
 import org.blh.core.unit.color.ColorPotential;
 import org.blh.core.unit.color.MaltColorUnit;
 import org.blh.core.unit.distance.Meters;
@@ -49,6 +50,9 @@ public class FullContext {
 
     private final InputtedOrCalculatedValue<Kilograms> totalGrainWeight = new InputtedOrCalculatedValue<>();
     private final InputtedOrCalculatedValue<Grams> totalHopWeight = new InputtedOrCalculatedValue<>();
+
+    @ValueAnnot(id = ValueId.BITTERNESS)
+    private final InputtedOrCalculatedValue<IBU> bitterness = new InputtedOrCalculatedValue<>();
     ///////////////
     private final InputtedValue<Meters> elevation = new InputtedValue<>();
     /**

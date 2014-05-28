@@ -1,5 +1,6 @@
 package se.angstroms.blh.anders.uncategorized.value.annot;
 
+import com.google.common.base.Optional;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,10 +46,9 @@ public class InputtedOrCalculatedValueIndex {
         field.setAccessible(true);
         Object fieldValue = field.get(context);
 
-        if (fieldValue instanceof InputtedOrCalculatedValue) {
+        if (fieldValue instanceof Value) {
             ValueAnnot annotation = field.getAnnotation(ValueAnnot.class);
-            Value<? extends Unit<?>> oldValueAsValue = map.putIfAbsent(annotation.id(), (InputtedOrCalculatedValue<? extends Unit<?>>) fieldValue);
-            InputtedOrCalculatedValue<? extends Unit<?>> oldValue = (InputtedOrCalculatedValue<? extends Unit<?>>) oldValueAsValue;
+            Value<? extends Unit<?>> oldValue = map.putIfAbsent(annotation.id(), (Value<? extends Unit<?>>) fieldValue);
 
             if (oldValue != null) {
                 throw new ValueMappingException("Failed to add " + field.getName() + ", " + annotation.id() + " was already associated with " + map.get(annotation.id()));
@@ -58,9 +58,13 @@ public class InputtedOrCalculatedValueIndex {
         }
     }
 
-    public <E extends Unit<?>> InputtedOrCalculatedValue<E> fromDefaultFormula(ValueId type) throws NoDefaultFormulaException {
-        InputtedOrCalculatedValue<E> value = (InputtedOrCalculatedValue<E>) map.get(type);
-        if (value == null) {
+    public <E extends Unit<?>> Optional<Value<E>> getValue(ValueId type) {
+        return Optional.fromNullable((Value<E>) map.get(type));
+    }
+
+    public <E extends Unit<?>> Value<E> fromDefaultFormula(ValueId type) throws NoDefaultFormulaException {
+        Value<E> value = (Value<E>) map.get(type);
+        if (value == null && value instanceof InputtedOrCalculatedValue) {
             ObservableFormula<E> defaultFormula = formulaFactory.getDefaultFormula(type);
             value = new InputtedOrCalculatedValue<>(defaultFormula);
         }

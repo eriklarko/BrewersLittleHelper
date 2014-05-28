@@ -26,10 +26,10 @@ public class FullContextInitializer {
     public FullContextInitializer() {
         initializers = new HashMap<>();
 
-        initializers.put(InputtedOrCalculatedValue.class, this::initializeEmptyInputtedOrCalculatedValue);
-        initializers.put(InputtedValue.class, this::initializeEmptyInputtedValue);
-        initializers.put(Equipment.class, this::initializeEmptyEquipment);
-        initializers.put(GeneralBreweryInfo.class, this::initializeEmptyGeneralBreweryInfo);
+        initializers.put(Equipment.class,                   this::initializeEmptyEquipment);
+        initializers.put(InputtedValue.class,               this::initializeEmptyInputtedValue);
+        initializers.put(GeneralBreweryInfo.class,          this::initializeEmptyGeneralBreweryInfo);
+        initializers.put(InputtedOrCalculatedValue.class,   this::initializeEmptyInputtedOrCalculatedValue);
     }
 
     public void initializeMeEmpty(FullContext context) throws InitializerException {
@@ -59,7 +59,7 @@ public class FullContextInitializer {
     }
 
     private void initializeEmptyInputtedValue(Field field, FullContext context) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        // Inputted values don't need any initialization in the empty case
     }
 
     private void initializeEmptyEquipment(Field field, FullContext context) {

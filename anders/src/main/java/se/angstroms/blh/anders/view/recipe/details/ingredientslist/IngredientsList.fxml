@@ -8,12 +8,12 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<fx:root type="javafx.scene.layout.GridPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
     <stylesheets>
         <URL value="@/styles/anders.css"/>
     </stylesheets>
 
-    <TableView fx:id="fermentablesTable" editable="true" tableMenuButtonVisible="true">
+    <TableView fx:id="fermentablesTable" editable="true" tableMenuButtonVisible="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
         <columns>
             <TableColumn text="%ingredientsList.fermentables.name" fx:id="fermentablesName" />
             <TableColumn text="%ingredientsList.fermentables.amount" fx:id="fermentablesAmount" />
@@ -23,7 +23,7 @@
         </sortOrder>
     </TableView>
 
-    <TableView fx:id="hopsTable" editable="true" tableMenuButtonVisible="true">
+    <TableView fx:id="hopsTable" editable="true" tableMenuButtonVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="0">
         <columns>
             <TableColumn text="%ingredientsList.hops.name" fx:id="hopsName" />
             <TableColumn text="%ingredientsList.hops.amount" fx:id="hopsAmount" />
@@ -35,7 +35,7 @@
         </sortOrder>
     </TableView>
 
-    <TableView fx:id="yeastsTable" editable="true" tableMenuButtonVisible="true">
+    <TableView fx:id="yeastsTable" editable="true" tableMenuButtonVisible="true" GridPane.columnIndex="2" GridPane.rowIndex="0">
         <columns>
             <TableColumn text="%ingredientsList.yeasts.name" fx:id="yeastsName" />
             <TableColumn text="%ingredientsList.yeasts.amount" fx:id="yeastsAmount" />
@@ -45,7 +45,7 @@
         </sortOrder>
     </TableView>
 
-    <TableView fx:id="othersTable" editable="true" tableMenuButtonVisible="true">
+    <TableView fx:id="othersTable" editable="true" tableMenuButtonVisible="true" GridPane.columnIndex="3" GridPane.rowIndex="0">
         <columns>
             <TableColumn text="%ingredientsList.others.name" fx:id="othersName" />
             <TableColumn text="%ingredientsList.others.amount" fx:id="othersAmount" />

@@ -1,0 +1,17 @@
+{
+  "recipeProperty": {},
+  "brewery": {},
+  "equipment": {},
+  "originalGravity": {
+    "state": "CALCULATED",
+    "value": "1.0",
+    "formula": "se.angstroms.blh.anders.formulas.NopFormula"
+  },
+  "finalGravity": {
+    "formula": "se.angstroms.blh.anders.formulas.NopFormula"
+  },
+  "extractionEfficiency": {
+    "value": "70.0"
+  },
+  "coolingLoss": "40.0"
+}
