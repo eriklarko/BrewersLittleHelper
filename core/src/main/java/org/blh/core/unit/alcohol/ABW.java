@@ -14,7 +14,6 @@ import org.blh.core.unit.Unit;
  */
 public class ABW extends Unit<Factor> {
 
-    // TODO: Use only one conversion factor
     public static final double CONVERSION_FACTOR = 1.25;
 
     public ABW(Factor value) {

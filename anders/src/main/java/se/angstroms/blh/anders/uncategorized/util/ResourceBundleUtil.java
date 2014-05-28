@@ -1,4 +1,4 @@
-package se.angstroms.blh.anders.util;
+package se.angstroms.blh.anders.uncategorized.util;
 
 import java.util.Locale;
 import java.util.MissingResourceException;

@@ -12,7 +12,7 @@ import se.angstroms.blh.anders.formulas.NopFormula;
 import se.angstroms.blh.anders.uncategorized.context.FullContext;
 import se.angstroms.blh.anders.view.util.AndersBuilderFactory;
 import se.angstroms.blh.anders.uncategorized.value.findingformulas.FormulaFactory;
-import se.angstroms.blh.anders.util.ResourceBundleUtil;
+import se.angstroms.blh.anders.uncategorized.util.ResourceBundleUtil;
 import se.angstroms.blh.anders.uncategorized.ResourceLoader;
 import se.angstroms.blh.anders.uncategorized.context.FullContextInitializer;
 import se.angstroms.blh.anders.uncategorized.context.InitializerException;
@@ -86,7 +86,7 @@ public class Main extends Application {
 		// TODO: Loading indicator. Splash screen?
         valueIndex.buildIndex(fullContext);
 
-        // TODO: Remove these two lines
+        // TODO: Remove this line
 		formulaFactory.register(ValueId.EXTRACTION_EFFICIENCY, new NopFormula<>(new Factor(1), fullContext));
         formulaScanner.findAndAddFormulas(formulaFactory, fullContext);
 	}

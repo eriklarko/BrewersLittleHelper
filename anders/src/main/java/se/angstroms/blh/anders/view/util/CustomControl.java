@@ -3,7 +3,7 @@ package se.angstroms.blh.anders.view.util;
 import com.airhacks.afterburner.injection.InjectionProvider;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
-import se.angstroms.blh.anders.util.ResourceBundleUtil;
+import se.angstroms.blh.anders.uncategorized.util.ResourceBundleUtil;
 import se.angstroms.blh.anders.uncategorized.ResourceLoader;
 
 /**
