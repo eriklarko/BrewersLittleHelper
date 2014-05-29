@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import org.blh.core.unit.DoubleUnit;
 import org.blh.core.unit.Unit;
+import org.blh.core.unit.alcohol.ABV;
 import org.blh.core.unit.gravity.SpecificGravity;
 
 /**
@@ -20,10 +21,16 @@ public class UnitStringFormatter {
 			return numberFormatted("0.000", sg.value());
 		}
 
+        if (unit instanceof ABV) {
+            ABV abv = (ABV) unit;
+            return numberFormatted("0.0#%", abv.value().value());
+        }
+
 		if (unit instanceof DoubleUnit) {
 			DoubleUnit du = (DoubleUnit) unit;
 			return numberFormatted("0.##", du.value());
 		}
+
 
 		return String.valueOf(unit);
 	}

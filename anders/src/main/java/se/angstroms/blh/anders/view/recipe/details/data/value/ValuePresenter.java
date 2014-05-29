@@ -178,7 +178,7 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
     }
 
 	private void triggerValueChangedVisualization() {
-		FadeTransition animation = new FadeTransition(Duration.millis(500), this);
+		FadeTransition animation = new FadeTransition(Duration.millis(250), this);
 		animation.setFromValue(0.4);
 		animation.setToValue(1);
 		animation.setCycleCount(1);

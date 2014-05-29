@@ -18,6 +18,8 @@ public class RecipeValuesPresenter extends VBox {
 
         bitterness("Bitterness", ValueId.BITTERNESS, 0, 0),
         og("Original gravity", ValueId.OG, 1, 0),
+        fg("Final Gravity", ValueId.FG, 2, 0),
+        abv("Alcohol content", ValueId.ALCOHOL_CONTENT, 3, 0),
         extractionEfficency("Extraction efficiency", ValueId.EXTRACTION_EFFICIENCY, 0, 1);
 
         private final String title;

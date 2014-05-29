@@ -1,7 +1,6 @@
 package org.blh.recipe.uncategorized;
 
 import java.util.Collection;
-import java.util.LinkedList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.blh.core.recipe.GristPart;
@@ -25,6 +24,10 @@ public class IngredientsList {
     private final ObservableList<HopAddition> hopAdditions;
     private final ObservableList<YeastAddition<?>> yeastAdditions;
 
+    public IngredientsList() {
+        this(FXCollections.observableArrayList(), FXCollections.observableArrayList(), FXCollections.observableArrayList());
+    }
+
     public IngredientsList(Collection<GristPart> fermentables,
             Collection<HopAddition> hopAdditions,
             Collection<YeastAddition<?>> yeastAdditions) {
@@ -41,16 +44,31 @@ public class IngredientsList {
         this.yeastAdditions = yeastAdditions;
     }
 
-    public Collection<GristPart> getFermentables() {
+    public ObservableList<GristPart> getFermentables() {
         return fermentables;
     }
 
-    public Collection<HopAddition> getHopAdditions() {
-        return new LinkedList<>(hopAdditions);
+    public void setFermentables(Collection<GristPart> fermentables) {
+        this.fermentables.clear();
+        this.fermentables.addAll(fermentables);
     }
 
-    public Collection<YeastAddition<?>> getYeastAdditions() {
-        return new LinkedList<>(yeastAdditions);
+    public ObservableList<HopAddition> getHopAdditions() {
+        return hopAdditions;
+    }
+
+    public void setHopAdditions(Collection<HopAddition> hopAdditions) {
+        this.hopAdditions.clear();
+        this.hopAdditions.addAll(hopAdditions);
+    }
+
+    public ObservableList<YeastAddition<?>> getYeastAdditions() {
+        return yeastAdditions;
+    }
+
+    public void setYeastAdditions(Collection<YeastAddition<?>> yeastAddtitions) {
+        this.yeastAdditions.clear();
+        this.yeastAdditions.addAll(yeastAddtitions);
     }
 
     public Kilograms getTotalGrainWeight() {

@@ -6,5 +6,12 @@ package se.angstroms.blh.anders.uncategorized.value;
  */
 public enum ValueId {
     NOTHING,
-	BITTERNESS, OG, EXTRACTION_EFFICIENCY
+	BITTERNESS,
+    OG, FG,
+    EXTRACTION_EFFICIENCY,
+    BOIL_TIME,
+    ALCOHOL_CONTENT,
+    ELEVATION,
+    COOLING_LOSS, YEAST_ATTENUATION;
+
 }

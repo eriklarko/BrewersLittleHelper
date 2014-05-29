@@ -87,7 +87,8 @@ public class Main extends Application {
         valueIndex.buildIndex(fullContext);
 
         // TODO: Remove this line
-		formulaFactory.register(ValueId.EXTRACTION_EFFICIENCY, new NopFormula<>(new Factor(1), fullContext));
+		formulaFactory.register(ValueId.EXTRACTION_EFFICIENCY, new NopFormula<>(new Factor(0.70), fullContext));
+		formulaFactory.register(ValueId.YEAST_ATTENUATION, new NopFormula<>(new Factor(0.80), fullContext));
         formulaScanner.findAndAddFormulas(formulaFactory, fullContext);
 	}
 }

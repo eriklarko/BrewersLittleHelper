@@ -2,7 +2,6 @@ package se.angstroms.blh.anders.formulas;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import org.blh.core.unit.Unit;
 import se.angstroms.blh.anders.uncategorized.context.FullContext;
@@ -17,12 +16,12 @@ public abstract class ObservableFormula<T extends Unit<?>> implements Observable
 
 	private final FullContext context;
 	private ObservableHelper helper;
-	private final ChangeListener<Object> onRegisteredVariableChanged = new ChangeListener<Object>() {
+	private final InvalidationListener onRegisteredVariableChanged = new InvalidationListener() {
 
-		@Override
-		public void changed(ObservableValue<? extends Object> ov, Object t, Object t1) {
+        @Override
+        public void invalidated(Observable o) {
 			recalculate();
-		}
+        }
 	};
 
 	public ObservableFormula(FullContext context) {
@@ -40,6 +39,10 @@ public abstract class ObservableFormula<T extends Unit<?>> implements Observable
 	protected final void registerDependentVariable(ObservableValue<?> variable) {
 		variable.addListener(onRegisteredVariableChanged);
 	}
+
+    protected final void registerDependentVariable(Observable variable) {
+        variable.addListener(onRegisteredVariableChanged);
+    }
 
 	public abstract T calc();
 

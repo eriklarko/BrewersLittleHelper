@@ -1,8 +1,8 @@
 package se.angstroms.blh.anders.uncategorized.context;
 
 import se.angstroms.blh.anders.uncategorized.value.annot.ValueAnnot;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import org.blh.core.uncategorized.BeerType;
 import org.blh.core.unit.Factor;
 import org.blh.core.unit.alcohol.ABV;
 import org.blh.core.unit.bitterness.IBU;
@@ -14,7 +14,10 @@ import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.volume.Liters;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
+import org.blh.recipe.attempts.composite.BasicRecipe;
 import org.blh.recipe.attempts.composite.Recipe;
+import org.blh.recipe.uncategorized.IngredientsList;
+import org.blh.recipe.uncategorized.InstructionsList;
 import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.uncategorized.value.InputtedValue;
 import se.angstroms.blh.anders.uncategorized.value.ValueId;
@@ -26,12 +29,17 @@ import se.angstroms.blh.anders.uncategorized.value.ValueId;
  */
 public class FullContext {
 
-    private final ObjectProperty<Recipe> recipeProperty = new SimpleObjectProperty<>();;
+    private final Recipe recipe = new BasicRecipe(
+            new IngredientsList(),
+            new InstructionsList(),
+            BeerType.ALE, null);
     private final GeneralBreweryInfo brewery = new GeneralBreweryInfo();
     private final Equipment equipment = new Equipment();
     /////////////
     private final InputtedOrCalculatedValue<Liters> preMashVolume = new InputtedOrCalculatedValue<>();
-    private final InputtedOrCalculatedValue<Minutes> boilTime = new InputtedOrCalculatedValue<>();
+
+    @ValueAnnot(id = ValueId.BOIL_TIME)
+    private final InputtedValue<Minutes> boilTime = new InputtedValue<>();
     private final InputtedOrCalculatedValue<SpecificGravity> preBoilGravity = new InputtedOrCalculatedValue<>();
     private final InputtedOrCalculatedValue<SpecificGravity> boilGravity = new InputtedOrCalculatedValue<>();
     private final InputtedOrCalculatedValue<SpecificGravity> postBoilGravity = new InputtedOrCalculatedValue<>();
@@ -39,8 +47,13 @@ public class FullContext {
     @ValueAnnot(id = ValueId.OG)
     private final InputtedOrCalculatedValue<SpecificGravity> originalGravity = new InputtedOrCalculatedValue<>();
 
+    @ValueAnnot(id = ValueId.FG)
     private final InputtedOrCalculatedValue<SpecificGravity> finalGravity = new InputtedOrCalculatedValue<>();
+
+    @ValueAnnot(id = ValueId.ALCOHOL_CONTENT)
     private final InputtedOrCalculatedValue<ABV> alcoholContent = new InputtedOrCalculatedValue<>();
+
+    @ValueAnnot(id = ValueId.YEAST_ATTENUATION)
     private final InputtedOrCalculatedValue<Factor> yeastApparentAttenuation = new InputtedOrCalculatedValue<>();
     private final InputtedOrCalculatedValue<MaltColorUnit> maltColorUnit = new InputtedOrCalculatedValue<>();
     private final InputtedOrCalculatedValue<ColorPotential> totalColorPotential = new InputtedOrCalculatedValue<>();
@@ -54,23 +67,25 @@ public class FullContext {
     @ValueAnnot(id = ValueId.BITTERNESS)
     private final InputtedOrCalculatedValue<IBU> bitterness = new InputtedOrCalculatedValue<>();
     ///////////////
+    @ValueAnnot(id = ValueId.ELEVATION)
     private final InputtedValue<Meters> elevation = new InputtedValue<>();
     /**
      * How many percent of the volume is lost when cooling.
      */
+    @ValueAnnot(id = ValueId.COOLING_LOSS)
     private final InputtedValue<Factor> coolingLoss = new InputtedValue<>();
 
     public Recipe getRecipe() {
-        return recipeProperty.get();
+        return recipe;
     }
 
     public void setRecipe(Recipe recipe) {
-        this.recipeProperty.setValue(recipe);
-    }
+        this.recipe.getIngredientsList().setFermentables(recipe.getIngredientsList().getFermentables());
+        this.recipe.getIngredientsList().setHopAdditions(recipe.getIngredientsList().getHopAdditions());
+        this.recipe.getIngredientsList().setYeastAdditions(recipe.getIngredientsList().getYeastAdditions());
 
-	public ObjectProperty<Recipe> recipeProperty() {
-		return recipeProperty;
-	}
+        // TODO: Merge recipes
+    }
 
     public GeneralBreweryInfo getBrewery() {
         return brewery;
@@ -84,7 +99,7 @@ public class FullContext {
         return preMashVolume;
     }
 
-    public InputtedOrCalculatedValue<Minutes> getBoilTime() {
+    public InputtedValue<Minutes> getBoilTime() {
         return boilTime;
     }
 

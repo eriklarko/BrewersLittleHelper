@@ -27,7 +27,7 @@ public class ObservableSimpleOriginalGravityFormula extends ObservableFormula<Sp
 	@Override
 	protected void registerDependentVariables(FullContext context) {
 		registerDependentVariable(context.getExtractionEfficiency());
-		registerDependentVariable(context.recipeProperty());
+		registerDependentVariable(context.getRecipe().getIngredientsList().getFermentables());
 	}
 
     @Override

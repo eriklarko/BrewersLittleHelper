@@ -1,5 +1,13 @@
 {
-  "recipeProperty": {},
+  "recipe": {
+    "ingredientsList": {
+      "fermentables": [],
+      "hopAdditions": [],
+      "yeastAdditions": []
+    },
+    "instructionsList": {},
+    "type": "ALE"
+  },
   "brewery": {},
   "equipment": {},
   "originalGravity": {

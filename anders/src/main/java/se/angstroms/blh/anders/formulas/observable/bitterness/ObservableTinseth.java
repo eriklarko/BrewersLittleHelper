@@ -24,7 +24,7 @@ public class ObservableTinseth extends ObservableFormula<IBU> {
 
 	@Override
 	protected void registerDependentVariables(FullContext context) {
-		registerDependentVariable(context.recipeProperty());
+		registerDependentVariable(context.getRecipe().getIngredientsList().getHopAdditions());
 		registerDependentVariable(context.getOriginalGravity());
 	}
 

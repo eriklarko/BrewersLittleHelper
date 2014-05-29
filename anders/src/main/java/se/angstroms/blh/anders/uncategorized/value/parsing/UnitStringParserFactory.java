@@ -2,6 +2,7 @@ package se.angstroms.blh.anders.uncategorized.value.parsing;
 
 import org.blh.core.unit.Factor;
 import org.blh.core.unit.Unit;
+import org.blh.core.unit.alcohol.ABV;
 import org.blh.core.unit.bitterness.IBU;
 import org.blh.core.unit.gravity.SpecificGravity;
 import se.angstroms.blh.anders.uncategorized.value.ValueId;
@@ -47,17 +48,27 @@ public class UnitStringParserFactory {
             };
         }
 
+        if (unitClass == ABV.class) {
+            return (String raw) -> {
+                Double d = Double.parseDouble(raw);
+                return (T) new ABV(d);
+            };
+        }
+
         throw new IllegalArgumentException("I don't know how to turn strings into " + unitClass.getCanonicalName() + " yet");
     }
 
     private <T extends Unit<?>> UnitStringParser<T> doGetParserFor(ValueId type) {
         switch (type) {
 			case OG:
+            case FG:
 				return getParserFor(SpecificGravity.class);
             case EXTRACTION_EFFICIENCY:
                 return getParserFor(Factor.class);
             case BITTERNESS:
                 return getParserFor(IBU.class);
+            case ALCOHOL_CONTENT:
+                return getParserFor(ABV.class);
 			default:
 				throw new IllegalArgumentException("I don't know how to turn strings into " + type.name() + " yet");
 		}
