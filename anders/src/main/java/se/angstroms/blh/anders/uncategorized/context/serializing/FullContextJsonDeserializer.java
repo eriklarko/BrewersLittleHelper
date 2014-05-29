@@ -37,10 +37,6 @@ public class FullContextJsonDeserializer implements JsonDeserializer<FullContext
         for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
             String name = entry.getKey();
 
-            if (name.equalsIgnoreCase("recipeProperty")) {
-                continue; //TODO: Fix :)
-            }
-
             try {
                 Field field = context.getClass().getDeclaredField(name);
                 Object o2 = jsonContext.deserialize(entry.getValue(), field.getGenericType());
