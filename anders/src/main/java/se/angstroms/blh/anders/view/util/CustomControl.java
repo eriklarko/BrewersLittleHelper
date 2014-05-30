@@ -61,8 +61,7 @@ public final class CustomControl {
     public static void setup(Object instance, String fxmlPath) {
         FXMLLoader fxmlLoader = new FXMLLoader(
 				ResourceLoader.getResource(instance.getClass(), fxmlPath),
-				ResourceBundleUtil.getCurrentResourceBundle(),
-				new AndersBuilderFactory()
+				ResourceBundleUtil.getCurrentResourceBundle()
 		);
         setup(instance, fxmlLoader);
     }

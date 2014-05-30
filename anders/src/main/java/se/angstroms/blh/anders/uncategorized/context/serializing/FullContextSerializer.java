@@ -12,8 +12,11 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.nio.charset.Charset;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import se.angstroms.blh.anders.uncategorized.context.FullContext;
+import se.angstroms.blh.anders.uncategorized.context.InitializerException;
 import se.angstroms.blh.anders.uncategorized.value.CalculatedValue;
 import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.uncategorized.value.InputtedValue;
@@ -29,8 +32,12 @@ public class FullContextSerializer {
     UnitStringParserFactory unitStringParserFactory;
 
     private Gson gson;
+    private final InputtedOrCalculatedValueJsonSerializer inputtedOrCalculatedValueJsonSerializer;
+    private final FullContextJsonDeserializer fullContextJsonDeserializer;
 
     public FullContextSerializer() {
+        inputtedOrCalculatedValueJsonSerializer = new InputtedOrCalculatedValueJsonSerializer(unitStringParserFactory);
+        fullContextJsonDeserializer = new FullContextJsonDeserializer();
     }
 
     private void setupGsonObject() {
@@ -38,12 +45,11 @@ public class FullContextSerializer {
             return;
         }
 
-        FullContext context = new FullContext();
         gson = new GsonBuilder().setPrettyPrinting()
-                .registerTypeAdapter(FullContext.class, new FullContextJsonDeserializer(context))
-                .registerTypeAdapter(InputtedOrCalculatedValue.class, new InputtedOrCalculatedValueJsonSerializer(unitStringParserFactory, context))
-                .registerTypeAdapter(InputtedValue.class, new InputtedValueJsonSerializer(unitStringParserFactory))
-                .registerTypeAdapter(CalculatedValue.class, new CalculatedValueJsonSerializer())
+                .registerTypeAdapter(FullContext.class,               fullContextJsonDeserializer)
+                .registerTypeAdapter(InputtedOrCalculatedValue.class, inputtedOrCalculatedValueJsonSerializer)
+                .registerTypeAdapter(InputtedValue.class,             new InputtedValueJsonSerializer(unitStringParserFactory))
+                .registerTypeAdapter(CalculatedValue.class,           new CalculatedValueJsonSerializer())
                 .create();
     }
 
@@ -59,9 +65,12 @@ public class FullContextSerializer {
 
     }
 
-    public FullContext parseFromFile(File f) throws FileNotFoundException, IOException {
+    public FullContext parseFromFile(File f) throws FileNotFoundException, IOException, InitializerException {
         setupGsonObject();
         try (Reader reader = new InputStreamReader(new FileInputStream(f), Charset.forName("UTF-8"))) {
+            FullContext context = new FullContext();
+            fullContextJsonDeserializer.setFullContext(context);
+            inputtedOrCalculatedValueJsonSerializer.setFullContext(context);
             return gson.fromJson(reader, FullContext.class);
         }
     }

@@ -25,9 +25,6 @@ import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
 import se.angstroms.blh.anders.uncategorized.context.FullContext;
-import org.blh.recipe.attempts.composite.BasicRecipe;
-import org.blh.recipe.attempts.composite.Recipe;
-import org.blh.recipe.uncategorized.IngredientsList;
 import se.angstroms.blh.anders.uncategorized.context.FullContextInitializer;
 import se.angstroms.blh.anders.uncategorized.context.InitializerException;
 import se.angstroms.blh.anders.view.recipe.details.RecipeDetailsPresenter;
@@ -40,12 +37,6 @@ import se.angstroms.blh.anders.view.util.CustomControl;
  */
 public class RecipesTab extends VBox {
 
-    @Inject
-    private FullContextInitializer fullContextInitializer;
-
-	@Inject
-	private FullContext fullContext;
-
 	@FXML
 	private RecipeSelectorPresenter recipeSelector;
 
@@ -55,18 +46,7 @@ public class RecipesTab extends VBox {
 	public RecipesTab() {
 		CustomControl.setup(this);
 
-		recipeSelector.selectedRecipeProperty().addListener((ObservableValue<? extends Recipe> ov, Recipe oldValue, Recipe newValue) -> {
-            System.out.println("Setting recipe");
-
-            try {
-                // TODO: The following line should only be invoked when creating a new recipe.
-                fullContextInitializer.initializeMeEmpty(fullContext);
-            } catch (InitializerException ex) {
-                Logger.getLogger(RecipesTab.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-			fullContext.setRecipe(newValue);
-            System.out.println("Döne");
+		recipeSelector.selectedRecipeProperty().addListener((ObservableValue<? extends FullContext> ov, FullContext oldValue, FullContext newValue) -> {
 			recipeDetails.recipeProperty().set(newValue);
             if (oldValue != newValue) {
 				showRecipeDetails();
@@ -88,7 +68,7 @@ public class RecipesTab extends VBox {
 		this.getChildren().add(recipeDetails);
     }
 
-    private ObservableList<Recipe> getDummyRecipeList() {
+    private ObservableList<FullContext> getDummyRecipeList() {
         List<GristPart> fermentables = new LinkedList<>();
         List<HopAddition> hops = new LinkedList<>();
         List<YeastAddition<?>> yeasts = new LinkedList<>();
@@ -97,9 +77,16 @@ public class RecipesTab extends VBox {
         hops.add(new HopAddition(new Hop("Centennial", new Percentage(10)), new Minutes(60), new Grams(2.2)));
         yeasts.add(new YeastAddition<>(new Yeast("US-05", "Safale", new Percentage(88)), new Grams(11)));
 
-        IngredientsList ingredientsList = new IngredientsList(fermentables, hops, yeasts);
-        Recipe recipe = new BasicRecipe(ingredientsList, null, BeerType.ALE, "Dodo IPA");
-
-        return FXCollections.observableArrayList(recipe);
+        try {
+            FullContext recipe = new FullContext();
+            recipe.nameProperty().set("Dodo IPA");
+            recipe.beerTypeProperty().set(BeerType.ALE);
+            recipe.getIngredientsList().setFermentables(fermentables);
+            recipe.getIngredientsList().setHopAdditions(hops);
+            recipe.getIngredientsList().setYeastAdditions(yeasts);
+            return FXCollections.observableArrayList(recipe);
+        } catch (InitializerException ex) {
+            throw new RuntimeException("Unable to build dummy recipe", ex);
+        }
     }
 }

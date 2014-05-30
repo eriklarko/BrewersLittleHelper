@@ -24,18 +24,13 @@ public class ObservableTinseth extends ObservableFormula<IBU> {
 
 	@Override
 	protected void registerDependentVariables(FullContext context) {
-		registerDependentVariable(context.getRecipe().getIngredientsList().getHopAdditions());
+		registerDependentVariable(context.getIngredientsList().getHopAdditions());
 		registerDependentVariable(context.getOriginalGravity());
 	}
 
 	@Override
 	public IBU calc() {
 		System.out.println("Calculating tinseth");
-		return tinseth.calc(getContext().getRecipe().getIngredientsList().getHopAdditions(), new Liters(12), getContext().getOriginalGravity().get());
-	}
-
-	@Override
-	public String getSomeMathLangRepresentation() {
-		return "a + b";
+		return tinseth.calc(getContext().getIngredientsList().getHopAdditions(), new Liters(12), getContext().getOriginalGravity().get());
 	}
 }

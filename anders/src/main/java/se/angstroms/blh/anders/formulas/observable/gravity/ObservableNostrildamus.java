@@ -26,11 +26,6 @@ public class ObservableNostrildamus extends ObservableFormula<SpecificGravity> {
     @Override
     public SpecificGravity calc() {
         System.out.println("Calculating FG");
-        return f.calc(getContext().getOriginalGravity().get(), getContext().getYeastApparentAttenuation().get());
-    }
-
-    @Override
-    public String getSomeMathLangRepresentation() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return f.calc(getContext().getOriginalGravity().get(), getContext().getYeastApparentAttenuation().get().asFactor());
     }
 }

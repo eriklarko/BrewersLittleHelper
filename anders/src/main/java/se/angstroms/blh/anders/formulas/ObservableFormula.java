@@ -9,7 +9,8 @@ import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.uncategorized.ObservableHelper;
 
 /**
- *
+ * TODO: I need to support multiple full contexts. Or Recipes as they should
+ * be called.
  * @author eriklark
  */
 public abstract class ObservableFormula<T extends Unit<?>> implements Observable{
@@ -67,6 +68,4 @@ public abstract class ObservableFormula<T extends Unit<?>> implements Observable
             ObservableHelper.fireEvent(helper);
         }
 	}
-
-    public abstract String getSomeMathLangRepresentation();
 }

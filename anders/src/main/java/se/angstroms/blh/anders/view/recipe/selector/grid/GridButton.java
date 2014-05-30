@@ -12,7 +12,10 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import org.blh.recipe.attempts.composite.Recipe;
+import javax.inject.Inject;
+import se.angstroms.blh.anders.uncategorized.context.FullContext;
+import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue.STATE;
+import se.angstroms.blh.anders.uncategorized.value.UnitStringFormatter;
 
 /**
  *
@@ -20,40 +23,45 @@ import org.blh.recipe.attempts.composite.Recipe;
  */
 public class GridButton extends FlowPane {
 
-	private final Recipe recipe;
+	private final FullContext recipe;
 
-	public GridButton(Recipe recipe) {
+    @Inject
+    private UnitStringFormatter unitStringFormatter;
+
+	public GridButton(FullContext recipe) {
 		this.recipe = recipe;
-
-		addImage();
-		addRecieName();
-		addRandomFacts();
-
-		this.setPrefWidth(40);
 	}
 
+    public void render() {
+        addImage();
+        addRecieName();
+        addRandomFacts();
+
+        this.setPrefWidth(200);
+    }
+
 	private void addImage() {
-		Canvas image = new Canvas(20, 20);
+		Canvas image = new Canvas(100, 150);
 		image.getGraphicsContext2D().setFill(Color.CYAN);
-		image.getGraphicsContext2D().fillRect(0, 0, 20, 20);
+		image.getGraphicsContext2D().fillRect(0, 0, image.getWidth(), image.getHeight());
 
 		this.getChildren().add(image);
 	}
 
 	private void addRecieName() {
-		Label name = new Label(recipe.getName());
+		Label name = new Label(recipe.nameProperty().get());
 		name.setFont(Font.font(name.getFont().getFamily(), FontWeight.BOLD, name.getFont().getSize()));
 		this.getChildren().add(name);
 	}
 
 	private void addRandomFacts() {
-		this.getChildren().add(new Label("· OG: 1.050"));
-		this.getChildren().add(new Label("· ABV: 5%"));
-		this.getChildren().add(new Label("· IBU: 60"));
+		//this.getChildren().add(new Label("· OG: " + unitStringFormatter.format(recipe.getOriginalGravity())));
+		//this.getChildren().add(new Label("· ABV: " + unitStringFormatter.format(recipe.getAlcoholContent())));
+		//this.getChildren().add(new Label("· IBU: " + unitStringFormatter.format(recipe.getBitterness())));
 		this.getChildren().add(new Label("· Last brewed: Yesterday"));
 	}
 
-	public Recipe getRecipe() {
+	public FullContext getRecipe() {
 		return recipe;
 	}
 }

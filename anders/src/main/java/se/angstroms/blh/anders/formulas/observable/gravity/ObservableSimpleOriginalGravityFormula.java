@@ -27,17 +27,12 @@ public class ObservableSimpleOriginalGravityFormula extends ObservableFormula<Sp
 	@Override
 	protected void registerDependentVariables(FullContext context) {
 		registerDependentVariable(context.getExtractionEfficiency());
-		registerDependentVariable(context.getRecipe().getIngredientsList().getFermentables());
+		registerDependentVariable(context.getIngredientsList().getFermentables());
 	}
 
     @Override
     public SpecificGravity calc() {
 		System.out.println("Calculating OG");
-        return f.calc(getContext().getRecipe().getIngredientsList().getFermentables(), new Liters(12), getContext().getExtractionEfficiency().get());
-    }
-
-    @Override
-    public String getSomeMathLangRepresentation() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return f.calc(getContext().getIngredientsList().getFermentables(), new Liters(12), getContext().getExtractionEfficiency().get());
     }
 }

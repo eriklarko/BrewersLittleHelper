@@ -34,7 +34,6 @@ public class InputtedOrCalculatedValueTest {
     @Test
     public void testCalculatedConstructor() {
         ObservableFormula<DoubleUnit> f = new NopFormula<>(new DoubleUnitImpl(1), null);
-        FullContext context = new FullContext();
 
         InputtedOrCalculatedValue<DoubleUnit> v = new InputtedOrCalculatedValue<>(f);
 
@@ -60,7 +59,6 @@ public class InputtedOrCalculatedValueTest {
     @Test
     public void testSetValueFromCalculated() {
         ObservableFormula<DoubleUnit> f = new NopFormula<>(new DoubleUnitImpl(1), null);
-        FullContext context = new FullContext();
         InputtedOrCalculatedValue<DoubleUnit> v = new InputtedOrCalculatedValue<>(f);
 
         v.set(new DoubleUnit(3d) {});

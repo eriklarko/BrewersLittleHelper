@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import org.blh.core.unit.Unit;
 import se.angstroms.blh.anders.formulas.ObservableFormula;
+import se.angstroms.blh.anders.formulas.observable.ObservableFormulaBuilder;
 import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.uncategorized.value.InputtedValue;
 import se.angstroms.blh.anders.uncategorized.value.annot.ValueAnnot;
@@ -53,7 +54,9 @@ public class FullContextInitializer {
 
     private void initializeEmptyInputtedOrCalculatedValue(Field field, FullContext context) throws IllegalArgumentException, IllegalAccessException, NoDefaultFormulaException {
         ValueAnnot annotation = field.getAnnotation(ValueAnnot.class);
-        ObservableFormula<? extends Unit<?>> formula = formulaFactory.getDefaultFormula(annotation.id());
+        ObservableFormulaBuilder<Unit<?>> defaultFormula = formulaFactory.getDefaultFormula(annotation.id());
+        ObservableFormula<Unit<?>> formula = defaultFormula.bindTo(context);
+
         InputtedOrCalculatedValue value = (InputtedOrCalculatedValue) field.get(context);
         value.setFormula(formula);
     }

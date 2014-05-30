@@ -1,6 +1,5 @@
 package se.angstroms.blh.anders.view.recipe.details.data.value;
 
-import com.airhacks.afterburner.injection.InjectionProvider;
 import javafx.animation.FadeTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -10,19 +9,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.util.Builder;
 import javafx.util.Duration;
 import javax.inject.Inject;
 import org.blh.core.unit.Unit;
 import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue.STATE;
-import se.angstroms.blh.anders.uncategorized.value.ValueId;
-import se.angstroms.blh.anders.uncategorized.value.annot.InputtedOrCalculatedValueIndex;
-import se.angstroms.blh.anders.uncategorized.value.findingformulas.NoDefaultFormulaException;
 import se.angstroms.blh.anders.uncategorized.value.parsing.ParseException;
 import se.angstroms.blh.anders.uncategorized.value.UnitStringFormatter;
 import se.angstroms.blh.anders.uncategorized.value.parsing.UnitStringParser;
-import se.angstroms.blh.anders.uncategorized.value.parsing.UnitStringParserFactory;
 import se.angstroms.blh.anders.view.recipe.details.data.value.InputtedValuePresenter.CommitEvent;
 import se.angstroms.blh.anders.view.util.CustomControl;
 
@@ -33,48 +27,6 @@ import se.angstroms.blh.anders.view.util.CustomControl;
  * @author nichlassa
  */
 public class ValuePresenter<T extends Unit<?>> extends HBox {
-
-	public static class ValuePresenterBuilder implements Builder<ValuePresenter> {
-
-        @Inject
-        private InputtedOrCalculatedValueIndex inputtedOrCalculatedValueIndex;
-
-        @Inject
-        private UnitStringParserFactory parserFactory;
-
-		private ValueId type;
-
-        public ValuePresenterBuilder() {
-            InjectionProvider.injectMembers(ValuePresenterBuilder.class, this);
-        }
-
-		public ValueId getType() {
-			return type;
-		}
-
-		public void setType(ValueId type) {
-			this.type = type;
-		}
-
-		@Override
-		public ValuePresenter build() {
-			ValuePresenter valuePresenter;
-			if (type == null) {
-				throw new RuntimeException("Mwääää, typen måste vara satt!");
-			} else {
-				try {
-					valuePresenter = new ValuePresenter(
-                            (InputtedOrCalculatedValue) inputtedOrCalculatedValueIndex.fromDefaultFormula(type),
-                            parserFactory.getParserFor(type)
-                    );
-				} catch (NoDefaultFormulaException ex) {
-					throw new RuntimeException(ex);
-				}
-			}
-
-			return valuePresenter;
-		}
-	}
 
     @FXML
     private InputtedValuePresenter inputtedValue;
@@ -89,7 +41,7 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 	private boolean scaryFuckingIgnoreChangeEvent = false;
     private Button goBackToCalculatedButton;
 
-	private ValuePresenter(InputtedOrCalculatedValue<T> inputtedOrCalculatedValue, UnitStringParser<T> parser) {
+	public ValuePresenter(InputtedOrCalculatedValue<T> inputtedOrCalculatedValue, UnitStringParser<T> parser) {
         CustomControl.setup(this);
 
 		inputtedValue.addOnTextChangedListener(new EventHandler<CommitEvent>() {
@@ -145,9 +97,9 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 			}
 		});
 
-        if (inputtedOrCalculatedValue.stateProperty().get() == STATE.INPUTTED) {
+        //if (inputtedOrCalculatedValue.stateProperty().get() == STATE.INPUTTED) {
             setValue(inputtedOrCalculatedValue.get());
-        }
+        //}
 
         handleInputtedState(inputtedOrCalculatedValue.stateProperty().get() == STATE.INPUTTED);
     }

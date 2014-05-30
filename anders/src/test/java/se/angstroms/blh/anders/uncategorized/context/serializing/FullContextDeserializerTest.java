@@ -1,6 +1,7 @@
 package se.angstroms.blh.anders.uncategorized.context.serializing;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import org.blh.core.unit.Factor;
@@ -10,6 +11,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import se.angstroms.blh.anders.formulas.NopFormula;
 import se.angstroms.blh.anders.uncategorized.context.FullContext;
+import se.angstroms.blh.anders.uncategorized.context.InitializerException;
 import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue.STATE;
 import se.angstroms.blh.anders.uncategorized.value.parsing.UnitStringParserFactory;
@@ -23,7 +25,7 @@ public class FullContextDeserializerTest {
     private final String pathToValidFile = "validFullContext2.json";
 
     @Test
-    public void testReadFromValidFile() throws IOException, URISyntaxException {
+    public void testReadFromValidFile() throws IOException, URISyntaxException, FileNotFoundException, InitializerException {
         FullContextSerializer fullContextSerializer = new FullContextSerializer();
         fullContextSerializer.unitStringParserFactory = new UnitStringParserFactory();
         FullContext actual = fullContextSerializer.parseFromFile(new File(this.getClass().getResource(pathToValidFile).toURI()));

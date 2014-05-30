@@ -28,9 +28,4 @@ public class NopFormula<T extends Unit<?>> extends ObservableFormula<T> {
     public T calc() {
         return val;
     }
-
-    @Override
-    public String getSomeMathLangRepresentation() {
-        return "1+1";
-    }
 }

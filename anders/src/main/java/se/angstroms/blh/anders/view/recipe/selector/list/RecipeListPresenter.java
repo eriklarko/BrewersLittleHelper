@@ -10,14 +10,13 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.beans.value.WeakChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
-import org.blh.recipe.attempts.composite.Recipe;
+import se.angstroms.blh.anders.uncategorized.context.FullContext;
 import se.angstroms.blh.anders.view.recipe.selector.RecipeSelector;
 
 /**
@@ -25,13 +24,13 @@ import se.angstroms.blh.anders.view.recipe.selector.RecipeSelector;
  *
  * @author Thinner
  */
-public class RecipeListPresenter extends TableView<Recipe>  implements RecipeSelector, DoubleClickableCellFactory.DoubleClickListener {
+public class RecipeListPresenter extends TableView<FullContext> implements RecipeSelector, DoubleClickableCellFactory.DoubleClickListener {
 
     @FXML
-    private TableColumn<Recipe, String> recipeName;
+    private TableColumn<FullContext, String> recipeName;
 
-	private final ListProperty<Recipe> availableRecipes;
-    private final ObjectProperty<Recipe> selectedRecipe;
+	private final ListProperty<FullContext> availableRecipes;
+    private final ObjectProperty<FullContext> selectedRecipe;
 
     public RecipeListPresenter() {
         CustomControl.setup(this);
@@ -40,12 +39,12 @@ public class RecipeListPresenter extends TableView<Recipe>  implements RecipeSel
 		availableRecipes = new SimpleListProperty<>();
 		selectedRecipe = new SimpleObjectProperty<>();
         recipeName.setCellFactory(new DoubleClickableCellFactory<>(recipeName.getCellFactory(), this));
-        recipeName.setCellValueFactory((TableColumn.CellDataFeatures<Recipe, String> cdf) -> new SimpleStringProperty(cdf.getValue().getName()));
+        recipeName.setCellValueFactory((TableColumn.CellDataFeatures<FullContext, String> cdf) -> new SimpleStringProperty(cdf.getValue().nameProperty().get()));
 
-		availableRecipes.addListener(new ChangeListener<ObservableList<Recipe>>() {
+		availableRecipes.addListener(new ChangeListener<ObservableList<FullContext>>() {
 
 			@Override
-			public void changed(ObservableValue<? extends ObservableList<Recipe>> ov, ObservableList<Recipe> t, ObservableList<Recipe> newRecipes) {
+			public void changed(ObservableValue<? extends ObservableList<FullContext>> ov, ObservableList<FullContext> t, ObservableList<FullContext> newRecipes) {
 				RecipeListPresenter.this.setItems(newRecipes);
 			}
 		});
@@ -57,12 +56,12 @@ public class RecipeListPresenter extends TableView<Recipe>  implements RecipeSel
 	}
 
 	@Override
-	public ListProperty<Recipe> availableRecipesProperty() {
+	public ListProperty<FullContext> availableRecipesProperty() {
 		return availableRecipes;
 	}
 
 	@Override
-	public ObjectProperty<Recipe> selectedRecipeProperty() {
+	public ObjectProperty<FullContext> selectedRecipeProperty() {
 		return selectedRecipe;
 	}
 
@@ -73,7 +72,7 @@ public class RecipeListPresenter extends TableView<Recipe>  implements RecipeSel
 
     @Override
     public void onDoubleClick(MouseEvent event) {
-        Recipe recipe = this.getSelectionModel().getSelectedItem();
+        FullContext recipe = this.getSelectionModel().getSelectedItem();
         this.selectedRecipe.setValue(recipe);
     }
 

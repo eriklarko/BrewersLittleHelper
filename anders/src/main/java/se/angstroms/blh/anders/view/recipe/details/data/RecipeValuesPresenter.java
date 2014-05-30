@@ -1,10 +1,19 @@
 package se.angstroms.blh.anders.view.recipe.details.data;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javax.inject.Inject;
+import se.angstroms.blh.anders.uncategorized.context.FullContext;
+import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
+import se.angstroms.blh.anders.uncategorized.value.Value;
 import se.angstroms.blh.anders.uncategorized.value.ValueId;
+import se.angstroms.blh.anders.uncategorized.value.parsing.UnitStringParserFactory;
 import se.angstroms.blh.anders.view.recipe.details.data.value.ValuePresenter;
 import se.angstroms.blh.anders.view.util.CustomControl;
 
@@ -51,16 +60,32 @@ public class RecipeValuesPresenter extends VBox {
         }
     }
 
+    @Inject
+    private UnitStringParserFactory unitStringParserFactory;
+
     @FXML
     private GridPane grid;
 
+    private final ObjectProperty<FullContext> recipeProperty;
+
     public RecipeValuesPresenter() {
         CustomControl.setup(this);
+        recipeProperty = new SimpleObjectProperty<>();
+        recipeProperty.addListener(new ChangeListener<FullContext>() {
 
-        populateGrid();
+            @Override
+            public void changed(ObservableValue<? extends FullContext> ov, FullContext t, FullContext newRecipe) {
+                populateGrid();
+            }
+        });
+    }
+
+    public ObjectProperty<FullContext> recipeProperty() {
+        return recipeProperty;
     }
 
     private void populateGrid() {
+        grid.getChildren().clear();
         int cellsPerElement = 3;
 
         for (GridElement element : GridElement.values()) {
@@ -74,8 +99,8 @@ public class RecipeValuesPresenter extends VBox {
     }
 
     private ValuePresenter typeToValuePresenter(ValueId type) {
-        ValuePresenter.ValuePresenterBuilder valuePresenterBuilder = new ValuePresenter.ValuePresenterBuilder();
-        valuePresenterBuilder.setType(type);
-        return valuePresenterBuilder.build();
+        Value<?> value = recipeProperty.get().get(type);
+        InputtedOrCalculatedValue<?> valueAsIOCV = (InputtedOrCalculatedValue<?>) value;
+        return new ValuePresenter(valueAsIOCV, unitStringParserFactory.getParserFor(type));
     }
 }

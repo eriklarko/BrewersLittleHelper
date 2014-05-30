@@ -28,9 +28,4 @@ public class ObservableDaniels extends ObservableFormula<ABV> {
         System.out.println("Calculating ABV");
         return f.calc(getContext().getOriginalGravity().get(), getContext().getFinalGravity().get());
     }
-
-    @Override
-    public String getSomeMathLangRepresentation() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

@@ -9,7 +9,7 @@ import se.angstroms.blh.anders.view.recipe.details.ingredientslist.IngredientsLi
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import org.blh.recipe.attempts.composite.Recipe;
+import se.angstroms.blh.anders.uncategorized.context.FullContext;
 import se.angstroms.blh.anders.view.util.CustomControl;
 
 /**
@@ -23,23 +23,24 @@ public class RecipeDetailsPresenter extends VBox {
     @FXML private IngredientsListPresenter ingredientsList;
     @FXML private RecipeValuesPresenter recipeValues;
 
-	private final ObjectProperty<Recipe> recipeProperty;
+	private final ObjectProperty<FullContext> recipeProperty;
 
     public RecipeDetailsPresenter() {
         CustomControl.setup(this);
 
 		recipeProperty = new SimpleObjectProperty<>();
-		recipeProperty.addListener(new ChangeListener<Recipe>() {
+        recipeValues.recipeProperty().bind(recipeProperty);
+		recipeProperty.addListener(new ChangeListener<FullContext>() {
 
 			@Override
-			public void changed(ObservableValue<? extends Recipe> ov, Recipe t, Recipe newValue) {
-				recipeName.setText(newValue.getName());
+			public void changed(ObservableValue<? extends FullContext> ov, FullContext t, FullContext newValue) {
+				recipeName.setText(newValue.nameProperty().get());
 				ingredientsList.ingredientsListProperty().set(newValue.getIngredientsList());
 			}
 		});
     }
 
-	public ObjectProperty<Recipe> recipeProperty() {
+	public ObjectProperty<FullContext> recipeProperty() {
 		return recipeProperty;
 	}
 }

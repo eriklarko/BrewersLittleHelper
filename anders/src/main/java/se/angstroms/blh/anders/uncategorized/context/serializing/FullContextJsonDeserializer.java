@@ -26,16 +26,20 @@ import se.angstroms.blh.anders.uncategorized.value.InputtedValue;
  */
 public class FullContextJsonDeserializer implements JsonDeserializer<FullContext> {
 
-    private final FullContext context;
+    private FullContext context;
 
-    public FullContextJsonDeserializer(FullContext context) {
+    public void setFullContext(FullContext context) {
         this.context = context;
     }
+
     @Override
     public FullContext deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext jsonContext) throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
         for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
             String name = entry.getKey();
+            if (name.equalsIgnoreCase("ingredientsList") || name.equalsIgnoreCase("beerType") || name.equalsIgnoreCase("name")) {
+                continue; // TODO: Omg lol I suxx
+            }
 
             try {
                 Field field = context.getClass().getDeclaredField(name);
@@ -71,8 +75,8 @@ public class FullContextJsonDeserializer implements JsonDeserializer<FullContext
                     ((CalculatedValue) o).formulaProperty().set(((CalculatedValue) o2).formulaProperty().get());
                 }
 
-            } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException ex) {
-                throw new JsonParseException(ex);
+            } catch (Exception ex) {
+                throw new JsonParseException("Failed to deserialize " + name, ex);
             }
         }
 

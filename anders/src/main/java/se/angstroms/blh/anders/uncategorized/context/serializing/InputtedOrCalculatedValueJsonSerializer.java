@@ -25,11 +25,14 @@ public class InputtedOrCalculatedValueJsonSerializer implements JsonSerializer<I
         JsonDeserializer<InputtedOrCalculatedValue<?>> {
 
     private final UnitStringParserFactory unitStringParserFactory;
-    private final FullContext fullContext;
+    private FullContext fullContext;
 
-    public InputtedOrCalculatedValueJsonSerializer(UnitStringParserFactory unitStringParserFactory, FullContext context) {
+    public InputtedOrCalculatedValueJsonSerializer(UnitStringParserFactory unitStringParserFactory) {
         this.unitStringParserFactory = unitStringParserFactory;
-        this.fullContext = context;
+    }
+
+    public void setFullContext(FullContext fullContext) {
+        this.fullContext = fullContext;
     }
 
     @Override

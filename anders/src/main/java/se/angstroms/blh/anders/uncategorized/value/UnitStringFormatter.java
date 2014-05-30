@@ -14,6 +14,10 @@ import org.blh.core.unit.gravity.SpecificGravity;
  */
 public class UnitStringFormatter {
 
+	public String format(Value<? extends Unit<?>> value) {
+        return format(value.get());
+    }
+
 	public String format(Unit<?> unit) {
 
 		if (unit instanceof SpecificGravity) {
@@ -23,7 +27,7 @@ public class UnitStringFormatter {
 
         if (unit instanceof ABV) {
             ABV abv = (ABV) unit;
-            return numberFormatted("0.0#%", abv.value().value());
+            return numberFormatted("0.0#", abv.value().value()) + "%";
         }
 
 		if (unit instanceof DoubleUnit) {

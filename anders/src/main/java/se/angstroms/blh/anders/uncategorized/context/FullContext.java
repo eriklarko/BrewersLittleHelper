@@ -1,9 +1,16 @@
 package se.angstroms.blh.anders.uncategorized.context;
 
+import com.airhacks.afterburner.injection.InjectionProvider;
+import java.lang.reflect.Field;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javax.inject.Inject;
 import se.angstroms.blh.anders.uncategorized.value.annot.ValueAnnot;
-import javafx.collections.FXCollections;
 import org.blh.core.uncategorized.BeerType;
 import org.blh.core.unit.Factor;
+import org.blh.core.unit.Percentage;
 import org.blh.core.unit.alcohol.ABV;
 import org.blh.core.unit.bitterness.IBU;
 import org.blh.core.unit.color.ColorPotential;
@@ -14,12 +21,11 @@ import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.volume.Liters;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
-import org.blh.recipe.attempts.composite.BasicRecipe;
-import org.blh.recipe.attempts.composite.Recipe;
 import org.blh.recipe.uncategorized.IngredientsList;
 import org.blh.recipe.uncategorized.InstructionsList;
 import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.uncategorized.value.InputtedValue;
+import se.angstroms.blh.anders.uncategorized.value.Value;
 import se.angstroms.blh.anders.uncategorized.value.ValueId;
 
 /**
@@ -29,10 +35,13 @@ import se.angstroms.blh.anders.uncategorized.value.ValueId;
  */
 public class FullContext {
 
-    private final Recipe recipe = new BasicRecipe(
-            new IngredientsList(),
-            new InstructionsList(),
-            BeerType.ALE, null);
+
+    @Inject private FullContextInitializer initializer;
+    /////////////
+    private final IngredientsList ingredientsList = new IngredientsList();
+    private final InstructionsList instructionsList = new InstructionsList();
+    private final ObjectProperty<BeerType> beerType = new SimpleObjectProperty<>();
+    private final StringProperty name = new SimpleStringProperty();
     private final GeneralBreweryInfo brewery = new GeneralBreweryInfo();
     private final Equipment equipment = new Equipment();
     /////////////
@@ -54,7 +63,7 @@ public class FullContext {
     private final InputtedOrCalculatedValue<ABV> alcoholContent = new InputtedOrCalculatedValue<>();
 
     @ValueAnnot(id = ValueId.YEAST_ATTENUATION)
-    private final InputtedOrCalculatedValue<Factor> yeastApparentAttenuation = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<Percentage> yeastApparentAttenuation = new InputtedOrCalculatedValue<>();
     private final InputtedOrCalculatedValue<MaltColorUnit> maltColorUnit = new InputtedOrCalculatedValue<>();
     private final InputtedOrCalculatedValue<ColorPotential> totalColorPotential = new InputtedOrCalculatedValue<>();
 
@@ -75,16 +84,31 @@ public class FullContext {
     @ValueAnnot(id = ValueId.COOLING_LOSS)
     private final InputtedValue<Factor> coolingLoss = new InputtedValue<>();
 
-    public Recipe getRecipe() {
-        return recipe;
+    public FullContext() throws InitializerException {
+        InjectionProvider.injectMembers(this.getClass(), this);
+
+        initializer.initializeMeEmpty(this);
+        this.extractionEfficiency.set(new Factor(0.7));
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe.getIngredientsList().setFermentables(recipe.getIngredientsList().getFermentables());
-        this.recipe.getIngredientsList().setHopAdditions(recipe.getIngredientsList().getHopAdditions());
-        this.recipe.getIngredientsList().setYeastAdditions(recipe.getIngredientsList().getYeastAdditions());
+    public IngredientsList getIngredientsList() {
+        return ingredientsList;
+    }
 
-        // TODO: Merge recipes
+    public InstructionsList getInstructionsList() {
+        return instructionsList;
+    }
+
+    public ObjectProperty<BeerType> beerTypeProperty() {
+        return beerType;
+    }
+
+    public StringProperty nameProperty() {
+        return name;
+    }
+
+    public InputtedOrCalculatedValue<IBU> getBitterness() {
+        return bitterness;
     }
 
     public GeneralBreweryInfo getBrewery() {
@@ -127,7 +151,7 @@ public class FullContext {
         return alcoholContent;
     }
 
-    public InputtedOrCalculatedValue<Factor> getYeastApparentAttenuation() {
+    public InputtedOrCalculatedValue<Percentage> getYeastApparentAttenuation() {
         return yeastApparentAttenuation;
     }
 
@@ -164,5 +188,22 @@ public class FullContext {
         double totalGravityDifference = postBoilGravity.get().value() - preBoilGravity.get().value();
 
         return new SpecificGravity(totalGravityDifference * timePercent);
+    }
+
+    public Value<?> get(ValueId type) {
+        for (Field field : this.getClass().getDeclaredFields()) {
+            if (field.isAnnotationPresent(ValueAnnot.class)) {
+                ValueAnnot annotation = field.getAnnotation(ValueAnnot.class);
+                if (annotation.id() == type) {
+                    try {
+                        return (Value<?>) field.get(this);
+                    } catch (Exception ex) {
+                        throw new RuntimeException("Unable to get value for " + field.getName(), ex);
+                    }
+                }
+            }
+        }
+
+        throw new IllegalArgumentException("No field annotated with " + type + " found");
     }
 }

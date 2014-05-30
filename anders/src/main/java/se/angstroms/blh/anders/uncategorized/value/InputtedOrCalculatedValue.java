@@ -53,13 +53,17 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> implements Value<T> {
 
     @Override
 	public T get() {
-		if (value.get() == null && this.state.get() != STATE.INPUTTED) {
+		if (value.get() == null && this.state.get() == STATE.CALCULATED) {
 			calculateAndSetValue(null);
 		}
 		return value.get();
 	}
 
     private void calculateAndSetValue(Observable lol) {
+        if (value.isBound()) {
+            throw new RuntimeException(this + "'s value was bound.");
+        }
+
         T newValue = this.calculatedValue.formulaProperty().get().calc();
         value.set(newValue);
     }
@@ -76,6 +80,7 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> implements Value<T> {
             this.inputtedValue.set(value);
             this.state.set(STATE.INPUTTED);
             this.value.bind(this.inputtedValue);
+            System.out.println("Bound " + this);
         } else {
             this.inputtedValue.set(value);
         }

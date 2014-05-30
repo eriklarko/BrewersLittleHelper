@@ -11,7 +11,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import org.blh.recipe.attempts.composite.Recipe;
+import se.angstroms.blh.anders.uncategorized.context.FullContext;
 import se.angstroms.blh.anders.view.recipe.selector.grid.RecipeGridPresenter;
 import se.angstroms.blh.anders.view.recipe.selector.list.RecipeListPresenter;
 
@@ -24,8 +24,8 @@ public class RecipeSelectorPresenter extends HBox {
 	@FXML
 	private Pane selectorPane;
 
-	private final ListProperty<Recipe> availableRecipes;
-	private final ObjectProperty<Recipe> selectedRecipe;
+	private final ListProperty<FullContext> availableRecipes;
+	private final ObjectProperty<FullContext> selectedRecipe;
 	private final Collection<RecipeSelector> selectors;
 
     public RecipeSelectorPresenter() {
@@ -51,11 +51,11 @@ public class RecipeSelectorPresenter extends HBox {
 		selectorPane.getChildren().add(selector.getGUI());
 	}
 
-	public ListProperty<Recipe> availableRecipesProperty() {
+	public ListProperty<FullContext> availableRecipesProperty() {
 		return availableRecipes;
 	}
 
-    public ObjectProperty<Recipe> selectedRecipeProperty() {
+    public ObjectProperty<FullContext> selectedRecipeProperty() {
         return selectedRecipe;
     }
 

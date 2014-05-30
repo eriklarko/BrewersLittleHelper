@@ -1,6 +1,5 @@
 package se.angstroms.blh.anders.uncategorized.context.serializing;
 
-import se.angstroms.blh.anders.uncategorized.context.serializing.FullContextSerializer;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -14,6 +13,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import se.angstroms.blh.anders.formulas.NopFormula;
 import se.angstroms.blh.anders.uncategorized.context.FullContext;
+import se.angstroms.blh.anders.uncategorized.context.InitializerException;
 
 /**
  *
@@ -24,7 +24,7 @@ public class FullContextSerializerTest {
     private final String pathToValidFile = "validFullContext.json";
 
     @Test
-    public void testWriteToValidFile() throws IOException, URISyntaxException {
+    public void testWriteToValidFile() throws IOException, URISyntaxException, InitializerException {
         FullContext context = new FullContext();
         context.getOriginalGravity().setFormula(new NopFormula<>(new SpecificGravity(1), context));
         context.getExtractionEfficiency().set(new Factor(70));

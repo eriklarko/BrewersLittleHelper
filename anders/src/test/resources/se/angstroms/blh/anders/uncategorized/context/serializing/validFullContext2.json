@@ -1,5 +1,16 @@
 {
-  "recipe": {},
+  "ingredientsList": {
+    "fermentables": [],
+    "hopAdditions": [],
+    "yeastAdditions": []
+  },
+  "instructionsList": {},
+  "beerType": {},
+  "name": {
+    "name": "",
+    "valid": true
+  },
+
   "brewery": {},
   "equipment": {},
   "originalGravity": {

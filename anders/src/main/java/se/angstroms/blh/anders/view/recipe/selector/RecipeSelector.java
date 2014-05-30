@@ -3,7 +3,7 @@ package se.angstroms.blh.anders.view.recipe.selector;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.scene.Node;
-import org.blh.recipe.attempts.composite.Recipe;
+import se.angstroms.blh.anders.uncategorized.context.FullContext;
 
 /**
  *
@@ -13,9 +13,9 @@ public interface RecipeSelector {
 
 	String getName();
 
-	ListProperty<Recipe> availableRecipesProperty();
+	ListProperty<FullContext> availableRecipesProperty();
 
-	ObjectProperty<Recipe> selectedRecipeProperty();
+	ObjectProperty<FullContext> selectedRecipeProperty();
 
 	Node getGUI();
 }
