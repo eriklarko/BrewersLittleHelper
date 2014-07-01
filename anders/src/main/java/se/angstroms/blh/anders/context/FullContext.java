@@ -80,6 +80,8 @@ public class FullContext {
 
     @ValueAnnot(id = Value.Id.PRE_BOIL_VOLUME)
     private final InputtedOrCalculatedValue<Liters> preBoilVolume = new InputtedOrCalculatedValue<>();
+    @ValueAnnot(id = Value.Id.POST_BOIL_VOLUME)
+    private final InputtedOrCalculatedValue<Liters> postBoilVolume = new InputtedOrCalculatedValue<>();
 
     public IngredientsList getIngredientsList() {
         return ingredientsList;
@@ -167,6 +169,10 @@ public class FullContext {
 
     public InputtedOrCalculatedValue<Liters> getPreBoilVolume() {
         return preBoilVolume;
+    }
+
+    public InputtedOrCalculatedValue<Liters> getPostBoilVolume() {
+        return postBoilVolume;
     }
 
     public InputtedValue<Meters> getElevation() {

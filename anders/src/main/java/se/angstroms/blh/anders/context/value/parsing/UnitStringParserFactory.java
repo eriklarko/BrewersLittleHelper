@@ -5,6 +5,7 @@ import org.blh.core.unit.Unit;
 import org.blh.core.unit.alcohol.ABV;
 import org.blh.core.unit.bitterness.IBU;
 import org.blh.core.unit.gravity.SpecificGravity;
+import org.blh.core.unit.volume.Liters;
 import se.angstroms.blh.anders.context.value.Value;
 
 /**
@@ -55,6 +56,13 @@ public class UnitStringParserFactory {
             };
         }
 
+        if (unitClass == Liters.class) {
+            return (String raw) -> {
+                Double d = Double.parseDouble(raw);
+                return (T) new Liters(d);
+            };
+        }
+
         throw new IllegalArgumentException("I don't know how to turn strings into " + unitClass.getCanonicalName() + " yet");
     }
 
@@ -69,6 +77,9 @@ public class UnitStringParserFactory {
                 return getParserFor(IBU.class);
             case ALCOHOL_CONTENT:
                 return getParserFor(ABV.class);
+            case PRE_BOIL_VOLUME:
+            case POST_BOIL_VOLUME:
+                return getParserFor(Liters.class);
 			default:
 				throw new IllegalArgumentException("I don't know how to turn strings into " + type.name() + " yet");
 		}

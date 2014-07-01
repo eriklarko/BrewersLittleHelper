@@ -26,6 +26,7 @@ import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.volume.Liters;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
+import org.blh.core.unit.weight.Lbs;
 import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.context.value.findingformulas.FormulaDirectory;
 import se.angstroms.blh.anders.context.value.findingformulas.NoDefaultFormulaException;
@@ -57,8 +58,9 @@ public class MainWindowPresenter implements Initializable {
         List<HopAddition> hops = new LinkedList<>();
         List<YeastAddition<?>> yeasts = new LinkedList<>();
 
-        fermentables.add(new GristPart(new Malt("Münich", new Lovibond(1), new ExtractPotential(new GravityPoints(6)), Malt.TYPE.GRAIN), new Kilograms(1)));
-        hops.add(new HopAddition(new Hop("Centennial", new Percentage(10)), new Minutes(60), new Grams(2.2)));
+        fermentables.add(new GristPart(new Malt("Münich", new Lovibond(1), new ExtractPotential(new GravityPoints(38 / Lbs.CONVERSION_FACTOR)), Malt.TYPE.GRAIN), new Kilograms(1.7)));
+        hops.add(new HopAddition(new Hop("Magnum", new Percentage(13.7)), new Minutes(60), new Grams(28.4)));
+        //hops.add(new HopAddition(new Hop("Goldings", new Percentage(5.7)), new Minutes(10), new Grams(28.4)));
         yeasts.add(new YeastAddition<>(new Yeast("US-05", "Safale", new Percentage(88)), new Grams(11)));
 
         try {
@@ -69,7 +71,7 @@ public class MainWindowPresenter implements Initializable {
             recipe.getIngredientsList().setHopAdditions(hops);
             recipe.getIngredientsList().setYeastAdditions(yeasts);
 
-            recipe.getPreBoilVolume().set(new Liters(10));
+            recipe.getPostBoilVolume().set(new Liters(7));
             recipe.getExtractionEfficiency().set(new Factor(0.7));
 
             new DefaultFormulaHelper(formulaDirectory).setupDefaultFormulas(recipe);

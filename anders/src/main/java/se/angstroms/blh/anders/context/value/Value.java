@@ -19,7 +19,7 @@ public interface Value<T extends Unit<?>> {
         ALCOHOL_CONTENT,
         ELEVATION,
         COOLING_LOSS, YEAST_ATTENUATION,
-        PRE_BOIL_VOLUME;
+        PRE_BOIL_VOLUME, POST_BOIL_VOLUME;
 
     }
 
