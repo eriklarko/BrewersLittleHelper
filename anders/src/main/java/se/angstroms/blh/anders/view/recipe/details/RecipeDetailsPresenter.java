@@ -9,7 +9,7 @@ import se.angstroms.blh.anders.view.recipe.details.ingredientslist.IngredientsLi
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import se.angstroms.blh.anders.uncategorized.context.FullContext;
+import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.view.util.CustomControl;
 
 /**

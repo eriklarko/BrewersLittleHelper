@@ -15,7 +15,7 @@
 
     <TableView fx:id="fermentablesTable" editable="true" tableMenuButtonVisible="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
         <columns>
-            <TableColumn text="%ingredientsList.fermentables.name" fx:id="fermentablesName" />
+            <TableColumn text="%ingredientsList.fermentables.name"   fx:id="fermentablesName" />
             <TableColumn text="%ingredientsList.fermentables.amount" fx:id="fermentablesAmount" />
         </columns>
         <sortOrder>
@@ -25,8 +25,8 @@
 
     <TableView fx:id="hopsTable" editable="true" tableMenuButtonVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="0">
         <columns>
-            <TableColumn text="%ingredientsList.hops.name" fx:id="hopsName" />
-            <TableColumn text="%ingredientsList.hops.amount" fx:id="hopsAmount" />
+            <TableColumn text="%ingredientsList.hops.name"       fx:id="hopsName" />
+            <TableColumn text="%ingredientsList.hops.amount"     fx:id="hopsAmount" />
             <TableColumn text="%ingredientsList.hops.alphaAcids" fx:id="hopsAlphaAcids" />
             <TableColumn text="%ingredientsList.hops.timeInBoil" fx:id="hopsTimeInBoil" />
         </columns>
@@ -37,7 +37,7 @@
 
     <TableView fx:id="yeastsTable" editable="true" tableMenuButtonVisible="true" GridPane.columnIndex="2" GridPane.rowIndex="0">
         <columns>
-            <TableColumn text="%ingredientsList.yeasts.name" fx:id="yeastsName" />
+            <TableColumn text="%ingredientsList.yeasts.name"   fx:id="yeastsName" />
             <TableColumn text="%ingredientsList.yeasts.amount" fx:id="yeastsAmount" />
         </columns>
         <sortOrder>
@@ -47,7 +47,7 @@
 
     <TableView fx:id="othersTable" editable="true" tableMenuButtonVisible="true" GridPane.columnIndex="3" GridPane.rowIndex="0">
         <columns>
-            <TableColumn text="%ingredientsList.others.name" fx:id="othersName" />
+            <TableColumn text="%ingredientsList.others.name"   fx:id="othersName" />
             <TableColumn text="%ingredientsList.others.amount" fx:id="othersAmount" />
         </columns>
         <sortOrder>

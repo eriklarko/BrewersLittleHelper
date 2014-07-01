@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import org.blh.core.recipe.GristPart;
 import org.blh.core.recipe.HopAddition;
@@ -57,6 +58,19 @@ public class IngredientsListPresenter extends GridPane {
         buildFermentablesTable();
         buildHopsTable();
         buildYeastsTable();
+
+        this.getColumnConstraints().addAll(
+                columnConstraintsWithPercentageWidth(25),
+                columnConstraintsWithPercentageWidth(25),
+                columnConstraintsWithPercentageWidth(25),
+                columnConstraintsWithPercentageWidth(25)
+        );
+    }
+
+    private ColumnConstraints columnConstraintsWithPercentageWidth(double percentage) {
+        ColumnConstraints columnConstraints = new ColumnConstraints();
+        columnConstraints.setPercentWidth(percentage);
+        return columnConstraints;
     }
 
     private void buildFermentablesTable() {

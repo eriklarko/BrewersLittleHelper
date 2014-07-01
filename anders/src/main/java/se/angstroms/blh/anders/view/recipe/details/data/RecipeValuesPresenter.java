@@ -9,11 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javax.inject.Inject;
-import se.angstroms.blh.anders.uncategorized.context.FullContext;
-import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
-import se.angstroms.blh.anders.uncategorized.value.Value;
-import se.angstroms.blh.anders.uncategorized.value.ValueId;
-import se.angstroms.blh.anders.uncategorized.value.parsing.UnitStringParserFactory;
+import se.angstroms.blh.anders.context.FullContext;
+import se.angstroms.blh.anders.context.value.InputtedOrCalculatedValue;
+import se.angstroms.blh.anders.context.value.Value;
+import se.angstroms.blh.anders.context.value.parsing.UnitStringParserFactory;
 import se.angstroms.blh.anders.view.recipe.details.data.value.ValuePresenter;
 import se.angstroms.blh.anders.view.util.CustomControl;
 
@@ -25,18 +24,18 @@ public class RecipeValuesPresenter extends VBox {
 
     private static enum GridElement {
 
-        bitterness("Bitterness", ValueId.BITTERNESS, 0, 0),
-        og("Original gravity", ValueId.OG, 1, 0),
-        fg("Final Gravity", ValueId.FG, 2, 0),
-        abv("Alcohol content", ValueId.ALCOHOL_CONTENT, 3, 0),
-        extractionEfficency("Extraction efficiency", ValueId.EXTRACTION_EFFICIENCY, 0, 1);
+        bitterness("Bitterness", Value.Id.BITTERNESS, 0, 0),
+        og("Original gravity", Value.Id.OG, 1, 0),
+        fg("Final Gravity", Value.Id.FG, 2, 0),
+        abv("Alcohol content", Value.Id.ALCOHOL_CONTENT, 3, 0),
+        extractionEfficency("Extraction efficiency", Value.Id.EXTRACTION_EFFICIENCY, 0, 1);
 
         private final String title;
-        private final ValueId type;
+        private final Value.Id type;
         private final int row;
         private final int column;
 
-        private GridElement(String title, ValueId type, int row, int column) {
+        private GridElement(String title, Value.Id type, int row, int column) {
             this.title = title;
             this.type = type;
             this.row = row;
@@ -47,7 +46,7 @@ public class RecipeValuesPresenter extends VBox {
             return title;
         }
 
-        public ValueId getType() {
+        public Value.Id getType() {
             return type;
         }
 
@@ -98,7 +97,7 @@ public class RecipeValuesPresenter extends VBox {
         }
     }
 
-    private ValuePresenter typeToValuePresenter(ValueId type) {
+    private ValuePresenter typeToValuePresenter(Value.Id type) {
         Value<?> value = recipeProperty.get().get(type);
         InputtedOrCalculatedValue<?> valueAsIOCV = (InputtedOrCalculatedValue<?>) value;
         return new ValuePresenter(valueAsIOCV, unitStringParserFactory.getParserFor(type));

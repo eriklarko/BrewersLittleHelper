@@ -12,7 +12,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
-import se.angstroms.blh.anders.uncategorized.context.FullContext;
+import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.view.recipe.selector.RecipeSelector;
 import se.angstroms.blh.anders.view.util.CustomControl;
 

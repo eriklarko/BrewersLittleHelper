@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package se.angstroms.blh.anders.view.recipe.selector.grid;
 
 import javafx.scene.canvas.Canvas;
@@ -13,9 +7,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javax.inject.Inject;
-import se.angstroms.blh.anders.uncategorized.context.FullContext;
-import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue.STATE;
-import se.angstroms.blh.anders.uncategorized.value.UnitStringFormatter;
+import se.angstroms.blh.anders.context.FullContext;
+import se.angstroms.blh.anders.context.value.UnitStringFormatter;
 
 /**
  *
@@ -55,9 +48,9 @@ public class GridButton extends FlowPane {
 	}
 
 	private void addRandomFacts() {
-		//this.getChildren().add(new Label("· OG: " + unitStringFormatter.format(recipe.getOriginalGravity())));
-		//this.getChildren().add(new Label("· ABV: " + unitStringFormatter.format(recipe.getAlcoholContent())));
-		//this.getChildren().add(new Label("· IBU: " + unitStringFormatter.format(recipe.getBitterness())));
+		this.getChildren().add(new Label("· OG: "  + unitStringFormatter.format(recipe.getOriginalGravity())));
+		this.getChildren().add(new Label("· ABV: " + unitStringFormatter.format(recipe.getAlcoholContent())));
+		this.getChildren().add(new Label("· IBU: " + unitStringFormatter.format(recipe.getBitterness())));
 		this.getChildren().add(new Label("· Last brewed: Yesterday"));
 	}
 

@@ -4,7 +4,7 @@ import com.airhacks.afterburner.injection.InjectionProvider;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import se.angstroms.blh.anders.uncategorized.util.ResourceBundleUtil;
-import se.angstroms.blh.anders.uncategorized.ResourceLoader;
+import se.angstroms.blh.anders.uncategorized.util.ResourceLoader;
 
 /**
  * Boilerplate code for creating custom FX-controls

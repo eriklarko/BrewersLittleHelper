@@ -11,7 +11,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import se.angstroms.blh.anders.uncategorized.context.FullContext;
+import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.view.recipe.selector.grid.RecipeGridPresenter;
 import se.angstroms.blh.anders.view.recipe.selector.list.RecipeListPresenter;
 

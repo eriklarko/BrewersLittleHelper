@@ -7,15 +7,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javax.inject.Inject;
+import se.angstroms.blh.anders.context.value.Value;
 import se.angstroms.blh.anders.formulas.NopFormula;
 import se.angstroms.blh.anders.uncategorized.util.ResourceBundleUtil;
-import se.angstroms.blh.anders.uncategorized.ResourceLoader;
-import se.angstroms.blh.anders.uncategorized.context.InitializerException;
-import se.angstroms.blh.anders.uncategorized.value.ValueId;
-import se.angstroms.blh.anders.uncategorized.value.annot.ValueMappingException;
-import se.angstroms.blh.anders.uncategorized.value.findingformulas.FormulaClasspathScanner;
-import se.angstroms.blh.anders.uncategorized.value.findingformulas.FormulaClasspathScanner.FormulaFinderException;
-import se.angstroms.blh.anders.uncategorized.value.findingformulas.FormulaFactory;
+import se.angstroms.blh.anders.uncategorized.util.ResourceLoader;
+import se.angstroms.blh.anders.context.value.findingformulas.FormulaClasspathScanner;
+import se.angstroms.blh.anders.context.value.findingformulas.FormulaClasspathScanner.FormulaFinderException;
+import se.angstroms.blh.anders.context.value.findingformulas.FormulaDirectory;
 import se.angstroms.blh.anders.view.mainwindow.MainWindowPresenter;
 
 /**
@@ -26,7 +24,7 @@ import se.angstroms.blh.anders.view.mainwindow.MainWindowPresenter;
 public class Main extends Application {
 
     @Inject
-    private FormulaFactory formulaFactory;
+    private FormulaDirectory formulaDirectory;
 
     @Inject
     private FormulaClasspathScanner formulaScanner;
@@ -37,8 +35,8 @@ public class Main extends Application {
 		setupEnvironment();
 
         Parent root = FXMLLoader.load(
-                ResourceLoader.getResource(MainWindowPresenter.class, "MainWindow.fxml"),
-                ResourceBundleUtil.getCurrentResourceBundle()
+            ResourceLoader.getResource(MainWindowPresenter.class, "MainWindow.fxml"),
+            ResourceBundleUtil.getCurrentResourceBundle()
         );
 
         Scene scene = new Scene(root);
@@ -66,8 +64,9 @@ public class Main extends Application {
         launch(args);
     }
 
-	private void setupEnvironment() throws InitializerException, ValueMappingException, FormulaFinderException {
-        formulaFactory.register(ValueId.EXTRACTION_EFFICIENCY, NopFormula.class);
-        formulaScanner.findAndAddFormulas(formulaFactory);
+	private void setupEnvironment() throws FormulaFinderException {
+        formulaDirectory.register(Value.Id.EXTRACTION_EFFICIENCY, NopFormula.class);
+        formulaDirectory.register(Value.Id.PRE_BOIL_VOLUME, NopFormula.class);
+        formulaScanner.findAndAddFormulas(formulaDirectory);
 	}
 }

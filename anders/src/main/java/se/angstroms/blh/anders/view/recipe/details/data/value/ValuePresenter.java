@@ -12,11 +12,11 @@ import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 import javax.inject.Inject;
 import org.blh.core.unit.Unit;
-import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue;
-import se.angstroms.blh.anders.uncategorized.value.InputtedOrCalculatedValue.STATE;
-import se.angstroms.blh.anders.uncategorized.value.parsing.ParseException;
-import se.angstroms.blh.anders.uncategorized.value.UnitStringFormatter;
-import se.angstroms.blh.anders.uncategorized.value.parsing.UnitStringParser;
+import se.angstroms.blh.anders.context.value.InputtedOrCalculatedValue;
+import se.angstroms.blh.anders.context.value.InputtedOrCalculatedValue.STATE;
+import se.angstroms.blh.anders.context.value.parsing.ParseException;
+import se.angstroms.blh.anders.context.value.UnitStringFormatter;
+import se.angstroms.blh.anders.context.value.parsing.UnitStringParser;
 import se.angstroms.blh.anders.view.recipe.details.data.value.InputtedValuePresenter.CommitEvent;
 import se.angstroms.blh.anders.view.util.CustomControl;
 

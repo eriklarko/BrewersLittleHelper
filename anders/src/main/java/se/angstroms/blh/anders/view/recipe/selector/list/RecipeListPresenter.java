@@ -16,7 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
-import se.angstroms.blh.anders.uncategorized.context.FullContext;
+import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.view.recipe.selector.RecipeSelector;
 
 /**

@@ -3,7 +3,7 @@ package se.angstroms.blh.anders.view.recipe.selector;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.scene.Node;
-import se.angstroms.blh.anders.uncategorized.context.FullContext;
+import se.angstroms.blh.anders.context.FullContext;
 
 /**
  *

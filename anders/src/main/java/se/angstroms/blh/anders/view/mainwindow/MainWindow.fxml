@@ -14,7 +14,7 @@
         <TabPane tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="%tab.recipes">
-                    <RecipesTab/>
+                    <RecipesTab fx:id="recipesTab" />
                 </Tab>
                 <Tab text="%tab.equipment">
                     <AnchorPane id="Content" minHeight="180.0" minWidth="200.0" />
