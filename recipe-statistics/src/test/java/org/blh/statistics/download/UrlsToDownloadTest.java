@@ -19,7 +19,7 @@ public class UrlsToDownloadTest {
 
     @Test
     public void testEncountered() throws MalformedURLException, SQLException {
-        UrlsToDownload utd = new UrlsToDownload("test.db");
+        UrlsToDownload utd = new UrlsToDownload("testT.db");
         DBManager.getDBC().setDebug(true);
         utd.encountered(new URL("http://www.google.com/a/larko.se?epic=true&foo=bar"));
 
