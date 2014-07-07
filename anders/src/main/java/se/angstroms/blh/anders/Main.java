@@ -31,6 +31,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        printJavaFxVersion();
+
 		InjectionProvider.registerExistingAndInject(this);
 		setupEnvironment();
 
@@ -44,6 +46,10 @@ public class Main extends Application {
         stage.setScene(scene);
 		stage.setMaximized(true);
         stage.show();
+    }
+
+    private void printJavaFxVersion() {
+        System.out.println(com.sun.javafx.runtime.VersionInfo.getRuntimeVersion());
     }
 
     @Override

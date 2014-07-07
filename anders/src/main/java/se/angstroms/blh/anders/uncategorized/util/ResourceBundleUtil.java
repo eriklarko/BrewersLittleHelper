@@ -27,7 +27,6 @@ public final class ResourceBundleUtil {
     }
 
     public static String getString(String key) {
-        System.out.println(getCurrentResourceBundle().keySet());
         return getCurrentResourceBundle().getString(key);
     }
 

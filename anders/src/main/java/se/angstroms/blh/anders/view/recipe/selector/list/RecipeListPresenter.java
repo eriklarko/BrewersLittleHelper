@@ -3,7 +3,7 @@ package se.angstroms.blh.anders.view.recipe.selector.list;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import se.angstroms.blh.anders.view.util.CustomControl;
-import se.angstroms.blh.anders.view.util.DoubleClickableCellFactory;
+import se.angstroms.blh.anders.view.util.table.DoubleClickableCellFactory;
 
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;

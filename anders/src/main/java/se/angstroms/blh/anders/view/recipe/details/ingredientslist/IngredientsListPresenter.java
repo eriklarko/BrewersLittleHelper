@@ -1,21 +1,30 @@
 package se.angstroms.blh.anders.view.recipe.details.ingredientslist;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javax.inject.Inject;
+import org.blh.core.ingredient.Hop;
+import org.blh.core.ingredient.Malt;
 import org.blh.core.recipe.GristPart;
 import org.blh.core.recipe.HopAddition;
 import org.blh.core.recipe.YeastAddition;
+import org.blh.core.unit.Factor;
 import org.blh.recipe.uncategorized.IngredientsList;
+import se.angstroms.blh.anders.data.HopStore;
+import se.angstroms.blh.anders.data.MaltStore;
+import se.angstroms.blh.anders.view.util.table.ColumnPercentageWidthHelper;
 import se.angstroms.blh.anders.view.util.CustomControl;
 
 /**
@@ -25,12 +34,15 @@ import se.angstroms.blh.anders.view.util.CustomControl;
  */
 public class IngredientsListPresenter extends GridPane {
 
+    @Inject private MaltStore maltStore;
+    @Inject private HopStore hopStore;
+
     @FXML private TableView<GristPart> fermentablesTable;
-    @FXML private TableColumn<GristPart, String> fermentablesName;
+    @FXML private TableColumn<GristPart, Malt> fermentablesName;
     @FXML private TableColumn<GristPart, String> fermentablesAmount;
 
     @FXML private TableView<HopAddition> hopsTable;
-    @FXML private TableColumn<HopAddition, String> hopsName;
+    @FXML private TableColumn<HopAddition, Hop> hopsName;
     @FXML private TableColumn<HopAddition, String> hopsAmount;
     @FXML private TableColumn<HopAddition, String> hopsAlphaAcids;
     @FXML private TableColumn<HopAddition, String> hopsTimeInBoil;
@@ -74,18 +86,52 @@ public class IngredientsListPresenter extends GridPane {
     }
 
     private void buildFermentablesTable() {
-        fermentablesName.setCellValueFactory(
-                (TableColumn.CellDataFeatures<GristPart, String> p) -> new SimpleStringProperty(p.getValue().getMalt().getName())
-        );
+        fermentablesName = IngredientsListColumnHelper.initialize(fermentablesName)
+                .withRowToCellFunction((gristPart) -> gristPart.getMalt())
+                .withCellToStringFunction((malt) -> malt.getName())
+                .withValidValues(maltStore.getAll())
+                .withOnRowEdited((row, newValue) -> {
+                    System.out.println("Should update " + row + " to use " + newValue);
+                    //row.setMalt(newValue);
+                    //ingredientsListProperty.get().getFermentables().add(new GristPart(newValue, new Kilograms(1)));
+                })
+                .withPlaceholder(new Label("No malts matched the search, click here to add a malt"))
+                .withOnNoMatchClick((searchText) -> System.out.println("Open new malt dialog. The name of the malt should be " + searchText))
+                .withWidthFactor(new Factor(0.75))
+                .commit();
+
         fermentablesAmount.setCellValueFactory(
                 (TableColumn.CellDataFeatures<GristPart, String> p) -> new SimpleStringProperty(p.getValue().getAmount().toString())
         );
+
+        fermentablesTable.setEditable(true);
+        fermentablesTable.getVisibleLeafColumns().addListener(new InvalidationListener() {
+
+            @Override
+            public void invalidated(Observable observable) {
+                if (fermentablesTable.getVisibleLeafColumns().isEmpty()) {
+                    // TODO: The checkbox before the entries in the menu button
+                    // do not follow when controlling the visibility like this.
+                    fermentablesTable.getColumns().get(0).setVisible(true);
+                }
+            }
+        });
+
+        ColumnPercentageWidthHelper.bind(new Factor(0.25), fermentablesAmount);
     }
 
     private void buildHopsTable() {
-        hopsName.setCellValueFactory(
-                (TableColumn.CellDataFeatures<HopAddition, String> p) -> new SimpleStringProperty(p.getValue().getHop().getName())
-        );
+
+        hopsName = IngredientsListColumnHelper.initialize(hopsName)
+                .withRowToCellFunction((hopAddition) -> hopAddition.getHop())
+                .withCellToStringFunction((hop) -> hop.getName())
+                .withValidValues(hopStore.getAll())
+                .withOnRowEdited((row, newValue ) -> {})
+                .withPlaceholder(new Label("No hops matches the serach, click here to add a new hop"))
+                .withOnNoMatchClick((searchText) -> {})
+                .withWidthFactor(new Factor(0.4))
+                .commit();
+
         hopsAmount.setCellValueFactory(
                 (TableColumn.CellDataFeatures<HopAddition, String> p) -> new SimpleStringProperty(p.getValue().getAmount().value().toString())
         );
@@ -95,6 +141,10 @@ public class IngredientsListPresenter extends GridPane {
         hopsTimeInBoil.setCellValueFactory(
                 (TableColumn.CellDataFeatures<HopAddition, String> p) -> new SimpleStringProperty(p.getValue().getTimeInBoil().value().toString())
         );
+
+        ColumnPercentageWidthHelper.bind(new Factor(0.2), hopsAmount);
+        ColumnPercentageWidthHelper.bind(new Factor(0.2), hopsAlphaAcids);
+        ColumnPercentageWidthHelper.bind(new Factor(0.2), hopsTimeInBoil);
     }
 
     private void buildYeastsTable() {
@@ -104,6 +154,9 @@ public class IngredientsListPresenter extends GridPane {
         yeastsAmount.setCellValueFactory(
                 (TableColumn.CellDataFeatures<YeastAddition<?>, String> p) -> new SimpleStringProperty(p.getValue().getAmount().toString())
         );
+
+        ColumnPercentageWidthHelper.bind(new Factor(0.75), yeastsName);
+        ColumnPercentageWidthHelper.bind(new Factor(0.25), yeastsAmount);
     }
 
 	public ObjectProperty<IngredientsList> ingredientsListProperty() {
@@ -111,12 +164,8 @@ public class IngredientsListPresenter extends GridPane {
 	}
 
     private void setIngredientsList(IngredientsList ingredientsList) {
-        ObservableList<GristPart> gristParts = FXCollections.observableArrayList(ingredientsList.getFermentables());
-        ObservableList<HopAddition> hopAdditions = FXCollections.observableArrayList(ingredientsList.getHopAdditions());
-        ObservableList<YeastAddition<?>> yeastAdditions = FXCollections.observableArrayList(ingredientsList.getYeastAdditions());
-
-        fermentablesTable.setItems(gristParts);
-        hopsTable.setItems(hopAdditions);
-        yeastsTable.setItems(yeastAdditions);
+        fermentablesTable.setItems(ingredientsList.getFermentables());
+        hopsTable.setItems(ingredientsList.getHopAdditions());
+        yeastsTable.setItems(ingredientsList.getYeastAdditions());
     }
 }

@@ -30,6 +30,7 @@ import org.blh.core.unit.weight.Lbs;
 import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.context.value.findingformulas.FormulaDirectory;
 import se.angstroms.blh.anders.context.value.findingformulas.NoDefaultFormulaException;
+import se.angstroms.blh.anders.data.MaltStore;
 import se.angstroms.blh.anders.formulas.DefaultFormulaHelper;
 import se.angstroms.blh.anders.view.recipe.RecipesTab;
 
@@ -42,6 +43,9 @@ public class MainWindowPresenter implements Initializable {
 
     @Inject
     private FormulaDirectory formulaDirectory;
+
+    @Inject
+    private MaltStore maltStore;
 
     @FXML
     private RecipesTab recipesTab;
@@ -58,8 +62,8 @@ public class MainWindowPresenter implements Initializable {
         List<HopAddition> hops = new LinkedList<>();
         List<YeastAddition<?>> yeasts = new LinkedList<>();
 
-        fermentables.add(new GristPart(new Malt("Münich", new Lovibond(1), new ExtractPotential(new GravityPoints(38 / Lbs.CONVERSION_FACTOR)), Malt.TYPE.GRAIN), new Kilograms(1.7)));
-        hops.add(new HopAddition(new Hop("Magnum", new Percentage(13.7)), new Minutes(60), new Grams(28.4)));
+        fermentables.add(new GristPart(maltStore.getAll().iterator().next(), new Kilograms(1.7)));
+        hops.add(new HopAddition(new Hop("East kent", new Percentage(5.7)), new Minutes(60), new Grams(28.4)));
         //hops.add(new HopAddition(new Hop("Goldings", new Percentage(5.7)), new Minutes(10), new Grams(28.4)));
         yeasts.add(new YeastAddition<>(new Yeast("US-05", "Safale", new Percentage(88)), new Grams(11)));
 
