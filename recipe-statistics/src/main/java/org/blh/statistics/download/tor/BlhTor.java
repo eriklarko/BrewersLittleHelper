@@ -44,7 +44,6 @@ public class BlhTor {
         }
 
         URL url = buildUrl(source);
-        // send request with GET (?? TODO GET ??) data
         URLConnection urlConnection = url.openConnection();
         urlConnection.setDoInput(true);
         urlConnection.setUseCaches(false);

@@ -6,15 +6,10 @@ import javafx.collections.ObservableList;
 import org.blh.core.recipe.GristPart;
 import org.blh.core.recipe.HopAddition;
 import org.blh.core.recipe.YeastAddition;
-import org.blh.core.unit.color.ColorPotential;
-import org.blh.core.unit.gravity.GravityPoints;
-import org.blh.core.unit.weight.Grams;
-import org.blh.core.unit.weight.Kilograms;
-import org.blh.core.unit.weight.Lbs;
 
 /**
- * TODO: It seems that a lot of things here should be observable... All the
- * calculating methods should be observable imo...
+ * Holds the ingredients of a recipe :) Loltroll self documenting... wait. no..
+ * stfu.
  *
  * @author thinner
  */
@@ -69,38 +64,5 @@ public class IngredientsList {
     public void setYeastAdditions(Collection<YeastAddition<?>> yeastAddtitions) {
         this.yeastAdditions.clear();
         this.yeastAdditions.addAll(yeastAddtitions);
-    }
-
-    public Kilograms getTotalGrainWeight() {
-        double totalWeight = 0;
-        for (GristPart fermentable : fermentables) {
-            totalWeight += fermentable.getMalt().getColor().value();
-        }
-        return new Kilograms(totalWeight);
-    }
-
-    public GravityPoints getTotalGravityPoints() {
-        double specificGravityPoints = 0;
-        for (GristPart fermentable : fermentables) {
-            specificGravityPoints += fermentable.getMalt().getExtractPotential().value();
-        }
-
-        return new GravityPoints(specificGravityPoints);
-    }
-
-    public ColorPotential getTotalColorPotential() {
-        ColorPotential potential = new ColorPotential();
-        for (GristPart fermentable : fermentables) {
-            potential.add(fermentable.getMalt().getColor(), new Lbs(fermentable.getAmount()));
-        }
-        return potential;
-    }
-
-    public Grams getTotalHopWeight() {
-        double totalGrams = 0;
-        for (HopAddition addition : hopAdditions) {
-            totalGrams += addition.getAmount().value();
-        }
-        return new Grams(totalGrams);
     }
 }

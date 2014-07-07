@@ -9,8 +9,13 @@ import se.angstroms.blh.anders.context.value.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.uncategorized.util.ObservableHelper;
 
 /**
- * TODO: I need to support multiple full contexts. Or Recipes as they should
- * be called.
+ * A formula whose value automatically updates when a value it depends on is
+ * updated. To allow for this the implementations must register which
+ * dependencies cause the value of the formula to change. This is done via the
+ * registerDependentVariable method. It can be done in the constructor, but
+ * to keep all methods short they should be added in the invocation of
+ * registerDependentVariables.
+ *
  * @author eriklark
  */
 public abstract class ObservableFormula<T extends Unit<?>> implements Observable{
