@@ -77,6 +77,7 @@ public class UnitStringParserFactory {
                 return getParserFor(IBU.class);
             case ALCOHOL_CONTENT:
                 return getParserFor(ABV.class);
+            case PRE_MASH_VOLUME:
             case PRE_BOIL_VOLUME:
             case POST_BOIL_VOLUME:
                 return getParserFor(Liters.class);

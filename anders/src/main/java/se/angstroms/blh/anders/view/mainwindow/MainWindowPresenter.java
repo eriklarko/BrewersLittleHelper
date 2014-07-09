@@ -11,22 +11,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javax.inject.Inject;
 import org.blh.core.ingredient.Hop;
-import org.blh.core.ingredient.Malt;
 import org.blh.core.ingredient.Yeast;
 import org.blh.core.recipe.GristPart;
 import org.blh.core.recipe.HopAddition;
 import org.blh.core.recipe.YeastAddition;
 import org.blh.core.uncategorized.BeerType;
-import org.blh.core.unit.ExtractPotential;
 import org.blh.core.unit.Factor;
 import org.blh.core.unit.Percentage;
-import org.blh.core.unit.color.Lovibond;
-import org.blh.core.unit.gravity.GravityPoints;
 import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.volume.Liters;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
-import org.blh.core.unit.weight.Lbs;
 import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.context.value.findingformulas.FormulaDirectory;
 import se.angstroms.blh.anders.context.value.findingformulas.NoDefaultFormulaException;
@@ -76,6 +71,7 @@ public class MainWindowPresenter implements Initializable {
             recipe.getIngredientsList().setYeastAdditions(yeasts);
 
             recipe.getPostBoilVolume().set(new Liters(7));
+            recipe.getPreFermentationVolume().set(new Liters(7));
             recipe.getExtractionEfficiency().set(new Factor(0.7));
 
             new DefaultFormulaHelper(formulaDirectory).setupDefaultFormulas(recipe);

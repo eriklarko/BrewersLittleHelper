@@ -9,7 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.util.Callback;
 import org.blh.core.unit.Factor;
 import se.angstroms.blh.anders.view.util.table.ColumnPercentageWidthHelper;
@@ -31,7 +30,7 @@ public class IngredientsListColumnHelper<S, T> {
         return new IngredientsListColumnHelper<>(column);
     }
 
-    private TableColumn<S, T> column;
+    private final TableColumn<S, T> column;
     private Function<S, T> rowToCell;
 
     private Function<T, String> cellToString;

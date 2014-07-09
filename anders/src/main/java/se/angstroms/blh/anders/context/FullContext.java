@@ -39,7 +39,12 @@ public class FullContext {
     private final GeneralBreweryInfo brewery = new GeneralBreweryInfo();
     private final Equipment equipment = new Equipment();
     /////////////
+
+    @ValueAnnot(id = Value.Id.PRE_MASH_VOLUME)
     private final InputtedOrCalculatedValue<Liters> preMashVolume = new InputtedOrCalculatedValue<>();
+
+    @ValueAnnot(id = Value.Id.PRE_FERMENTATION_VOLUME)
+    private final InputtedOrCalculatedValue<Liters> preFermentationVolume = new InputtedOrCalculatedValue<>();
 
     @ValueAnnot(id = Value.Id.BOIL_TIME)
     private final InputtedValue<Minutes> boilTime = new InputtedValue<>();
@@ -80,6 +85,7 @@ public class FullContext {
 
     @ValueAnnot(id = Value.Id.PRE_BOIL_VOLUME)
     private final InputtedOrCalculatedValue<Liters> preBoilVolume = new InputtedOrCalculatedValue<>();
+
     @ValueAnnot(id = Value.Id.POST_BOIL_VOLUME)
     private final InputtedOrCalculatedValue<Liters> postBoilVolume = new InputtedOrCalculatedValue<>();
 
@@ -113,6 +119,10 @@ public class FullContext {
 
     public InputtedOrCalculatedValue<Liters> getPreMashVolume() {
         return preMashVolume;
+    }
+
+    public InputtedOrCalculatedValue<Liters> getPreFermentationVolume() {
+        return preFermentationVolume;
     }
 
     public InputtedValue<Minutes> getBoilTime() {

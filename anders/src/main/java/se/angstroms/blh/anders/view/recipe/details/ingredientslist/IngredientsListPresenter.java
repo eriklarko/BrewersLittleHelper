@@ -7,13 +7,13 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javax.inject.Inject;
 import org.blh.core.ingredient.Hop;
 import org.blh.core.ingredient.Malt;
@@ -164,8 +164,11 @@ public class IngredientsListPresenter extends GridPane {
 	}
 
     private void setIngredientsList(IngredientsList ingredientsList) {
-        fermentablesTable.setItems(ingredientsList.getFermentables());
-        hopsTable.setItems(ingredientsList.getHopAdditions());
-        yeastsTable.setItems(ingredientsList.getYeastAdditions());
+        // I need to copy the lists here so that sorting the tables won't cause
+        // the formulas depending on the ingredients to be recalculated.
+
+        fermentablesTable.setItems(FXCollections.observableList(ingredientsList.getFermentables()));
+        hopsTable.setItems(FXCollections.observableList(ingredientsList.getHopAdditions()));
+        yeastsTable.setItems(FXCollections.observableList(ingredientsList.getYeastAdditions()));
     }
 }

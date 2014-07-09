@@ -9,6 +9,8 @@ import javafx.scene.control.ComboBox;
 import javafx.util.StringConverter;
 
 /**
+ * TODO: Add different placeholder texts for when the original list is empty
+ * and when the filter doesn't match anything.
  *
  * @author eriklark
  */

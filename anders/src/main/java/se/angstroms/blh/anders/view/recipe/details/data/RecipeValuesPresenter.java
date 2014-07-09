@@ -29,7 +29,7 @@ public class RecipeValuesPresenter extends VBox {
         fg("Final Gravity", Value.Id.FG, 2, 0),
         abv("Alcohol content", Value.Id.ALCOHOL_CONTENT, 3, 0),
         extractionEfficency("Extraction efficiency", Value.Id.EXTRACTION_EFFICIENCY, 0, 1),
-        postPoil("Post boil volume", Value.Id.POST_BOIL_VOLUME, 1, 1);
+        preMashVolume("Liters to warm", Value.Id.PRE_MASH_VOLUME, 1, 1);
 
         private final String title;
         private final Value.Id type;

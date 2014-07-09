@@ -71,9 +71,13 @@ public class Main extends Application {
     }
 
 	private void setupEnvironment() throws FormulaFinderException {
+        // TODO: Fix real formulas
         formulaDirectory.register(Value.Id.EXTRACTION_EFFICIENCY, NopFormula.class);
+
         formulaDirectory.register(Value.Id.PRE_BOIL_VOLUME, NopFormula.class);
         formulaDirectory.register(Value.Id.POST_BOIL_VOLUME, NopFormula.class);
+        formulaDirectory.register(Value.Id.PRE_FERMENTATION_VOLUME, NopFormula.class);
+
         formulaScanner.findAndAddFormulas(formulaDirectory);
 	}
 }
