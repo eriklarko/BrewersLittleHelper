@@ -10,7 +10,7 @@ import javafx.util.StringConverter;
 
 /**
  * TODO: Add different placeholder texts for when the original list is empty
- * and when the filter doesn't match anything.
+ * and when the filter doesn't match anything. Right now they are the same
  *
  * @author eriklark
  */
@@ -51,12 +51,15 @@ public class FilterableComboBox<T> extends ComboBox<T> {
 
             @Override
             public String toString(T object) {
+                if (object == null) {
+                    System.out.println("So sad :(");
+                    return "n/a";
+                }
                 return itemToString.apply(object);
             }
 
             @Override
             public T fromString(String string) {
-                System.out.println("fromString " + string + " => " + getSelectionModel().getSelectedItem());
                 return getSelectionModel().getSelectedItem();
             }
         });

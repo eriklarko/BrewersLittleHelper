@@ -59,7 +59,6 @@ public class MainWindowPresenter implements Initializable {
 
         fermentables.add(new GristPart(maltStore.getAll().iterator().next(), new Kilograms(1.7)));
         hops.add(new HopAddition(new Hop("East kent", new Percentage(5.7)), new Minutes(60), new Grams(28.4)));
-        //hops.add(new HopAddition(new Hop("Goldings", new Percentage(5.7)), new Minutes(10), new Grams(28.4)));
         yeasts.add(new YeastAddition<>(new Yeast("US-05", "Safale", new Percentage(88)), new Grams(11)));
 
         try {
