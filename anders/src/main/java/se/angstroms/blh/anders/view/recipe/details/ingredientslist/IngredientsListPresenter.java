@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -19,7 +18,6 @@ import org.blh.core.recipe.HopAddition;
 import org.blh.core.recipe.YeastAddition;
 import org.blh.core.unit.Factor;
 import org.blh.recipe.uncategorized.IngredientsList;
-import org.blh.recipe.uncategorized.ObservableGristPart;
 import se.angstroms.blh.anders.data.HopStore;
 import se.angstroms.blh.anders.data.MaltStore;
 import se.angstroms.blh.anders.view.common.GridListView;
@@ -134,7 +132,7 @@ public class IngredientsListPresenter extends GridPane {
         // the formulas depending on the ingredients to be recalculated.
 
         fermentablesTable.setData(FXCollections.observableArrayList(MaltListItem.toGridRows(ingredientsList.getFermentables(), maltStore)));
-        hopsTable.setItems(FXCollections.observableList(ingredientsList.getHopAdditions()));
-        yeastsTable.setItems(FXCollections.observableList(ingredientsList.getYeastAdditions()));
+        //hopsTable.setItems(FXCollections.observableList(ingredientsList.getHopAdditions()));
+        //yeastsTable.setItems(FXCollections.observableList(ingredientsList.getYeastAdditions()));
     }
 }

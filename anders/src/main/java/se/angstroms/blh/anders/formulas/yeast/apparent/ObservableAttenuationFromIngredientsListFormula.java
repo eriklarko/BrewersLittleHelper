@@ -34,7 +34,7 @@ public class ObservableAttenuationFromIngredientsListFormula extends ObservableF
     public Percentage calc() {
         Collection<YeastAddition<Grams>> grams = new ArrayList<>();
         Collection<YeastAddition<Milliliters>> millilitres = new ArrayList<>();
-        for (YeastAddition<?> yeastAddition : getContext().getIngredientsList().getYeastAdditions()) {
+        for (YeastAddition<?> yeastAddition : getContext().getIngredientsList().getYeastAdditionsSnapshot()) {
             if (yeastAddition.getAmount() instanceof Grams) {
                 grams.add((YeastAddition<Grams>) yeastAddition);
             } else if (yeastAddition.getAmount() instanceof Milliliters) {

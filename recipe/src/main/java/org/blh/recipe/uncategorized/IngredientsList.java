@@ -2,6 +2,7 @@ package org.blh.recipe.uncategorized;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
+import javafx.beans.property.Property;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.blh.core.recipe.GristPart;
@@ -16,57 +17,69 @@ import org.blh.core.recipe.YeastAddition;
  */
 public class IngredientsList {
 
-    private final ObservableList<ObservableGristPart> fermentables;
-    private final ObservableList<HopAddition> hopAdditions;
-    private final ObservableList<YeastAddition<?>> yeastAdditions;
+    private final ObservableList<Property<GristPart>> fermentables;
+    private final ObservableList<Property<HopAddition>> hopAdditions;
+    private final ObservableList<Property<YeastAddition<?>>> yeastAdditions;
 
     public IngredientsList() {
         this(FXCollections.observableArrayList(), FXCollections.observableArrayList(), FXCollections.observableArrayList());
     }
 
-    public IngredientsList(Collection<ObservableGristPart> fermentables,
-            Collection<HopAddition> hopAdditions,
-            Collection<YeastAddition<?>> yeastAdditions) {
+    public IngredientsList(Collection<Property<GristPart>> fermentables,
+            Collection<Property<HopAddition>> hopAdditions,
+            Collection<Property<YeastAddition<?>>> yeastAdditions) {
         this(FXCollections.observableArrayList(fermentables),
                 FXCollections.observableArrayList(hopAdditions),
                 FXCollections.observableArrayList(yeastAdditions));
     }
 
-    public IngredientsList(ObservableList<ObservableGristPart> fermentables,
-            ObservableList<HopAddition> hopAdditions,
-            ObservableList<YeastAddition<?>> yeastAdditions) {
+    public IngredientsList(ObservableList<Property<GristPart>> fermentables,
+            ObservableList<Property<HopAddition>> hopAdditions,
+            ObservableList<Property<YeastAddition<?>>> yeastAdditions) {
         this.fermentables = fermentables;
         this.hopAdditions = hopAdditions;
         this.yeastAdditions = yeastAdditions;
     }
 
-    public ObservableList<ObservableGristPart> getFermentables() {
+    public ObservableList<Property<GristPart>> getFermentables() {
         return fermentables;
     }
 
     public Collection<GristPart> getFermentablesSnapshot() {
-        return fermentables.stream().map((ObservableGristPart ogp) -> ogp.get()).collect(Collectors.toList());
+        return getSnapshot(fermentables);
     }
 
-    public void setFermentables(Collection<ObservableGristPart> fermentables) {
+    public void setFermentables(Collection<Property<GristPart>> fermentables) {
         this.fermentables.clear();
         this.fermentables.addAll(fermentables);
     }
 
-    public ObservableList<HopAddition> getHopAdditions() {
+    public ObservableList<Property<HopAddition>> getHopAdditions() {
         return hopAdditions;
     }
 
-    public void setHopAdditions(Collection<HopAddition> hopAdditions) {
+    public Collection<HopAddition> getHopAdditionsSnapshot() {
+        return getSnapshot(hopAdditions);
+    }
+
+    private <T> Collection<T> getSnapshot(ObservableList<Property<T>> cs) {
+        return cs.stream().map((c) -> c.getValue()).collect(Collectors.toList());
+    }
+
+    public void setHopAdditions(Collection<Property<HopAddition>> hopAdditions) {
         this.hopAdditions.clear();
         this.hopAdditions.addAll(hopAdditions);
     }
 
-    public ObservableList<YeastAddition<?>> getYeastAdditions() {
+    public ObservableList<Property<YeastAddition<?>>> getYeastAdditions() {
         return yeastAdditions;
     }
 
-    public void setYeastAdditions(Collection<YeastAddition<?>> yeastAddtitions) {
+    public Collection<YeastAddition<?>> getYeastAdditionsSnapshot() {
+        return getSnapshot(yeastAdditions);
+    }
+
+    public void setYeastAdditions(Collection<Property<YeastAddition<?>>> yeastAddtitions) {
         this.yeastAdditions.clear();
         this.yeastAdditions.addAll(yeastAddtitions);
     }

@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,7 +24,6 @@ import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.volume.Liters;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
-import org.blh.recipe.uncategorized.ObservableGristPart;
 import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.context.value.findingformulas.FormulaDirectory;
 import se.angstroms.blh.anders.context.value.findingformulas.NoDefaultFormulaException;
@@ -54,13 +55,13 @@ public class MainWindowPresenter implements Initializable {
     }
 
     private ObservableList<FullContext> getDummyRecipeList() {
-        List<ObservableGristPart> fermentables = new LinkedList<>();
-        List<HopAddition> hops = new LinkedList<>();
-        List<YeastAddition<?>> yeasts = new LinkedList<>();
+        List<Property<GristPart>> fermentables = new LinkedList<>();
+        List<Property<HopAddition>> hops = new LinkedList<>();
+        List<Property<YeastAddition<?>>> yeasts = new LinkedList<>();
 
-        fermentables.add(new ObservableGristPart(new GristPart(maltStore.getAll().iterator().next(), new Kilograms(1.7))));
-        hops.add(new HopAddition(new Hop("East kent", new Percentage(5.7)), new Minutes(60), new Grams(28.4)));
-        yeasts.add(new YeastAddition<>(new Yeast("US-05", "Safale", new Percentage(88)), new Grams(11)));
+        fermentables.add(new SimpleObjectProperty<>(new GristPart(maltStore.getAll().iterator().next(), new Kilograms(1.7))));
+        hops.add(new SimpleObjectProperty<>(new HopAddition(new Hop("East kent", new Percentage(5.7)), new Minutes(60), new Grams(28.4))));
+        yeasts.add(new SimpleObjectProperty<>(new YeastAddition<>(new Yeast("US-05", "Safale", new Percentage(88)), new Grams(11))));
 
         try {
             FullContext recipe = new FullContext();
