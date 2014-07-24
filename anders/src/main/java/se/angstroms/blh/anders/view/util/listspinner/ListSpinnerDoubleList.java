@@ -61,7 +61,9 @@ public class ListSpinnerDoubleList extends java.util.AbstractList<Double> {
 
         // calculate the index
         Double lValue = ((Double) o);
-        int lIndex = (int) ((lValue - this.from) / this.step);
+        double a = lValue - this.from;
+        double b = a / this.step;
+        int lIndex = (int) Math.round(b);
         if (lIndex < 0 || lIndex > size) {
             return -1;
         }

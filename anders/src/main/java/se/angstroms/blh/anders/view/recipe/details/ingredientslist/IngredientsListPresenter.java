@@ -2,26 +2,21 @@ package se.angstroms.blh.anders.view.recipe.details.ingredientslist;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javax.inject.Inject;
-import org.blh.core.ingredient.Hop;
-import org.blh.core.recipe.HopAddition;
 import org.blh.core.recipe.YeastAddition;
-import org.blh.core.unit.Factor;
 import org.blh.recipe.uncategorized.IngredientsList;
 import se.angstroms.blh.anders.data.HopStore;
 import se.angstroms.blh.anders.data.MaltStore;
+import se.angstroms.blh.anders.data.YeastStore;
 import se.angstroms.blh.anders.view.common.GridListView;
-import se.angstroms.blh.anders.view.util.table.ColumnPercentageWidthHelper;
 import se.angstroms.blh.anders.view.util.CustomControl;
 
 /**
@@ -33,18 +28,15 @@ public class IngredientsListPresenter extends GridPane {
 
     @Inject private MaltStore maltStore;
     @Inject private HopStore hopStore;
+    @Inject private YeastStore yeastStore;
 
     @FXML private GridListView fermentablesTable;
 
-    @FXML private TableView<HopAddition> hopsTable;
-    @FXML private TableColumn<HopAddition, Hop> hopsName;
-    @FXML private TableColumn<HopAddition, String> hopsAmount;
-    @FXML private TableColumn<HopAddition, String> hopsAlphaAcids;
-    @FXML private TableColumn<HopAddition, String> hopsTimeInBoil;
+    @FXML private GridListView hopsTable;
 
-    @FXML private TableView<YeastAddition<?>> yeastsTable;
-    @FXML private TableColumn<YeastAddition<?>, String> yeastsName;
-    @FXML private TableColumn<YeastAddition<?>, String> yeastsAmount;
+    @FXML private GridListView yeastsTable;
+    private TableColumn<YeastAddition<?>, String> yeastsName;
+    private TableColumn<YeastAddition<?>, String> yeastsAmount;
 
     @FXML private TableView<String> othersTable;
 
@@ -62,10 +54,6 @@ public class IngredientsListPresenter extends GridPane {
 			}
 		});
 
-        buildFermentablesTable();
-        buildHopsTable();
-        buildYeastsTable();
-
         this.getColumnConstraints().addAll(
                 columnConstraintsWithPercentageWidth(25),
                 columnConstraintsWithPercentageWidth(25),
@@ -80,49 +68,6 @@ public class IngredientsListPresenter extends GridPane {
         return columnConstraints;
     }
 
-    private void buildFermentablesTable() {
-
-    }
-
-    private void buildHopsTable() {
-
-        hopsName = IngredientsListColumnHelper.initialize(hopsName)
-                .withRowToCellFunction((hopAddition) -> hopAddition.getHop())
-                .withCellToStringFunction((hop) -> hop.getName())
-                .withValidValues(hopStore.getAll())
-                .withOnRowEdited((row, newValue ) -> {})
-                .withPlaceholder(new Label("No hops matches the serach, click here to add a new hop"))
-                .withOnNoMatchClick((searchText) -> {})
-                .withWidthFactor(new Factor(0.4))
-                .commit();
-
-        hopsAmount.setCellValueFactory(
-                (TableColumn.CellDataFeatures<HopAddition, String> p) -> new SimpleStringProperty(p.getValue().getAmount().value().toString())
-        );
-        hopsAlphaAcids.setCellValueFactory(
-                (TableColumn.CellDataFeatures<HopAddition, String> p) -> new SimpleStringProperty(p.getValue().getHop().getAlphaAcids().toString())
-        );
-        hopsTimeInBoil.setCellValueFactory(
-                (TableColumn.CellDataFeatures<HopAddition, String> p) -> new SimpleStringProperty(p.getValue().getTimeInBoil().value().toString())
-        );
-
-        ColumnPercentageWidthHelper.bind(new Factor(0.2), hopsAmount);
-        ColumnPercentageWidthHelper.bind(new Factor(0.2), hopsAlphaAcids);
-        ColumnPercentageWidthHelper.bind(new Factor(0.2), hopsTimeInBoil);
-    }
-
-    private void buildYeastsTable() {
-        yeastsName.setCellValueFactory(
-                (TableColumn.CellDataFeatures<YeastAddition<?>, String> p) -> new SimpleStringProperty(p.getValue().getYeast().getName())
-        );
-        yeastsAmount.setCellValueFactory(
-                (TableColumn.CellDataFeatures<YeastAddition<?>, String> p) -> new SimpleStringProperty(p.getValue().getAmount().toString())
-        );
-
-        ColumnPercentageWidthHelper.bind(new Factor(0.75), yeastsName);
-        ColumnPercentageWidthHelper.bind(new Factor(0.25), yeastsAmount);
-    }
-
 	public ObjectProperty<IngredientsList> ingredientsListProperty() {
 		return ingredientsListProperty;
 	}
@@ -131,8 +76,9 @@ public class IngredientsListPresenter extends GridPane {
         // I need to copy the lists here so that sorting the tables won't cause
         // the formulas depending on the ingredients to be recalculated.
 
-        fermentablesTable.setData(FXCollections.observableArrayList(MaltListItem.toGridRows(ingredientsList.getFermentables(), maltStore)));
-        //hopsTable.setItems(FXCollections.observableList(ingredientsList.getHopAdditions()));
+        fermentablesTable.setData(FXCollections.observableArrayList(GridListView.toGridRows(ingredientsList.getFermentables(), (model) -> new MaltListItem(model, maltStore))));
+        hopsTable.setData(FXCollections.observableArrayList(GridListView.toGridRows(ingredientsList.getHopAdditions(), (model) -> new HopListItem(model, hopStore))));
+        yeastsTable.setData(FXCollections.observableArrayList(GridListView.toGridRows(ingredientsList.getYeastAdditions(), (model) -> new YeastListItem(model, yeastStore))));
         //yeastsTable.setItems(FXCollections.observableList(ingredientsList.getYeastAdditions()));
     }
 }

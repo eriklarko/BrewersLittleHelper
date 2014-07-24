@@ -1,7 +1,5 @@
 package se.angstroms.blh.anders.view.util.listspinner;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import javafx.scene.text.Text;
 import javafx.util.StringConverter;
 import jfxtras.scene.control.ListSpinner;
@@ -10,28 +8,24 @@ import jfxtras.scene.control.ListSpinner;
  *
  * @author eriklark
  */
-public class WidthAndValueKeepingStringConverter extends StringConverter<Double> {
+public abstract class WidthAndValueKeepingStringConverter<T> extends StringConverter<T> {
 
-    private final ListSpinner<Double> spinner;
-    private final NumberFormat nf;
+    private final ListSpinner<T> spinner;
     private double previousWidth = 0;
-    private Double lastGoodNumber = null;
+    private T lastGoodValue = null;
 
-    public WidthAndValueKeepingStringConverter(ListSpinner<Double> spinner) {
-        this(spinner, new DecimalFormat("#.##"));
-    }
-
-    public WidthAndValueKeepingStringConverter(ListSpinner<Double> spinner, NumberFormat nf) {
+    public WidthAndValueKeepingStringConverter(ListSpinner<T> spinner) {
         this.spinner = spinner;
-        this.nf = nf;
     }
 
     @Override
-    public String toString(Double d) {
-        String s = nf.format(d);
+    public final String toString(T t) {
+        String s = asString(t);
         keepWidthSweet(s);
         return s;
     }
+
+    protected abstract String asString(T t);
 
     private void keepWidthSweet(String s) {
         Text t = new Text(s);
@@ -42,13 +36,15 @@ public class WidthAndValueKeepingStringConverter extends StringConverter<Double>
     }
 
     @Override
-    public Double fromString(String string) {
+    public final T fromString(String string) {
         try {
-            Double toReturn = Double.valueOf(string);
-            lastGoodNumber = toReturn;
+            T toReturn = parse(string);
+            lastGoodValue = toReturn;
             return toReturn;
-        } catch (NumberFormatException ex) {
-            return lastGoodNumber;
+        } catch (Exception ex) {
+            return lastGoodValue;
         }
     }
+
+    protected abstract T parse(String s);
 }

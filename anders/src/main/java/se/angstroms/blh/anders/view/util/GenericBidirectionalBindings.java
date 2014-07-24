@@ -1,14 +1,10 @@
 package se.angstroms.blh.anders.view.util;
 
-import java.util.Collection;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import javafx.application.Platform;
 import javafx.beans.property.Property;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
-import se.angstroms.blh.anders.view.common.GridListView;
 
 /**
  *
@@ -32,19 +28,6 @@ public class GenericBidirectionalBindings {
         uListenerHack.set(onUchanged);
         u.addListener(onUchanged);
         t.addListener(onTchanged);
-    }
-
-    public static <T extends Property<?>> Collection<GridListView.GridRow<T>> toGridRows(ObservableList<T> models, Function<T, GridListView.GridRow<T>> creator) {
-        return models.stream().map((model) -> {
-            GridListView.GridRow<T> gridRow = creator.apply(model);
-
-            gridRow.getModel().addListener((source, _2, n) -> {
-                T asProperty = (T) source;
-                int index = models.indexOf(asProperty);
-                models.set(index, asProperty);
-            });
-            return gridRow;
-        }).collect(Collectors.toList());
     }
 
     private GenericBidirectionalBindings(){

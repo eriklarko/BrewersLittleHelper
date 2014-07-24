@@ -1,5 +1,8 @@
 package se.angstroms.blh.anders.view.common;
 
+import java.util.Collection;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import javafx.beans.property.Property;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -12,6 +15,18 @@ import javafx.scene.layout.GridPane;
  */
 public class GridListView extends GridPane {
 
+    public static <T extends Property<?>> Collection toGridRows(ObservableList<T> models, Function<T, GridRow<T>> creator) {
+        return models.stream().map((T model) -> {
+            GridListView.GridRow<T> gridRow = creator.apply(model);
+            gridRow.getModel().addListener((source, _2, n) -> {
+                T asProperty = (T) source;
+                int index = models.indexOf(asProperty);
+                models.set(index, asProperty);
+            });
+            return gridRow;
+        }).collect(Collectors.toList());
+    }
+
     public static interface GridRow<T extends Property<?>> {
 
         T getModel();
@@ -21,6 +36,7 @@ public class GridListView extends GridPane {
 
     private ObservableList<GridRow<?>> rows;
     private final ListChangeListener<GridRow<?>> rowsListener = (c) -> {
+        // TODO: Do I need this loop?
         while(c.next());
         layoutDataRows();
     };

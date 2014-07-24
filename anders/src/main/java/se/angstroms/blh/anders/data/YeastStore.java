@@ -2,21 +2,20 @@ package se.angstroms.blh.anders.data;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.blh.core.ingredient.Hop;
+import org.blh.core.ingredient.Yeast;
 import org.blh.core.unit.Percentage;
 
 /**
  *
  * @author eriklark
  */
-public class HopStore implements Store<Hop> {
+public class YeastStore implements Store<Yeast> {
 
     @Override
-    public ObservableList<Hop> getAll() {
+    public ObservableList<Yeast> getAll() {
         return FXCollections.observableArrayList(
-                new Hop("East Kent Goldings", new Percentage(5.7)),
-                new Hop("Citra", new Percentage(12))
+                new Yeast("WLP001", "White Labs", new Percentage(80)),
+                new Yeast("WLP002", "White Labs", new Percentage(40))
         );
     }
-
 }
