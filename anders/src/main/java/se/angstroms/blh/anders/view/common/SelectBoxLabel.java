@@ -5,8 +5,6 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
@@ -88,6 +86,7 @@ public class SelectBoxLabel<T> extends Group {
     private void showEditor() {
         label.setVisible(false);
         editor.setVisible(true);
+        editor.show();
     }
 
     public ObjectProperty<T> modelProperty() {

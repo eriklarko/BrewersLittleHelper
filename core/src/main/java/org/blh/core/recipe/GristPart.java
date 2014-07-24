@@ -25,4 +25,9 @@ public class GristPart {
     public Kilograms getAmount() {
         return amount;
     }
+
+    @Override
+    public String toString() {
+        return amount.value() + "kg " + malt;
+    }
 }

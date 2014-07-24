@@ -10,7 +10,6 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import se.angstroms.blh.anders.view.recipe.details.ingredientslist.MaltListItem;
 
 /**
  *
@@ -20,7 +19,7 @@ public class OMGTEST extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Scene scene = new Scene(new Group(MaltListItem.test()));
+        Scene scene = new Scene(new Group());
 
         stage.setTitle("Welcome to JavaFX!");
         stage.setScene(scene);

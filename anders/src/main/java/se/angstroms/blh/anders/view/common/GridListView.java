@@ -1,6 +1,6 @@
 package se.angstroms.blh.anders.view.common;
 
-import java.util.List;
+import javafx.beans.property.Property;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -12,22 +12,27 @@ import javafx.scene.layout.GridPane;
  */
 public class GridListView extends GridPane {
 
-    public static interface GridRow {
+    public static interface GridRow<T extends Property<?>> {
+
+        T getModel();
 
         Iterable<Node> getNodes();
     }
 
-    private ObservableList<GridRow> rows;
-    private final ListChangeListener<GridRow> rowsListener = (c) -> layoutDataRows();
+    private ObservableList<GridRow<?>> rows;
+    private final ListChangeListener<GridRow<?>> rowsListener = (c) -> {
+        while(c.next());
+        layoutDataRows();
+    };
 
     public GridListView() {
     }
 
-    public GridListView(ObservableList<GridRow> rows) {
+    public GridListView(ObservableList<GridRow<?>> rows) {
         setData(rows);
     }
 
-    public void setData(ObservableList<GridRow> rows) {
+    public void setData(ObservableList<GridRow<?>> rows) {
         if (this.rows != null) {
             this.rows.removeListener(rowsListener);
         }
@@ -40,7 +45,7 @@ public class GridListView extends GridPane {
         this.getChildren().clear();
 
         int currentRow = 0;
-        for (GridRow row : rows) {
+        for (GridRow<?> row : rows) {
             int currentColumn = 0;
             for (Node node : row.getNodes()) {
                 this.add(node, currentColumn, currentRow);

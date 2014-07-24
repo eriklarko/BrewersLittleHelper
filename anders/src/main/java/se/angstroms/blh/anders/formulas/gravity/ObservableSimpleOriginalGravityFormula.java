@@ -33,7 +33,7 @@ public class ObservableSimpleOriginalGravityFormula extends ObservableFormula<Sp
     @Override
     public SpecificGravity calc() {
 		System.out.println("Calculating OG");
-        return f.calc(getContext().getIngredientsList().getFermentables(),
+        return f.calc(getContext().getIngredientsList().getFermentablesSnapshot(),
                       getContext().getPostBoilVolume().get(),
                       getContext().getExtractionEfficiency().get());
     }

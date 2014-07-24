@@ -22,6 +22,7 @@ import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.volume.Liters;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
+import org.blh.recipe.uncategorized.ObservableGristPart;
 import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.context.value.findingformulas.FormulaDirectory;
 import se.angstroms.blh.anders.context.value.findingformulas.NoDefaultFormulaException;
@@ -53,11 +54,11 @@ public class MainWindowPresenter implements Initializable {
     }
 
     private ObservableList<FullContext> getDummyRecipeList() {
-        List<GristPart> fermentables = new LinkedList<>();
+        List<ObservableGristPart> fermentables = new LinkedList<>();
         List<HopAddition> hops = new LinkedList<>();
         List<YeastAddition<?>> yeasts = new LinkedList<>();
 
-        fermentables.add(new GristPart(maltStore.getAll().iterator().next(), new Kilograms(1.7)));
+        fermentables.add(new ObservableGristPart(new GristPart(maltStore.getAll().iterator().next(), new Kilograms(1.7))));
         hops.add(new HopAddition(new Hop("East kent", new Percentage(5.7)), new Minutes(60), new Grams(28.4)));
         yeasts.add(new YeastAddition<>(new Yeast("US-05", "Safale", new Percentage(88)), new Grams(11)));
 

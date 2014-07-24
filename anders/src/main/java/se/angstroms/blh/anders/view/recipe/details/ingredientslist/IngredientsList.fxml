@@ -13,15 +13,7 @@
         <URL value="@/styles/anders.css"/>
     </stylesheets>
 
-    <TableView fx:id="fermentablesTable" editable="true" tableMenuButtonVisible="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
-        <columns>
-            <TableColumn text="%ingredientsList.fermentables.name"   fx:id="fermentablesName" />
-            <TableColumn text="%ingredientsList.fermentables.amount" fx:id="fermentablesAmount" />
-        </columns>
-        <sortOrder>
-            <fx:reference source="fermentablesName" />
-        </sortOrder>
-    </TableView>
+    <se.angstroms.blh.anders.view.common.GridListView fx:id="fermentablesTable" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
 
     <TableView fx:id="hopsTable" editable="true" tableMenuButtonVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="0">
         <columns>

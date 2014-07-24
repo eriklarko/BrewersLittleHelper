@@ -1,6 +1,7 @@
 package org.blh.recipe.uncategorized;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.blh.core.recipe.GristPart;
@@ -15,7 +16,7 @@ import org.blh.core.recipe.YeastAddition;
  */
 public class IngredientsList {
 
-    private final ObservableList<GristPart> fermentables;
+    private final ObservableList<ObservableGristPart> fermentables;
     private final ObservableList<HopAddition> hopAdditions;
     private final ObservableList<YeastAddition<?>> yeastAdditions;
 
@@ -23,7 +24,7 @@ public class IngredientsList {
         this(FXCollections.observableArrayList(), FXCollections.observableArrayList(), FXCollections.observableArrayList());
     }
 
-    public IngredientsList(Collection<GristPart> fermentables,
+    public IngredientsList(Collection<ObservableGristPart> fermentables,
             Collection<HopAddition> hopAdditions,
             Collection<YeastAddition<?>> yeastAdditions) {
         this(FXCollections.observableArrayList(fermentables),
@@ -31,7 +32,7 @@ public class IngredientsList {
                 FXCollections.observableArrayList(yeastAdditions));
     }
 
-    public IngredientsList(ObservableList<GristPart> fermentables,
+    public IngredientsList(ObservableList<ObservableGristPart> fermentables,
             ObservableList<HopAddition> hopAdditions,
             ObservableList<YeastAddition<?>> yeastAdditions) {
         this.fermentables = fermentables;
@@ -39,11 +40,15 @@ public class IngredientsList {
         this.yeastAdditions = yeastAdditions;
     }
 
-    public ObservableList<GristPart> getFermentables() {
+    public ObservableList<ObservableGristPart> getFermentables() {
         return fermentables;
     }
 
-    public void setFermentables(Collection<GristPart> fermentables) {
+    public Collection<GristPart> getFermentablesSnapshot() {
+        return fermentables.stream().map((ObservableGristPart ogp) -> ogp.get()).collect(Collectors.toList());
+    }
+
+    public void setFermentables(Collection<ObservableGristPart> fermentables) {
         this.fermentables.clear();
         this.fermentables.addAll(fermentables);
     }
