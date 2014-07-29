@@ -1,8 +1,6 @@
-package se.angstroms.blh.anders.view.recipe.details.ingredientslist;
+package se.angstroms.blh.anders.view.util.listspinner;
 
 import jfxtras.scene.control.ListSpinner;
-import se.angstroms.blh.anders.view.util.listspinner.DoubleStringConverter;
-import se.angstroms.blh.anders.view.util.listspinner.ListSpinnerDoubleList;
 
 /**
  *

@@ -1,5 +1,6 @@
 package se.angstroms.blh.anders.view.recipe.details.ingredientslist;
 
+import se.angstroms.blh.anders.view.util.listspinner.ListSpinners;
 import java.util.Arrays;
 import java.util.function.Function;
 import javafx.beans.property.Property;

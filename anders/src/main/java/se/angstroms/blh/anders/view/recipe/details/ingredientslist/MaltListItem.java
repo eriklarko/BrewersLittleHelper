@@ -1,5 +1,6 @@
 package se.angstroms.blh.anders.view.recipe.details.ingredientslist;
 
+import se.angstroms.blh.anders.view.util.listspinner.ListSpinners;
 import se.angstroms.blh.anders.view.common.GridListView;
 import se.angstroms.blh.anders.view.common.SelectBoxLabel;
 import java.util.Arrays;
@@ -52,9 +53,9 @@ class MaltListItem implements GridListView.GridRow<Property<GristPart>> {
     private Node amountPart() {
         ListSpinner<Double> spinner = ListSpinners.generic(model.getValue().getAmount().value());
 
-        Function<GristPart, Double> toInt = (gp) -> gp.getAmount().value();
-        Function<Double, GristPart> fromInt = (amount) -> new GristPart(model.getValue().getMalt(), new Kilograms(amount));
-        GenericBidirectionalBindings.bidirectionalBinding(model, spinner.valueProperty(), toInt, fromInt);
+        Function<GristPart, Double> toDouble = (gp) -> gp.getAmount().value();
+        Function<Double, GristPart> fromDouble = (amount) -> new GristPart(model.getValue().getMalt(), new Kilograms(amount));
+        GenericBidirectionalBindings.bidirectionalBinding(model, spinner.valueProperty(), toDouble, fromDouble);
 
         return spinner;
     }
