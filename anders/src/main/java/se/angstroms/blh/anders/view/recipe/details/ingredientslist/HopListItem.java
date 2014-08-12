@@ -2,6 +2,7 @@ package se.angstroms.blh.anders.view.recipe.details.ingredientslist;
 
 import se.angstroms.blh.anders.view.util.listspinner.ListSpinners;
 import java.util.Arrays;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javafx.beans.property.Property;
 import javafx.scene.Node;
@@ -11,9 +12,9 @@ import org.blh.core.recipe.HopAddition;
 import org.blh.core.unit.Percentage;
 import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.weight.Grams;
-import se.angstroms.blh.anders.data.HopStore;
 import se.angstroms.blh.anders.data.Store;
 import se.angstroms.blh.anders.view.common.GridListView;
+import se.angstroms.blh.anders.view.common.RemoveButton;
 import se.angstroms.blh.anders.view.common.SelectBoxLabel;
 import se.angstroms.blh.anders.view.util.GenericBidirectionalBindings;
 import se.angstroms.blh.anders.view.util.listspinner.IntStringConverter;
@@ -26,10 +27,12 @@ class HopListItem implements GridListView.GridRow<Property<HopAddition>> {
 
     private final Property<HopAddition> model;
     private final Store<Hop> hopStore;
+    private final Consumer<Property<HopAddition>> onDelete;
 
-    public HopListItem(Property<HopAddition> model, HopStore hopStore) {
+    public HopListItem(Property<HopAddition> model, Store<Hop> hopStore, Consumer<Property<HopAddition>> onDelete) {
         this.model = model;
         this.hopStore = hopStore;
+        this.onDelete = onDelete;
     }
 
     @Override
@@ -43,7 +46,8 @@ class HopListItem implements GridListView.GridRow<Property<HopAddition>> {
                 getNamePart(),
                 getAmountPart(),
                 getAlphaAcidsPart(),
-                getTimeInBoilPart()
+                getTimeInBoilPart(),
+                removeButton()
         );
     }
 
@@ -89,5 +93,9 @@ class HopListItem implements GridListView.GridRow<Property<HopAddition>> {
         GenericBidirectionalBindings.bidirectionalBinding(model, spinner.valueProperty(), toInt, fromInt);
 
         return spinner;
+    }
+
+    private Node removeButton() {
+        return new RemoveButton(this, onDelete);
     }
 }

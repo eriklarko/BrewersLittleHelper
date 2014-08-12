@@ -13,9 +13,30 @@
         <URL value="@/styles/anders.css"/>
     </stylesheets>
 
-    <se.angstroms.blh.anders.view.common.GridListView fx:id="fermentablesTable" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-    <se.angstroms.blh.anders.view.common.GridListView fx:id="hopsTable" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-    <se.angstroms.blh.anders.view.common.GridListView fx:id="yeastsTable" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+    <ScrollPane GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <content>
+            <VBox>
+                <se.angstroms.blh.anders.view.common.GridListView fx:id="fermentablesTable" />
+                <Button text="Add malt" onAction="#addMalt" />
+            </VBox>
+        </content>
+    </ScrollPane>
+    <ScrollPane GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <content>
+            <VBox>
+                <se.angstroms.blh.anders.view.common.GridListView fx:id="hopsTable" />
+                <Button text="Add hop" onAction="#addHop" />
+            </VBox>
+        </content>
+    </ScrollPane>
+    <ScrollPane GridPane.columnIndex="2" GridPane.rowIndex="0">
+        <content>
+            <VBox>
+                <se.angstroms.blh.anders.view.common.GridListView fx:id="yeastsTable" />
+                <Button text="Add yeast" onAction="#addYeast" />
+            </VBox>
+        </content>
+    </ScrollPane>
 
     <TableView fx:id="othersTable" editable="true" tableMenuButtonVisible="true" GridPane.columnIndex="3" GridPane.rowIndex="0">
         <columns>

@@ -35,7 +35,7 @@ public class RecipeDetailsPresenter extends VBox {
 			@Override
 			public void changed(ObservableValue<? extends FullContext> ov, FullContext t, FullContext newValue) {
 				recipeName.setText(newValue.nameProperty().get());
-				ingredientsList.ingredientsListProperty().set(newValue.getIngredientsList());
+				ingredientsList.setIngredientsList(newValue.getIngredientsList());
 			}
 		});
     }

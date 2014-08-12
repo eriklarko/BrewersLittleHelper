@@ -2,6 +2,7 @@ package se.angstroms.blh.anders.view.recipe.details.ingredientslist;
 
 import se.angstroms.blh.anders.view.util.listspinner.ListSpinners;
 import java.util.Arrays;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javafx.beans.property.Property;
 import javafx.scene.Node;
@@ -12,6 +13,7 @@ import org.blh.core.unit.Unit;
 import org.blh.core.unit.volume.Milliliters;
 import se.angstroms.blh.anders.data.YeastStore;
 import se.angstroms.blh.anders.view.common.GridListView;
+import se.angstroms.blh.anders.view.common.RemoveButton;
 import se.angstroms.blh.anders.view.common.SelectBoxLabel;
 import se.angstroms.blh.anders.view.util.GenericBidirectionalBindings;
 
@@ -23,10 +25,12 @@ class YeastListItem implements GridListView.GridRow<Property<YeastAddition<?>>>{
 
     private final Property<YeastAddition<?>> model;
     private final YeastStore yeastStore;
+    private final Consumer<Property<YeastAddition<?>>> onDelete;
 
-    public YeastListItem(Property<YeastAddition<?>> model, YeastStore yeastStore) {
+    public YeastListItem(Property<YeastAddition<?>> model, YeastStore yeastStore, Consumer<Property<YeastAddition<?>>> onDelete) {
         this.model = model;
         this.yeastStore = yeastStore;
+        this.onDelete = onDelete;
     }
 
     @Override
@@ -38,7 +42,8 @@ class YeastListItem implements GridListView.GridRow<Property<YeastAddition<?>>>{
     public Iterable<Node> getNodes() {
         return Arrays.asList(
                 getNamePart(),
-                getAmountPart()
+                getAmountPart(),
+                removeButton()
         );
     }
 
@@ -61,5 +66,9 @@ class YeastListItem implements GridListView.GridRow<Property<YeastAddition<?>>>{
         GenericBidirectionalBindings.bidirectionalBinding(model, spinner.valueProperty(), toInt, fromInt);
 
         return spinner;
+    }
+
+    private Node removeButton() {
+        return new RemoveButton(this, onDelete);
     }
 }

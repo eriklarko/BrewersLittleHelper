@@ -3,7 +3,7 @@ package se.angstroms.blh.anders.view.util.listspinner;
 import jfxtras.scene.control.ListSpinner;
 
 /**
- *
+ * Contains pre-configured ListSpinner UI components.
  * @author eriklark
  */
 public class ListSpinners {
