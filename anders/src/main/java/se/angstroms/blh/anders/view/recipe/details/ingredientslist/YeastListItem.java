@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Node;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.util.Pair;
@@ -15,7 +16,6 @@ import org.blh.core.unit.Unit;
 import org.blh.core.unit.volume.Milliliters;
 import se.angstroms.blh.anders.data.YeastStore;
 import se.angstroms.blh.anders.view.common.GridListView;
-import static se.angstroms.blh.anders.view.common.GridListView.percentageWidth;
 import se.angstroms.blh.anders.view.common.RemoveButton;
 import se.angstroms.blh.anders.view.common.SelectBoxLabel;
 import se.angstroms.blh.anders.view.util.GenericBidirectionalBindings;
@@ -24,14 +24,14 @@ import se.angstroms.blh.anders.view.util.GenericBidirectionalBindings;
  *
  * @author eriklark
  */
-class YeastListItem implements GridListView.GridRow<Property<YeastAddition<?>>>{
+class YeastListItem implements GridListView.GridRow<YeastAddition<?>> {
 
     private final Property<YeastAddition<?>> model;
     private final YeastStore yeastStore;
-    private final Consumer<Property<YeastAddition<?>>> onDelete;
+    private final Consumer<YeastAddition<?>> onDelete;
 
-    public YeastListItem(Property<YeastAddition<?>> model, YeastStore yeastStore, Consumer<Property<YeastAddition<?>>> onDelete) {
-        this.model = model;
+    public YeastListItem(YeastAddition<?> model, YeastStore yeastStore, Consumer<YeastAddition<?>> onDelete) {
+        this.model = new SimpleObjectProperty<>(model);
         this.yeastStore = yeastStore;
         this.onDelete = onDelete;
     }

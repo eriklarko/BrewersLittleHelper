@@ -4,21 +4,20 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import javafx.beans.property.Property;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
 import javafx.util.Pair;
 
 /**
  *
  * @author eriklark
  */
-public class GridListView<T extends Property<?>> extends GridPane {
+public class GridListView<T> extends GridPane {
 
     public static ColumnConstraints percentageWidth(double percentage) {
         ColumnConstraints columnConstraints = new ColumnConstraints();
@@ -26,7 +25,7 @@ public class GridListView<T extends Property<?>> extends GridPane {
         return columnConstraints;
     }
 
-    private static <T extends Property<?>> ObservableList<GridRow<T>> toGridRows(final ObservableList<T> models, final Function<T, GridRow<T>> creator) {
+    private static <T> ObservableList<GridRow<T>> toGridRows(final ObservableList<T> models, final Function<T, GridRow<T>> creator) {
 
         List<GridRow<T>> gridRows = models.stream().map((T model) -> newRow(models, model, creator)).collect(Collectors.toList());
 
@@ -53,11 +52,10 @@ public class GridListView<T extends Property<?>> extends GridPane {
                         if (c.wasReplaced()) {
                             continue;
                         }
-
                         Iterator<GridRow<T>> iterator = observableGridRows.iterator();
                         while (iterator.hasNext()) {
                             GridRow<T> gridRow = iterator.next();
-                            if (gridRow.getModel().equals(t)) {
+                            if (gridRow.getModel().getValue().equals(t)) {
                                 System.out.println("It seems " + t + " was removed      " + c);
                                 iterator.remove();
                             }
@@ -70,23 +68,22 @@ public class GridListView<T extends Property<?>> extends GridPane {
         return observableGridRows;
     }
 
-    private static <T extends Property<?>> GridRow<T> newRow(ObservableList<T> models, T model, Function<T, GridRow<T>> creator) {
+    private static <T> GridRow<T> newRow(List<T> models, T model, Function<T, GridRow<T>> creator) {
         GridListView.GridRow<T> gridRow = creator.apply(model);
 
         // Register listener that triggers an update on the models list whenever a model changes.
         // Without this, only the model gets an update - not the list itself..
-        gridRow.getModel().addListener((source, _2, n) -> {
-            T asProperty = (T) source;
-            int index = models.indexOf(asProperty);
-            models.set(index, asProperty);
+        gridRow.getModel().addListener((_1, old, n) -> {
+            int index = models.indexOf(old);
+            models.set(index, n);
         });
 
         return gridRow;
     }
 
-    public static interface GridRow<T extends Property<?>> {
+    public static interface GridRow<T> {
 
-        T getModel();
+        ObservableValue<T> getModel();
 
         Iterable<Pair<ColumnConstraints, Node>> getNodes();
     }

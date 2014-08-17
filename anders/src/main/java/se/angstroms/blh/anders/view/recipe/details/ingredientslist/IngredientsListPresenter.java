@@ -1,7 +1,6 @@
 package se.angstroms.blh.anders.view.recipe.details.ingredientslist;
 
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -42,9 +41,9 @@ public class IngredientsListPresenter extends GridPane {
     @Inject private HopStore hopStore;
     @Inject private YeastStore yeastStore;
 
-    @FXML private GridListView<Property<GristPart>> fermentablesTable;
-    @FXML private GridListView<Property<HopAddition>> hopsTable;
-    @FXML private GridListView<Property<YeastAddition<?>>> yeastsTable;
+    @FXML private GridListView<GristPart> fermentablesTable;
+    @FXML private GridListView<HopAddition> hopsTable;
+    @FXML private GridListView<YeastAddition<?>> yeastsTable;
 
 	private final ObjectProperty<IngredientsList> ingredientsListProperty;
 
@@ -78,23 +77,27 @@ public class IngredientsListPresenter extends GridPane {
     }
 
     private void doSetIngredientsList(IngredientsList ingredientsList) {
-        fermentablesTable.setData(ingredientsList.getFermentables(), (model) -> new MaltListItem(model, maltStore, (gp) -> ingredientsList.getFermentables().remove(gp)));
+        fermentablesTable.setData(ingredientsList.getFermentables(), (model) -> new MaltListItem(model, maltStore, (gp) -> {
+            System.out.println("REMOVING " + gp + ". " + ingredientsList.getFermentables().size() + " fermentables");
+            ingredientsList.getFermentables().remove(gp);
+            System.out.println("REMOVED  " + gp + ". " + ingredientsList.getFermentables().size() + " fermentables");
+        }));
         hopsTable.setData(ingredientsList.getHopAdditions(), (model) -> new HopListItem(model, hopStore, (ha) -> ingredientsList.getHopAdditions().remove(ha)));
         yeastsTable.setData(ingredientsList.getYeastAdditions(), (model) -> new YeastListItem(model, yeastStore, (ya) -> ingredientsList.getYeastAdditions().remove(ya)));
     }
 
     @FXML
     public void addMalt(ActionEvent e) {
-        ingredientsListProperty.get().getFermentables().add(new SimpleObjectProperty<>(new GristPart(new Malt("TROLL", new Lovibond(1), new ExtractPotential(new GravityPoints(66)), Malt.TYPE.GRAIN), new Kilograms(2))));
+        ingredientsListProperty.get().getFermentables().add(new GristPart(new Malt("TROLL", new Lovibond(1), new ExtractPotential(new GravityPoints(66)), Malt.TYPE.GRAIN), new Kilograms(2)));
     }
 
     @FXML
     public void addHop(ActionEvent e) {
-        ingredientsListProperty.get().getHopAdditions().add(new SimpleObjectProperty<>(new HopAddition(new Hop("Hej", new Percentage(10)), new Minutes(60), new Grams(10))));
+        ingredientsListProperty.get().getHopAdditions().add(new HopAddition(new Hop("Hej", new Percentage(10)), new Minutes(60), new Grams(10)));
     }
 
     @FXML
     public void addYeast(ActionEvent e) {
-        ingredientsListProperty.get().getYeastAdditions().add(new SimpleObjectProperty<>(new YeastAddition<Milliliters>(new Yeast("asdf", "asdffff", new Percentage(80)), new Milliliters(10))));
+        ingredientsListProperty.get().getYeastAdditions().add(new YeastAddition<>(new Yeast("asdf", "asdffff", new Percentage(80)), new Milliliters(10)));
     }
 }

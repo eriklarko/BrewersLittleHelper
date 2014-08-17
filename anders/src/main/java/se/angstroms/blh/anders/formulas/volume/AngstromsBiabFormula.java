@@ -29,7 +29,7 @@ public class AngstromsBiabFormula extends ObservableFormula<Liters>{
         double boilOff = 2;
         double trubLoss = 0.5;
         double batchSize = getContext().getPostBoilVolume().get().value();
-        double maltWeight = getContext().getIngredientsList().getFermentablesSnapshot().stream().map((gp) -> gp.getAmount().value()).reduce(0d, (pre, toAdd) -> pre + toAdd);
+        double maltWeight = getContext().getIngredientsList().getFermentables().stream().map((gp) -> gp.getAmount().value()).reduce(0d, (pre, toAdd) -> pre + toAdd);
 
         return new Liters(boilOff + trubLoss + batchSize + maltWeight * 0.9);
     }

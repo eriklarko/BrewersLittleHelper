@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Node;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.util.Pair;
@@ -19,14 +20,14 @@ import se.angstroms.blh.anders.view.common.RemoveButton;
 import se.angstroms.blh.anders.view.util.GenericBidirectionalBindings;
 import static se.angstroms.blh.anders.view.common.GridListView.percentageWidth;
 
-class MaltListItem implements GridListView.GridRow<Property<GristPart>> {
+class MaltListItem implements GridListView.GridRow<GristPart> {
 
     private final Store<Malt> ms;
     private final Property<GristPart> model;
-    private final Consumer<Property<GristPart>> onDelete;
+    private final Consumer<GristPart> onDelete;
 
-    public MaltListItem(Property<GristPart> model, Store<Malt> ms, Consumer<Property<GristPart>> onDelete) {
-        this.model = model;
+    public MaltListItem(GristPart model, Store<Malt> ms, Consumer<GristPart> onDelete) {
+        this.model = new SimpleObjectProperty<>(model);
         this.ms = ms;
         this.onDelete = onDelete;
     }

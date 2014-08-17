@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Node;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.util.Pair;
@@ -25,14 +26,14 @@ import se.angstroms.blh.anders.view.util.listspinner.IntStringConverter;
  *
  * @author eriklark
  */
-class HopListItem implements GridListView.GridRow<Property<HopAddition>> {
+class HopListItem implements GridListView.GridRow<HopAddition> {
 
     private final Property<HopAddition> model;
     private final Store<Hop> hopStore;
-    private final Consumer<Property<HopAddition>> onDelete;
+    private final Consumer<HopAddition> onDelete;
 
-    public HopListItem(Property<HopAddition> model, Store<Hop> hopStore, Consumer<Property<HopAddition>> onDelete) {
-        this.model = model;
+    public HopListItem(HopAddition model, Store<Hop> hopStore, Consumer<HopAddition> onDelete) {
+        this.model = new SimpleObjectProperty<>(model);
         this.hopStore = hopStore;
         this.onDelete = onDelete;
     }
