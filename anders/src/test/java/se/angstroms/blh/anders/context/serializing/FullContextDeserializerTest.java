@@ -29,9 +29,9 @@ public class FullContextDeserializerTest {
         fullContextSerializer.unitStringParserFactory = new UnitStringParserFactory();
         FullContext actual = fullContextSerializer.parseFromFile(new File(this.getClass().getResource(pathToValidFile).toURI()));
 
-        assertValue("Original gravity",      STATE.CALCULATED, new SpecificGravity(1), NopFormula.class, actual.getOriginalGravity());
-        assertValue("Final gravity",         STATE.CALCULATED, null,                   NopFormula.class, actual.getFinalGravity());
-        assertValue("Extraction efficiency", STATE.INPUTTED,   new Factor(70),         null,             actual.getExtractionEfficiency());
+        assertValue("Original gravity",      STATE.CALCULATED, null,           NopFormula.class, actual.getOriginalGravity());
+        assertValue("Final gravity",         STATE.CALCULATED, null,           NopFormula.class, actual.getFinalGravity());
+        assertValue("Extraction efficiency", STATE.INPUTTED,   new Factor(70), null,             actual.getExtractionEfficiency());
         Assert.assertEquals("Cooling loss value differs", new Factor(40), actual.getCoolingLoss().get());
     }
 

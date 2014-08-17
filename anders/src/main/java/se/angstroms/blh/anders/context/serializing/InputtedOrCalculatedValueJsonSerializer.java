@@ -116,6 +116,7 @@ public class InputtedOrCalculatedValueJsonSerializer implements JsonSerializer<I
             Object newInstance = constructor.newInstance(context);
             ObservableFormula observableFormula = (ObservableFormula) newInstance;
             iocv.setFormula(observableFormula);
+            iocv.enterCalculatedState();
         } catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
             throw new JsonParseException(ex);
         }
