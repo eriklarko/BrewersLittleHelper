@@ -45,6 +45,8 @@ public class RecipeGridPresenter extends FlowPane implements RecipeSelector {
 				setRecipes(newRecipes);
 			}
 		});
+
+        this.getStyleClass().add("recipe-grid");
 	}
 
 	@Override

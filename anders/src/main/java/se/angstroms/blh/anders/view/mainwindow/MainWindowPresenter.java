@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,10 +27,12 @@ import org.blh.core.unit.volume.Liters;
 import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
 import se.angstroms.blh.anders.context.FullContext;
+import se.angstroms.blh.anders.context.value.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.context.value.findingformulas.FormulaDirectory;
 import se.angstroms.blh.anders.context.value.findingformulas.NoDefaultFormulaException;
 import se.angstroms.blh.anders.data.MaltStore;
 import se.angstroms.blh.anders.formulas.DefaultFormulaHelper;
+import se.angstroms.blh.anders.formulas.NopFormula;
 import se.angstroms.blh.anders.view.recipe.RecipesTab;
 
 /**
@@ -65,6 +69,7 @@ public class MainWindowPresenter implements Initializable {
 
         try {
             FullContext recipe = new FullContext();
+
             recipe.nameProperty().set("Dodo IPA");
             recipe.beerTypeProperty().set(BeerType.ALE);
             recipe.getIngredientsList().setFermentables(fermentables);
@@ -72,10 +77,11 @@ public class MainWindowPresenter implements Initializable {
             recipe.getIngredientsList().setYeastAdditions(yeasts);
 
             recipe.getPostBoilVolume().set(new Liters(7));
-            recipe.getPreFermentationVolume().set(new Liters(7));
             recipe.getExtractionEfficiency().set(new Factor(0.7));
 
             new DefaultFormulaHelper(formulaDirectory).setupDefaultFormulas(recipe);
+
+            recipe.getPostBoilVolume().setFormula(new NopFormula<>(new Liters(1), recipe));
             return FXCollections.observableArrayList(recipe);
 
         } catch (NoDefaultFormulaException ex) {

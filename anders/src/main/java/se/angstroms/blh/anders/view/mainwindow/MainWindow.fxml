@@ -10,6 +10,9 @@
 <?scenebuilder-preview-i18n-resource ../../../../i18n/en_US.properties?>
 
 <StackPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="se.angstroms.blh.anders.view.mainwindow.MainWindowPresenter">
+    <stylesheets>
+        <URL value="@/styles/anders.css"/>
+    </stylesheets>
     <children>
         <TabPane tabClosingPolicy="UNAVAILABLE">
             <tabs>

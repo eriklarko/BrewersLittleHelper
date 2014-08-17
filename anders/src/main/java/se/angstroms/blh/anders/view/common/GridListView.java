@@ -9,13 +9,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
+import javafx.util.Pair;
 
 /**
  *
  * @author eriklark
  */
 public class GridListView<T extends Property<?>> extends GridPane {
+
+    public static ColumnConstraints percentageWidth(double percentage) {
+        ColumnConstraints columnConstraints = new ColumnConstraints();
+        columnConstraints.setPercentWidth(percentage);
+        return columnConstraints;
+    }
 
     private static <T extends Property<?>> ObservableList<GridRow<T>> toGridRows(final ObservableList<T> models, final Function<T, GridRow<T>> creator) {
 
@@ -79,21 +88,21 @@ public class GridListView<T extends Property<?>> extends GridPane {
 
         T getModel();
 
-        Iterable<Node> getNodes();
+        Iterable<Pair<ColumnConstraints, Node>> getNodes();
     }
 
     private ObservableList<GridRow<T>> rows;
-
     private final ListChangeListener<GridRow<?>> rowsListener = (c) -> {
-        // TODO: Do I need this loop?
-        //while(c.next());
         layoutDataRows();
     };
 
     public GridListView() {
+        this.getStyleClass().add("grid-list-view");
+        this.getStylesheets().add("/styles/anders.css");
     }
 
     public GridListView(ObservableList<T> rows, Function<T, GridRow<T>> creator) {
+        this();
         setData(rows, creator);
     }
 
@@ -107,13 +116,23 @@ public class GridListView<T extends Property<?>> extends GridPane {
     }
 
     private void layoutDataRows() {
+        this.getColumnConstraints().clear();
         this.getChildren().clear();
 
         int currentRow = 0;
         for (GridRow<T> row : rows) {
             int currentColumn = 0;
-            for (Node node : row.getNodes()) {
-                this.add(node, currentColumn, currentRow);
+            for (Pair<ColumnConstraints, Node> pair : row.getNodes()) {
+                if (pair.getKey() != null && currentRow == 0) {
+                    this.getColumnConstraints().add(currentColumn, pair.getKey());
+                }
+
+                this.add(pair.getValue(), currentColumn, currentRow);
+                if (currentRow % 2 == 0) {
+                    pair.getValue().getStyleClass().add("grid-list-view-even");
+                } else {
+                    pair.getValue().getStyleClass().add("grid-list-view-odd");
+                }
                 currentColumn++;
             }
 

@@ -8,6 +8,8 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import javafx.beans.property.Property;
 import javafx.scene.Node;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.util.Pair;
 import jfxtras.scene.control.ListSpinner;
 import org.blh.core.ingredient.Malt;
 import org.blh.core.recipe.GristPart;
@@ -15,6 +17,7 @@ import org.blh.core.unit.weight.Kilograms;
 import se.angstroms.blh.anders.data.Store;
 import se.angstroms.blh.anders.view.common.RemoveButton;
 import se.angstroms.blh.anders.view.util.GenericBidirectionalBindings;
+import static se.angstroms.blh.anders.view.common.GridListView.percentageWidth;
 
 class MaltListItem implements GridListView.GridRow<Property<GristPart>> {
 
@@ -38,11 +41,11 @@ class MaltListItem implements GridListView.GridRow<Property<GristPart>> {
     }
 
     @Override
-    public Iterable<Node> getNodes() {
+    public Iterable<Pair<ColumnConstraints, Node>> getNodes() {
         return Arrays.asList(
-                namePart(),
-                amountPart(),
-                removeButton()
+                new Pair(percentageWidth(73), namePart()),
+                new Pair(null, amountPart()),
+                new Pair(null, removeButton())
         );
     }
 

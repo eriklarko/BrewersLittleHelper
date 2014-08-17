@@ -55,7 +55,7 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> implements Value<T> {
 		return value.get();
 	}
 
-    private void calculateAndSetValue(Observable lol) {
+    private void calculateAndSetValue(Observable ONLY_HERE_FOR_METHOD_TO_BE_A_VALID_LISTENER) {
         if (value.isBound()) {
             throw new RuntimeException(this + "'s value was bound.");
         }
@@ -70,7 +70,6 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> implements Value<T> {
 
     public final void set(T value) {
 		assertValueNotNull(value);
-
         if (state.get() != STATE.INPUTTED) {
             this.calculatedValue.removeFormulaListener(this::calculateAndSetValue);
             this.inputtedValue.set(value);
@@ -103,14 +102,11 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> implements Value<T> {
         this.calculatedValue.addFormulaListener(this::calculateAndSetValue);
     }
 
-    /**
-     * Changes the formula that is used to calculate the value. This method
-     * puts the object in the CALCULATED state, but doesn't update the value.
-     * @param formula
-     */
     public void setFormula(ObservableFormula<T> formula) {
         this.calculatedValue.formulaProperty().set(formula);
-        doEnterCalculatedState();
+        if (state.get() == STATE.INVALID) {
+            doEnterCalculatedState();
+        }
     }
 
     public ReadOnlyObjectProperty<ObservableFormula<T>> formulaProperty() {

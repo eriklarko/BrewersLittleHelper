@@ -6,6 +6,8 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import javafx.beans.property.Property;
 import javafx.scene.Node;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.util.Pair;
 import jfxtras.scene.control.ListSpinner;
 import org.blh.core.ingredient.Hop;
 import org.blh.core.recipe.HopAddition;
@@ -41,13 +43,13 @@ class HopListItem implements GridListView.GridRow<Property<HopAddition>> {
     }
 
     @Override
-    public Iterable<Node> getNodes() {
+    public Iterable<Pair<ColumnConstraints, Node>> getNodes() {
         return Arrays.asList(
-                getNamePart(),
-                getAmountPart(),
-                getAlphaAcidsPart(),
-                getTimeInBoilPart(),
-                removeButton()
+                new Pair(null, getNamePart()),
+                new Pair(null, getAmountPart()),
+                new Pair(null, getAlphaAcidsPart()),
+                new Pair(null, getTimeInBoilPart()),
+                new Pair(null, removeButton())
         );
     }
 

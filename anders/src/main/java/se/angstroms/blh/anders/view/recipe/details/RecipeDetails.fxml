@@ -14,9 +14,11 @@
         <URL value="@/styles/anders.css"/>
     </stylesheets>
 
-    <HBox>
-        <Label text="Recipe Name:" /><Label fx:id="recipeName" />
-    </HBox>
+    <Label fx:id="recipeName">
+        <styleClass>
+            <String fx:value="recipe-details-name" />
+        </styleClass>
+    </Label>
 
     <IngredientsListPresenter fx:id="ingredientsList" />
     <RecipeValuesPresenter fx:id="recipeValues" />

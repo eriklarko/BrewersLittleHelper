@@ -1,20 +1,15 @@
 package se.angstroms.blh.anders.view.recipe.selector.grid;
 
-import javafx.collections.FXCollections;
-import javafx.event.EventType;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javax.inject.Inject;
-import org.blh.core.ingredient.Malt;
 import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.context.value.UnitStringFormatter;
-import se.angstroms.blh.anders.data.MaltStore;
-import se.angstroms.blh.anders.view.util.FilterableComboBox;
 
 /**
  *
@@ -29,6 +24,8 @@ public class GridButton extends FlowPane {
 
     public GridButton(FullContext recipe) {
         this.recipe = recipe;
+        this.getStyleClass().add("recipe-grid-button");
+        this.getStylesheets().add("styles/anders.css");
     }
 
     public void render() {
@@ -36,20 +33,22 @@ public class GridButton extends FlowPane {
         addRecieName();
         addRandomFacts();
 
-        this.setPrefWidth(200);
+        this.setPrefWidth(220);
     }
 
     private void addImage() {
         Canvas image = new Canvas(100, 150);
-        image.getGraphicsContext2D().setFill(Color.CYAN);
         image.getGraphicsContext2D().fillRect(0, 0, image.getWidth(), image.getHeight());
 
-        this.getChildren().add(image);
+        HBox lol = new HBox(image);
+        lol.getStyleClass().add("recipe-grid-image");
+        this.getChildren().add(lol);
     }
 
     private void addRecieName() {
         Label name = new Label(recipe.nameProperty().get());
         name.setFont(Font.font(name.getFont().getFamily(), FontWeight.BOLD, name.getFont().getSize()));
+        name.getStyleClass().add("recipe-grid-name");
         this.getChildren().add(name);
     }
 

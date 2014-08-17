@@ -80,6 +80,7 @@ public class UnitStringParserFactory {
             case PRE_MASH_VOLUME:
             case PRE_BOIL_VOLUME:
             case POST_BOIL_VOLUME:
+            case PRE_FERMENTATION_VOLUME:
                 return getParserFor(Liters.class);
 			default:
 				throw new IllegalArgumentException("I don't know how to turn strings into " + type.name() + " yet");

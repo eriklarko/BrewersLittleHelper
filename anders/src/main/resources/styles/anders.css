@@ -1,7 +1,82 @@
-/*
- * Empty Stylesheet file.
+/**
+ * -fx-padding: top, right, bottom, left
  */
 
-.mainFxmlClass {
+.debug-border {
+    -fx-border-color: black;
+    -fx-border-width: 0.1mm;
+}
 
+/******************************************************
+ *                    OVERRIDES                       *
+ ******************************************************/
+.root {
+    background-color: white;
+
+    -fx-background-color: background-color;
+    -fx-background-image: url("../images/spray.png");
+}
+.scroll-pane {
+    -fx-fit-to-width: true;
+    -fx-fit-to-height: true;
+}
+.button {
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-border-width: 0.1mm;
+    -fx-border-radius: 2mm 2mm 2mm 2mm;
+}
+.button:armed {
+    -fx-background-color: gray;
+    -fx-background-radius: 2mm 2mm 2mm 2mm;
+}
+
+/******************************************************
+ *                  RECIPE GRID                       *
+ ******************************************************/
+.recipe-grid {
+    -fx-padding: 2mm;
+    -fx-hgap: 4mm;
+    -fx-vgap: 4mm;
+}
+.recipe-grid-button {
+    -fx-background-color: background-color;
+    -fx-padding: 2mm;
+    -fx-border-color: black;
+    -fx-border-width: 0.1mm;
+    -fx-border-radius: 2mm 2mm 2mm 2mm;
+}
+.recipe-grid-image {
+    -fx-padding: 0 2mm 2mm 1mm;
+}
+.recipe-grid-name {
+}
+
+/******************************************************
+ *                  RECIPE DETAILS                    *
+ ******************************************************/
+.recipe-details-name {
+    -fx-font-size: 2em;
+    -fx-padding: 2mm 0 2mm 0;
+}
+.recipe-details-ingredient-list {
+    -fx-alignment: top-right; // Aligns the button to the right
+    -fx-background-color: background-color; // Removes the gray background, transparent doesn't work...
+    -fx-padding: 1mm;
+
+    -fx-border-color: black;
+    -fx-border-width: 0.1mm;
+}
+
+/******************************************************
+ *                   GRID LIST                        *
+ ******************************************************/
+.grid-list-view {
+    -fx-padding: 1mm;
+}
+.grid-list-view-even {
+    -fx-background-color: background-color;
+}
+.grid-list-view-odd {
+    -fx-background-color: lightskyblue;
 }

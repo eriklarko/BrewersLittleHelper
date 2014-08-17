@@ -6,16 +6,16 @@ import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
-import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.HBox;
 import se.angstroms.blh.anders.view.util.FilterableComboBox;
 
 /**
  *
  * @author eriklark
  */
-public class SelectBoxLabel<T> extends Group {
+public class SelectBoxLabel<T> extends HBox {
 
     private final ObjectProperty<T> model;
     private final Label label;

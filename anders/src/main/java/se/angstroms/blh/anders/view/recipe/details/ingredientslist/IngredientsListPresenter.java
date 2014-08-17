@@ -7,7 +7,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javax.inject.Inject;
@@ -44,12 +43,8 @@ public class IngredientsListPresenter extends GridPane {
     @Inject private YeastStore yeastStore;
 
     @FXML private GridListView<Property<GristPart>> fermentablesTable;
-
     @FXML private GridListView<Property<HopAddition>> hopsTable;
-
     @FXML private GridListView<Property<YeastAddition<?>>> yeastsTable;
-
-    @FXML private TableView<String> othersTable;
 
 	private final ObjectProperty<IngredientsList> ingredientsListProperty;
 
@@ -66,10 +61,9 @@ public class IngredientsListPresenter extends GridPane {
 		});
 
         this.getColumnConstraints().addAll(
-                columnConstraintsWithPercentageWidth(25),
-                columnConstraintsWithPercentageWidth(25),
-                columnConstraintsWithPercentageWidth(25),
-                columnConstraintsWithPercentageWidth(25)
+                columnConstraintsWithPercentageWidth(34),
+                columnConstraintsWithPercentageWidth(33),
+                columnConstraintsWithPercentageWidth(33)
         );
     }
 

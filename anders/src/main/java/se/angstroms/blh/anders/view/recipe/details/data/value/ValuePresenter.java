@@ -59,7 +59,7 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
                     inputtedValue.setValue(lastLegal);
 
                     // TODO: Handle exceptions
-                    System.err.println(ex.getMessage());
+                    System.err.println(this.getClass() + " line 62: " + ex.getMessage());
                 }
 			}
 		});
@@ -96,11 +96,7 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 				triggerValueChangedVisualization();
 			}
 		});
-
-        //if (inputtedOrCalculatedValue.stateProperty().get() == STATE.INPUTTED) {
-            setValue(inputtedOrCalculatedValue.get());
-        //}
-
+        setValue(inputtedOrCalculatedValue.get());
         handleInputtedState(inputtedOrCalculatedValue.stateProperty().get() == STATE.INPUTTED);
     }
 
@@ -140,7 +136,7 @@ public class ValuePresenter<T extends Unit<?>> extends HBox {
 
     public Button getGoBackToCalculatedButton() {
         if (goBackToCalculatedButton == null) {
-            goBackToCalculatedButton = new Button("M");
+            goBackToCalculatedButton = new Button("A");
 
             goBackToCalculatedButton.visibleProperty().bind(this.inputtedValue.visibleProperty());
             goBackToCalculatedButton.setOnAction((ActionEvent t) ->

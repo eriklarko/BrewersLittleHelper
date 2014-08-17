@@ -6,6 +6,8 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import javafx.beans.property.Property;
 import javafx.scene.Node;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.util.Pair;
 import jfxtras.scene.control.ListSpinner;
 import org.blh.core.ingredient.Yeast;
 import org.blh.core.recipe.YeastAddition;
@@ -13,6 +15,7 @@ import org.blh.core.unit.Unit;
 import org.blh.core.unit.volume.Milliliters;
 import se.angstroms.blh.anders.data.YeastStore;
 import se.angstroms.blh.anders.view.common.GridListView;
+import static se.angstroms.blh.anders.view.common.GridListView.percentageWidth;
 import se.angstroms.blh.anders.view.common.RemoveButton;
 import se.angstroms.blh.anders.view.common.SelectBoxLabel;
 import se.angstroms.blh.anders.view.util.GenericBidirectionalBindings;
@@ -39,11 +42,11 @@ class YeastListItem implements GridListView.GridRow<Property<YeastAddition<?>>>{
     }
 
     @Override
-    public Iterable<Node> getNodes() {
+    public Iterable<Pair<ColumnConstraints, Node>> getNodes() {
         return Arrays.asList(
-                getNamePart(),
-                getAmountPart(),
-                removeButton()
+                new Pair(null, getNamePart()),
+                new Pair(null, getAmountPart()),
+                new Pair(null, removeButton())
         );
     }
 

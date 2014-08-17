@@ -20,7 +20,7 @@ public class AngstromsBiabFormula extends ObservableFormula<Liters>{
 
     @Override
     protected void registerDependentVariables(FullContext context) {
-        registerDependentVariable(context.getPreFermentationVolume());
+        registerDependentVariable(context.getPostBoilVolume());
         registerDependentVariable(context.getIngredientsList().getFermentables());
     }
 
@@ -28,7 +28,7 @@ public class AngstromsBiabFormula extends ObservableFormula<Liters>{
     public Liters calc() {
         double boilOff = 2;
         double trubLoss = 0.5;
-        double batchSize = getContext().getPreFermentationVolume().get().value();
+        double batchSize = getContext().getPostBoilVolume().get().value();
         double maltWeight = getContext().getIngredientsList().getFermentablesSnapshot().stream().map((gp) -> gp.getAmount().value()).reduce(0d, (pre, toAdd) -> pre + toAdd);
 
         return new Liters(boilOff + trubLoss + batchSize + maltWeight * 0.9);
