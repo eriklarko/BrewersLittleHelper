@@ -12,6 +12,8 @@ public class RegExpBuilder {
                 System.out.println("Group " + i + ": " + m.group(i));
             }
         }
+
+        m.reset();
     }
 
     public static final String whitespace = "\\s";
@@ -92,6 +94,10 @@ public class RegExpBuilder {
 
     public Matcher in(String s) {
         return Pattern.compile(regexp.toString(), Pattern.CASE_INSENSITIVE).matcher(s);
+    }
+
+    public Matcher inMultiline(String s) {
+        return Pattern.compile(regexp.toString(), Pattern.CASE_INSENSITIVE | Pattern.MULTILINE).matcher(s);
     }
 
     @Override

@@ -20,13 +20,15 @@ public abstract class Downloader {
     private final File downloadDir;
 
     public Downloader() {
-        File database = new File("prod.db");
+        String id = getName().replace(" ", "_").replace("/", "_").trim();
+
+        File database = new File(id + ".db");
         boolean doSeed = !database.exists();
 
         urlsDb = new UrlsToDownload(database.getName());
         threadIdToRunning = new HashMap<>();
 
-        downloadDir = new File("downloaded-recipes");
+        downloadDir = new File(id + "-downloaded-recipes");
         System.out.println("Saving downloaded recipes in " + downloadDir.getAbsolutePath());
         if (!downloadDir.exists()) {
             downloadDir.mkdirs();
@@ -36,6 +38,8 @@ public abstract class Downloader {
             seed();
         }
     }
+
+    protected abstract String getName();
 
     protected abstract void seed();
 
@@ -52,8 +56,8 @@ public abstract class Downloader {
         while (threadIdToRunning.get(i)) {
             try {
                 long sleepMillis = (long) (Math.random() * 30000 + 3000);
-                Thread.sleep(sleepMillis);
                 System.out.println("  Worker " + i + " is sleeping for " + sleepMillis + "ms");
+                Thread.sleep(sleepMillis);
 
                 if (Math.random() < 0.2) {
                     System.out.println("  Worker " + i + " requesting a new tor exit node");
@@ -85,7 +89,8 @@ public abstract class Downloader {
             System.out.println("Worker " + workerId + " is downloading " + url);
             URI uri = url.toURI();
             String downloadedHtml = tor.downloadUri(uri);
-            writeToDisk(downloadedHtml, (url.getAuthority() + url.getFile()).replace(File.separator, "__"));
+            File fileLocation = writeToDisk(downloadedHtml, (url.getAuthority() + url.getFile()).replace(File.separator, "__"));
+            urlsDb.urlDownloadedTo(url, fileLocation);
 
             handleDownloadedFile(url, downloadedHtml);
         } catch (URISyntaxException ex) {
@@ -103,11 +108,15 @@ public abstract class Downloader {
         }
     }
 
-     private void writeToDisk(String contents, String file) throws IOException {
-        try (FileWriter fw = new FileWriter(new File(downloadDir, file))) {
+     private File writeToDisk(String contents, String filePath) throws IOException {
+        File file = new File(downloadDir, filePath);
+        try (FileWriter fw = new FileWriter(file)) {
             fw.append(contents);
             fw.flush();
-            System.out.println("  Wrote downloaded html to " + file);
+            System.out.println("  Wrote downloaded html to " + filePath);
+            return file;
+        } catch (Exception ex) {
+            throw new IOException(ex);
         }
     }
 

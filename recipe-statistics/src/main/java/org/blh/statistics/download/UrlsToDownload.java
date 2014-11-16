@@ -1,5 +1,6 @@
 package org.blh.statistics.download;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -63,13 +64,14 @@ public class UrlsToDownload {
     }
 
     private boolean tableIsValid() {
-        try (ResultSet rs = query("SELECT key, url, started, finished, numberOfTimesEncountered FROM " + tableName)) {
+        try (ResultSet rs = query("SELECT key, url, started, finished, numberOfTimesEncountered, file FROM " + tableName)) {
             if (rs.next()) {
                 rs.getString(1);
                 rs.getString(2);
                 rs.getString(3);
                 rs.getString(4);
                 rs.getInt(5);
+                rs.getString(6);
 
                 return true;
             }
@@ -85,7 +87,8 @@ public class UrlsToDownload {
                 + "url TEXT, "
                 + "started TEXT, "
                 + "finished TEXT, "
-                + "numberOfTimesEncountered INTEGER"
+                + "numberOfTimesEncountered INTEGER, "
+                + "file TEXT"
                 + ")";
         update(createQuery);
     }
@@ -257,5 +260,9 @@ public class UrlsToDownload {
             throw new RuntimeException("Unable to get url", ex);
         }
         return Optional.empty();
+    }
+
+    public void urlDownloadedTo(URL url, File fileLocation) {
+        update("update %s set file = '%s' where key = '%s'", tableName, fileLocation.getAbsolutePath(), toDbKey(url));
     }
 }
