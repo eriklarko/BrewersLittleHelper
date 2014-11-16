@@ -2,8 +2,7 @@ package se.angstroms.blh.anders.view.recipe;
 
 import javafx.beans.property.ListProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXML;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.view.recipe.details.RecipeDetailsPresenter;
 import se.angstroms.blh.anders.view.recipe.selector.RecipeSelectorPresenter;
@@ -13,13 +12,10 @@ import se.angstroms.blh.anders.view.util.CustomControl;
  *
  * @author eriklark
  */
-public class RecipesTab extends VBox {
+public class RecipesTab extends BorderPane {
 
-    @FXML
-	private RecipeSelectorPresenter recipeSelector;
-
-	@FXML
-    private RecipeDetailsPresenter recipeDetails;
+	private final RecipeSelectorPresenter recipeSelector = new RecipeSelectorPresenter();
+    private final RecipeDetailsPresenter recipeDetails = new RecipeDetailsPresenter();
 
 	public RecipesTab() {
 		CustomControl.setup(this);
@@ -36,12 +32,12 @@ public class RecipesTab extends VBox {
 
 	private void showRecipeList() {
 		this.getChildren().clear();
-		this.getChildren().add(recipeSelector);
+		this.setCenter(recipeSelector);
     }
 
     private void showRecipeDetails() {
 		this.getChildren().clear();
-		this.getChildren().add(recipeDetails);
+		this.setCenter(recipeDetails);
     }
 
     public ListProperty<FullContext> availableRecipesProperty() {

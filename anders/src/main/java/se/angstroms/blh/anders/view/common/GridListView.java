@@ -47,7 +47,7 @@ public class GridListView<T> extends GridPane {
                         observableGridRows.add(newRow(models, t, creator));
                     }
 
-                    // For each removed model, remove the corresponing GridRow
+                    // For each removed model, remove the corresponding GridRow
                     for (T t : c.getRemoved()) {
                         if (c.wasReplaced()) {
                             continue;

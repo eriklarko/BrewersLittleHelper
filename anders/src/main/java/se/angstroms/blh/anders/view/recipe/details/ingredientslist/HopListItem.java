@@ -1,5 +1,7 @@
 package se.angstroms.blh.anders.view.recipe.details.ingredientslist;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import se.angstroms.blh.anders.view.util.listspinner.ListSpinners;
 import java.util.Arrays;
 import java.util.function.Consumer;
@@ -59,11 +61,17 @@ class HopListItem implements GridListView.GridRow<HopAddition> {
         Function<HopAddition, Hop> toHop = (hopAddition) -> hopAddition.getHop();
         Function<Hop, HopAddition> fromHop = (hop) -> new HopAddition(hop, model.getValue().getTimeInBoil(), model.getValue().getAmount());
         GenericBidirectionalBindings.bidirectionalBinding(model, sbl.modelProperty(), toHop, fromHop);
+
+        sbl.setAlignment(Pos.CENTER_LEFT);
+        sbl.setPadding(new Insets(0,0,0,10));
+
         return sbl;
     }
 
     private Node getAmountPart() {
         ListSpinner<Double> spinner = ListSpinners.generic(model.getValue().getAmount().value());
+        spinner.setPostfix(" g");
+        spinner.setStyle("-fx-background-radius: 0");
 
         Function<HopAddition, Double> toInt = (ha) -> ha.getAmount().value();
         Function<Double, HopAddition> fromInt = (amount) -> new HopAddition(model.getValue().getHop(), model.getValue().getTimeInBoil(), new Grams(amount));
@@ -74,6 +82,8 @@ class HopListItem implements GridListView.GridRow<HopAddition> {
 
     private Node getAlphaAcidsPart() {
         ListSpinner<Double> spinner = ListSpinners.generic(model.getValue().getHop().getAlphaAcids().value());
+        spinner.setPostfix(" %");
+        spinner.setStyle("-fx-background-radius: 0");
 
         Function<HopAddition, Double> toInt = (ha) -> ha.getHop().getAlphaAcids().value();
         Function<Double, HopAddition> fromInt = (amount) -> {
@@ -90,6 +100,8 @@ class HopListItem implements GridListView.GridRow<HopAddition> {
         spinner.setValue(model.getValue().getTimeInBoil().value().intValue());
         spinner.setEditable(true);
         spinner.setStringConverter(new IntStringConverter(spinner));
+        spinner.setPostfix(" min");
+        spinner.setStyle("-fx-background-radius: 0");
 
         Function<HopAddition, Integer> toInt = (ha) -> ha.getTimeInBoil().value().intValue();
         Function<Integer, HopAddition> fromInt = (amount) -> new HopAddition(model.getValue().getHop(), new Minutes(amount), model.getValue().getAmount());

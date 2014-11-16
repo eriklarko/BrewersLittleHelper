@@ -13,11 +13,5 @@
         <URL value="@/styles/anders.css"/>
     </stylesheets>
 
-    <GridPane fx:id="grid">
-        <!--Label text="Bitterness" GridPane.rowIndex="0" GridPane.columnIndex="0"  />
-        <ValuePresenter fx:id="ibuComponent" type="BITTERNESS" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-
-        <Label text="Original Gravity" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <ValuePresenter fx:id="ibuComponent" type="OG" GridPane.rowIndex="1" GridPane.columnIndex="1"/-->
-    </GridPane>
+    <GridPane fx:id="grid" />
 </fx:root>

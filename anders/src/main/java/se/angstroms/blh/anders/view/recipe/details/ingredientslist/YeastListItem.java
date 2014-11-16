@@ -1,5 +1,7 @@
 package se.angstroms.blh.anders.view.recipe.details.ingredientslist;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import se.angstroms.blh.anders.view.util.listspinner.ListSpinners;
 import java.util.Arrays;
 import java.util.function.Consumer;
@@ -57,11 +59,16 @@ class YeastListItem implements GridListView.GridRow<YeastAddition<?>> {
         Function<Yeast, YeastAddition<?>> fromMalt = (yeast) -> new YeastAddition<Unit<? extends Number>>(yeast, model.getValue().getAmount());
         GenericBidirectionalBindings.bidirectionalBinding(model, selectBoxLabel.modelProperty(), toMalt, fromMalt);
 
+        selectBoxLabel.setAlignment(Pos.CENTER_LEFT);
+        selectBoxLabel.setPadding(new Insets(0,0,0,10));
+
         return selectBoxLabel;
     }
 
     private Node getAmountPart() {
         ListSpinner<Double> spinner = ListSpinners.generic(model.getValue().getAmount().value().doubleValue());
+        spinner.setPostfix(" ml");
+        spinner.setStyle("-fx-background-radius: 0");
 
         Function<YeastAddition<?>, Double> toInt = (ya) -> ya.getAmount().value().doubleValue();
         // TODO: This is not bound to be milliliters....

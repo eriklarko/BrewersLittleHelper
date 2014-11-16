@@ -1,8 +1,11 @@
 package se.angstroms.blh.anders.formulas;
 
+import java.util.Collection;
+import java.util.LinkedList;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import org.blh.core.unit.Unit;
 import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.context.value.InputtedOrCalculatedValue;
@@ -22,6 +25,7 @@ public abstract class ObservableFormula<T extends Unit<?>> implements Observable
 
 	private final FullContext context;
 	private ObservableHelper helper;
+    private final Collection<Observable> dependencies = new LinkedList<>();
 	private final InvalidationListener onRegisteredVariableChanged = new InvalidationListener() {
 
         @Override
@@ -44,10 +48,12 @@ public abstract class ObservableFormula<T extends Unit<?>> implements Observable
 
 	protected final void registerDependentVariable(ObservableValue<?> variable) {
 		variable.addListener(onRegisteredVariableChanged);
+        dependencies.add(variable);
 	}
 
-    protected final void registerDependentVariable(Observable variable) {
+    protected final void registerDependentVariable(ObservableList<?> variable) {
         variable.addListener(onRegisteredVariableChanged);
+        dependencies.add(variable);
     }
 
 	public abstract T calc();
@@ -73,4 +79,8 @@ public abstract class ObservableFormula<T extends Unit<?>> implements Observable
             ObservableHelper.fireEvent(helper);
         }
 	}
+
+    public Collection<Observable> getDependenies() {
+        return dependencies;
+    }
 }

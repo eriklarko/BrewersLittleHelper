@@ -9,11 +9,8 @@
 <?import se.angstroms.blh.anders.view.recipe.selector.*?>
 <?import se.angstroms.blh.anders.view.recipe.details.*?>
 
-<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<fx:root type="javafx.scene.layout.BorderPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
     <stylesheets>
         <URL value="@/styles/anders.css"/>
     </stylesheets>
-
-    <RecipeSelectorPresenter fx:id="recipeSelector"/>
-    <RecipeDetailsPresenter fx:id="recipeDetails"/>
 </fx:root>

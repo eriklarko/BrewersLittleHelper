@@ -68,11 +68,25 @@
     -fx-border-width: 0.1mm;
 }
 
+.recipe-details-values {
+    -fx-background-color: background-color; // Removes the gray background, transparent doesn't work...
+}
+
+/******************************************************
+ *                RECIPE VALUE                        *
+ ******************************************************/
+.recipe-data-value-title {
+    -fx-font-size: 1.2em;
+}
+.recipe-data-value {
+    -fx-padding: 0 0 0 2mm;
+}
+
 /******************************************************
  *                   GRID LIST                        *
  ******************************************************/
 .grid-list-view {
-    -fx-padding: 1mm;
+    -fx-padding: 1mm 1mm 1mm 0;
 }
 .grid-list-view-even {
     -fx-background-color: background-color;

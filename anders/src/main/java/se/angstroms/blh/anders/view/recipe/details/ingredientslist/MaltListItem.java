@@ -1,5 +1,9 @@
 package se.angstroms.blh.anders.view.recipe.details.ingredientslist;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import se.angstroms.blh.anders.view.util.listspinner.ListSpinners;
 import se.angstroms.blh.anders.view.common.GridListView;
 import se.angstroms.blh.anders.view.common.SelectBoxLabel;
@@ -44,7 +48,7 @@ class MaltListItem implements GridListView.GridRow<GristPart> {
     @Override
     public Iterable<Pair<ColumnConstraints, Node>> getNodes() {
         return Arrays.asList(
-                new Pair(percentageWidth(73), namePart()),
+                new Pair(/*percentageWidth(73)*/ null, namePart()),
                 new Pair(null, amountPart()),
                 new Pair(null, removeButton())
         );
@@ -56,11 +60,16 @@ class MaltListItem implements GridListView.GridRow<GristPart> {
         Function<Malt, GristPart> fromMalt = (malt) -> new GristPart(malt, model.getValue().getAmount());
         GenericBidirectionalBindings.bidirectionalBinding(model, selectBoxLabel.modelProperty(), toMalt, fromMalt);
 
+        selectBoxLabel.setAlignment(Pos.CENTER_LEFT);
+        selectBoxLabel.setPadding(new Insets(0,0,0,10));
+
         return selectBoxLabel;
     }
 
     private Node amountPart() {
-        ListSpinner<Double> spinner = ListSpinners.generic(model.getValue().getAmount().value());
+        ListSpinner<Double> spinner = ListSpinners.generic(0, 100000, 0.01, model.getValue().getAmount().value());
+        spinner.setPostfix(" kg");
+        spinner.setStyle("-fx-background-radius: 0");
 
         Function<GristPart, Double> toDouble = (gp) -> gp.getAmount().value();
         Function<Double, GristPart> fromDouble = (amount) -> new GristPart(model.getValue().getMalt(), new Kilograms(amount));

@@ -7,8 +7,6 @@ import java.util.MissingResourceException;
 
 /**
  * Helper methods to load a resource on the class path.
- *
- * @author Thinner
  */
 public final class ResourceLoader {
 

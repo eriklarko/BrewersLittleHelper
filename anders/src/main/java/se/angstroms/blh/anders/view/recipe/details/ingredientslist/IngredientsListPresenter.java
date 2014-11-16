@@ -6,9 +6,13 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javax.inject.Inject;
+
+import javafx.scene.layout.RowConstraints;
 import org.blh.core.ingredient.Hop;
 import org.blh.core.ingredient.Malt;
 import org.blh.core.ingredient.Yeast;
@@ -64,6 +68,11 @@ public class IngredientsListPresenter extends GridPane {
                 columnConstraintsWithPercentageWidth(33),
                 columnConstraintsWithPercentageWidth(33)
         );
+
+        RowConstraints fillRow = new RowConstraints();
+        fillRow.setPercentHeight(100);
+        fillRow.setValignment(VPos.CENTER);
+        this.getRowConstraints().addAll(fillRow);
     }
 
     private ColumnConstraints columnConstraintsWithPercentageWidth(double percentage) {
@@ -78,9 +87,7 @@ public class IngredientsListPresenter extends GridPane {
 
     private void doSetIngredientsList(IngredientsList ingredientsList) {
         fermentablesTable.setData(ingredientsList.getFermentables(), (model) -> new MaltListItem(model, maltStore, (gp) -> {
-            System.out.println("REMOVING " + gp + ". " + ingredientsList.getFermentables().size() + " fermentables");
             ingredientsList.getFermentables().remove(gp);
-            System.out.println("REMOVED  " + gp + ". " + ingredientsList.getFermentables().size() + " fermentables");
         }));
         hopsTable.setData(ingredientsList.getHopAdditions(), (model) -> new HopListItem(model, hopStore, (ha) -> ingredientsList.getHopAdditions().remove(ha)));
         yeastsTable.setData(ingredientsList.getYeastAdditions(), (model) -> new YeastListItem(model, yeastStore, (ya) -> ingredientsList.getYeastAdditions().remove(ya)));

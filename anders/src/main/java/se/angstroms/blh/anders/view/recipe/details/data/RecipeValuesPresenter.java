@@ -94,7 +94,10 @@ public class RecipeValuesPresenter extends VBox {
             int column = element.getColumn() * cellsPerElement;
             ValuePresenter valuePresenter = typeToValuePresenter(element.getType());
 
-            grid.add(new Label(element.title), column, element.getRow());
+            Label valueTitle = new Label(element.title);
+            valueTitle.getStyleClass().add("recipe-data-value-title");
+
+            grid.add(valueTitle, column, element.getRow());
             grid.add(valuePresenter, column + 1, element.getRow());
             grid.add(valuePresenter.getGoBackToCalculatedButton(), column + 2, element.getRow());
         }

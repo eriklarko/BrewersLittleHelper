@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import java.net.URL?>
+<?import java.lang.String?>
 <fx:root type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml">
+    <stylesheets>
+        <URL value="@/styles/anders.css"/>
+    </stylesheets>
+    <styleClass>
+        <String fx:value="recipe-data-value"/>
+    </styleClass>
+
     <Pane>
         <se.angstroms.blh.anders.view.recipe.details.data.value.InputtedValuePresenter fx:id="inputtedValue" />
         <se.angstroms.blh.anders.view.recipe.details.data.value.CalculatedValuePresenter fx:id="calculatedValue" />

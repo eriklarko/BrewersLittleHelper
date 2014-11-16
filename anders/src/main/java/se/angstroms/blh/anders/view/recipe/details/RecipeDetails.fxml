@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import se.angstroms.blh.anders.view.recipe.details.ingredientslist.*?>
-<?import se.angstroms.blh.anders.view.recipe.details.data.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import se.angstroms.blh.anders.view.recipe.details.data.RecipeValuesPresenter?>
+<?import se.angstroms.blh.anders.view.recipe.details.ingredientslist.IngredientsListPresenter?>
+<?import java.lang.String?>
+<?import java.net.URL?>
 
-<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<fx:root type="javafx.scene.layout.BorderPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
+         style="-fx-background-color: rgba(0,0,0,0)">
     <stylesheets>
         <URL value="@/styles/anders.css"/>
     </stylesheets>
 
-    <Label fx:id="recipeName">
-        <styleClass>
-            <String fx:value="recipe-details-name" />
-        </styleClass>
-    </Label>
-
-    <IngredientsListPresenter fx:id="ingredientsList" />
-    <RecipeValuesPresenter fx:id="recipeValues" />
+    <top>
+        <Label fx:id="recipeName" BorderPane.alignment="CENTER">
+            <styleClass>
+                <String fx:value="recipe-details-name"/>
+            </styleClass>
+        </Label>
+    </top>
+    <center>
+        <SplitPane orientation="VERTICAL">
+            <items>
+                <IngredientsListPresenter fx:id="ingredientsList"/>
+                <RecipeValuesPresenter fx:id="recipeValues">
+                    <styleClass>
+                        <String fx:value="recipe-details-values"/>
+                    </styleClass>
+                </RecipeValuesPresenter>
+            </items>
+        </SplitPane>
+    </center>
 </fx:root>

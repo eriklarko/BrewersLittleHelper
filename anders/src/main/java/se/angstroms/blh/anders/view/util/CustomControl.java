@@ -8,8 +8,6 @@ import se.angstroms.blh.anders.uncategorized.util.ResourceLoader;
 
 /**
  * Boilerplate code for creating custom FX-controls
- *
- * @author Erik Larkö <erik.larko@purplescout.se>
  */
 public final class CustomControl {
 

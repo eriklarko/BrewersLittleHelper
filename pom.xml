@@ -7,8 +7,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>beerxml</module>
         <module>anders</module>
+        <module>beerxml</module>
         <module>recipe</module>
         <module>core</module>
         <module>recipe-statistics</module>

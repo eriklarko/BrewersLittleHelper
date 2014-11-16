@@ -4,6 +4,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.layout.BorderPane;
 import se.angstroms.blh.anders.view.recipe.details.data.RecipeValuesPresenter;
 import se.angstroms.blh.anders.view.recipe.details.ingredientslist.IngredientsListPresenter;
 import javafx.fxml.FXML;
@@ -17,7 +18,7 @@ import se.angstroms.blh.anders.view.util.CustomControl;
  *
  * @author Thinner
  */
-public class RecipeDetailsPresenter extends VBox {
+public class RecipeDetailsPresenter extends BorderPane {
 
     @FXML private Label recipeName;
     @FXML private IngredientsListPresenter ingredientsList;
