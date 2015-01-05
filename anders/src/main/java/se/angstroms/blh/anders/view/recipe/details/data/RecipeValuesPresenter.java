@@ -1,5 +1,14 @@
 package se.angstroms.blh.anders.view.recipe.details.data;
 
+import javax.inject.Inject;
+
+import se.angstroms.blh.anders.context.FullContext;
+import se.angstroms.blh.anders.context.value.InputtedOrCalculatedValue;
+import se.angstroms.blh.anders.context.value.Value;
+import se.angstroms.blh.anders.context.value.parsing.UnitStringParserFactory;
+import se.angstroms.blh.anders.view.recipe.details.data.value.ValuePresenter;
+import se.angstroms.blh.anders.view.util.CustomControl;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
@@ -8,13 +17,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javax.inject.Inject;
-import se.angstroms.blh.anders.context.FullContext;
-import se.angstroms.blh.anders.context.value.InputtedOrCalculatedValue;
-import se.angstroms.blh.anders.context.value.Value;
-import se.angstroms.blh.anders.context.value.parsing.UnitStringParserFactory;
-import se.angstroms.blh.anders.view.recipe.details.data.value.ValuePresenter;
-import se.angstroms.blh.anders.view.util.CustomControl;
 
 /**
  *
@@ -22,90 +24,87 @@ import se.angstroms.blh.anders.view.util.CustomControl;
  */
 public class RecipeValuesPresenter extends VBox {
 
-    private static enum GridElement {
+	private static enum GridElement {
 
-        bitterness("Bitterness", Value.Id.BITTERNESS, 0, 0),
-        og("Original gravity", Value.Id.OG, 1, 0),
-        fg("Final Gravity", Value.Id.FG, 2, 0),
-        abv("Alcohol content", Value.Id.ALCOHOL_CONTENT, 3, 0),
+		bitterness(Value.Id.BITTERNESS, 0, 0),
+		og(Value.Id.OG, 1, 0),
+		fg(Value.Id.FG, 2, 0),
+		abv(Value.Id.ALCOHOL_CONTENT, 3, 0),
+		extractionEfficency(Value.Id.EXTRACTION_EFFICIENCY, 0, 1),
+		preFermentationVolume(Value.Id.POST_BOIL_VOLUME, 1, 1),
+		preMashVolume(Value.Id.PRE_MASH_VOLUME, 2, 1);
 
-        extractionEfficency("Extraction efficiency", Value.Id.EXTRACTION_EFFICIENCY, 0, 1),
-        preFermentationVolume("Post boil volume", Value.Id.POST_BOIL_VOLUME, 1, 1),
-        preMashVolume("Liters to warm", Value.Id.PRE_MASH_VOLUME, 2, 1);
+		private final Value.Id type;
+		private final int row;
+		private final int column;
 
-        private final String title;
-        private final Value.Id type;
-        private final int row;
-        private final int column;
+		private GridElement(Value.Id type, int row, int column) {
+			this.type = type;
+			this.row = row;
+			this.column = column;
+		}
 
-        private GridElement(String title, Value.Id type, int row, int column) {
-            this.title = title;
-            this.type = type;
-            this.row = row;
-            this.column = column;
-        }
+		public Value.Id getType() {
+			return type;
+		}
 
-        public String getTitle() {
-            return title;
-        }
+		public int getRow() {
+			return row;
+		}
 
-        public Value.Id getType() {
-            return type;
-        }
+		public int getColumn() {
+			return column;
+		}
+	}
 
-        public int getRow() {
-            return row;
-        }
+	@Inject
+	private UnitStringParserFactory unitStringParserFactory;
 
-        public int getColumn() {
-            return column;
-        }
-    }
+	@FXML
+	private GridPane grid;
 
-    @Inject
-    private UnitStringParserFactory unitStringParserFactory;
+	private final ObjectProperty<FullContext> recipeProperty;
 
-    @FXML
-    private GridPane grid;
+	public RecipeValuesPresenter() {
+		CustomControl.setup(this);
+		recipeProperty = new SimpleObjectProperty<>();
+		recipeProperty.addListener(new ChangeListener<FullContext>() {
 
-    private final ObjectProperty<FullContext> recipeProperty;
+			@Override
+			public void changed(ObservableValue<? extends FullContext> ov, FullContext t, FullContext newRecipe) {
+				populateGrid();
+			}
+		});
+	}
 
-    public RecipeValuesPresenter() {
-        CustomControl.setup(this);
-        recipeProperty = new SimpleObjectProperty<>();
-        recipeProperty.addListener(new ChangeListener<FullContext>() {
+	public ObjectProperty<FullContext> recipeProperty() {
+		return recipeProperty;
+	}
 
-            @Override
-            public void changed(ObservableValue<? extends FullContext> ov, FullContext t, FullContext newRecipe) {
-                populateGrid();
-            }
-        });
-    }
+	private void populateGrid() {
+		grid.getChildren().clear();
+		int cellsPerElement = 3;
 
-    public ObjectProperty<FullContext> recipeProperty() {
-        return recipeProperty;
-    }
+		for (GridElement element : GridElement.values()) {
+			int column = element.getColumn() * cellsPerElement;
+			ValuePresenter valuePresenter = typeToValuePresenter(element.getType());
 
-    private void populateGrid() {
-        grid.getChildren().clear();
-        int cellsPerElement = 3;
+			String title = element.type.getHumanReadable();
+			if (element.getType() == Value.Id.PRE_MASH_VOLUME) {
+				title = "Liters to warm";
+			}
+			Label valueTitle = new Label(title);
+			valueTitle.getStyleClass().add("recipe-data-value-title");
 
-        for (GridElement element : GridElement.values()) {
-            int column = element.getColumn() * cellsPerElement;
-            ValuePresenter valuePresenter = typeToValuePresenter(element.getType());
+			grid.add(valueTitle, column, element.getRow());
+			grid.add(valuePresenter, column + 1, element.getRow());
+			grid.add(valuePresenter.getGoBackToCalculatedButton(), column + 2, element.getRow());
+		}
+	}
 
-            Label valueTitle = new Label(element.title);
-            valueTitle.getStyleClass().add("recipe-data-value-title");
-
-            grid.add(valueTitle, column, element.getRow());
-            grid.add(valuePresenter, column + 1, element.getRow());
-            grid.add(valuePresenter.getGoBackToCalculatedButton(), column + 2, element.getRow());
-        }
-    }
-
-    private ValuePresenter typeToValuePresenter(Value.Id type) {
-        Value<?> value = recipeProperty.get().get(type);
-        InputtedOrCalculatedValue<?> valueAsIOCV = (InputtedOrCalculatedValue<?>) value;
-        return new ValuePresenter(valueAsIOCV, unitStringParserFactory.getParserFor(type));
-    }
+	private ValuePresenter typeToValuePresenter(Value.Id type) {
+		Value<?> value = recipeProperty.get().get(type);
+		InputtedOrCalculatedValue<?> valueAsIOCV = (InputtedOrCalculatedValue<?>) value;
+		return new ValuePresenter(valueAsIOCV, unitStringParserFactory.getParserFor(type));
+	}
 }
