@@ -1,7 +1,8 @@
 package se.angstroms.blh.anders.context.value;
 
-import javafx.beans.property.ObjectPropertyBase;
 import org.blh.core.unit.Unit;
+
+import javafx.beans.property.ObjectPropertyBase;
 
 /**
  * Represents a value that the user have given as input
@@ -10,10 +11,14 @@ import org.blh.core.unit.Unit;
  */
 public class InputtedValue<T extends Unit<?>> extends ObjectPropertyBase<T> implements Value<T> {
 
-    public InputtedValue() {
+	private final Id valueType;
+
+    public InputtedValue(Id valueType) {
+		this(valueType, null);
     }
 
-    public InputtedValue(T value) {
+    public InputtedValue(Id valueType, T value) {
+		this.valueType = valueType;
         this.set(value);
     }
 
@@ -25,5 +30,10 @@ public class InputtedValue<T extends Unit<?>> extends ObjectPropertyBase<T> impl
 	@Override
 	public String getName() {
 		return "";
+	}
+
+	@Override
+	public Id getValueType() {
+		return valueType;
 	}
 }

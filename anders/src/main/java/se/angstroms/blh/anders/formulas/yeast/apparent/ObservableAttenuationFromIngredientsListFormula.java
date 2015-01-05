@@ -2,15 +2,17 @@ package se.angstroms.blh.anders.formulas.yeast.apparent;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 import org.blh.core.formula.yeast.attenuation.apparent.SummedFromIngredientsList;
 import org.blh.core.recipe.YeastAddition;
 import org.blh.core.unit.Percentage;
 import org.blh.core.unit.volume.Milliliters;
 import org.blh.core.unit.weight.Grams;
-import se.angstroms.blh.anders.formulas.ObservableFormula;
+
 import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.context.value.Value;
 import se.angstroms.blh.anders.context.value.findingformulas.Formula;
+import se.angstroms.blh.anders.formulas.ObservableFormula;
 
 /**
  *
@@ -27,7 +29,7 @@ public class ObservableAttenuationFromIngredientsListFormula extends ObservableF
 
     @Override
     protected void registerDependentVariables(FullContext context) {
-        registerDependentVariable(context.getIngredientsList().getYeastAdditions());
+        registerDependentVariable(context.getIngredientsList().getYeastAdditions(), Value.Id.YEAST_ADDITIONS);
     }
 
     @Override

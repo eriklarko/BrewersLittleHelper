@@ -1,29 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.angstroms.blh.anders.context.serializing;
 
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.Map;
+
 import org.blh.core.unit.Unit;
+
 import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.context.value.CalculatedValue;
 import se.angstroms.blh.anders.context.value.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.context.value.InputtedOrCalculatedValue.STATE;
 import se.angstroms.blh.anders.context.value.InputtedValue;
 
-/**
- *
- * @author eriklark
- */
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+
 public class FullContextJsonDeserializer implements JsonDeserializer<FullContext> {
 
     private FullContext context;

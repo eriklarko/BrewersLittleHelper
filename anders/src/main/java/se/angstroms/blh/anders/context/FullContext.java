@@ -1,11 +1,7 @@
 package se.angstroms.blh.anders.context;
 
 import java.lang.reflect.Field;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import se.angstroms.blh.anders.context.value.annot.ValueAnnot;
+
 import org.blh.core.uncategorized.BeerType;
 import org.blh.core.unit.Factor;
 import org.blh.core.unit.Percentage;
@@ -21,14 +17,16 @@ import org.blh.core.unit.weight.Grams;
 import org.blh.core.unit.weight.Kilograms;
 import org.blh.recipe.uncategorized.IngredientsList;
 import org.blh.recipe.uncategorized.InstructionsList;
+
 import se.angstroms.blh.anders.context.value.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.context.value.InputtedValue;
 import se.angstroms.blh.anders.context.value.Value;
 
-/**
- *
- * @author thinner
- */
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class FullContext {
 
     /////////////
@@ -40,54 +38,41 @@ public class FullContext {
     private final Equipment equipment = new Equipment();
     /////////////
 
-    @ValueAnnot(id = Value.Id.PRE_MASH_VOLUME)
-    private final InputtedOrCalculatedValue<Liters> preMashVolume = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<Liters> preMashVolume = new InputtedOrCalculatedValue<>(Value.Id.PRE_MASH_VOLUME);
 
-    @ValueAnnot(id = Value.Id.PRE_FERMENTATION_VOLUME)
-    private final InputtedOrCalculatedValue<Liters> preFermentationVolume = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<Liters> preFermentationVolume = new InputtedOrCalculatedValue<>(Value.Id.PRE_FERMENTATION_VOLUME);
 
-    @ValueAnnot(id = Value.Id.BOIL_TIME)
-    private final InputtedValue<Minutes> boilTime = new InputtedValue<>();
-    private final InputtedOrCalculatedValue<SpecificGravity> preBoilGravity = new InputtedOrCalculatedValue<>();
-    private final InputtedOrCalculatedValue<SpecificGravity> boilGravity = new InputtedOrCalculatedValue<>();
-    private final InputtedOrCalculatedValue<SpecificGravity> postBoilGravity = new InputtedOrCalculatedValue<>();
+    private final InputtedValue<Minutes> boilTime = new InputtedValue<>(Value.Id.BOIL_TIME);
+    private final InputtedOrCalculatedValue<SpecificGravity> preBoilGravity = new InputtedOrCalculatedValue<>(null);
+    private final InputtedOrCalculatedValue<SpecificGravity> boilGravity = new InputtedOrCalculatedValue<>(null);
+    private final InputtedOrCalculatedValue<SpecificGravity> postBoilGravity = new InputtedOrCalculatedValue<>(null);
 
-    @ValueAnnot(id = Value.Id.OG)
-    private final InputtedOrCalculatedValue<SpecificGravity> originalGravity = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<SpecificGravity> originalGravity = new InputtedOrCalculatedValue<>(Value.Id.OG);
 
-    @ValueAnnot(id = Value.Id.FG)
-    private final InputtedOrCalculatedValue<SpecificGravity> finalGravity = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<SpecificGravity> finalGravity = new InputtedOrCalculatedValue<>(Value.Id.FG);
 
-    @ValueAnnot(id = Value.Id.ALCOHOL_CONTENT)
-    private final InputtedOrCalculatedValue<ABV> alcoholContent = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<ABV> alcoholContent = new InputtedOrCalculatedValue<>(Value.Id.ALCOHOL_CONTENT);
 
-    @ValueAnnot(id = Value.Id.YEAST_ATTENUATION)
-    private final InputtedOrCalculatedValue<Percentage> yeastApparentAttenuation = new InputtedOrCalculatedValue<>();
-    private final InputtedOrCalculatedValue<MaltColorUnit> maltColorUnit = new InputtedOrCalculatedValue<>();
-    private final InputtedOrCalculatedValue<ColorPotential> totalColorPotential = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<Percentage> yeastApparentAttenuation = new InputtedOrCalculatedValue<>(Value.Id.YEAST_ATTENUATION);
+    private final InputtedOrCalculatedValue<MaltColorUnit> maltColorUnit = new InputtedOrCalculatedValue<>(null);
+    private final InputtedOrCalculatedValue<ColorPotential> totalColorPotential = new InputtedOrCalculatedValue<>(null);
 
-    @ValueAnnot(id = Value.Id.EXTRACTION_EFFICIENCY)
-    private final InputtedOrCalculatedValue<Factor> extractionEfficiency = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<Factor> extractionEfficiency = new InputtedOrCalculatedValue<>(Value.Id.EXTRACTION_EFFICIENCY);
 
-    private final InputtedOrCalculatedValue<Kilograms> totalGrainWeight = new InputtedOrCalculatedValue<>();
-    private final InputtedOrCalculatedValue<Grams> totalHopWeight = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<Kilograms> totalGrainWeight = new InputtedOrCalculatedValue<>(null);
+    private final InputtedOrCalculatedValue<Grams> totalHopWeight = new InputtedOrCalculatedValue<>(null);
 
-    @ValueAnnot(id = Value.Id.BITTERNESS)
-    private final InputtedOrCalculatedValue<IBU> bitterness = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<IBU> bitterness = new InputtedOrCalculatedValue<>(Value.Id.BITTERNESS);
     ///////////////
-    @ValueAnnot(id = Value.Id.ELEVATION)
-    private final InputtedValue<Meters> elevation = new InputtedValue<>();
+    private final InputtedValue<Meters> elevation = new InputtedValue<>(Value.Id.ELEVATION);
     /**
      * How many percent of the volume is lost when cooling.
      */
-    @ValueAnnot(id = Value.Id.COOLING_LOSS)
-    private final InputtedValue<Factor> coolingLoss = new InputtedValue<>();
+    private final InputtedValue<Factor> coolingLoss = new InputtedValue<>(Value.Id.COOLING_LOSS);
 
-    @ValueAnnot(id = Value.Id.PRE_BOIL_VOLUME)
-    private final InputtedOrCalculatedValue<Liters> preBoilVolume = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<Liters> preBoilVolume = new InputtedOrCalculatedValue<>(Value.Id.PRE_BOIL_VOLUME);
 
-    @ValueAnnot(id = Value.Id.POST_BOIL_VOLUME)
-    private final InputtedOrCalculatedValue<Liters> postBoilVolume = new InputtedOrCalculatedValue<>();
+    private final InputtedOrCalculatedValue<Liters> postBoilVolume = new InputtedOrCalculatedValue<>(Value.Id.POST_BOIL_VOLUME);
 
     public IngredientsList getIngredientsList() {
         return ingredientsList;
@@ -202,19 +187,21 @@ public class FullContext {
 
     public Value<?> get(Value.Id type) {
         for (Field field : this.getClass().getDeclaredFields()) {
-            if (field.isAnnotationPresent(ValueAnnot.class)) {
-                ValueAnnot annotation = field.getAnnotation(ValueAnnot.class);
-                if (annotation.id() == type) {
-                    try {
-                        return (Value<?>) field.get(this);
-                    } catch (Exception ex) {
-                        throw new RuntimeException("Unable to get value for " + field.getName(), ex);
-                    }
-                }
-            }
+			try {
+				Object fieldValue = field.get(this);
+				if (fieldValue instanceof Value) {
+					Value value = (Value) fieldValue;
+					if (value.getValueType() == type) {
+						return value;
+					}
+				}
+			} catch (IllegalArgumentException | IllegalAccessException ex) {
+				throw new RuntimeException("Unable to get value for " + field.getName(), ex);
+			}
+			
         }
 
-        throw new IllegalArgumentException("No field annotated with " + type + " found");
+        throw new IllegalArgumentException("No field associated with " + type + " found");
     }
 
 }

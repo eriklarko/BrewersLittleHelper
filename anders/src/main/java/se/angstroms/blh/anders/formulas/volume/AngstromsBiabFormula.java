@@ -1,6 +1,7 @@
 package se.angstroms.blh.anders.formulas.volume;
 
 import org.blh.core.unit.volume.Liters;
+
 import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.context.value.Value;
 import se.angstroms.blh.anders.context.value.findingformulas.Formula;
@@ -21,7 +22,7 @@ public class AngstromsBiabFormula extends ObservableFormula<Liters>{
     @Override
     protected void registerDependentVariables(FullContext context) {
         registerDependentVariable(context.getPostBoilVolume());
-        registerDependentVariable(context.getIngredientsList().getFermentables());
+        registerDependentVariable(context.getIngredientsList().getFermentables(), Value.Id.FERMENTABLES);
     }
 
     @Override

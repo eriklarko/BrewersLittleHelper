@@ -1,18 +1,17 @@
 package se.angstroms.blh.anders.context.serializing;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParseException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+
 import org.blh.core.unit.Unit;
+
 import se.angstroms.blh.anders.context.value.parsing.ParseException;
 import se.angstroms.blh.anders.context.value.parsing.UnitStringParser;
 import se.angstroms.blh.anders.context.value.parsing.UnitStringParserFactory;
 
-/**
- *
- * @author eriklark
- */
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+
 public class DeserializationUtils {
 
     public static Unit<?> getUnit(JsonElement json, Type typeOfT, UnitStringParserFactory unitStringParserFactory) {

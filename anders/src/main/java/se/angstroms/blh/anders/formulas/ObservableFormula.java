@@ -2,14 +2,16 @@ package se.angstroms.blh.anders.formulas;
 
 import java.util.Collection;
 import java.util.LinkedList;
+
+import org.blh.core.unit.Unit;
+
+import se.angstroms.blh.anders.context.FullContext;
+import se.angstroms.blh.anders.context.value.Value;
+import se.angstroms.blh.anders.uncategorized.util.ObservableHelper;
+
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
-import org.blh.core.unit.Unit;
-import se.angstroms.blh.anders.context.FullContext;
-import se.angstroms.blh.anders.context.value.InputtedOrCalculatedValue;
-import se.angstroms.blh.anders.uncategorized.util.ObservableHelper;
 
 /**
  * A formula whose value automatically updates when a value it depends on is
@@ -20,12 +22,13 @@ import se.angstroms.blh.anders.uncategorized.util.ObservableHelper;
  * registerDependentVariables.
  *
  * @author eriklark
+ * @param <T> The type of the value calculated by the formula
  */
 public abstract class ObservableFormula<T extends Unit<?>> implements Observable{
 
 	private final FullContext context;
 	private ObservableHelper helper;
-    private final Collection<Observable> dependencies = new LinkedList<>();
+    private final Collection<Value<?>> dependencies = new LinkedList<>();
 	private final InvalidationListener onRegisteredVariableChanged = new InvalidationListener() {
 
         @Override
@@ -42,18 +45,35 @@ public abstract class ObservableFormula<T extends Unit<?>> implements Observable
 
 	protected abstract void registerDependentVariables(FullContext context);
 
-	protected final void registerDependentVariable(InputtedOrCalculatedValue<?> variable) {
-		registerDependentVariable(variable.valueProperty());
-	}
-
-	protected final void registerDependentVariable(ObservableValue<?> variable) {
+	protected final void registerDependentVariable(Value<?> variable) {
 		variable.addListener(onRegisteredVariableChanged);
         dependencies.add(variable);
 	}
 
-    protected final void registerDependentVariable(ObservableList<?> variable) {
+    protected final <T> void registerDependentVariable(ObservableList<T> variable, Value.Id valueType) {
         variable.addListener(onRegisteredVariableChanged);
-        dependencies.add(variable);
+        dependencies.add(new Value<ObservableList<T>>() {
+
+			@Override
+			public Value.Id getValueType() {
+				return valueType;
+			}
+
+			@Override
+			public ObservableList<T> get() {
+				return variable;
+			}
+
+			@Override
+			public void addListener(InvalidationListener listener) {
+				variable.addListener(listener);
+			}
+
+			@Override
+			public void removeListener(InvalidationListener listener) {
+				variable.removeListener(listener);
+			}
+		});
     }
 
 	public abstract T calc();
@@ -80,7 +100,7 @@ public abstract class ObservableFormula<T extends Unit<?>> implements Observable
         }
 	}
 
-    public Collection<Observable> getDependenies() {
+    public Collection<Value<?>> getDependencies() {
         return dependencies;
     }
 }

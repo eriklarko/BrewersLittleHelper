@@ -7,17 +7,15 @@ import java.nio.file.Files;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+
 import org.blh.core.unit.Factor;
 import org.blh.core.unit.gravity.SpecificGravity;
 import org.junit.Assert;
 import org.junit.Test;
-import se.angstroms.blh.anders.formulas.NopFormula;
-import se.angstroms.blh.anders.context.FullContext;
 
-/**
- *
- * @author eriklark
- */
+import se.angstroms.blh.anders.context.FullContext;
+import se.angstroms.blh.anders.formulas.NopFormula;
+
 public class FullContextSerializerTest {
 
     private final String pathToValidFile = "validFullContext.json";

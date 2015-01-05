@@ -1,5 +1,17 @@
 package se.angstroms.blh.anders.context.serializing;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Type;
+
+import org.blh.core.unit.Unit;
+
+import se.angstroms.blh.anders.context.FullContext;
+import se.angstroms.blh.anders.context.value.InputtedOrCalculatedValue;
+import se.angstroms.blh.anders.context.value.InputtedOrCalculatedValue.STATE;
+import se.angstroms.blh.anders.context.value.parsing.UnitStringParserFactory;
+import se.angstroms.blh.anders.formulas.ObservableFormula;
+
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -7,20 +19,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Type;
-import org.blh.core.unit.Unit;
-import se.angstroms.blh.anders.formulas.ObservableFormula;
-import se.angstroms.blh.anders.context.FullContext;
-import se.angstroms.blh.anders.context.value.InputtedOrCalculatedValue;
-import se.angstroms.blh.anders.context.value.InputtedOrCalculatedValue.STATE;
-import se.angstroms.blh.anders.context.value.parsing.UnitStringParserFactory;
 
-/**
- *
- * @author eriklark
- */
 public class InputtedOrCalculatedValueJsonSerializer implements JsonSerializer<InputtedOrCalculatedValue<?>>,
         JsonDeserializer<InputtedOrCalculatedValue<?>> {
 
@@ -70,7 +69,7 @@ public class InputtedOrCalculatedValueJsonSerializer implements JsonSerializer<I
         JsonElement formula = jsonObject.get("formula");
         validateInputAndThrowExceptions(value, formula, state, json);
 
-        InputtedOrCalculatedValue iocv = new InputtedOrCalculatedValue();
+        InputtedOrCalculatedValue iocv = new InputtedOrCalculatedValue(null);
         if (value != null && formula != null) {
             // Setup formula and value and enter the specified state
 

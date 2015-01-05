@@ -1,10 +1,13 @@
 package se.angstroms.blh.anders.context.value;
 
+import org.blh.core.unit.Unit;
+
+import se.angstroms.blh.anders.formulas.ObservableFormula;
+
+import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import org.blh.core.unit.Unit;
-import se.angstroms.blh.anders.formulas.ObservableFormula;
 
 /**
  *
@@ -13,7 +16,7 @@ import se.angstroms.blh.anders.formulas.ObservableFormula;
  */
 public class InputtedOrCalculatedValue<T extends Unit<?>> implements Value<T> {
 
-    public static enum STATE {
+	public static enum STATE {
         INVALID, INPUTTED, CALCULATED;
     }
 
@@ -22,23 +25,23 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> implements Value<T> {
     private final CalculatedValue<T> calculatedValue;
     private final InputtedValue<T> inputtedValue;
 
-    public InputtedOrCalculatedValue() {
+    public InputtedOrCalculatedValue(Id valueType) {
         this.state.set(STATE.INVALID);
-        calculatedValue = new CalculatedValue<>();
-        inputtedValue = new InputtedValue<>();
+        calculatedValue = new CalculatedValue<>(valueType);
+        inputtedValue = new InputtedValue<>(valueType);
     }
 
-	public InputtedOrCalculatedValue(ObservableFormula<T> formula) {
-        inputtedValue = new InputtedValue<>();
-		calculatedValue = new CalculatedValue<>(formula);
+	public InputtedOrCalculatedValue(Id valueType, ObservableFormula<T> formula) {
+        inputtedValue = new InputtedValue<>(valueType);
+		calculatedValue = new CalculatedValue<>(valueType, formula);
 
         this.state.set(STATE.CALCULATED);
         this.calculatedValue.addFormulaListener(this::calculateAndSetValue);
 	}
 
-	public InputtedOrCalculatedValue(T value, ObservableFormula<T> formula) {
-        inputtedValue = new InputtedValue<>(value);
-        calculatedValue = new CalculatedValue<>(formula);
+	public InputtedOrCalculatedValue(Id valueType, T value, ObservableFormula<T> formula) {
+        inputtedValue = new InputtedValue<>(valueType, value);
+        calculatedValue = new CalculatedValue<>(valueType, formula);
 
         set(value);
 	}
@@ -112,4 +115,20 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> implements Value<T> {
     public ReadOnlyObjectProperty<ObservableFormula<T>> formulaProperty() {
         return this.calculatedValue.formulaProperty();
     }
+
+	@Override
+	public Id getValueType() {
+		// Can be either inputtedValue of calculatedValue, they will always have the same type;
+		return inputtedValue.getValueType();
+	}
+
+	@Override
+	public void addListener(InvalidationListener listener) {
+		value.addListener(listener);
+	}
+
+	@Override
+	public void removeListener(InvalidationListener listener) {
+		value.removeListener(listener);
+	}
 }

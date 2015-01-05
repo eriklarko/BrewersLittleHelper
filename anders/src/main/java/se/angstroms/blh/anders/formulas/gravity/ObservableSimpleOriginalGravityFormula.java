@@ -1,12 +1,13 @@
 
 package se.angstroms.blh.anders.formulas.gravity;
 
-import se.angstroms.blh.anders.context.FullContext;
 import org.blh.core.formula.gravity.originalgravity.SimpleOriginalGravityFormula;
 import org.blh.core.unit.gravity.SpecificGravity;
+
+import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.context.value.Value;
-import se.angstroms.blh.anders.formulas.ObservableFormula;
 import se.angstroms.blh.anders.context.value.findingformulas.Formula;
+import se.angstroms.blh.anders.formulas.ObservableFormula;
 
 /**
  *
@@ -27,7 +28,7 @@ public class ObservableSimpleOriginalGravityFormula extends ObservableFormula<Sp
 	protected void registerDependentVariables(FullContext context) {
 		registerDependentVariable(context.getExtractionEfficiency());
 		registerDependentVariable(context.getPostBoilVolume());
-		registerDependentVariable(context.getIngredientsList().getFermentables());
+		registerDependentVariable(context.getIngredientsList().getFermentables(), Value.Id.FERMENTABLES);
 	}
 
     @Override

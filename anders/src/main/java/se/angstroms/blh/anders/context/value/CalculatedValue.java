@@ -1,10 +1,14 @@
 package se.angstroms.blh.anders.context.value;
 
+import java.util.Objects;
+
+import org.blh.core.unit.Unit;
+
+import se.angstroms.blh.anders.formulas.ObservableFormula;
+
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import org.blh.core.unit.Unit;
-import se.angstroms.blh.anders.formulas.ObservableFormula;
 
 /**
  *
@@ -13,12 +17,14 @@ import se.angstroms.blh.anders.formulas.ObservableFormula;
 public class CalculatedValue<T extends Unit<?>> implements Value<T> {
 
     private final ObjectProperty<ObservableFormula<T>> formulaProperty;
+	private final Id valueType;
 
-    public CalculatedValue() {
-        this.formulaProperty = new SimpleObjectProperty<>();
+    public CalculatedValue(Id valueType) {
+        this(valueType, null);
     }
 
-    public CalculatedValue(ObservableFormula<T> formula) {
+    public CalculatedValue(Id valueType, ObservableFormula<T> formula) {
+		this.valueType = valueType;
         this.formulaProperty = new SimpleObjectProperty<>(formula);
     }
 
@@ -40,4 +46,21 @@ public class CalculatedValue<T extends Unit<?>> implements Value<T> {
     public T get() {
         return formulaProperty.get().calc();
     }
+
+	@Override
+	public Id getValueType() {
+		return valueType;
+	}
+
+	@Override
+	public void addListener(InvalidationListener listener) {
+		Objects.nonNull(formulaProperty.get());
+		formulaProperty.get().addListener(listener);
+	}
+
+	@Override
+	public void removeListener(InvalidationListener listener) {
+		Objects.nonNull(formulaProperty.get());
+		formulaProperty.get().removeListener(listener);
+	}
 }
