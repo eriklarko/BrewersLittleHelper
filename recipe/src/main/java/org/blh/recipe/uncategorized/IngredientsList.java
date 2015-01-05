@@ -1,11 +1,13 @@
 package org.blh.recipe.uncategorized;
 
 import java.util.Collection;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import org.blh.core.recipe.GristPart;
 import org.blh.core.recipe.HopAddition;
 import org.blh.core.recipe.YeastAddition;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Holds the ingredients of a recipe :) Loltroll self documenting... wait. no..
@@ -20,23 +22,9 @@ public class IngredientsList {
     private final ObservableList<YeastAddition<?>> yeastAdditions;
 
     public IngredientsList() {
-        this(FXCollections.observableArrayList(), FXCollections.observableArrayList(), FXCollections.observableArrayList());
-    }
-
-    public IngredientsList(Collection<GristPart> fermentables,
-            Collection<HopAddition> hopAdditions,
-            Collection<YeastAddition<?>> yeastAdditions) {
-        this(FXCollections.observableArrayList(fermentables),
-                FXCollections.observableArrayList(hopAdditions),
-                FXCollections.observableArrayList(yeastAdditions));
-    }
-
-    public IngredientsList(ObservableList<GristPart> fermentables,
-            ObservableList<HopAddition> hopAdditions,
-            ObservableList<YeastAddition<?>> yeastAdditions) {
-        this.fermentables = fermentables;
-        this.hopAdditions = hopAdditions;
-        this.yeastAdditions = yeastAdditions;
+        this.fermentables = FXCollections.observableArrayList();
+        this.hopAdditions = FXCollections.observableArrayList();
+        this.yeastAdditions = FXCollections.observableArrayList();
     }
 
     public ObservableList<GristPart> getFermentables() {

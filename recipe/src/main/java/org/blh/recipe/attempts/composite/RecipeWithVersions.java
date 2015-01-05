@@ -3,15 +3,13 @@ package org.blh.recipe.attempts.composite;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 import org.blh.core.uncategorized.BeerType;
+import org.blh.recipe.uncategorized.IngredientsList;
+import org.blh.recipe.uncategorized.InstructionsList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.blh.recipe.uncategorized.IngredientsList;
-import org.blh.recipe.uncategorized.InstructionsList;
 
 /**
  * Describes a versions aware recipe. For compatibility or ease of use, the
