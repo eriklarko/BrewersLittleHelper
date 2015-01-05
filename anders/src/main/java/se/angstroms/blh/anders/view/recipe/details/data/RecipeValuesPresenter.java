@@ -1,11 +1,9 @@
 package se.angstroms.blh.anders.view.recipe.details.data;
 
-import javax.inject.Inject;
 
 import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.context.value.InputtedOrCalculatedValue;
 import se.angstroms.blh.anders.context.value.Value;
-import se.angstroms.blh.anders.context.value.parsing.UnitStringParserFactory;
 import se.angstroms.blh.anders.view.recipe.details.data.value.ValuePresenter;
 import se.angstroms.blh.anders.view.util.CustomControl;
 
@@ -57,9 +55,6 @@ public class RecipeValuesPresenter extends VBox {
 		}
 	}
 
-	@Inject
-	private UnitStringParserFactory unitStringParserFactory;
-
 	@FXML
 	private GridPane grid;
 
@@ -105,6 +100,6 @@ public class RecipeValuesPresenter extends VBox {
 	private ValuePresenter typeToValuePresenter(Value.Id type) {
 		Value<?> value = recipeProperty.get().get(type);
 		InputtedOrCalculatedValue<?> valueAsIOCV = (InputtedOrCalculatedValue<?>) value;
-		return new ValuePresenter(valueAsIOCV, unitStringParserFactory.getParserFor(type));
+		return new ValuePresenter(valueAsIOCV, type.getParser());
 	}
 }
