@@ -12,4 +12,9 @@ public class EBC extends DoubleUnit {
     public EBC(double value) {
         super(value);
     }
+
+	@Override
+	public EBC deriveNew(double d) {
+		return new EBC(d);
+	}
 }

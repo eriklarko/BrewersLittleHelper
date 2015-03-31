@@ -10,10 +10,6 @@ import se.angstroms.blh.anders.context.value.Value;
 import se.angstroms.blh.anders.context.value.findingformulas.FormulaDirectory;
 import se.angstroms.blh.anders.context.value.findingformulas.NoDefaultFormulaException;
 
-/**
- *
- * @author eriklark
- */
 public class DefaultFormulaHelper {
 
     private final FormulaDirectory formulaFactory;
@@ -33,6 +29,7 @@ public class DefaultFormulaHelper {
     }
 
     private void initializeFieldIfValue(Field field, FullContext context) throws IllegalArgumentException, IllegalAccessException, NoDefaultFormulaException {
+		field.setAccessible(true);
         Object fieldValue = field.get(context);
 		
 		if (fieldValue instanceof Value) {

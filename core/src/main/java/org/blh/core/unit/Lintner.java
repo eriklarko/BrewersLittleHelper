@@ -11,4 +11,9 @@ public class Lintner extends DoubleUnit {
     public Lintner(double value) {
         super(value);
     }
+
+	@Override
+	public Lintner deriveNew(double d) {
+		return new Lintner(d);
+	}
 }

@@ -18,4 +18,9 @@ public class GravityPoints extends DoubleUnit {
     public SpecificGravity toSpecificGravity() {
         return new SpecificGravity(this.value() / 1000 + 1);
     }
+
+	@Override
+	public GravityPoints deriveNew(double d) {
+		return new GravityPoints(d);
+	}
 }

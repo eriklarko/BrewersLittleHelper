@@ -22,4 +22,9 @@ public class Grams extends DoubleUnit {
     public Kilograms toKilograms() {
         return new Kilograms(this.value() / CONVERSION_FACTOR);
     }
+
+	@Override
+	public Grams deriveNew(double d) {
+		return new Grams(d);
+	}
 }

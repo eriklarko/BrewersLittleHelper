@@ -40,4 +40,9 @@ public class Lovibond extends DoubleUnit {
     public Lovibond(SRM value) {
         super((value.value() + 0.76) / 1.3546);
     }
+
+	@Override
+	public Lovibond deriveNew(double d) {
+		return new Lovibond(d);
+	}
 }

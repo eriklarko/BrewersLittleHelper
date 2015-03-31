@@ -22,4 +22,9 @@ public class SRM extends DoubleUnit {
     public EBC toEBC() {
         return new EBC(this.value() * CONVERSION_FACTOR);
     }
+
+	@Override
+	public SRM deriveNew(double d) {
+		return new SRM(d);
+	}
 }

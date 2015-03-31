@@ -22,4 +22,9 @@ public class Feet extends DoubleUnit {
     public Meters toMeters() {
         return new Meters(this.value() / CONVERSION_FACTOR);
     }
+
+	@Override
+	public Feet deriveNew(double d) {
+		return new Feet(d);
+	}
 }

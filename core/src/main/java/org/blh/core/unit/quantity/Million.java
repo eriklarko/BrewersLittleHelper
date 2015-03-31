@@ -20,4 +20,9 @@ public class Million extends DoubleUnit {
     public double trueValue() {
         return this.value() * MILLION;
     }
+
+	@Override
+	public Million deriveNew(double d) {
+		return new Million(d);
+	}
 }

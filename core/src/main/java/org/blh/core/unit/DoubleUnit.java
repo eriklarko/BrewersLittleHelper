@@ -42,6 +42,8 @@ public abstract class DoubleUnit extends Unit<Double> {
         this.delta = getDeltaFromDecimalPlaces(equalsToDecimalPlace);
     }
 
+	public abstract <T> T deriveNew(double d);
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

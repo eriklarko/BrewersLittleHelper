@@ -19,4 +19,9 @@ public class Hour extends DoubleUnit {
     public Hour(Minutes minutes) {
         super(minutes.value() / CONVERSION_FACTOR);
     }
+
+	@Override
+	public Hour deriveNew(double d) {
+		return new Hour(d);
+	}
 }

@@ -9,12 +9,7 @@ import javafx.beans.Observable;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 
-/**
- *
- * @author Thinner
- * @param <T>
- */
-public class InputtedOrCalculatedValue<T extends Unit<?>> implements Value<T> {
+public class InputtedOrCalculatedValue<T extends Unit<?>> extends Value<T> {
 
 	public static enum STATE {
         INVALID, INPUTTED, CALCULATED;
@@ -77,7 +72,7 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> implements Value<T> {
             this.calculatedValue.removeFormulaListener(this::calculateAndSetValue);
             this.inputtedValue.set(value);
             this.state.set(STATE.INPUTTED);
-            this.value.bind(this.inputtedValue);
+            this.value.bind(this.inputtedValue.getProperty());
             System.out.println("Bound " + this);
         } else {
             this.inputtedValue.set(value);

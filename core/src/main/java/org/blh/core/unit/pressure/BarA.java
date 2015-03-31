@@ -20,4 +20,9 @@ public class BarA extends DoubleUnit {
     public Bar toBar() {
         return new Bar(this.value() - 1);
     }
+
+	@Override
+	public BarA deriveNew(double d) {
+		return new BarA(d);
+	}
 }

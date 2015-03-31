@@ -13,4 +13,9 @@ public class HBU extends DoubleUnit {
     public HBU(double value) {
         super(value);
     }
+
+	@Override
+	public HBU deriveNew(double d) {
+		return new HBU(d);
+	}
 }

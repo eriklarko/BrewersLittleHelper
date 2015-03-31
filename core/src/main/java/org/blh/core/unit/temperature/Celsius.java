@@ -12,4 +12,9 @@ public class Celsius extends DoubleUnit {
     public Celsius(double value) {
         super(value);
     }
+
+	@Override
+	public Celsius deriveNew(double d) {
+		return new Celsius(d);
+	}
 }

@@ -18,7 +18,7 @@ public class ExtractPotential extends DoubleUnit {
     }
 
     public ExtractPotential(GravityPoints gravityPoints, Kilograms weight) {
-        super(gravityPoints.value() / weight.value());
+        super(weight.value() == 0 ? 0 : gravityPoints.value() / weight.value());
 
         this.gravityPoints = gravityPoints;
         this.weight = weight;
@@ -31,4 +31,16 @@ public class ExtractPotential extends DoubleUnit {
     public Kilograms getWeight() {
         return weight;
     }
+
+	@Override
+	public ExtractPotential deriveNew(double d) {
+		if (d == 0) {
+			return new ExtractPotential(new GravityPoints(0), new Kilograms(0));
+		}
+
+		double scale = super.value() / d;
+		GravityPoints newGp = new GravityPoints(gravityPoints.value() * scale);
+		Kilograms newWeight = new Kilograms(weight.value() * scale);
+		return new ExtractPotential(newGp, newWeight);
+	}
 }

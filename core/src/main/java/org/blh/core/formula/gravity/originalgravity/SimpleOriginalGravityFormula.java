@@ -81,5 +81,14 @@ public class SimpleOriginalGravityFormula  {
         public LbsExtractPotential(ExtractPotential value) {
             super(value.getGravityPoints().value() * new Lbs(value.getWeight()).value());
         }
+
+		private LbsExtractPotential(double d) {
+			super(d);
+		}
+
+		@Override
+		public LbsExtractPotential deriveNew(double d) {
+			return new LbsExtractPotential(d);
+		}
     }
 }

@@ -2,8 +2,10 @@ package se.angstroms.blh.anders.context.value.findingformulas;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
+
 import org.blh.core.unit.Unit;
 import org.reflections.Reflections;
+
 import se.angstroms.blh.anders.context.value.Value;
 import se.angstroms.blh.anders.formulas.ObservableFormula;
 import se.angstroms.blh.anders.formulas.volume.AngstromsBiabFormula;
@@ -38,9 +40,7 @@ public class FormulaClasspathScanner {
     private void addFormula(FormulaDirectory formulaFactory, Class<? extends ObservableFormula> formulaClass) throws IllegalAccessException, SecurityException, NoSuchMethodException, InstantiationException, IllegalArgumentException, InvocationTargetException {
         Formula annotation = formulaClass.getAnnotation(Formula.class);
         for (Value.Id valueId : annotation.calculates()) {
-            if (valueId != Value.Id.NOTHING) {
-                formulaFactory.register(valueId, formulaClass);
-            }
+			formulaFactory.register(valueId, formulaClass);
         }
     }
 

@@ -12,4 +12,9 @@ public class Minutes extends DoubleUnit {
     public Minutes(double value) {
         super(value);
     }
+
+	@Override
+	public Minutes deriveNew(double d) {
+		return new Minutes(d);
+	}
 }

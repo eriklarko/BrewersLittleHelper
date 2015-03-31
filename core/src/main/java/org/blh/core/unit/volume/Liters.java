@@ -12,4 +12,9 @@ public class Liters extends DoubleUnit {
     public Liters(double value) {
         super(value);
     }
+
+	@Override
+	public Liters deriveNew(double d) {
+		return new Liters(d);
+	}
 }

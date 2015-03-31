@@ -15,4 +15,9 @@ public class BJCPTasteRating extends DoubleUnit {
             throw new IllegalArgumentException("The BJCP taste rating is a number between 0 and " + MAX_RATING + ", you said " + value);
         }
     }
+
+	@Override
+	public BJCPTasteRating deriveNew(double d) {
+		return new BJCPTasteRating(d);
+	}
 }

@@ -28,4 +28,9 @@ public class Plato extends DoubleUnit {
         a = a + 1;
         return new SpecificGravity(a);
     }
+
+	@Override
+	public Plato deriveNew(double d) {
+		return new Plato(d);
+	}
 }

@@ -20,4 +20,8 @@ public class YeastCellCount extends Unit<Billion> {
     public YeastCellCount(Billion value) {
         super(value);
     }
+
+	public YeastCellCount deriveNew(int d) {
+		return new YeastCellCount(d);
+	}
 }

@@ -36,4 +36,9 @@ public class ColorPotential extends DoubleUnit {
     public ColorPotential add(Lovibond color, Lbs amount) {
         return new ColorPotential(this.value() + getPotential(color, amount));
     }
+
+	@Override
+	public ColorPotential deriveNew(double d) {
+		return new ColorPotential(d);
+	}
 }

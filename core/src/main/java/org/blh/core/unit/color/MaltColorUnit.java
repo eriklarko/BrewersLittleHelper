@@ -12,6 +12,16 @@ import org.blh.core.unit.volume.USGallons;
 public class MaltColorUnit extends DoubleUnit {
 
     public MaltColorUnit(ColorPotential potential, USGallons finalVolume) {
-        super(potential.value() / finalVolume.value());
+        super(finalVolume.value() == 0 ? 0 : potential.value() / finalVolume.value());
     }
+
+	private MaltColorUnit(double d) {
+		super(d);
+	}
+
+
+	@Override
+	public MaltColorUnit deriveNew(double d) {
+		return new MaltColorUnit(d);
+	}
 }

@@ -14,7 +14,7 @@ import javafx.beans.property.SimpleObjectProperty;
  *
  * @author eriklark
  */
-public class CalculatedValue<T extends Unit<?>> implements Value<T> {
+public class CalculatedValue<T extends Unit<?>> extends Value<T> {
 
     private final ObjectProperty<ObservableFormula<T>> formulaProperty;
 	private final Id valueType;

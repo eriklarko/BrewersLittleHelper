@@ -78,7 +78,7 @@ public class RecipeValuesPresenter extends VBox {
 
 	private void populateGrid() {
 		grid.getChildren().clear();
-		int cellsPerElement = 3;
+		int cellsPerElement = 4;
 
 		for (GridElement element : GridElement.values()) {
 			int column = element.getColumn() * cellsPerElement;
@@ -94,6 +94,7 @@ public class RecipeValuesPresenter extends VBox {
 			grid.add(valueTitle, column, element.getRow());
 			grid.add(valuePresenter, column + 1, element.getRow());
 			grid.add(valuePresenter.getGoBackToCalculatedButton(), column + 2, element.getRow());
+			grid.add(valuePresenter.getExploreButton(), column + 3, element.getRow());
 		}
 	}
 

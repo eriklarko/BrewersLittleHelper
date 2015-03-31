@@ -12,4 +12,9 @@ public class Days extends DoubleUnit {
     public Days(double value) {
         super(value);
     }
+
+	@Override
+	public Days deriveNew(double d) {
+		return new Days(d);
+	}
 }

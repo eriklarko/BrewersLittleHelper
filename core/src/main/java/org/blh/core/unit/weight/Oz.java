@@ -22,4 +22,9 @@ public class Oz extends DoubleUnit {
     public Grams toGrams() {
         return new Grams(this.value() / CONVERSION_FACTOR);
     }
+
+	@Override
+	public Oz deriveNew(double d) {
+		return new Oz(d);
+	}
 }

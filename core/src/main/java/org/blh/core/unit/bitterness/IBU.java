@@ -13,4 +13,9 @@ public class IBU extends DoubleUnit {
     public IBU(double value) {
         super(value);
     }
+
+	@Override
+	public IBU deriveNew(double d) {
+		return new IBU(d);
+	}
 }

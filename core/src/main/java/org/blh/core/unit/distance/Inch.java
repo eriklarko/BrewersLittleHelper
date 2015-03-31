@@ -22,4 +22,9 @@ public class Inch extends DoubleUnit {
     public Meters toMeters() {
         return new Meters(this.value() / CONVERSION_FACTOR);
     }
+
+	@Override
+	public Inch deriveNew(double d) {
+		return new Inch(d);
+	}
 }

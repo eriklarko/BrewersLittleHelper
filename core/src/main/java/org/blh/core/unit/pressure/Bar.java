@@ -10,4 +10,9 @@ public class Bar extends DoubleUnit {
     public Bar(double value) {
         super(value);
     }
+
+	@Override
+	public Bar deriveNew(double d) {
+		return new Bar(d);
+	}
 }

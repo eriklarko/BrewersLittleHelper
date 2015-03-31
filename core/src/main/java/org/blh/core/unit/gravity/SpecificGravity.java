@@ -13,4 +13,9 @@ public class SpecificGravity extends DoubleUnit {
     public SpecificGravity(double value) {
         super(value);
     }
+
+	@Override
+	public SpecificGravity deriveNew(double d) {
+		return new SpecificGravity(d);
+	}
 }

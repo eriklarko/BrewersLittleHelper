@@ -23,6 +23,11 @@ public class DoubleUnitTest {
         public EmptyDoubleUnitImpl(double value, double delta) {
             super(value, delta);
         }
+
+		@Override
+		public EmptyDoubleUnitImpl deriveNew(double d) {
+			return new EmptyDoubleUnitImpl(d);
+		}
     }
 
 	@Test

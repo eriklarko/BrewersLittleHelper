@@ -16,12 +16,13 @@ import se.angstroms.blh.anders.context.value.parsing.UnitStringParserFactory;
 
 import javafx.beans.Observable;
 
+
 /**
  * Defines all things about a beer recipe that has a value.
  *
  * @author eriklark
  */
-public interface Value<T> extends Observable {
+public abstract class Value<T> implements Observable {
 
 	public static enum Id {
 
@@ -34,7 +35,7 @@ public interface Value<T> extends Observable {
 		ELEVATION("", Meters.class),
 		COOLING_LOSS("", Percentage.class), YEAST_ATTENUATION("", Percentage.class),
 		PRE_MASH_VOLUME("Pre mash volume", Liters.class), PRE_BOIL_VOLUME("", Liters.class), POST_BOIL_VOLUME("Post boil volume", Liters.class), PRE_FERMENTATION_VOLUME("", Liters.class),
-		HOP_ADDITIONS("", null), FERMENTABLES("", null), YEAST_ADDITIONS("", null);
+		HOP_ADDITIONS("Hops", null), FERMENTABLES("Fermentables", null), YEAST_ADDITIONS("Yeast", null);
 
 		private static final UnitStringParserFactory stringParserFactory = new UnitStringParserFactory();
 
@@ -50,6 +51,10 @@ public interface Value<T> extends Observable {
 			return humanReadable;
 		}
 
+		public Class<? extends Unit<?>> getUnit() {
+			return unit;
+		}
+
 		public <T extends Unit<?>> UnitStringParser<T> getParser() {
 			UnitStringParser<Unit<?>> parser = stringParserFactory.getParserFor(unit);
 			return (String raw) -> {
@@ -60,10 +65,22 @@ public interface Value<T> extends Observable {
 				}
 			};
 		}
-
 	}
 
-	Id getValueType();
+	private static final UnitStringFormatter unitStringFormatter = new UnitStringFormatter();
 
-	T get();
+	public String asString() {
+		if (get() == null) {
+			return "n/a";
+		} else if (get() instanceof Unit) {
+			Unit unit = (Unit) get();
+			return unitStringFormatter.format(unit);
+		} else {
+			throw new IllegalStateException("Tried to get the string representation of a value that is not a unit");
+		}
+	}
+
+	public abstract Id getValueType();
+
+	public abstract T get();
 }

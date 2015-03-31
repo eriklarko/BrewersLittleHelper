@@ -15,4 +15,9 @@ public class PH extends DoubleUnit {
             throw new IllegalArgumentException("You craaaazzzy. PH is 0-14");
         }
     }
+
+	@Override
+	public PH deriveNew(double d) {
+		return new PH(d);
+	}
 }

@@ -30,4 +30,9 @@ public class PSIA extends DoubleUnit {
     public Bar toBar() {
         return toPSI().toBar();
     }
+
+	@Override
+	public PSIA deriveNew(double d) {
+		return new PSIA(d);
+	}
 }

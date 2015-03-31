@@ -12,4 +12,9 @@ public class Kilograms extends DoubleUnit {
     public Kilograms(double value) {
         super(value);
     }
+
+	@Override
+	public Kilograms deriveNew(double d) {
+		return new Kilograms(d);
+	}
 }

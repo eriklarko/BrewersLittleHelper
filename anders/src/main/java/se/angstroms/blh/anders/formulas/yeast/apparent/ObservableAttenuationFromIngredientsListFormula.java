@@ -2,6 +2,7 @@ package se.angstroms.blh.anders.formulas.yeast.apparent;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
 
 import org.blh.core.formula.yeast.attenuation.apparent.SummedFromIngredientsList;
 import org.blh.core.recipe.YeastAddition;
@@ -13,6 +14,8 @@ import se.angstroms.blh.anders.context.FullContext;
 import se.angstroms.blh.anders.context.value.Value;
 import se.angstroms.blh.anders.context.value.findingformulas.Formula;
 import se.angstroms.blh.anders.formulas.ObservableFormula;
+
+import com.google.common.collect.Sets;
 
 /**
  *
@@ -50,4 +53,24 @@ public class ObservableAttenuationFromIngredientsListFormula extends ObservableF
 
         return formula.calcDry(grams);
     }
+
+	@Override
+	public String getName() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public String getMathRepresentation() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public String getDescription() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public Set<Value.Id> calculates() {
+		return Sets.immutableEnumSet(Value.Id.YEAST_ATTENUATION);
+	}
 }

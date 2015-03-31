@@ -22,4 +22,9 @@ public class Lbs extends DoubleUnit {
     public Kilograms toKilograms() {
         return new Kilograms(this.value() / CONVERSION_FACTOR);
     }
+
+	@Override
+	public Lbs deriveNew(double d) {
+		return new Lbs(d);
+	}
 }

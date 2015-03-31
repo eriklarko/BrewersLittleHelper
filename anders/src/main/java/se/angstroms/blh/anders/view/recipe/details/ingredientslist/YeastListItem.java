@@ -2,20 +2,22 @@ package se.angstroms.blh.anders.view.recipe.details.ingredientslist;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+
 import se.angstroms.blh.anders.view.util.listspinner.ListSpinners;
-import java.util.Arrays;
+
 import java.util.function.Consumer;
 import java.util.function.Function;
+
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Node;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.util.Pair;
 import jfxtras.scene.control.ListSpinner;
+
 import org.blh.core.ingredient.Yeast;
 import org.blh.core.recipe.YeastAddition;
 import org.blh.core.unit.Unit;
 import org.blh.core.unit.volume.Milliliters;
+
 import se.angstroms.blh.anders.data.YeastStore;
 import se.angstroms.blh.anders.view.common.GridListView;
 import se.angstroms.blh.anders.view.common.RemoveButton;
@@ -44,12 +46,11 @@ class YeastListItem implements GridListView.GridRow<YeastAddition<?>> {
     }
 
     @Override
-    public Iterable<Pair<ColumnConstraints, Node>> getNodes() {
-        return Arrays.asList(
-                new Pair(null, getNamePart()),
-                new Pair(null, getAmountPart()),
-                new Pair(null, removeButton())
-        );
+    public GridListView.GridRowColumnBuilder getColumns() {
+        return new GridListView.GridRowColumnBuilder()
+                .addColumn(getNamePart())
+                .addColumn(getAmountPart())
+                .addColumn(removeButton());
     }
 
     private Node getNamePart() {

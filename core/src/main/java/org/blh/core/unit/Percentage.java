@@ -20,4 +20,9 @@ public class Percentage extends DoubleUnit {
     public Factor asFactor() {
         return new Factor(this.value() / CONVERSION_FACTOR);
     }
+
+	@Override
+	public Percentage deriveNew(double d) {
+		return new Percentage(d);
+	}
 }

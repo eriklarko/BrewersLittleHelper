@@ -22,4 +22,9 @@ public class USGallons extends DoubleUnit {
     public Liters toLiters() {
         return new Liters(this.value() / CONVERSION_FACTOR);
     }
+
+	@Override
+	public USGallons deriveNew(double d) {
+		return new USGallons(d);
+	}
 }

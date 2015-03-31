@@ -10,4 +10,9 @@ public class Seconds extends DoubleUnit {
     public Seconds(double value) {
         super(value);
     }
+
+	@Override
+	public Seconds deriveNew(double d) {
+		return new Seconds(d);
+	}
 }

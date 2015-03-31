@@ -4,6 +4,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
 import se.angstroms.blh.anders.context.value.Value;
 
 /**
@@ -13,6 +14,7 @@ import se.angstroms.blh.anders.context.value.Value;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
+@Deprecated
 public @interface Formula {
 
     public Value.Id[] calculates() default Value.Id.NOTHING;

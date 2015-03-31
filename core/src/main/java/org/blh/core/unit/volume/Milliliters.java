@@ -20,4 +20,9 @@ public class Milliliters extends DoubleUnit {
     public Liters toLiters() {
         return new Liters(this.value() / CONVERSION_FACTOR);
     }
+
+	@Override
+	public Milliliters deriveNew(double d) {
+		return new Milliliters(d);
+	}
 }

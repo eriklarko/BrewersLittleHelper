@@ -20,4 +20,9 @@ public class PSI extends DoubleUnit {
     public Bar toBar() {
         return new Bar(this.value() / CONVERSION_FACTOR);
     }
+
+	@Override
+	public PSI deriveNew(double d) {
+		return new PSI(d);
+	}
 }

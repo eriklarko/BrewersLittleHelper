@@ -20,4 +20,9 @@ public class Fahrenheit extends DoubleUnit {
     public Celsius toCelsius() {
         return new Celsius((5d / 9) * (this.value() - 32));
     }
+
+	@Override
+	public Fahrenheit deriveNew(double d) {
+		return new Fahrenheit(d);
+	}
 }

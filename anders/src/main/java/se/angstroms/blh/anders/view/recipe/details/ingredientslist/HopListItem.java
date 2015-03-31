@@ -1,28 +1,28 @@
 package se.angstroms.blh.anders.view.recipe.details.ingredientslist;
 
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import se.angstroms.blh.anders.view.util.listspinner.ListSpinners;
-import java.util.Arrays;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.scene.Node;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.util.Pair;
-import jfxtras.scene.control.ListSpinner;
+
 import org.blh.core.ingredient.Hop;
 import org.blh.core.recipe.HopAddition;
 import org.blh.core.unit.Percentage;
 import org.blh.core.unit.time.Minutes;
 import org.blh.core.unit.weight.Grams;
+
 import se.angstroms.blh.anders.data.Store;
 import se.angstroms.blh.anders.view.common.GridListView;
 import se.angstroms.blh.anders.view.common.RemoveButton;
 import se.angstroms.blh.anders.view.common.SelectBoxLabel;
 import se.angstroms.blh.anders.view.util.GenericBidirectionalBindings;
 import se.angstroms.blh.anders.view.util.listspinner.IntStringConverter;
+import se.angstroms.blh.anders.view.util.listspinner.ListSpinners;
+
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import jfxtras.scene.control.ListSpinner;
 
 /**
  *
@@ -46,14 +46,13 @@ class HopListItem implements GridListView.GridRow<HopAddition> {
     }
 
     @Override
-    public Iterable<Pair<ColumnConstraints, Node>> getNodes() {
-        return Arrays.asList(
-                new Pair(null, getNamePart()),
-                new Pair(null, getAmountPart()),
-                new Pair(null, getAlphaAcidsPart()),
-                new Pair(null, getTimeInBoilPart()),
-                new Pair(null, removeButton())
-        );
+    public GridListView.GridRowColumnBuilder getColumns() {
+        return new GridListView.GridRowColumnBuilder()
+                .addColumn(getNamePart())
+                .addColumn(getAmountPart())
+                .addColumn(getAlphaAcidsPart())
+                .addColumn(getTimeInBoilPart())
+                .addColumn(removeButton());
     }
 
     private Node getNamePart() {

@@ -43,9 +43,9 @@ public class FullContext {
     private final InputtedOrCalculatedValue<Liters> preFermentationVolume = new InputtedOrCalculatedValue<>(Value.Id.PRE_FERMENTATION_VOLUME);
 
     private final InputtedValue<Minutes> boilTime = new InputtedValue<>(Value.Id.BOIL_TIME);
-    private final InputtedOrCalculatedValue<SpecificGravity> preBoilGravity = new InputtedOrCalculatedValue<>(null);
-    private final InputtedOrCalculatedValue<SpecificGravity> boilGravity = new InputtedOrCalculatedValue<>(null);
-    private final InputtedOrCalculatedValue<SpecificGravity> postBoilGravity = new InputtedOrCalculatedValue<>(null);
+    private final InputtedOrCalculatedValue<SpecificGravity> preBoilGravity = new InputtedOrCalculatedValue<>(Value.Id.NOTHING);
+    private final InputtedOrCalculatedValue<SpecificGravity> boilGravity = new InputtedOrCalculatedValue<>(Value.Id.NOTHING);
+    private final InputtedOrCalculatedValue<SpecificGravity> postBoilGravity = new InputtedOrCalculatedValue<>(Value.Id.NOTHING);
 
     private final InputtedOrCalculatedValue<SpecificGravity> originalGravity = new InputtedOrCalculatedValue<>(Value.Id.OG);
 
@@ -54,13 +54,13 @@ public class FullContext {
     private final InputtedOrCalculatedValue<ABV> alcoholContent = new InputtedOrCalculatedValue<>(Value.Id.ALCOHOL_CONTENT);
 
     private final InputtedOrCalculatedValue<Percentage> yeastApparentAttenuation = new InputtedOrCalculatedValue<>(Value.Id.YEAST_ATTENUATION);
-    private final InputtedOrCalculatedValue<MaltColorUnit> maltColorUnit = new InputtedOrCalculatedValue<>(null);
-    private final InputtedOrCalculatedValue<ColorPotential> totalColorPotential = new InputtedOrCalculatedValue<>(null);
+    private final InputtedOrCalculatedValue<MaltColorUnit> maltColorUnit = new InputtedOrCalculatedValue<>(Value.Id.NOTHING);
+    private final InputtedOrCalculatedValue<ColorPotential> totalColorPotential = new InputtedOrCalculatedValue<>(Value.Id.NOTHING);
 
     private final InputtedOrCalculatedValue<Factor> extractionEfficiency = new InputtedOrCalculatedValue<>(Value.Id.EXTRACTION_EFFICIENCY);
 
-    private final InputtedOrCalculatedValue<Kilograms> totalGrainWeight = new InputtedOrCalculatedValue<>(null);
-    private final InputtedOrCalculatedValue<Grams> totalHopWeight = new InputtedOrCalculatedValue<>(null);
+    private final InputtedOrCalculatedValue<Kilograms> totalGrainWeight = new InputtedOrCalculatedValue<>(Value.Id.NOTHING);
+    private final InputtedOrCalculatedValue<Grams> totalHopWeight = new InputtedOrCalculatedValue<>(Value.Id.NOTHING);
 
     private final InputtedOrCalculatedValue<IBU> bitterness = new InputtedOrCalculatedValue<>(Value.Id.BITTERNESS);
     ///////////////

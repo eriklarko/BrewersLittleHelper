@@ -2,6 +2,7 @@ package se.angstroms.blh.anders.formulas;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.Set;
 
 import org.blh.core.unit.Unit;
 
@@ -103,4 +104,12 @@ public abstract class ObservableFormula<T extends Unit<?>> implements Observable
     public Collection<Value<?>> getDependencies() {
         return dependencies;
     }
+
+	public abstract String getName();
+
+	public abstract String getMathRepresentation();
+
+	public abstract String getDescription();
+
+	public abstract Set<Value.Id> calculates();
 }
