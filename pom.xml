@@ -12,6 +12,7 @@
         <module>recipe</module>
         <module>core</module>
         <module>recipe-statistics</module>
+        <module>model</module>
     </modules>
 
     <name>blh</name>
