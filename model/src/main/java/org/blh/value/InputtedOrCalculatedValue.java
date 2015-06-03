@@ -45,6 +45,7 @@ public class InputtedOrCalculatedValue<T extends Unit<?>> extends SimpleObjectPr
         Objects.requireNonNull(formula);
         state.setValue(State.CALCULATED);
         this.formula.setValue(formula);
+        super.set(formula.calc());
     }
 
     public State getState() {
