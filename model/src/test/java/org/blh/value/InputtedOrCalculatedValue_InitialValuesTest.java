@@ -8,7 +8,7 @@ import org.mockito.Mockito;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class InputtedOrCalculatedValue_InitialValues {
+public class InputtedOrCalculatedValue_InitialValuesTest {
 
     public static final Unit<Double> MOCK_UNIT = new Unit<Double>(1d) {};
     public static final ObservableFormula<Unit<Double>> MOCK_FORMULA = Mockito.mock(ObservableFormula.class);

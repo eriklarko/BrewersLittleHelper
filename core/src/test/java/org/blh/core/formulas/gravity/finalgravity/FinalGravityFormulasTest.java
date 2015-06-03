@@ -12,7 +12,7 @@ import org.junit.Test;
 /**
  * Created by Erik Larkö at 7/2/13 10:18 PM
  */
-public class FinalGravityFormulasTests {
+public class FinalGravityFormulasTest {
 
     private final SpecificGravity og = new SpecificGravity(1.055);
     private final Factor yeastAttenuation = new Factor(0.75);
