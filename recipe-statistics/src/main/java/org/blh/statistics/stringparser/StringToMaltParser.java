@@ -8,7 +8,7 @@ import org.blh.core.ingredient.Malt;
 import org.blh.core.unit.ExtractPotential;
 import org.blh.core.unit.color.Lovibond;
 import org.blh.core.unit.gravity.GravityPoints;
-import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
+import org.simmetrics.metrics.JaroWinkler;
 
 /**
  *
@@ -39,7 +39,7 @@ public class StringToMaltParser {
                 Float.compare(algo.getSimilarity(thiz.getName(), maltName), algo.getSimilarity(that.getName(), maltName)));*/
 
         return lol.getAll().stream()
-                .map(malt -> new Pair<>(malt, algo.getSimilarity(malt.getName(), maltName)))
+                .map(malt -> new Pair<>(malt, algo.compare(malt.getName(), maltName)))
                 .filter(pair -> pair.getValue() > threshold)
                 .sorted((thiz, that) -> thiz.getValue().compareTo(that.getValue()))
                 .map(pair -> pair.getKey())

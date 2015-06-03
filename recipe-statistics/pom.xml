@@ -28,11 +28,9 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>simmetrics</artifactId>
-            <version>1.6.2</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/simmetrics_jar_v1_6_2_d07_02_07.jar</systemPath>
+            <groupId>com.github.mpkorstanje</groupId>
+            <artifactId>simmetrics-core</artifactId>
+            <version>3.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.silvertunnel-ng</groupId>
