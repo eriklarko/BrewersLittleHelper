@@ -20,7 +20,7 @@ public class RegExpBuilderTest {
 	public void testSaveOneCharacter() {
 		Matcher m = RegExpBuilder.match("hej").thenSave(".").in("tjabbaheje");
 		Assert.assertTrue(m.find());
-		Assert.assertEquals("e", m.group());
+		Assert.assertEquals("e", m.group(1));
 	}
 
 	@Test
